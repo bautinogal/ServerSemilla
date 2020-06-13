@@ -1,0 +1,1000 @@
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:37:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 74 - Duracion: 00:00:37\",\"Codigo\":\"92\",\"Latitud\":-36.847370147705078,\"Longitud\":-60.219757080078125,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:37:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:00:53\",\"Codigo\":\"92\",\"Latitud\":-34.399688720703125,\"Longitud\":-58.736507415771484,\"Interno\":\"2034\",\"Patente\":\"IBM 524\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:38:25\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 65 - Duracion: 00:00:28\",\"Codigo\":\"92\",\"Latitud\":-34.109828948974609,\"Longitud\":-59.054298400878906,\"Interno\":\"668\",\"Patente\":\"AC091BV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:38:31\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 65 - Duracion: 00:00:30\",\"Codigo\":\"92\",\"Latitud\":-34.109848022460938,\"Longitud\":-59.054317474365234,\"Interno\":\"673\",\"Patente\":\"JDF514\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:36:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:02:52\",\"Codigo\":\"92\",\"Latitud\":-34.082759857177734,\"Longitud\":-59.203548431396484,\"Interno\":\"310\",\"Patente\":\"310\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:35:19\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:04:00\",\"Codigo\":\"92\",\"Latitud\":-34.607120513916016,\"Longitud\":-59.167636871337891,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:39:10\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.551727294921875,\"Longitud\":-58.61895751953125,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:39:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-34.551620483398438,\"Longitud\":-58.612869262695313,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:39:18\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 64 - Duracion: 00:00:39\",\"Codigo\":\"92\",\"Latitud\":-34.105350494384766,\"Longitud\":-59.046440124511719,\"Interno\":\"668\",\"Patente\":\"AC091BV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:39:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 67 - Duracion: 00:00:44\",\"Codigo\":\"92\",\"Latitud\":-34.105960845947266,\"Longitud\":-59.047599792480469,\"Interno\":\"673\",\"Patente\":\"JDF514\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:40:19\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.181247711181641,\"Longitud\":-58.961399078369141,\"Interno\":\"283\",\"Patente\":\"AB-428-AE\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:40:05\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.548187255859375,\"Longitud\":-58.605129241943359,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:40:40\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 54 - Duracion: 00:00:10\",\"Codigo\":\"92\",\"Latitud\":-34.586669921875,\"Longitud\":-59.102508544921875,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:40:54\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-36.850189208984375,\"Longitud\":-60.237079620361328,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:41:18\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 66 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-36.852737426757813,\"Longitud\":-60.240299224853516,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:41:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:11\",\"Codigo\":\"92\",\"Latitud\":-36.853588104248047,\"Longitud\":-60.242069244384766,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:41:10\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:58\",\"Codigo\":\"92\",\"Latitud\":-34.176807403564453,\"Longitud\":-58.973659515380859,\"Interno\":\"283\",\"Patente\":\"AB-428-AE\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 80 - Alcanzada 82 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.605499267578125,\"Longitud\":-58.526206970214844,\"Interno\":\"405\",\"Patente\":\"IWZ 968\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:07\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 84 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-36.849258422851563,\"Longitud\":-60.247360229492188,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:19\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.111057281494141,\"Longitud\":-59.122848510742188,\"Interno\":\"310\",\"Patente\":\"310\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:24\",\"Mensaje\":\"Velocidad Excedida : Permitida 80 - Alcanzada 82 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.601520538330078,\"Longitud\":-58.524318695068359,\"Interno\":\"405\",\"Patente\":\"IWZ 968\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:29:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 96 - Duracion: 00:13:34\",\"Codigo\":\"92\",\"Latitud\":-34.013690948486328,\"Longitud\":-59.352897644042969,\"Interno\":\"266\",\"Patente\":\"AA 439 CV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:40:56\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:01:59\",\"Codigo\":\"92\",\"Latitud\":-33.864749908447266,\"Longitud\":-59.528217315673828,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:42\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 50 - Duracion: 00:00:31\",\"Codigo\":\"92\",\"Latitud\":-34.454078674316406,\"Longitud\":-58.620399475097656,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 64 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.627529144287109,\"Longitud\":-58.778778076171875,\"Interno\":\"677\",\"Patente\":\"GLB044\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:48\",\"Mensaje\":\"Velocidad Excedida : Permitida 58 - Alcanzada 67 - Duracion: 00:00:32\",\"Codigo\":\"92\",\"Latitud\":-33.697509765625,\"Longitud\":-59.651607513427734,\"Interno\":\"2021\",\"Patente\":\"2021\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-33.881538391113281,\"Longitud\":-59.500518798828125,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:43:23\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-33.885078430175781,\"Longitud\":-59.494758605957031,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:50\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 88 - Duracion: 00:01:10\",\"Codigo\":\"92\",\"Latitud\":-36.847129821777344,\"Longitud\":-60.253566741943359,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:43:27\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 75 - Duracion: 00:00:40\",\"Codigo\":\"92\",\"Latitud\":-34.478538513183594,\"Longitud\":-58.781639099121094,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:43:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:01:10\",\"Codigo\":\"92\",\"Latitud\":-34.164897918701172,\"Longitud\":-59.000537872314453,\"Interno\":\"283\",\"Patente\":\"AB-428-AE\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:42:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:01:35\",\"Codigo\":\"92\",\"Latitud\":-34.113807678222656,\"Longitud\":-59.114410400390625,\"Interno\":\"310\",\"Patente\":\"310\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:40:36\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 104 - Duracion: 00:02:08\",\"Codigo\":\"92\",\"Latitud\":-34.541778564453125,\"Longitud\":-58.601188659667969,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:44:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.150569915771484,\"Longitud\":-59.026260375976562,\"Interno\":\"283\",\"Patente\":\"AB-428-AE\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:39:36\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:06:02\",\"Codigo\":\"92\",\"Latitud\":-33.909748077392578,\"Longitud\":-65.0106201171875,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:45:31\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 62 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.52227783203125,\"Longitud\":-58.67742919921875,\"Interno\":\"204\",\"Patente\":\"KOW 229\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:44:31\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 92 - Duracion: 00:01:35\",\"Codigo\":\"92\",\"Latitud\":-36.859378814697266,\"Longitud\":-60.268867492675781,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:46:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 67 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-33.825130462646484,\"Longitud\":-59.517879486083984,\"Interno\":\"2018\",\"Patente\":\"HDO 077\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:46:27\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 67 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-36.875389099121094,\"Longitud\":-60.288978576660156,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:43:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:02:51\",\"Codigo\":\"92\",\"Latitud\":-33.886810302734375,\"Longitud\":-59.491897583007813,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:45:33\",\"Mensaje\":\"Velocidad Excedida : Permitida 50 - Alcanzada 60 - Duracion: 00:01:22\",\"Codigo\":\"92\",\"Latitud\":-34.104297637939453,\"Longitud\":-59.044677734375,\"Interno\":\"260\",\"Patente\":\"AA 295 RQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:47:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 80 - Duracion: 00:00:10\",\"Codigo\":\"92\",\"Latitud\":-33.831317901611328,\"Longitud\":-59.522987365722656,\"Interno\":\"2018\",\"Patente\":\"HDO 077\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:44:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:03:12\",\"Codigo\":\"92\",\"Latitud\":-34.103908538818359,\"Longitud\":-59.142898559570312,\"Interno\":\"266\",\"Patente\":\"AA 439 CV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:47:14\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 49 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.454608917236328,\"Longitud\":-58.720027923583984,\"Interno\":\"634\",\"Patente\":\"AD496AQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:47:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.1220703125,\"Longitud\":-59.091747283935547,\"Interno\":\"266\",\"Patente\":\"AA 439 CV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:45:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:02:15\",\"Codigo\":\"92\",\"Latitud\":-34.143630981445313,\"Longitud\":-59.039398193359375,\"Interno\":\"283\",\"Patente\":\"AB-428-AE\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:48:05\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 55 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.452117919921875,\"Longitud\":-58.716506958007812,\"Interno\":\"634\",\"Patente\":\"AD496AQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:48:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 72 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-36.879417419433594,\"Longitud\":-60.29412841796875,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:46:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:01:48\",\"Codigo\":\"92\",\"Latitud\":-33.913177490234375,\"Longitud\":-59.450920104980469,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:48:29\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 68 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.607040405273437,\"Longitud\":-58.766868591308594,\"Interno\":\"677\",\"Patente\":\"GLB044\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:44:00\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.497840881347656,\"Longitud\":-58.591499328613281,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:46:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:02:26\",\"Codigo\":\"92\",\"Latitud\":-34.453407287597656,\"Longitud\":-58.695247650146484,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:49:03\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.422809600830078,\"Longitud\":-58.718269348144531,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:48:46\",\"Mensaje\":\"Velocidad Excedida : Permitida 50 - Alcanzada 63 - Duracion: 00:00:33\",\"Codigo\":\"92\",\"Latitud\":-34.11492919921875,\"Longitud\":-59.0640869140625,\"Interno\":\"260\",\"Patente\":\"AA 295 RQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:48:44\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:38\",\"Codigo\":\"92\",\"Latitud\":-34.439178466796875,\"Longitud\":-58.791847229003906,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:49:29\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 78 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.1685905456543,\"Longitud\":-58.945957183837891,\"Interno\":\"256\",\"Patente\":\"AA 285 SU\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:49:41\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 71 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.454319000244141,\"Longitud\":-58.818668365478516,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:49:56\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 45 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.579998016357422,\"Longitud\":-59.171939849853516,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:39:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:11:25\",\"Codigo\":\"92\",\"Latitud\":-34.387058258056641,\"Longitud\":-58.746189117431641,\"Interno\":\"2034\",\"Patente\":\"IBM 524\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:49:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:58\",\"Codigo\":\"92\",\"Latitud\":-34.437168121337891,\"Longitud\":-58.806159973144531,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:49:35\",\"Mensaje\":\"Velocidad Excedida : Permitida 50 - Alcanzada 66 - Duracion: 00:01:16\",\"Codigo\":\"92\",\"Latitud\":-34.118358612060547,\"Longitud\":-59.071269989013672,\"Interno\":\"260\",\"Patente\":\"AA 295 RQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:50:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 51 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.577739715576172,\"Longitud\":-59.167587280273437,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:50:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 91 - Alcanzada 100 - Duracion: 00:01:09\",\"Codigo\":\"92\",\"Latitud\":-33.745079040527344,\"Longitud\":-59.640216827392578,\"Interno\":\"2021\",\"Patente\":\"2021\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:48:39\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 60 - Duracion: 00:00:55\",\"Codigo\":\"92\",\"Latitud\":-34.449920654296875,\"Longitud\":-58.717269897460937,\"Interno\":\"634\",\"Patente\":\"AD496AQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:51:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 46 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.450809478759766,\"Longitud\":-58.827110290527344,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:51:27\",\"Mensaje\":\"Velocidad Excedida : Permitida 91 - Alcanzada 95 - Duracion: 00:00:11\",\"Codigo\":\"92\",\"Latitud\":-33.762519836425781,\"Longitud\":-59.629539489746094,\"Interno\":\"2021\",\"Patente\":\"2021\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:51:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 67 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.573638916015625,\"Longitud\":-59.159660339355469,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:52:08\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.571697235107422,\"Longitud\":-59.155899047851563,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:48:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:04:19\",\"Codigo\":\"92\",\"Latitud\":-33.928287506103516,\"Longitud\":-59.425739288330078,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:52:19\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 62 - Duracion: 00:00:42\",\"Codigo\":\"92\",\"Latitud\":-34.197437286376953,\"Longitud\":-58.960399627685547,\"Interno\":\"2031\",\"Patente\":\"HDO 074\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:51:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:01:31\",\"Codigo\":\"92\",\"Latitud\":-34.401958465576172,\"Longitud\":-58.734718322753906,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:52:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 99 - Duracion: 00:00:31\",\"Codigo\":\"92\",\"Latitud\":-34.1757698059082,\"Longitud\":-58.977798461914062,\"Interno\":\"403\",\"Patente\":\"CFB 329\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:51:05\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:02:28\",\"Codigo\":\"92\",\"Latitud\":-33.860710144042969,\"Longitud\":-59.534870147705078,\"Interno\":\"2018\",\"Patente\":\"HDO 077\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:53:31\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 97 - Duracion: 00:00:23\",\"Codigo\":\"92\",\"Latitud\":-34.171787261962891,\"Longitud\":-58.986118316650391,\"Interno\":\"403\",\"Patente\":\"CFB 329\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:53:07\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:00:57\",\"Codigo\":\"92\",\"Latitud\":-33.980148315429687,\"Longitud\":-59.378227233886719,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:51:36\",\"Mensaje\":\"Velocidad Excedida : Permitida 50 - Alcanzada 82 - Duracion: 00:02:40\",\"Codigo\":\"92\",\"Latitud\":-34.125820159912109,\"Longitud\":-59.083148956298828,\"Interno\":\"260\",\"Patente\":\"AA 295 RQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:54:15\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 49 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-34.563777923583984,\"Longitud\":-59.140586853027344,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:50:33\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 104 - Duracion: 00:04:28\",\"Codigo\":\"92\",\"Latitud\":-34.281379699707031,\"Longitud\":-58.8930778503418,\"Interno\":\"2034\",\"Patente\":\"IBM 524\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:50:56\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:04:07\",\"Codigo\":\"92\",\"Latitud\":-34.436538696289063,\"Longitud\":-58.827499389648437,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:54:56\",\"Mensaje\":\"Velocidad Excedida : Permitida 50 - Alcanzada 62 - Duracion: 00:00:24\",\"Codigo\":\"92\",\"Latitud\":-34.1386604309082,\"Longitud\":-59.0522575378418,\"Interno\":\"260\",\"Patente\":\"AA 295 RQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:54:52\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 70 - Duracion: 00:00:40\",\"Codigo\":\"92\",\"Latitud\":-34.096019744873047,\"Longitud\":-59.049858093261719,\"Interno\":\"231\",\"Patente\":\"NPE 632\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:54:25\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 101 - Duracion: 00:01:47\",\"Codigo\":\"92\",\"Latitud\":-34.165550231933594,\"Longitud\":-58.999267578125,\"Interno\":\"403\",\"Patente\":\"CFB 329\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:55:50\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:00:29\",\"Codigo\":\"92\",\"Latitud\":-34.442367553710938,\"Longitud\":-58.852020263671875,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:56:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 96 - Duracion: 00:00:23\",\"Codigo\":\"92\",\"Latitud\":-34.151359558105469,\"Longitud\":-59.025199890136719,\"Interno\":\"403\",\"Patente\":\"CFB 329\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:56:03\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 54 - Duracion: 00:00:36\",\"Codigo\":\"92\",\"Latitud\":-34.563240051269531,\"Longitud\":-59.136917114257813,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:54:25\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:02:29\",\"Codigo\":\"92\",\"Latitud\":-34.376350402832031,\"Longitud\":-58.754619598388672,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:57:18\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 48 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.569217681884766,\"Longitud\":-59.132297515869141,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:54:23\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:03:29\",\"Codigo\":\"92\",\"Latitud\":-33.994918823242187,\"Longitud\":-59.365730285644531,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:55:04\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 105 - Duracion: 00:03:14\",\"Codigo\":\"92\",\"Latitud\":-34.220508575439453,\"Longitud\":-58.922397613525391,\"Interno\":\"2034\",\"Patente\":\"IBM 524\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:58:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:42\",\"Codigo\":\"92\",\"Latitud\":-34.036911010742188,\"Longitud\":-59.330997467041016,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:58:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 69 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-36.913890838623047,\"Longitud\":-60.291667938232422,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:56:07\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:03:06\",\"Codigo\":\"92\",\"Latitud\":-34.176307678222656,\"Longitud\":-58.976539611816406,\"Interno\":\"2031\",\"Patente\":\"HDO 074\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:56:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 98 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.1474494934082,\"Longitud\":-59.0306282043457,\"Interno\":\"403\",\"Patente\":\"CFB 329\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:56:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 98 - Duracion: 00:01:49\",\"Codigo\":\"92\",\"Latitud\":-34.144920349121094,\"Longitud\":-59.036109924316406,\"Interno\":\"403\",\"Patente\":\"CFB 329\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:58:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 97 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.133209228515625,\"Longitud\":-59.064529418945313,\"Interno\":\"403\",\"Patente\":\"CFB 329\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:55:27\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 100 - Duracion: 00:04:02\",\"Codigo\":\"92\",\"Latitud\":-33.7941780090332,\"Longitud\":-59.629779815673828,\"Interno\":\"2021\",\"Patente\":\"2021\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:56:00\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 63 - Duracion: 00:00:55\",\"Codigo\":\"92\",\"Latitud\":-34.100170135498047,\"Longitud\":-59.057647705078125,\"Interno\":\"231\",\"Patente\":\"NPE 632\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:00:22\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 76 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.114799499511719,\"Longitud\":-59.063850402832031,\"Interno\":\"231\",\"Patente\":\"NPE 632\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:58:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:49\",\"Codigo\":\"92\",\"Latitud\":-34.044879913330078,\"Longitud\":-59.322578430175781,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:59:41\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:00:43\",\"Codigo\":\"92\",\"Latitud\":-34.05364990234375,\"Longitud\":-59.312450408935547,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:00:34\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:27\",\"Codigo\":\"92\",\"Latitud\":-34.057300567626953,\"Longitud\":-59.298606872558594,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:01:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-34.058879852294922,\"Longitud\":-59.291210174560547,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:01:43\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.061229705810547,\"Longitud\":-59.280208587646484,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:01:14\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 87 - Duracion: 00:00:48\",\"Codigo\":\"92\",\"Latitud\":-34.118618011474609,\"Longitud\":-59.071949005126953,\"Interno\":\"231\",\"Patente\":\"NPE 632\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:02:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:02:04\",\"Codigo\":\"92\",\"Latitud\":-34.062889099121094,\"Longitud\":-59.272426605224609,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:04:17\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 65 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.188438415527344,\"Longitud\":-58.961620330810547,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:02:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 103 - Duracion: 00:02:25\",\"Codigo\":\"92\",\"Latitud\":-34.184810638427734,\"Longitud\":-58.948318481445313,\"Interno\":\"269\",\"Patente\":\"MRO 267\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:04:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 58 - Alcanzada 73 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.186477661132812,\"Longitud\":-58.961429595947266,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:04:43\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.072898864746094,\"Longitud\":-59.231658935546875,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:04:01\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 96 - Duracion: 00:01:05\",\"Codigo\":\"92\",\"Latitud\":-34.183540344238281,\"Longitud\":-58.949699401855469,\"Interno\":\"2033\",\"Patente\":\"IBM 525\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:04:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 69 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.193260192871094,\"Longitud\":-58.961948394775391,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:02:08\",\"Mensaje\":\"Velocidad Excedida : Permitida 70 - Alcanzada 86 - Duracion: 00:03:00\",\"Codigo\":\"92\",\"Latitud\":-36.925838470458984,\"Longitud\":-60.293037414550781,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:03:30\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 94 - Duracion: 00:01:39\",\"Codigo\":\"92\",\"Latitud\":-36.933818817138672,\"Longitud\":-60.165447235107422,\"Interno\":\"171\",\"Patente\":\"HUC 246\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:02:40\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:02:30\",\"Codigo\":\"92\",\"Latitud\":-36.907699584960938,\"Longitud\":-60.265899658203125,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:04:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.482257843017578,\"Longitud\":-58.633918762207031,\"Interno\":\"204\",\"Patente\":\"KOW 229\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:04:55\",\"Mensaje\":\"Velocidad Excedida : Permitida 58 - Alcanzada 74 - Duracion: 00:00:31\",\"Codigo\":\"92\",\"Latitud\":-34.191379547119141,\"Longitud\":-58.961898803710937,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:56:20\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 102 - Duracion: 00:09:46\",\"Codigo\":\"92\",\"Latitud\":-34.44268798828125,\"Longitud\":-58.860919952392578,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:05:30\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 97 - Duracion: 00:01:09\",\"Codigo\":\"92\",\"Latitud\":-34.314357757568359,\"Longitud\":-58.959079742431641,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:01:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:04:48\",\"Codigo\":\"92\",\"Latitud\":-34.347427368164063,\"Longitud\":-58.808589935302734,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:05:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 82 - Duracion: 00:00:56\",\"Codigo\":\"92\",\"Latitud\":-36.925148010253906,\"Longitud\":-60.194087982177734,\"Interno\":\"171\",\"Patente\":\"HUC 246\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:06:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 84 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-34.307498931884766,\"Longitud\":-58.942359924316406,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:07:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 56 - Duracion: 00:00:11\",\"Codigo\":\"92\",\"Latitud\":-34.077049255371094,\"Longitud\":-59.204067230224609,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:07:23\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-36.945819854736328,\"Longitud\":-60.241458892822266,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:06:54\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:57\",\"Codigo\":\"92\",\"Latitud\":-34.129669189453125,\"Longitud\":-59.073837280273437,\"Interno\":\"272\",\"Patente\":\"AA 439 CU\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:07:38\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 68 - Duracion: 00:00:30\",\"Codigo\":\"92\",\"Latitud\":-34.075599670410156,\"Longitud\":-59.203617095947266,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:07:20\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 92 - Duracion: 00:00:37\",\"Codigo\":\"92\",\"Latitud\":-34.305679321289063,\"Longitud\":-58.937419891357422,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:07:08\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:01:07\",\"Codigo\":\"92\",\"Latitud\":-36.929767608642578,\"Longitud\":-60.221286773681641,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:08:19\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.134548187255859,\"Longitud\":-59.043949127197266,\"Interno\":\"2027\",\"Patente\":\"ISC 391\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:08:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 66 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.068290710449219,\"Longitud\":-59.201778411865234,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:08:43\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 75 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.065738677978516,\"Longitud\":-59.201919555664062,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:08:42\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 96 - Duracion: 00:00:24\",\"Codigo\":\"92\",\"Latitud\":-34.389549255371094,\"Longitud\":-59.017990112304688,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:07:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:01:15\",\"Codigo\":\"92\",\"Latitud\":-36.922027587890625,\"Longitud\":-60.211677551269531,\"Interno\":\"171\",\"Patente\":\"HUC 246\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:08:40\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 68 - Duracion: 00:01:01\",\"Codigo\":\"92\",\"Latitud\":-36.917388916015625,\"Longitud\":-60.203437805175781,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:09:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 44 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.572299957275391,\"Longitud\":-59.180427551269531,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:09:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 63 - Duracion: 00:00:58\",\"Codigo\":\"92\",\"Latitud\":-34.591190338134766,\"Longitud\":-59.126258850097656,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:07:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 99 - Duracion: 00:01:53\",\"Codigo\":\"92\",\"Latitud\":-34.302810668945312,\"Longitud\":-58.929477691650391,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:09:21\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:01:11\",\"Codigo\":\"92\",\"Latitud\":-36.93035888671875,\"Longitud\":-60.221988677978516,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:05:01\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:05:31\",\"Codigo\":\"92\",\"Latitud\":-34.168758392333984,\"Longitud\":-58.992519378662109,\"Interno\":\"269\",\"Patente\":\"MRO 267\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:10:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 48 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.443889617919922,\"Longitud\":-58.677837371826172,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:10:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.132720947265625,\"Longitud\":-59.066490173339844,\"Interno\":\"240\",\"Patente\":\"PCF 175\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:06:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:04:06\",\"Codigo\":\"92\",\"Latitud\":-34.309108734130859,\"Longitud\":-58.874149322509766,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:54:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 102 - Duracion: 00:15:21\",\"Codigo\":\"92\",\"Latitud\":-33.888229370117188,\"Longitud\":-59.489547729492187,\"Interno\":\"2018\",\"Patente\":\"HDO 077\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:10:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 86 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.285488128662109,\"Longitud\":-58.906780242919922,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:10:43\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 63 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.594589233398437,\"Longitud\":-59.137569427490234,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:11:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 91 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.283107757568359,\"Longitud\":-58.900577545166016,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:11:23\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.196117401123047,\"Longitud\":-58.952926635742187,\"Interno\":\"236\",\"Patente\":\"NTN 631\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:10:04\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:01:33\",\"Codigo\":\"92\",\"Latitud\":-36.931728363037109,\"Longitud\":-60.236068725585938,\"Interno\":\"171\",\"Patente\":\"HUC 246\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:11:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 91 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.282630920410156,\"Longitud\":-58.897216796875,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:11:31\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 53 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.576820373535156,\"Longitud\":-59.1768684387207,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:11:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 48 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.440288543701172,\"Longitud\":-58.680648803710937,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:09:31\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:02:02\",\"Codigo\":\"92\",\"Latitud\":-34.379589080810547,\"Longitud\":-59.012157440185547,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:11:48\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 43 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.1845703125,\"Longitud\":-58.966949462890625,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:12:06\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 50 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.579658508300781,\"Longitud\":-59.174659729003906,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:08:19\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:04:02\",\"Codigo\":\"92\",\"Latitud\":-33.833930969238281,\"Longitud\":-65.180938720703125,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:12:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 43 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.579917907714844,\"Longitud\":-59.171848297119141,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:11:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 54 - Duracion: 00:01:13\",\"Codigo\":\"92\",\"Latitud\":-34.438117980957031,\"Longitud\":-58.682350158691406,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:12:41\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 46 - Duracion: 00:00:33\",\"Codigo\":\"92\",\"Latitud\":-34.10321044921875,\"Longitud\":-59.063358306884766,\"Interno\":\"670\",\"Patente\":\"JDF 517\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:12:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 45 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.579917907714844,\"Longitud\":-59.171810150146484,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:05:05\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 103 - Duracion: 00:08:35\",\"Codigo\":\"92\",\"Latitud\":-34.184619903564453,\"Longitud\":-58.948410034179688,\"Interno\":\"2034\",\"Patente\":\"IBM 524\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:13:21\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 64 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.578239440917969,\"Longitud\":-59.1685791015625,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:13:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 70 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.577980041503906,\"Longitud\":-59.168060302734375,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:10:43\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 72 - Duracion: 00:01:10\",\"Codigo\":\"92\",\"Latitud\":-36.916839599609375,\"Longitud\":-60.204486846923828,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:03\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-36.89569091796875,\"Longitud\":-60.280357360839844,\"Interno\":\"171\",\"Patente\":\"HUC 246\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 72 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.5736198425293,\"Longitud\":-59.159538269042969,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:20\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 77 - Duracion: 00:00:10\",\"Codigo\":\"92\",\"Latitud\":-34.573558807373047,\"Longitud\":-59.159469604492188,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:06\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 42 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.429008483886719,\"Longitud\":-58.689479827880859,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:24\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 70 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-33.698047637939453,\"Longitud\":-59.669509887695312,\"Interno\":\"271\",\"Patente\":\"AA 340 CJ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 69 - Duracion: 00:00:11\",\"Codigo\":\"92\",\"Latitud\":-34.571647644042969,\"Longitud\":-59.155719757080078,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:40\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 71 - Duracion: 00:00:10\",\"Codigo\":\"92\",\"Latitud\":-34.571529388427734,\"Longitud\":-59.1555290222168,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:15\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 51 - Duracion: 00:00:37\",\"Codigo\":\"92\",\"Latitud\":-34.098827362060547,\"Longitud\":-59.055088043212891,\"Interno\":\"670\",\"Patente\":\"JDF 517\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:13:33\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 94 - Duracion: 00:01:39\",\"Codigo\":\"92\",\"Latitud\":-36.9302978515625,\"Longitud\":-60.187709808349609,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:15:52\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 47 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-34.425750732421875,\"Longitud\":-58.692058563232422,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:16:00\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 76 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-33.702987670898438,\"Longitud\":-59.663448333740234,\"Interno\":\"271\",\"Patente\":\"AA 340 CJ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:20\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 96 - Duracion: 00:01:55\",\"Codigo\":\"92\",\"Latitud\":-36.9285888671875,\"Longitud\":-60.189857482910156,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:15:55\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 49 - Duracion: 00:00:32\",\"Codigo\":\"92\",\"Latitud\":-34.098857879638672,\"Longitud\":-59.055229187011719,\"Interno\":\"669\",\"Patente\":\"NWK744\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:09:38\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 45 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.572360992431641,\"Longitud\":-59.180377960205078,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:16:18\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 75 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-33.705299377441406,\"Longitud\":-59.660648345947266,\"Interno\":\"271\",\"Patente\":\"AA 340 CJ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:16:17\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 58 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.564308166503906,\"Longitud\":-59.141517639160156,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:12:44\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 45 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-34.579910278320312,\"Longitud\":-59.171848297119141,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:16:33\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 52 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.563907623291016,\"Longitud\":-59.140819549560547,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:13:18\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 63 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.578189849853516,\"Longitud\":-59.168479919433594,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:14:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 72 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.5736198425293,\"Longitud\":-59.159629821777344,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:15:42\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:00:42\",\"Codigo\":\"92\",\"Latitud\":-33.764739990234375,\"Longitud\":-65.268348693847656,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:12:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 118 - Duracion: 00:05:02\",\"Codigo\":\"92\",\"Latitud\":-34.286220550537109,\"Longitud\":-58.89093017578125,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:16:29\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 107 - Duracion: 00:00:47\",\"Codigo\":\"92\",\"Latitud\":-33.753158569335937,\"Longitud\":-59.131729125976562,\"Interno\":\"420\",\"Patente\":\"PCP 350\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:16:08\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.5641975402832,\"Longitud\":-59.141437530517578,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:17:39\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 105 - Duracion: 00:00:43\",\"Codigo\":\"92\",\"Latitud\":-34.344287872314453,\"Longitud\":-58.81182861328125,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:15:27\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:02:58\",\"Codigo\":\"92\",\"Latitud\":-34.308010101318359,\"Longitud\":-58.98223876953125,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:17:48\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 60 - Duracion: 00:00:46\",\"Codigo\":\"92\",\"Latitud\":-34.422557830810547,\"Longitud\":-58.694507598876953,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:18:24\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 58 - Duracion: 00:00:10\",\"Codigo\":\"92\",\"Latitud\":-34.560287475585938,\"Longitud\":-59.133907318115234,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:18:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:00:28\",\"Codigo\":\"92\",\"Latitud\":-34.440330505371094,\"Longitud\":-58.705459594726563,\"Interno\":\"204\",\"Patente\":\"KOW 229\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:18:43\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.623218536376953,\"Longitud\":-59.219139099121094,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:18:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 58 - Duracion: 00:00:10\",\"Codigo\":\"92\",\"Latitud\":-34.560420989990234,\"Longitud\":-59.134067535400391,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:18:30\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:00:58\",\"Codigo\":\"92\",\"Latitud\":-34.26458740234375,\"Longitud\":-58.967449188232422,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:19:18\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.1303596496582,\"Longitud\":-59.035518646240234,\"Interno\":\"2027\",\"Patente\":\"ISC 391\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:19:07\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 70 - Duracion: 00:00:31\",\"Codigo\":\"92\",\"Latitud\":-34.531108856201172,\"Longitud\":-58.699378967285156,\"Interno\":\"677\",\"Patente\":\"GLB044\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:12:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:07:10\",\"Codigo\":\"92\",\"Latitud\":-34.131137847900391,\"Longitud\":-59.070266723632813,\"Interno\":\"2023\",\"Patente\":\"AC761UV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:19:50\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 52 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.416259765625,\"Longitud\":-58.699466705322266,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:20:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 64 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.527549743652344,\"Longitud\":-58.6915397644043,\"Interno\":\"677\",\"Patente\":\"GLB044\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:20:33\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 45 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.557918548583984,\"Longitud\":-59.1035270690918,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:19:18\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 90 - Duracion: 00:01:41\",\"Codigo\":\"92\",\"Latitud\":-34.112327575683594,\"Longitud\":-59.111137390136719,\"Interno\":\"286\",\"Patente\":\"AB-476-EO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:13:10\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:07:57\",\"Codigo\":\"92\",\"Latitud\":-34.0589599609375,\"Longitud\":-59.290817260742187,\"Interno\":\"2018\",\"Patente\":\"HDO 077\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:20:48\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 66 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.557689666748047,\"Longitud\":-59.128929138183594,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:20:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 58 - Duracion: 00:00:39\",\"Codigo\":\"92\",\"Latitud\":-34.413177490234375,\"Longitud\":-58.70269775390625,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:20:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 105 - Duracion: 00:00:49\",\"Codigo\":\"92\",\"Latitud\":-34.369228363037109,\"Longitud\":-58.7753791809082,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:20:50\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 64 - Duracion: 00:00:28\",\"Codigo\":\"92\",\"Latitud\":-34.528560638427734,\"Longitud\":-58.686630249023438,\"Interno\":\"677\",\"Patente\":\"GLB044\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:20:15\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 103 - Duracion: 00:01:14\",\"Codigo\":\"92\",\"Latitud\":-34.130180358886719,\"Longitud\":-59.072559356689453,\"Interno\":\"222\",\"Patente\":\"NPA 436\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:21:34\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 43 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.411579132080078,\"Longitud\":-58.710418701171875,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:20:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:01:38\",\"Codigo\":\"92\",\"Latitud\":-34.181789398193359,\"Longitud\":-58.955589294433594,\"Interno\":\"2023\",\"Patente\":\"AC761UV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:21:15\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 88 - Duracion: 00:00:32\",\"Codigo\":\"92\",\"Latitud\":-34.0994873046875,\"Longitud\":-59.086978912353516,\"Interno\":\"286\",\"Patente\":\"AB-476-EO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:21:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 51 - Duracion: 00:00:38\",\"Codigo\":\"92\",\"Latitud\":-34.556118011474609,\"Longitud\":-59.125038146972656,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:21:31\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.636157989501953,\"Longitud\":-59.2606086730957,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:21:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 89 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.094699859619141,\"Longitud\":-59.077907562255859,\"Interno\":\"286\",\"Patente\":\"AB-476-EO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:22:06\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 104 - Duracion: 00:00:33\",\"Codigo\":\"92\",\"Latitud\":-34.381320953369141,\"Longitud\":-58.750827789306641,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:22:12\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:29\",\"Codigo\":\"92\",\"Latitud\":-34.556270599365234,\"Longitud\":-59.124908447265625,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:21:56\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 68 - Duracion: 00:00:51\",\"Codigo\":\"92\",\"Latitud\":-34.411060333251953,\"Longitud\":-58.713077545166016,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:22:41\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 70 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-34.091720581054687,\"Longitud\":-59.072299957275391,\"Interno\":\"286\",\"Patente\":\"AB-476-EO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:21:44\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:01:25\",\"Codigo\":\"92\",\"Latitud\":-34.228248596191406,\"Longitud\":-58.958950042724609,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:22:42\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 69 - Duracion: 00:00:27\",\"Codigo\":\"92\",\"Latitud\":-34.5578498840332,\"Longitud\":-59.129219055175781,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:23:04\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 65 - Duracion: 00:00:10\",\"Codigo\":\"92\",\"Latitud\":-34.089920043945313,\"Longitud\":-59.068866729736328,\"Interno\":\"286\",\"Patente\":\"AB-476-EO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:21:18\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 84 - Duracion: 00:01:58\",\"Codigo\":\"92\",\"Latitud\":-36.933780670166016,\"Longitud\":-60.165279388427734,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:22:17\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 70 - Duracion: 00:01:22\",\"Codigo\":\"92\",\"Latitud\":-34.085479736328125,\"Longitud\":-59.120079040527344,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:23:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 51 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.408897399902344,\"Longitud\":-58.723468780517578,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:23:22\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 55 - Duracion: 00:00:31\",\"Codigo\":\"92\",\"Latitud\":-34.555938720703125,\"Longitud\":-59.125167846679688,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:22:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 108 - Duracion: 00:01:13\",\"Codigo\":\"92\",\"Latitud\":-34.392459869384766,\"Longitud\":-58.742340087890625,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:23:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 68 - Duracion: 00:00:34\",\"Codigo\":\"92\",\"Latitud\":-34.088130950927734,\"Longitud\":-59.065357208251953,\"Interno\":\"286\",\"Patente\":\"AB-476-EO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:24:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 53 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.085239410400391,\"Longitud\":-59.059867858886719,\"Interno\":\"286\",\"Patente\":\"AB-476-EO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:23:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 86 - Duracion: 00:00:59\",\"Codigo\":\"92\",\"Latitud\":-36.92510986328125,\"Longitud\":-60.193988800048828,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:24:12\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:00:40\",\"Codigo\":\"92\",\"Latitud\":-33.683540344238281,\"Longitud\":-65.366828918457031,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:23:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 58 - Duracion: 00:01:09\",\"Codigo\":\"92\",\"Latitud\":-34.086387634277344,\"Longitud\":-59.1042594909668,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:24:36\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 64 - Duracion: 00:00:24\",\"Codigo\":\"92\",\"Latitud\":-36.908218383789063,\"Longitud\":-60.294696807861328,\"Interno\":\"155\",\"Patente\":\"GPO 196\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:24:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 64 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.190330505371094,\"Longitud\":-58.961807250976562,\"Interno\":\"46\",\"Patente\":\"OXY 519\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:23:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:01:49\",\"Codigo\":\"92\",\"Latitud\":-34.104728698730469,\"Longitud\":-59.140617370605469,\"Interno\":\"2018\",\"Patente\":\"HDO 077\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:22:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 70 - Alcanzada 93 - Duracion: 00:02:28\",\"Codigo\":\"92\",\"Latitud\":-36.930007934570313,\"Longitud\":-60.287879943847656,\"Interno\":\"163\",\"Patente\":\"HRI 533\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:25:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 56 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-34.106258392333984,\"Longitud\":-59.024620056152344,\"Interno\":\"622\",\"Patente\":\"JDC279\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:24:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 88 - Duracion: 00:01:03\",\"Codigo\":\"92\",\"Latitud\":-34.1920280456543,\"Longitud\":-58.947879791259766,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:24:23\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 106 - Duracion: 00:01:19\",\"Codigo\":\"92\",\"Latitud\":-34.411029815673828,\"Longitud\":-58.727848052978516,\"Interno\":\"432\",\"Patente\":\"432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:25:27\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 54 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-34.081478118896484,\"Longitud\":-59.057327270507813,\"Interno\":\"286\",\"Patente\":\"AB-476-EO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:25:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 49 - Duracion: 00:00:35\",\"Codigo\":\"92\",\"Latitud\":-34.439018249511719,\"Longitud\":-58.708938598632813,\"Interno\":\"204\",\"Patente\":\"KOW 229\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:24:41\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:01:06\",\"Codigo\":\"92\",\"Latitud\":-34.202838897705078,\"Longitud\":-58.968589782714844,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:25:07\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 64 - Duracion: 00:00:54\",\"Codigo\":\"92\",\"Latitud\":-34.08721923828125,\"Longitud\":-59.091506958007813,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:25:44\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-34.6466178894043,\"Longitud\":-59.303890228271484,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:25:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 65 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.079257965087891,\"Longitud\":-59.05828857421875,\"Interno\":\"286\",\"Patente\":\"AB-476-EO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:23:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:02:36\",\"Codigo\":\"92\",\"Latitud\":-34.184638977050781,\"Longitud\":-58.948398590087891,\"Interno\":\"268\",\"Patente\":\"AA 439 CH\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:08\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:24\",\"Codigo\":\"92\",\"Latitud\":-34.647857666015625,\"Longitud\":-59.310428619384766,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:04\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 62 - Duracion: 00:00:52\",\"Codigo\":\"92\",\"Latitud\":-34.087787628173828,\"Longitud\":-59.0811882019043,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:30\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:00:30\",\"Codigo\":\"92\",\"Latitud\":-34.176509857177734,\"Longitud\":-58.975879669189453,\"Interno\":\"303\",\"Patente\":\"AC-299-XE\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.6497802734375,\"Longitud\":-59.320449829101563,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:12\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 59 - Duracion: 00:00:42\",\"Codigo\":\"92\",\"Latitud\":-34.087947845458984,\"Longitud\":-59.078987121582031,\"Interno\":\"623\",\"Patente\":\"HZB243\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:27:00\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 58 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.088397979736328,\"Longitud\":-59.071147918701172,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 63 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.088397979736328,\"Longitud\":-59.071220397949219,\"Interno\":\"623\",\"Patente\":\"HZB243\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:15\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 99 - Duracion: 00:01:16\",\"Codigo\":\"92\",\"Latitud\":-34.201179504394531,\"Longitud\":-58.959659576416016,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:27:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 48 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-36.930057525634766,\"Longitud\":-60.161247253417969,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:50\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:01:01\",\"Codigo\":\"92\",\"Latitud\":-34.167430877685547,\"Longitud\":-58.995220184326172,\"Interno\":\"268\",\"Patente\":\"AA 439 CH\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:15:52\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:12:01\",\"Codigo\":\"92\",\"Latitud\":-34.3531379699707,\"Longitud\":-58.8017692565918,\"Interno\":\"295\",\"Patente\":\"295\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:27:23\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 96 - Duracion: 00:00:30\",\"Codigo\":\"92\",\"Latitud\":-34.651638031005859,\"Longitud\":-59.330509185791016,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:22:06\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:05:27\",\"Codigo\":\"92\",\"Latitud\":-34.202407836914063,\"Longitud\":-58.93572998046875,\"Interno\":\"2023\",\"Patente\":\"AC761UV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:48\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:01:09\",\"Codigo\":\"92\",\"Latitud\":-34.127639770507813,\"Longitud\":-59.078529357910156,\"Interno\":\"266\",\"Patente\":\"AA 439 CV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:25:30\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 102 - Duracion: 00:02:46\",\"Codigo\":\"92\",\"Latitud\":-34.117488861083984,\"Longitud\":-59.103977203369141,\"Interno\":\"2018\",\"Patente\":\"HDO 077\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:06\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 51 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-34.078117370605469,\"Longitud\":-59.041679382324219,\"Interno\":\"668\",\"Patente\":\"AC091BV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:07\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 56 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-34.088359832763672,\"Longitud\":-59.065849304199219,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:27:55\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:33\",\"Codigo\":\"92\",\"Latitud\":-34.18048095703125,\"Longitud\":-58.963287353515625,\"Interno\":\"192\",\"Patente\":\"JTE 240\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 47 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.076290130615234,\"Longitud\":-59.043407440185547,\"Interno\":\"668\",\"Patente\":\"AC091BV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:27\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 71 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-34.086997985839844,\"Longitud\":-59.063240051269531,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 103 - Duracion: 00:02:35\",\"Codigo\":\"92\",\"Latitud\":-34.40374755859375,\"Longitud\":-58.73333740234375,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:10\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 67 - Duracion: 00:00:47\",\"Codigo\":\"92\",\"Latitud\":-34.088039398193359,\"Longitud\":-59.065269470214844,\"Interno\":\"623\",\"Patente\":\"HZB243\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 67 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.085308074951172,\"Longitud\":-59.06005859375,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:45\",\"Codigo\":\"92\",\"Latitud\":-36.943027496337891,\"Longitud\":-60.238029479980469,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:43\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.154037475585937,\"Longitud\":-59.021347045898438,\"Interno\":\"268\",\"Patente\":\"AA 439 CH\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 98 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.133769989013672,\"Longitud\":-59.063320159912109,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T15:59:30\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 101 - Duracion: 00:30:02\",\"Codigo\":\"92\",\"Latitud\":-33.832847595214844,\"Longitud\":-59.5736198425293,\"Interno\":\"2021\",\"Patente\":\"2021\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:29:35\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-33.652187347412109,\"Longitud\":-65.428085327148437,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:29:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 59 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.081977844238281,\"Longitud\":-59.057109832763672,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:29:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 43 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.080257415771484,\"Longitud\":-59.050739288330078,\"Interno\":\"668\",\"Patente\":\"AC091BV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:30:06\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 60 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.079269409179687,\"Longitud\":-59.058300018310547,\"Interno\":\"614\",\"Patente\":\"HDO 057\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:29:46\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 69 - Duracion: 00:00:39\",\"Codigo\":\"92\",\"Latitud\":-34.119987487792969,\"Longitud\":-59.074737548828125,\"Interno\":\"218\",\"Patente\":\"NGN 336\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:29:40\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 103 - Duracion: 00:01:40\",\"Codigo\":\"92\",\"Latitud\":-34.128997802734375,\"Longitud\":-59.074508666992187,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:44\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:02:37\",\"Codigo\":\"92\",\"Latitud\":-34.175319671630859,\"Longitud\":-58.978607177734375,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:30\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:02:59\",\"Codigo\":\"92\",\"Latitud\":-34.176979064941406,\"Longitud\":-58.972236633300781,\"Interno\":\"192\",\"Patente\":\"JTE 240\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:31:23\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 59 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.081180572509766,\"Longitud\":-59.057487487792969,\"Interno\":\"668\",\"Patente\":\"AC091BV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:31:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 55 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.081020355224609,\"Longitud\":-59.057559967041016,\"Interno\":\"673\",\"Patente\":\"JDF514\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:31:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-36.968887329101563,\"Longitud\":-60.270778656005859,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:31:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 53 - Duracion: 00:00:31\",\"Codigo\":\"92\",\"Latitud\":-34.454059600830078,\"Longitud\":-58.620399475097656,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:30:00\",\"Mensaje\":\"Velocidad Excedida : Permitida 70 - Alcanzada 90 - Duracion: 00:02:27\",\"Codigo\":\"92\",\"Latitud\":-36.929897308349609,\"Longitud\":-60.288066864013672,\"Interno\":\"146\",\"Patente\":\"FXE 728\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:30:40\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 93 - Duracion: 00:01:49\",\"Codigo\":\"92\",\"Latitud\":-36.933807373046875,\"Longitud\":-60.1654167175293,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:29:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 70 - Alcanzada 89 - Duracion: 00:02:40\",\"Codigo\":\"92\",\"Latitud\":-36.928150177001953,\"Longitud\":-60.290187835693359,\"Interno\":\"155\",\"Patente\":\"GPO 196\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:26:06\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:06:30\",\"Codigo\":\"92\",\"Latitud\":-33.790439605712891,\"Longitud\":-59.63433837890625,\"Interno\":\"271\",\"Patente\":\"AA 340 CJ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:32:18\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 44 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.427127838134766,\"Longitud\":-58.731918334960938,\"Interno\":\"204\",\"Patente\":\"KOW 229\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:33:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-33.6390495300293,\"Longitud\":-65.48260498046875,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:30:55\",\"Mensaje\":\"Velocidad Excedida : Permitida 70 - Alcanzada 86 - Duracion: 00:02:43\",\"Codigo\":\"92\",\"Latitud\":-36.9286994934082,\"Longitud\":-60.289619445800781,\"Interno\":\"181\",\"Patente\":\"IOA 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:33:35\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 47 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.112239837646484,\"Longitud\":-59.111019134521484,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:30:35\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:03:14\",\"Codigo\":\"92\",\"Latitud\":-34.559768676757813,\"Longitud\":-59.092430114746094,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:33:07\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 86 - Duracion: 00:00:55\",\"Codigo\":\"92\",\"Latitud\":-36.924720764160156,\"Longitud\":-60.194526672363281,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:31:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 100 - Duracion: 00:03:04\",\"Codigo\":\"92\",\"Latitud\":-34.10382080078125,\"Longitud\":-59.143157958984375,\"Interno\":\"2021\",\"Patente\":\"2021\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:33:56\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 65 - Duracion: 00:00:11\",\"Codigo\":\"92\",\"Latitud\":-34.112327575683594,\"Longitud\":-59.111167907714844,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:33:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 64 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.078067779541016,\"Longitud\":-59.041889190673828,\"Interno\":\"669\",\"Patente\":\"NWK744\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:33:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 56 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.11083984375,\"Longitud\":-59.108379364013672,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:19\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 72 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.078178405761719,\"Longitud\":-59.0416374206543,\"Interno\":\"289\",\"Patente\":\"AB 594 HC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:14\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 74 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.110820770263672,\"Longitud\":-59.108306884765625,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.525470733642578,\"Longitud\":-59.114288330078125,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 60 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-34.076309204101563,\"Longitud\":-59.043407440185547,\"Interno\":\"669\",\"Patente\":\"NWK744\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:31:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:03:16\",\"Codigo\":\"92\",\"Latitud\":-34.558929443359375,\"Longitud\":-59.094219207763672,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:25\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 69 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.527339935302734,\"Longitud\":-58.691787719726563,\"Interno\":\"287\",\"Patente\":\"AB 594 HB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:31:41\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:03:05\",\"Codigo\":\"92\",\"Latitud\":-34.5593376159668,\"Longitud\":-59.093379974365234,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 68 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.076267242431641,\"Longitud\":-59.043418884277344,\"Interno\":\"289\",\"Patente\":\"AB 594 HC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:43\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 65 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.078239440917969,\"Longitud\":-59.041568756103516,\"Interno\":\"665\",\"Patente\":\"OZA717\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 71 - Duracion: 00:00:47\",\"Codigo\":\"92\",\"Latitud\":-34.109058380126953,\"Longitud\":-59.104976654052734,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:00:46\",\"Codigo\":\"92\",\"Latitud\":-34.1286506652832,\"Longitud\":-59.076259613037109,\"Interno\":\"230\",\"Patente\":\"NPE 631\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:31:35\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:03:47\",\"Codigo\":\"92\",\"Latitud\":-34.153957366943359,\"Longitud\":-59.021457672119141,\"Interno\":\"282\",\"Patente\":\"AB-428-AC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:34\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 71 - Duracion: 00:00:48\",\"Codigo\":\"92\",\"Latitud\":-34.076580047607422,\"Longitud\":-59.046737670898438,\"Interno\":\"669\",\"Patente\":\"NWK744\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:35:00\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 65 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-34.528968811035156,\"Longitud\":-58.687168121337891,\"Interno\":\"287\",\"Patente\":\"AB 594 HB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:35:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 56 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.075637817382813,\"Longitud\":-59.044589996337891,\"Interno\":\"665\",\"Patente\":\"OZA717\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:06:54\",\"Codigo\":\"92\",\"Latitud\":-34.285968780517578,\"Longitud\":-58.891017913818359,\"Interno\":\"2023\",\"Patente\":\"AC761UV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:01:15\",\"Codigo\":\"92\",\"Latitud\":-33.634677886962891,\"Longitud\":-65.504226684570313,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:46\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:01:08\",\"Codigo\":\"92\",\"Latitud\":-34.518508911132813,\"Longitud\":-59.111957550048828,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:35:23\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 68 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.081348419189453,\"Longitud\":-59.052879333496094,\"Interno\":\"669\",\"Patente\":\"NWK744\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:55\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 70 - Duracion: 00:01:03\",\"Codigo\":\"92\",\"Latitud\":-34.076587677001953,\"Longitud\":-59.046817779541016,\"Interno\":\"289\",\"Patente\":\"AB 594 HC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:35:20\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 64 - Duracion: 00:00:44\",\"Codigo\":\"92\",\"Latitud\":-34.104949951171875,\"Longitud\":-59.097236633300781,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:35:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 66 - Duracion: 00:00:41\",\"Codigo\":\"92\",\"Latitud\":-34.076480865478516,\"Longitud\":-59.046577453613281,\"Interno\":\"665\",\"Patente\":\"OZA717\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:22\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 61 - Duracion: 00:01:48\",\"Codigo\":\"92\",\"Latitud\":-34.109039306640625,\"Longitud\":-59.104976654052734,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:35:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 58 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.078220367431641,\"Longitud\":-59.041717529296875,\"Interno\":\"670\",\"Patente\":\"JDF 517\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:35:22\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:54\",\"Codigo\":\"92\",\"Latitud\":-36.9250373840332,\"Longitud\":-60.215538024902344,\"Interno\":\"147\",\"Patente\":\"FXE 727\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:08\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.081027984619141,\"Longitud\":-59.057537078857422,\"Interno\":\"669\",\"Patente\":\"NWK744\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:05\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.508769989013672,\"Longitud\":-59.093219757080078,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:10\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 57 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.078147888183594,\"Longitud\":-59.041679382324219,\"Interno\":\"675\",\"Patente\":\"EVM859\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:15\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 67 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.081268310546875,\"Longitud\":-59.052768707275391,\"Interno\":\"665\",\"Patente\":\"OZA717\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:14\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 51 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.076278686523438,\"Longitud\":-59.043399810791016,\"Interno\":\"670\",\"Patente\":\"JDF 517\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:22\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 63 - Duracion: 00:00:24\",\"Codigo\":\"92\",\"Latitud\":-34.079139709472656,\"Longitud\":-59.058387756347656,\"Interno\":\"669\",\"Patente\":\"NWK744\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:34:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:01:59\",\"Codigo\":\"92\",\"Latitud\":-34.568729400634766,\"Longitud\":-59.036888122558594,\"Interno\":\"233\",\"Patente\":\"NPE 634\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:44\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 49 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.082668304443359,\"Longitud\":-59.056346893310547,\"Interno\":\"665\",\"Patente\":\"OZA717\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 95 - Duracion: 00:00:34\",\"Codigo\":\"92\",\"Latitud\":-34.5088996887207,\"Longitud\":-59.084560394287109,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:01\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 54 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.081058502197266,\"Longitud\":-59.057498931884766,\"Interno\":\"665\",\"Patente\":\"OZA717\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:28:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:09:11\",\"Codigo\":\"92\",\"Latitud\":-34.218288421630859,\"Longitud\":-58.924018859863281,\"Interno\":\"295\",\"Patente\":\"295\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:41\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 53 - Duracion: 00:00:42\",\"Codigo\":\"92\",\"Latitud\":-34.076580047607422,\"Longitud\":-59.046718597412109,\"Interno\":\"670\",\"Patente\":\"JDF 517\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:21\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 56 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.078567504882813,\"Longitud\":-59.058628082275391,\"Interno\":\"665\",\"Patente\":\"OZA717\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 55 - Duracion: 00:01:09\",\"Codigo\":\"92\",\"Latitud\":-34.076438903808594,\"Longitud\":-59.043277740478516,\"Interno\":\"675\",\"Patente\":\"EVM859\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 45 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.098018646240234,\"Longitud\":-59.08416748046875,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:30\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.3686408996582,\"Longitud\":-58.776996612548828,\"Interno\":\"2023\",\"Patente\":\"AC761UV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:01\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:49\",\"Codigo\":\"92\",\"Latitud\":-34.128360748291016,\"Longitud\":-59.076759338378906,\"Interno\":\"203\",\"Patente\":\"KRW 030\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:15\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 63 - Duracion: 00:00:48\",\"Codigo\":\"92\",\"Latitud\":-34.505229949951172,\"Longitud\":-59.077426910400391,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:44\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 45 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-34.081329345703125,\"Longitud\":-59.052707672119141,\"Interno\":\"670\",\"Patente\":\"JDF 517\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 51 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.0813102722168,\"Longitud\":-59.052818298339844,\"Interno\":\"675\",\"Patente\":\"EVM859\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:23\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:01:49\",\"Codigo\":\"92\",\"Latitud\":-34.566719055175781,\"Longitud\":-59.036838531494141,\"Interno\":\"309\",\"Patente\":\"309\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:29:10\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:09:02\",\"Codigo\":\"92\",\"Latitud\":-34.178798675537109,\"Longitud\":-58.966758728027344,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:01:29\",\"Codigo\":\"92\",\"Latitud\":-33.624420166015625,\"Longitud\":-65.5369873046875,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:21\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:00:59\",\"Codigo\":\"92\",\"Latitud\":-34.129508972167969,\"Longitud\":-59.07421875,\"Interno\":\"153\",\"Patente\":\"GHN 581\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:05\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:01:19\",\"Codigo\":\"92\",\"Latitud\":-34.55999755859375,\"Longitud\":-59.036628723144531,\"Interno\":\"174\",\"Patente\":\"IBM 498\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 64 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.520759582519531,\"Longitud\":-58.675098419189453,\"Interno\":\"287\",\"Patente\":\"AB 594 HB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:46\",\"Codigo\":\"92\",\"Latitud\":-28.606840133666992,\"Longitud\":-65.121047973632813,\"Interno\":\"217\",\"Patente\":\"NGN 339\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:08\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 53 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.094841003417969,\"Longitud\":-59.078189849853516,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:09\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 53 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.094867706298828,\"Longitud\":-59.078227996826172,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:46\",\"Codigo\":\"92\",\"Latitud\":-34.133598327636719,\"Longitud\":-59.064369201660156,\"Interno\":\"203\",\"Patente\":\"KRW 030\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:37:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:00:39\",\"Codigo\":\"92\",\"Latitud\":-34.370140075683594,\"Longitud\":-58.772697448730469,\"Interno\":\"2023\",\"Patente\":\"AC761UV\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:36:54\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:01:33\",\"Codigo\":\"92\",\"Latitud\":-34.128330230712891,\"Longitud\":-59.076766967773438,\"Interno\":\"31\",\"Patente\":\"ISC 390\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 59 - Duracion: 00:00:23\",\"Codigo\":\"92\",\"Latitud\":-34.082160949707031,\"Longitud\":-59.057037353515625,\"Interno\":\"670\",\"Patente\":\"JDF 517\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 106 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.1307373046875,\"Longitud\":-59.071117401123047,\"Interno\":\"183\",\"Patente\":\"IZL 662\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 59 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.081718444824219,\"Longitud\":-59.057247161865234,\"Interno\":\"675\",\"Patente\":\"EVM859\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 68 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-34.107040405273438,\"Longitud\":-59.049709320068359,\"Interno\":\"2000\",\"Patente\":\"MPY 374\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 66 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.079158782958984,\"Longitud\":-59.0583381652832,\"Interno\":\"670\",\"Patente\":\"JDF 517\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:39:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 64 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.078109741210938,\"Longitud\":-59.058967590332031,\"Interno\":\"675\",\"Patente\":\"EVM859\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:22\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 84 - Duracion: 00:01:06\",\"Codigo\":\"92\",\"Latitud\":-34.500820159912109,\"Longitud\":-59.070400238037109,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:17\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:01:13\",\"Codigo\":\"92\",\"Latitud\":-33.6167106628418,\"Longitud\":-65.559219360351562,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:39:07\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 47 - Duracion: 00:00:36\",\"Codigo\":\"92\",\"Latitud\":-34.092227935791016,\"Longitud\":-59.073280334472656,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:39:05\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 46 - Duracion: 00:00:40\",\"Codigo\":\"92\",\"Latitud\":-34.092220306396484,\"Longitud\":-59.073207855224609,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:38:48\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 67 - Duracion: 00:01:06\",\"Codigo\":\"92\",\"Latitud\":-34.516807556152344,\"Longitud\":-58.66912841796875,\"Interno\":\"287\",\"Patente\":\"AB 594 HB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:39:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 70 - Duracion: 00:00:36\",\"Codigo\":\"92\",\"Latitud\":-34.112358093261719,\"Longitud\":-59.111240386962891,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:39:24\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:01:06\",\"Codigo\":\"92\",\"Latitud\":-34.131088256835938,\"Longitud\":-59.070308685302734,\"Interno\":\"2032\",\"Patente\":\"2032\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:40:17\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:26\",\"Codigo\":\"92\",\"Latitud\":-33.607490539550781,\"Longitud\":-65.58856201171875,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:40:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 76 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.091648101806641,\"Longitud\":-59.072128295898437,\"Interno\":\"289\",\"Patente\":\"AB 594 HC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:40:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 60 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.088348388671875,\"Longitud\":-59.0659294128418,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:35:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:06:01\",\"Codigo\":\"92\",\"Latitud\":-34.134990692138672,\"Longitud\":-59.061229705810547,\"Interno\":\"230\",\"Patente\":\"NPE 631\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:12\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 65 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-34.1153678894043,\"Longitud\":-59.065010070800781,\"Interno\":\"2000\",\"Patente\":\"MPY 374\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 64 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.086978912353516,\"Longitud\":-59.063247680664062,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:40:34\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 96 - Duracion: 00:00:56\",\"Codigo\":\"92\",\"Latitud\":-34.130290985107422,\"Longitud\":-59.072139739990234,\"Interno\":\"243\",\"Patente\":\"PNV 571\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:40:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 75 - Duracion: 00:01:20\",\"Codigo\":\"92\",\"Latitud\":-34.109077453613281,\"Longitud\":-59.105037689208984,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 74 - Duracion: 00:00:36\",\"Codigo\":\"92\",\"Latitud\":-34.088310241699219,\"Longitud\":-59.065727233886719,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 72 - Duracion: 00:00:11\",\"Codigo\":\"92\",\"Latitud\":-34.101249694824219,\"Longitud\":-59.090267181396484,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:46\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 56 - Duracion: 00:00:19\",\"Codigo\":\"92\",\"Latitud\":-34.3902702331543,\"Longitud\":-58.834987640380859,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 57 - Duracion: 00:00:31\",\"Codigo\":\"92\",\"Latitud\":-34.085220336914063,\"Longitud\":-59.059917449951172,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:00:24\",\"Codigo\":\"92\",\"Latitud\":-34.1776008605957,\"Longitud\":-58.969650268554688,\"Interno\":\"230\",\"Patente\":\"NPE 631\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:48\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:27\",\"Codigo\":\"92\",\"Latitud\":-34.085289001464844,\"Longitud\":-59.060009002685547,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:32:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:09:31\",\"Codigo\":\"92\",\"Latitud\":-33.850780487060547,\"Longitud\":-59.550067901611328,\"Interno\":\"271\",\"Patente\":\"AA 340 CJ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:40:57\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 52 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.587909698486328,\"Longitud\":-58.532707214355469,\"Interno\":\"405\",\"Patente\":\"IWZ 968\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:38\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:00:51\",\"Codigo\":\"92\",\"Latitud\":-34.176429748535156,\"Longitud\":-58.976039886474609,\"Interno\":\"173\",\"Patente\":\"HUH 496\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 58 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.482688903808594,\"Longitud\":-59.077369689941406,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:05\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 76 - Duracion: 00:00:39\",\"Codigo\":\"92\",\"Latitud\":-34.099540710449219,\"Longitud\":-59.087066650390625,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 78 - Duracion: 00:00:46\",\"Codigo\":\"92\",\"Latitud\":-34.118610382080078,\"Longitud\":-59.071800231933594,\"Interno\":\"2000\",\"Patente\":\"MPY 374\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:42\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 57 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.081039428710937,\"Longitud\":-59.057498931884766,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 55 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.456329345703125,\"Longitud\":-58.659446716308594,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:39\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 46 - Duracion: 00:00:32\",\"Codigo\":\"92\",\"Latitud\":-34.387660980224609,\"Longitud\":-58.831607818603516,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:44\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 54 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.663509368896484,\"Longitud\":-59.398616790771484,\"Interno\":\"188\",\"Patente\":\"JJA 080\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 38 - Alcanzada 55 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.078140258789063,\"Longitud\":-59.058986663818359,\"Interno\":\"676\",\"Patente\":\"EOI127\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:56\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.079048156738281,\"Longitud\":-59.058387756347656,\"Interno\":\"674\",\"Patente\":\"EMI636\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:24\",\"Codigo\":\"92\",\"Latitud\":-34.477069854736328,\"Longitud\":-59.073169708251953,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:40:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 100 - Duracion: 00:02:42\",\"Codigo\":\"92\",\"Latitud\":-34.093288421630859,\"Longitud\":-59.0753288269043,\"Interno\":\"289\",\"Patente\":\"AB 594 HC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:42\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:01:42\",\"Codigo\":\"92\",\"Latitud\":-34.127899169921875,\"Longitud\":-59.077808380126953,\"Interno\":\"238\",\"Patente\":\"NTN 632\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:43:53\",\"Mensaje\":\"Frenada Brusca\",\"Codigo\":\"3002\",\"Latitud\":-34.671890258789063,\"Longitud\":-59.443389892578125,\"Interno\":\"2019\",\"Patente\":\"JOC 883\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:43:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 58 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.454360961914063,\"Longitud\":-58.6632194519043,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:42:55\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 63 - Duracion: 00:01:12\",\"Codigo\":\"92\",\"Latitud\":-34.095409393310547,\"Longitud\":-59.079269409179687,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:41:54\",\"Mensaje\":\"Velocidad Excedida : Permitida 70 - Alcanzada 84 - Duracion: 00:02:52\",\"Codigo\":\"92\",\"Latitud\":-36.927757263183594,\"Longitud\":-60.29058837890625,\"Interno\":\"171\",\"Patente\":\"HUC 246\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:44:34\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 96 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.116470336914062,\"Longitud\":-59.105270385742188,\"Interno\":\"289\",\"Patente\":\"AB 594 HC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:44:29\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:28\",\"Codigo\":\"92\",\"Latitud\":-34.1633186340332,\"Longitud\":-59.003849029541016,\"Interno\":\"191\",\"Patente\":\"JQJ 706\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:45:03\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 102 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.131179809570313,\"Longitud\":-59.070018768310547,\"Interno\":\"2000\",\"Patente\":\"MPY 374\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:44:10\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:01:13\",\"Codigo\":\"92\",\"Latitud\":-34.463687896728516,\"Longitud\":-59.063198089599609,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:45:21\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 101 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.133350372314453,\"Longitud\":-59.064849853515625,\"Interno\":\"2000\",\"Patente\":\"MPY 374\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:43:21\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:02:27\",\"Codigo\":\"92\",\"Latitud\":-34.164810180664063,\"Longitud\":-59.000759124755859,\"Interno\":\"173\",\"Patente\":\"HUH 496\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:45:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 53 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.381000518798828,\"Longitud\":-58.823078155517578,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:45:21\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 73 - Duracion: 00:00:52\",\"Codigo\":\"92\",\"Latitud\":-34.088539123535156,\"Longitud\":-59.066459655761719,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:45:01\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:01:28\",\"Codigo\":\"92\",\"Latitud\":-34.159568786621094,\"Longitud\":-59.0117073059082,\"Interno\":\"191\",\"Patente\":\"JQJ 706\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:46:24\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 49 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.379009246826172,\"Longitud\":-58.8205680847168,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:45:48\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:01:02\",\"Codigo\":\"92\",\"Latitud\":-34.444229125976563,\"Longitud\":-59.050148010253906,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:46:21\",\"Mensaje\":\"Frenada Brusca\",\"Codigo\":\"3002\",\"Latitud\":-34.685359954833984,\"Longitud\":-59.452629089355469,\"Interno\":\"2019\",\"Patente\":\"JOC 883\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:46:36\",\"Mensaje\":\"Frenada Brusca\",\"Codigo\":\"3002\",\"Latitud\":-34.6874885559082,\"Longitud\":-59.453899383544922,\"Interno\":\"2019\",\"Patente\":\"JOC 883\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:46:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 44 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.377288818359375,\"Longitud\":-58.818408966064453,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:46:54\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:24\",\"Codigo\":\"92\",\"Latitud\":-34.430679321289063,\"Longitud\":-59.041938781738281,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:47:25\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 49 - Duracion: 00:00:28\",\"Codigo\":\"92\",\"Latitud\":-34.079299926757813,\"Longitud\":-59.058277130126953,\"Interno\":\"311\",\"Patente\":\"311\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:47:13\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:01:05\",\"Codigo\":\"92\",\"Latitud\":-34.183799743652344,\"Longitud\":-58.949310302734375,\"Interno\":\"257\",\"Patente\":\"AA 275 CI\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:09\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-36.966960906982422,\"Longitud\":-60.268360137939453,\"Interno\":\"171\",\"Patente\":\"HUC 246\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-28.471759796142578,\"Longitud\":-65.164276123046875,\"Interno\":\"172\",\"Patente\":\"HXP 802\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.127887725830078,\"Longitud\":-59.0778694152832,\"Interno\":\"261\",\"Patente\":\"AA 340 EH\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:22\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:00:44\",\"Codigo\":\"92\",\"Latitud\":-34.131610870361328,\"Longitud\":-59.0690803527832,\"Interno\":\"289\",\"Patente\":\"AB 594 HC\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:43\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.700069427490234,\"Longitud\":-59.4705696105957,\"Interno\":\"2019\",\"Patente\":\"JOC 883\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:49:11\",\"Mensaje\":\"Frenada Brusca\",\"Codigo\":\"3002\",\"Latitud\":-34.703117370605469,\"Longitud\":-59.476619720458984,\"Interno\":\"2019\",\"Patente\":\"JOC 883\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:00:39\",\"Codigo\":\"92\",\"Latitud\":-34.129127502441406,\"Longitud\":-59.074916839599609,\"Interno\":\"241\",\"Patente\":\"PKN 580\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:39\",\"Codigo\":\"92\",\"Latitud\":-34.132968902587891,\"Longitud\":-59.0658073425293,\"Interno\":\"270\",\"Patente\":\"AA 439 CI\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:47:36\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:01:58\",\"Codigo\":\"92\",\"Latitud\":-34.422290802001953,\"Longitud\":-59.0369873046875,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:49:39\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 72 - Duracion: 00:00:18\",\"Codigo\":\"92\",\"Latitud\":-34.161979675292969,\"Longitud\":-58.951236724853516,\"Interno\":\"247\",\"Patente\":\"PBF 247\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:49:42\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.135749816894531,\"Longitud\":-59.059120178222656,\"Interno\":\"241\",\"Patente\":\"PKN 580\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:49:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.373638153076172,\"Longitud\":-58.760269165039062,\"Interno\":\"204\",\"Patente\":\"KOW 229\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:55\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:01:21\",\"Codigo\":\"92\",\"Latitud\":-34.183509826660156,\"Longitud\":-58.949668884277344,\"Interno\":\"201\",\"Patente\":\"KIO 525\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:50:03\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 54 - Duracion: 00:00:12\",\"Codigo\":\"92\",\"Latitud\":-34.369319915771484,\"Longitud\":-58.810176849365234,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:49:27\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 59 - Duracion: 00:00:53\",\"Codigo\":\"92\",\"Latitud\":-34.445407867431641,\"Longitud\":-58.676689147949219,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:49:39\",\"Mensaje\":\"Velocidad Excedida : Permitida 92 - Alcanzada 99 - Duracion: 00:00:45\",\"Codigo\":\"92\",\"Latitud\":-34.1307487487793,\"Longitud\":-59.0711784362793,\"Interno\":\"2021\",\"Patente\":\"2021\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:49:59\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:00:49\",\"Codigo\":\"92\",\"Latitud\":-34.130199432373047,\"Longitud\":-59.072460174560547,\"Interno\":\"264\",\"Patente\":\"AA 391 PZ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:50:41\",\"Mensaje\":\"Velocidad Excedida : Permitida 100 - Alcanzada 102 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-33.750507354736328,\"Longitud\":-59.113887786865234,\"Interno\":\"420\",\"Patente\":\"PCP 350\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:49:54\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 103 - Duracion: 00:01:01\",\"Codigo\":\"92\",\"Latitud\":-34.342727661132812,\"Longitud\":-58.813068389892578,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:50:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 41 - Duracion: 00:00:16\",\"Codigo\":\"92\",\"Latitud\":-34.097900390625,\"Longitud\":-59.053398132324219,\"Interno\":\"308\",\"Patente\":\"AB-868-BJ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:50:54\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:31\",\"Codigo\":\"92\",\"Latitud\":-34.132709503173828,\"Longitud\":-59.066577911376953,\"Interno\":\"40\",\"Patente\":\"NMQ 023\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:50:52\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 51 - Duracion: 00:00:36\",\"Codigo\":\"92\",\"Latitud\":-34.097049713134766,\"Longitud\":-59.0517692565918,\"Interno\":\"283\",\"Patente\":\"AB-428-AE\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:34\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:03:07\",\"Codigo\":\"92\",\"Latitud\":-34.177410125732422,\"Longitud\":-58.969898223876953,\"Interno\":\"257\",\"Patente\":\"AA 275 CI\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:51:30\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.446437835693359,\"Longitud\":-58.754657745361328,\"Interno\":\"2010\",\"Patente\":\"AB-792-JJ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:51:44\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.128128051757813,\"Longitud\":-59.077320098876953,\"Interno\":\"267\",\"Patente\":\"AA 391 PY\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:54\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:03:06\",\"Codigo\":\"92\",\"Latitud\":-34.455249786376953,\"Longitud\":-58.693798065185547,\"Interno\":\"210\",\"Patente\":\"MZX 722\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:51:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.36376953125,\"Longitud\":-58.804656982421875,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:50:46\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:01:23\",\"Codigo\":\"92\",\"Latitud\":-34.128139495849609,\"Longitud\":-59.077239990234375,\"Interno\":\"611\",\"Patente\":\"IQW 509\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:51:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:01:09\",\"Codigo\":\"92\",\"Latitud\":-34.130939483642578,\"Longitud\":-59.070758819580078,\"Interno\":\"2024\",\"Patente\":\"2024\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:51:48\",\"Mensaje\":\"Velocidad Excedida : Permitida 80 - Alcanzada 87 - Duracion: 00:00:25\",\"Codigo\":\"92\",\"Latitud\":-34.182918548583984,\"Longitud\":-58.950489044189453,\"Interno\":\"245\",\"Patente\":\"PNV 572\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:51:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:39\",\"Codigo\":\"92\",\"Latitud\":-34.166427612304688,\"Longitud\":-58.997257232666016,\"Interno\":\"248\",\"Patente\":\"PBF 577\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:50:17\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 96 - Duracion: 00:02:09\",\"Codigo\":\"92\",\"Latitud\":-34.371608734130859,\"Longitud\":-58.766109466552734,\"Interno\":\"204\",\"Patente\":\"KOW 229\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:11\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.13092041015625,\"Longitud\":-59.0706787109375,\"Interno\":\"267\",\"Patente\":\"AA 391 PY\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:51:42\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:01:02\",\"Codigo\":\"92\",\"Latitud\":-34.157260894775391,\"Longitud\":-59.016567230224609,\"Interno\":\"257\",\"Patente\":\"AA 275 CI\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:50:22\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 65 - Duracion: 00:01:33\",\"Codigo\":\"92\",\"Latitud\":-34.439350128173828,\"Longitud\":-58.68145751953125,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:48:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:04:02\",\"Codigo\":\"92\",\"Latitud\":-33.54541015625,\"Longitud\":-65.704338073730469,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:29\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 63 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.179397583007813,\"Longitud\":-58.942600250244141,\"Interno\":\"230\",\"Patente\":\"NPE 631\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:14\",\"Codigo\":\"92\",\"Latitud\":-34.366039276123047,\"Longitud\":-59.006526947021484,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:22\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:40\",\"Codigo\":\"92\",\"Latitud\":-34.635150909423828,\"Longitud\":-58.512298583984375,\"Interno\":\"405\",\"Patente\":\"IWZ 968\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:02\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:01:11\",\"Codigo\":\"92\",\"Latitud\":-34.127399444580078,\"Longitud\":-59.078987121582031,\"Interno\":\"275\",\"Patente\":\"AA 665 DF\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:52\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:28\",\"Codigo\":\"92\",\"Latitud\":-33.515327453613281,\"Longitud\":-65.760215759277344,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:50:51\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:02:39\",\"Codigo\":\"92\",\"Latitud\":-34.174869537353516,\"Longitud\":-58.979766845703125,\"Interno\":\"201\",\"Patente\":\"KIO 525\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:35\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 98 - Duracion: 00:01:06\",\"Codigo\":\"92\",\"Latitud\":-34.128669738769531,\"Longitud\":-59.076019287109375,\"Interno\":\"296\",\"Patente\":\"296\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:31\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:01:06\",\"Codigo\":\"92\",\"Latitud\":-34.161140441894531,\"Longitud\":-59.008377075195313,\"Interno\":\"248\",\"Patente\":\"PBF 577\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 62 - Duracion: 00:01:03\",\"Codigo\":\"92\",\"Latitud\":-34.428890228271484,\"Longitud\":-58.689609527587891,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:50\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:01:06\",\"Codigo\":\"92\",\"Latitud\":-34.147098541259766,\"Longitud\":-59.031177520751953,\"Interno\":\"257\",\"Patente\":\"AA 275 CI\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:49:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 100 - Duracion: 00:02:31\",\"Codigo\":\"92\",\"Latitud\":-36.9997673034668,\"Longitud\":-60.310176849365234,\"Interno\":\"284\",\"Patente\":\"AB-428-AB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:53:52\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:22\",\"Codigo\":\"92\",\"Latitud\":-33.507980346679688,\"Longitud\":-65.773818969726563,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:53:20\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 96 - Duracion: 00:00:51\",\"Codigo\":\"92\",\"Latitud\":-34.636138916015625,\"Longitud\":-58.496688842773437,\"Interno\":\"405\",\"Patente\":\"IWZ 968\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:54:37\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 91 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-37.011089324951172,\"Longitud\":-60.310207366943359,\"Interno\":\"171\",\"Patente\":\"HUC 246\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:54:17\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:00:54\",\"Codigo\":\"92\",\"Latitud\":-33.504928588867188,\"Longitud\":-65.779510498046875,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:54:27\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:00:44\",\"Codigo\":\"92\",\"Latitud\":-34.482440948486328,\"Longitud\":-58.632919311523438,\"Interno\":\"287\",\"Patente\":\"AB 594 HB\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:54:53\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 55 - Duracion: 00:00:28\",\"Codigo\":\"92\",\"Latitud\":-34.420509338378906,\"Longitud\":-58.696189880371094,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:55:09\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.136878967285156,\"Longitud\":-59.048698425292969,\"Interno\":\"296\",\"Patente\":\"296\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:53:54\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 95 - Duracion: 00:01:32\",\"Codigo\":\"92\",\"Latitud\":-34.152500152587891,\"Longitud\":-59.023536682128906,\"Interno\":\"201\",\"Patente\":\"KIO 525\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:55:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 96 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.335189819335937,\"Longitud\":-58.993686676025391,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:55:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:23\",\"Codigo\":\"92\",\"Latitud\":-34.13079833984375,\"Longitud\":-59.071159362792969,\"Interno\":\"2030\",\"Patente\":\"HHA 008\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:55:38\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 92 - Duracion: 00:00:15\",\"Codigo\":\"92\",\"Latitud\":-34.132179260253906,\"Longitud\":-59.067798614501953,\"Interno\":\"42\",\"Patente\":\"LPO 643\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:55:35\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 50 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.416179656982422,\"Longitud\":-58.699546813964844,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:55:39\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 69 - Duracion: 00:00:17\",\"Codigo\":\"92\",\"Latitud\":-34.167598724365234,\"Longitud\":-58.947139739990234,\"Interno\":\"256\",\"Patente\":\"AA 285 SU\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:52:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:04:08\",\"Codigo\":\"92\",\"Latitud\":-34.356159210205078,\"Longitud\":-58.798759460449219,\"Interno\":\"204\",\"Patente\":\"KOW 229\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:56:06\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:48\",\"Codigo\":\"92\",\"Latitud\":-34.096118927001953,\"Longitud\":-59.049980163574219,\"Interno\":\"622\",\"Patente\":\"JDC279\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:56:19\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 61 - Duracion: 00:00:40\",\"Codigo\":\"92\",\"Latitud\":-34.413169860839844,\"Longitud\":-58.702838897705078,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:55:47\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 86 - Duracion: 00:01:13\",\"Codigo\":\"92\",\"Latitud\":-34.104167938232422,\"Longitud\":-59.044406890869141,\"Interno\":\"255\",\"Patente\":\"AA 285 SO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:57:08\",\"Mensaje\":\"Frenada Brusca\",\"Codigo\":\"3002\",\"Latitud\":-34.649127960205078,\"Longitud\":-58.464790344238281,\"Interno\":\"405\",\"Patente\":\"IWZ 968\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:56:36\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:00:33\",\"Codigo\":\"92\",\"Latitud\":-34.324390411376953,\"Longitud\":-58.988979339599609,\"Interno\":\"229\",\"Patente\":\"NTA 435\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:55:05\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:02:29\",\"Codigo\":\"92\",\"Latitud\":-37.024097442626953,\"Longitud\":-60.302017211914063,\"Interno\":\"163\",\"Patente\":\"HRI 533\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:56:20\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 93 - Duracion: 00:01:37\",\"Codigo\":\"92\",\"Latitud\":-33.490058898925781,\"Longitud\":-65.807907104492188,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:58:04\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 49 - Duracion: 00:00:13\",\"Codigo\":\"92\",\"Latitud\":-34.411567687988281,\"Longitud\":-58.710720062255859,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:57:55\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:38\",\"Codigo\":\"92\",\"Latitud\":-34.131797790527344,\"Longitud\":-59.068538665771484,\"Interno\":\"263\",\"Patente\":\"AA 391 PE\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:57:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 97 - Duracion: 00:01:02\",\"Codigo\":\"92\",\"Latitud\":-33.478458404541016,\"Longitud\":-65.830436706542969,\"Interno\":\"49\",\"Patente\":\"AB 351 FN\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:57:16\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 90 - Duracion: 00:01:47\",\"Codigo\":\"92\",\"Latitud\":-34.112907409667969,\"Longitud\":-59.060089111328125,\"Interno\":\"255\",\"Patente\":\"AA 285 SO\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:58:28\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:01:06\",\"Codigo\":\"92\",\"Latitud\":-34.124549865722656,\"Longitud\":-59.023750305175781,\"Interno\":\"228\",\"Patente\":\"NPA 432\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:58:26\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 76 - Duracion: 00:01:08\",\"Codigo\":\"92\",\"Latitud\":-34.192527770996094,\"Longitud\":-58.948818206787109,\"Interno\":\"230\",\"Patente\":\"NPE 631\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:58:45\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 69 - Duracion: 00:00:52\",\"Codigo\":\"92\",\"Latitud\":-34.118999481201172,\"Longitud\":-59.072757720947266,\"Interno\":\"308\",\"Patente\":\"AB-868-BJ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:58:49\",\"Mensaje\":\"Velocidad Excedida : Permitida 60 - Alcanzada 65 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.121337890625,\"Longitud\":-59.077339172363281,\"Interno\":\"283\",\"Patente\":\"AB-428-AE\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:58:00\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 106 - Duracion: 00:02:14\",\"Codigo\":\"92\",\"Latitud\":-34.469841003417969,\"Longitud\":-58.683029174804687,\"Interno\":\"634\",\"Patente\":\"AD496AQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:57:52\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:02:27\",\"Codigo\":\"92\",\"Latitud\":-34.351608276367188,\"Longitud\":-58.803749084472656,\"Interno\":\"221\",\"Patente\":\"NPA 434\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T17:00:21\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 101 - Duracion: 00:00:10\",\"Codigo\":\"92\",\"Latitud\":-34.480628967285156,\"Longitud\":-58.642658233642578,\"Interno\":\"634\",\"Patente\":\"AD496AQ\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T17:00:14\",\"Mensaje\":\"Velocidad Excedida : Permitida 40 - Alcanzada 43 - Duracion: 00:00:21\",\"Codigo\":\"92\",\"Latitud\":-34.413780212402344,\"Longitud\":-58.717838287353516,\"Interno\":\"159\",\"Patente\":\"GST 490\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T17:00:32\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 94 - Duracion: 00:00:20\",\"Codigo\":\"92\",\"Latitud\":-34.131057739257812,\"Longitud\":-59.070320129394531,\"Interno\":\"28\",\"Patente\":\"IMN 148\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T16:58:58\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 105 - Duracion: 00:01:54\",\"Codigo\":\"92\",\"Latitud\":-34.31134033203125,\"Longitud\":-58.872360229492188,\"Interno\":\"161\",\"Patente\":\"GYH 473\"}"}
+0|web      | NEW POST FROM: http://::ffff:200.70.28.88
+0|web      | Sent to "incoming" message {"text":"{\"Fecha\":\"2020-06-12T17:00:09\",\"Mensaje\":\"Velocidad Excedida : Permitida 90 - Alcanzada 99 - Duracion: 00:00:44\",\"Codigo\":\"92\",\"Latitud\":-34.132499694824219,\"Longitud\":-59.066959381103516,\"Interno\":\"2028\",\"Patente\":\"IMF 925\"}"}
