@@ -3,6 +3,8 @@ const router = express.Router();
 const Task = require('../schemas/test');
 const queue = require('../lib/queue');
 const bodyParser = require('body-parser');
+const {list}= require('../lib/mongodb/mongoDbHelpers');
+const config= require('../config/config');
 
 //función que valida si el que hace el request puede acceder al path
 //TODO: esta bien implementar esto aca?
@@ -76,14 +78,21 @@ router.get('/api/getlist', async(req, res, next) => {
     const timeStamp = Date.now();
     const protocol = req.protocol;
     const url = req.socket.remoteAddress;
+    let query={}
+    let desde= Number( req.query.desde);
+    let cantidad= Number( req.query.cantidad);
     console.log("Routes@api/getlist: New GET from: " + protocol + '://' + url + "  time: " + timeStamp);
-    Task.find({}, function(err, events) {
-        var userMap = {};
-        events.forEach(function(event) {
-            userMap[event.id] = event;
-        });
-        res.send(userMap);
-    });
+    try{
+      query= JSON.parse(req.query.q || "{}");
+    }catch(e){
+      console.log("Routes@api/getlist badquery: " , req.query.q)
+      return res.status(400).send("bad query")
+    }
+    console.log("Routes@api/getlist: " , req.query)
+    //TODO: agregar querys mas complejos
+    list(config.messageCollectionName,query,desde,cantidad)
+      .then(result=> res.send(result) )
+      .catch( err=> {console.log("err /api/getlist: " , err) ; res.send("error listado")} )
 });
 
 /*
