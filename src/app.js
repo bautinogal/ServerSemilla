@@ -1,7 +1,6 @@
 const path = require('path'); // Herramienta para armar los paths independientemente del SO
 const express = require('express'); // Framework de Node para armar servidores
 const morgan = require('morgan'); // Herramienta para loggear
-const mongoose = require('mongoose'); // Interfaz para interactuar con MongoDb
 const routes = require('./routes/index'); // Script que administra los "Endpoints"
 
 // Inicializo el servidor
