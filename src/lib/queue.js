@@ -1,5 +1,6 @@
+//Script que se encarga de encolar y desencolar las colas
 const amqp = require('amqplib');
-const queueUrl = 'amqp://localhost';
+const queueUrl = process.env.AMQP_URI || 'amqp://localhost';
 
 //Funcion para establecer un canal con la cola
 const channel = () => {
@@ -21,14 +22,13 @@ const send = (queue, message) => {
 
     channel().then(channel => {
         channel.assertQueue(queue, { durable: false });
-        let timeStamp = Date.now();
-        message.serverEnqueued = timeStamp;
+        message.serverEnqueuedTS = Date.now();
         channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));
         console.log('Queue@send: Message enqued in "%s". Message: %s ', queue, message);
     })
 };
 
-//Funcion para suscribirse a una cola ("para los consumers")
+//Funcion para suscribirse (desencolar) a una cola ("para los consumers")
 const receive = (queue, handler) => {
     console.log('Queue@receive: Suscribing to queue "%s".', queue);
     channel().then(channel => {
@@ -39,7 +39,5 @@ const receive = (queue, handler) => {
         });
     });
 }
-
-
 
 module.exports = { send, receive };

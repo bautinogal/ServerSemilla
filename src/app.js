@@ -1,4 +1,4 @@
-const path = require('path'); // Herramienta para armar los paths independientemente del SO
+const path = require('path'); // Herramienta para armar los paths independientemente del S.O.
 const express = require('express'); // Framework de Node para armar servidores
 const morgan = require('morgan'); // Herramienta para loggear
 const routes = require('./routes/index'); // Script que administra los "Endpoints"
