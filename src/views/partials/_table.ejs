@@ -1,0 +1,29 @@
+<!-- INFO: una tabla generica pára mostrar informacion recibe: headers y data para crear la tabla -->
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- LIST -->
+    <div class="col-md-12">
+      <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+              <% headers.map( header=>{ %> 
+                <th> <%=header%> </th>
+              <% }) %>
+            </tr>
+        </thead>
+        <tbody>
+          <% rows.map( columns =>{ %>
+            <tr>
+              <% columns.map( field => { %>
+                <td>
+                  <%=field%>
+                </td>
+              <% }) %>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
