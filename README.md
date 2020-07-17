@@ -9,6 +9,10 @@ https://www.erlang.org/downloads
 * RabbitMQ: Sistema de colas 
 https://www.rabbitmq.com/download.html
 
-*TODO/DUDAS:
+* DUDAS:
  - Como manejo la capa para llamar a las bds, los separo en sql y nosql?
  - Como hago el manejo si quiero tener varias db con mongo por ejemplo?
+
+*Roadmap:
+ - Agregar bd sql (mariadb)
+ - Manejar desconexión de las colas
