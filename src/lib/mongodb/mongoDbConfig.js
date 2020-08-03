@@ -16,7 +16,6 @@ function initPool(cb) {
         })
     })
 }
-
 MongoPool.initPool = initPool;
 
 function getInstance(cb) {

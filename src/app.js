@@ -1,7 +1,9 @@
 const path = require('path'); // Herramienta para armar los paths independientemente del S.O.
 const express = require('express'); // Framework de Node para armar servidores
+const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerpo" de los requests
 const morgan = require('morgan'); // Herramienta para loggear
 const routes = require('./routes/index'); // Script que administra los "Endpoints"
+const workers = require('./workers/index'); // Script que arranca los "workers" que mueven los mensajes de la cola a la bd
 
 // Inicializo el servidor
 const app = express();
@@ -18,18 +20,27 @@ console.log(`App: Servidor Configurado.`);
 
 // Adición de Middlewares al servidor
 console.log(`App: Agregando Middleware al Servidor:`);
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms')); // Loggea los requests
-app.use(express.urlencoded({ extended: false })) // Herramienta para parsear los JSONs que llegan en los requests
+// Agrego "Morgan" para loggear los requests
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded());
+// parse application/json
+app.use(bodyParser.json());
 console.log(`App: Middleware agregado.`);
 // TODO: SEGURIDAD, VALIDACIONES, ETC...
 
-// Carga de endpoints
+// Carga de "endpoints"
 console.log(`App: Cargando rutas al Servidor:`);
 app.use('/', routes);
-console.log(`App: Rutas cargadas:`);
+console.log(`App: Rutas cargadas: `);
+routes.stack.forEach(function(r) {
+    if (r.route && r.route.path) {
+        console.log(r.route.path)
+    }
+});
 
 // Prendo worker que va a mover los mensajes de la cola a la bd
-const worker = require('./workers/wRabToMdb');
+workers.start();
 
 // Puesta en marcha del servidor
 console.log(`App: Servidor Listo!`);

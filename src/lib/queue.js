@@ -37,7 +37,7 @@ const receive = (queue, handler) => {
         channel.consume(queue, msg => handler(JSON.parse(msg.content.toString())), {
             noAck: true,
         });
-    });
+    }).catch(err => console.log('Queue@receive: Error connecting to channel: "%s"', err));
 }
 
 module.exports = { send, receive };

@@ -1,5 +1,13 @@
 //Script que oculta el manejo de las bases de datos...
 //TODO: Persistir todo en un base relacional a largo plazo
-const { save, list } = require('../lib/mongodb/mongoDbHelpers');
+const { get } = require('../lib/mongodb/mongoDbHelpers');
+const queue = require('../lib/queue');
 
-module.exports = { save, list };
+//TODO: Revisar con alguien que sepa de arquitectura si esta bien agregar el campo reqInfo...
+const post = (collection, message, reqInfo) => {
+    console.log(`Repo@post/${collection} message: ${JSON.stringify(message)} reqInfo: ${JSON.stringify(reqInfo)})`);
+    message.reqInfo = reqInfo;
+    queue.send(collection, message);
+};
+
+module.exports = { post, get };

@@ -1,10 +1,23 @@
 <%- include('partials/_header'); -%>
 
 
-<div>
-  <div class="row">
-    <%- include('partials/_table'); -%>
-  </div>
-</div>
+    <div>
+        <div class="row">
+            <%- include('partials/_table'); -%>
+        </div>
+    </div>
 
-<%- include('partials/_footer'); -%>
+
+    <!-- TODO: Por ahí esto debería ir dentro de nuestro componente "table" -->
+    <script>
+        //TODO: Ahora hay un solo INPUT y funciona, pero habría q ponerle un id
+        $(document).ready(function() {
+            $("input").change(function() {
+                const filter = $(this).val();
+                console.log("The text has been changed to: %s", filter);
+                changeURLQuery("q", "filter");
+            });
+        });
+    </script>
+
+    <%- include('partials/_footer'); -%>
