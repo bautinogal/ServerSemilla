@@ -11,16 +11,55 @@ async function save(collectionName, document) { //U: guardar un documento en la 
     }
 }
 
-function get(collectionName, query) {
+function get(collectionName, query, queryOptions) {
+
+    //Si me vienen vacios los parametres les asigno un objeto vacio
+    if (query == null)
+        query = {};
+
+    if (queryOptions == null)
+        queryOptions = {};
+
+    //Si me vienen strings los convierto a objetos que es lo que quiere mongo
+    if (typeof query === 'string')
+        query = JSON.parse(query);
+    if (typeof queryOptions === 'string')
+        queryOptions = JSON.parse(queryOptions);
+
+
+    return MongoPool.getInstance()
+        .then(db => db.collection(collectionName).find(query, queryOptions).toArray())
+        .catch(err => console.log("get error: %s", err));
+
     return new Promise(async(resolve, reject) => {
-        let db = await MongoPool.getInstance()
-        db.collection(collectionName).find(query)
+        let db = await MongoPool.getInstance();
+        db.collection(collectionName).find(query, queryOptions)
+            .then(res => res)
             .toArray(async(err, result) => {
-                let count = await db.collection(collectionName).countDocuments(query);
-                if (err) reject(err)
-                resolve({ result, count })
+                if (err)
+                    reject(err);
+                resolve(result.toString());
             });
     })
 }
 
-module.exports = { save, get };
+function getCount(collectionName, query, queryOptions) {
+
+    //Si me vienen vacios le agrego un objeto vacio si son strings los parseo
+    if (query == null)
+        query = {};
+    else if (typeof query === 'string')
+        query = JSON.parse(query);
+
+    if (queryOptions == null)
+        queryOptions = {};
+    else if (typeof queryOptions === 'string')
+        queryOptions = JSON.parse(queryOptions);
+
+
+    return MongoPool.getInstance().collection(collectionName).count(query, queryOptions);
+
+
+}
+
+module.exports = { save, get, getCount };

@@ -13,10 +13,13 @@ console.log(`App: Inicializando Servidor...`);
 console.log(`App: Configurando el Servidor:`);
 app.set('port', process.env.PORT || 3000);
 console.log(`App: Puerto del servidor seteado en: ${app.get('port')}`);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-console.log(`App: Usando "ejs" como "View Engine"`);
+
+app.use('/public', express.static(path.join(__dirname, 'public')));
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'ejs');
+//console.log(`App: Usando "ejs" como "View Engine"`);
 console.log(`App: Servidor Configurado.`);
+
 
 // Adición de Middlewares al servidor
 console.log(`App: Agregando Middleware al Servidor:`);

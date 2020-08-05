@@ -3,6 +3,7 @@ const router = express.Router();
 const repo = require('../lib/repo');
 const config = require('../config/config');
 const utils = require('../lib/utils');
+const path = require('path');
 
 //TODO: mover a utils
 function ArrayObjFilter(arrObj, filters) {
@@ -33,15 +34,19 @@ router.get('/dashboard', async(req, res) => {
     //2-agregar paginacion
     //3-que la view redireccione a este mismo endpoint con el numero de paginacion que clickea el user
 
-    //1-obtener un array de datos que quiero mostrar en la tabla
-    let filters = ["serverReceived", "protocol", "url", "serverEnqueuedTS", "serverEnqueued"] //U: que keys no quiero mostrar en mi tabla
-    let headers = ['Id', 'Fecha', 'Mensaje', 'Codigo', 'Latitud', 'Logitud', 'Interno', 'Patente', 'serverReceivedTS'] //A: los titulos de la tabla que mostramos para los mensajes que nos llegaron
+    // //1-obtener un array de datos que quiero mostrar en la tabla
+    // let filters = ["serverReceived", "protocol", "url", "serverEnqueuedTS", "serverEnqueued"] //U: que keys no quiero mostrar en mi tabla
+    // let headers = ['Id', 'Fecha', 'Mensaje', 'Codigo', 'Latitud', 'Logitud', 'Interno', 'Patente', 'serverReceivedTS'] //A: los titulos de la tabla que mostramos para los mensajes que nos llegaron
 
-    let data = await dataGet();
-    result = ArrayObjFilter(data.result, filters)
-    let messages = result.map(result => Object.values(result)) //A: array de arrays con los values del diccioonario devuelto por la base de datos para darselo a la tabla 
-    let messagesCount = data.count;
-    res.render('messageTable', { rows: messages, messagesCount, headers })
+    // let data = await dataGet();
+    // result = ArrayObjFilter(data.result, filters)
+    // let messages = result.map(result => Object.values(result)) //A: array de arrays con los values del diccioonario devuelto por la base de datos para darselo a la tabla 
+    // let messagesCount = data.count;
+    //res.sendFile(path.join(__dirname + '/index.html'));
+    // const url = path.join(__dirname + '/../views/dashboard.html');
+    const page = path.join(__dirname, '..', 'public/dashboard/dashboard.html');
+    console.log("page: " + page);
+    res.sendFile(page);
 
 });
 
@@ -65,15 +70,35 @@ router.post('/api/post/:collection', async(req, res, next) => {
 
 //Devuelvo una lista filtrada por el query
 router.get('/api/get/:collection', async(req, res, next) => {
-    console.log(`Routes@/api/get/${req.params.collection}  query: %s`, req.query);
-    repo.get(req.params.collection, req.query)
+    const query = req.query.query;
+    const queryOptions = req.query.options;
+    console.log(`Routes@/api/get/${req.params.collection} query: ${query} options: ${queryOptions}`);
+    repo.get(req.params.collection, query, queryOptions)
         .then(result => {
-            console.log(`Routes@/api/get/${req.params.collection} query: ${JSON.stringify(req.query)}  res: ${JSON.stringify(result)}`);
-            res.send(result);
+            result = JSON.stringify(result);
+            console.log(`Routes@/api/get/${req.params.collection} query: ${JSON.stringify(req.query)}  res: ${result}`);
+            res.end(result);
         })
         .catch(err => {
             console.log(`Routes@/api/get/${req.params.collection} query: ${req.query}  err: ${err}`);
-            res.send(err)
+            res.end(err)
+        });
+});
+
+//Devuelvo la cantidad de elementos en la collection que coinciden con el query
+router.get('/api/getCount/:collection', async(req, res, next) => {
+    const query = req.query.query;
+    const queryOptions = req.query.options;
+    console.log(`Routes@/api/getCount/${req.params.collection} query: ${query} options: ${queryOptions}`);
+    repo.getCount(req.params.collection, query, queryOptions)
+        .then(result => {
+            result = JSON.stringify(result);
+            console.log(`Routes@/api/get/${req.params.collection} query: ${JSON.stringify(req.query)}  res: ${result}`);
+            res.end(result);
+        })
+        .catch(err => {
+            console.log(`Routes@/api/get/${req.params.collection} query: ${req.query}  err: ${err}`);
+            res.end(err)
         });
 });
 

@@ -19,17 +19,17 @@ const start = () => {
     });
 
     //Defino como se van a manejar los mensajes que estan en la cola "collection2"
-    collection = "collection2";
-    queue.receive(collection, (document) => {
-        console.log(`Worker@consume: ${JSON.stringify(document)} to ${collection}`);
-        queueToDb(collection, document);
+    var collection2 = "collection2";
+    queue.receive(collection2, (document) => {
+        console.log(`Worker@consume: ${JSON.stringify(document)} to ${collection2}`);
+        queueToDb(collection2, document);
     });
 
     //Defino como se van a manejar los mensajes que estan en la cola "collection3"
-    collection = "collection3";
-    queue.receive(collection, (document) => {
-        console.log(`Worker@consume: ${JSON.stringify(document)} to ${collection}`);
-        queueToDb(collection, document);
+    var collection3 = "collection3";
+    queue.receive(collection3, (document) => {
+        console.log(`Worker@consume: ${JSON.stringify(document)} to ${collection3}`);
+        queueToDb(collection3, document);
     });
 }
 
