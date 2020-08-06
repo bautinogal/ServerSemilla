@@ -5,7 +5,7 @@ const dbName = "ExampleDataBase";
 function MongoPool() {}
 var p_db;
 
-function initPool(cb) {
+function initPool() {
     return new Promise((resolve, reject) => {
         const client = new MongoClient(url, { useUnifiedTopology: true, useNewUrlParser: true, });
         client.connect(function(err) {
@@ -18,11 +18,11 @@ function initPool(cb) {
 }
 MongoPool.initPool = initPool;
 
-function getInstance(cb) {
+function getInstance() {
     if (!p_db) {
         return initPool()
     } else {
-        return p_db;
+        return new Promise((resolve, reject) => { resolve(p_db) });
     }
 }
 MongoPool.getInstance = getInstance;

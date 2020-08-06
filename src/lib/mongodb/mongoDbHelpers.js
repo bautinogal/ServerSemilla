@@ -21,9 +21,9 @@ function get(collectionName, query, queryOptions) {
 
     query = formatQuery(query);
     queryOptions = formatQuery(queryOptions);
-
-    return MongoPool.getInstance().collection(collectionName).find(query, queryOptions).toArray();
-
+    console.log(query);
+    console.log(queryOptions);
+    return MongoPool.getInstance().then((instance) => instance.collection(collectionName).find(query, queryOptions).toArray());
 }
 
 function getCount(collectionName, query, queryOptions) {
@@ -31,7 +31,7 @@ function getCount(collectionName, query, queryOptions) {
     query = formatQuery(query);
     queryOptions = formatQuery(queryOptions);
 
-    return MongoPool.getInstance().collection(collectionName).count(query, queryOptions);
+    return MongoPool.getInstance().then((instance) => instance.collection(collectionName).count(query, queryOptions));
 
 }
 

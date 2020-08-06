@@ -26,10 +26,11 @@ function myStopFunction() {
 
 var time = 110;
 var func = setInterval(function() {
-    element.fecha = randomDate(new Date(2012, 0, 1), new Date());
-    element.interno = Math.trunc(Math.random() * 2000);
-    element.codigo = Math.trunc(Math.random() * 200);
+    element.fecha = randomDate(new Date(2012, 0, 1), new Date()).toString();
+    element.interno = Math.trunc(Math.random() * 2000).toString();
+    element.codigo = Math.trunc(Math.random() * 200).toString();
     element.descripcion = "Esto es una descripcion de ejemplo max 90 alcanzada 120";
+    element.patente = Math.random().toString(36).substring(7);
     post();
     if (time < 0) {
         myStopFunction();

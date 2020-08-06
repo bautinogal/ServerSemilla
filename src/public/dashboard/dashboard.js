@@ -19,18 +19,20 @@ const tableHeaders = table.getElementsByTagName('thead')[0];
 const tableBody = table.getElementsByTagName('tbody')[0];
 const pagination = document.getElementById('dashboard-table-pagination');
 const filters = document.getElementById('dashboard-table-filters');
-
-
+const filterBtn = document.getElementById('filter-submit-btn');
 const getPage = () => {
     return 0;
 }
 
 const getQuery = () => {
+    var result = {};
     var formData = new FormData(filters);
     for (var pair of formData.entries()) {
-        console.log(pair[0] + ' = ' + pair[1]);
+        if (pair[1] != null && pair[1] != "")
+            result[pair[0]] = pair[1];
     }
-    return {}
+    console.log(result);
+    return result;
 }
 
 const getQueryOptions = () => {
@@ -117,7 +119,12 @@ const updateView = () => {
         .then((totalCount) => {
             updatePagination(totalCount); // Cantidad de resultados que coinciden con el query en la db
         })
-        .catch();
+        .catch((err) => console.log(err));
 }
 
 updateView();
+
+filterBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    updateView();
+})
