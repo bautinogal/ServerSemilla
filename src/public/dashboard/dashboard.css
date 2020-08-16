@@ -1,0 +1,17 @@
+.ventum-nav {
+    background-color: green;
+    width: 100%;
+    display: flex;
+}
+
+.ventum-sidebar {
+    background-color: red;
+    order: 1;
+    flex: .5;
+}
+
+.ventum-content {
+    background-color: blue;
+    order: 2;
+    flex: .5;
+}

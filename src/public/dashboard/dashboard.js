@@ -1,4 +1,7 @@
 import utils from './../utils/utils.js';
+import math from './../utils/math.js';
+import anim from './../utils/anim.js';
+
 
 const collection = "collection1"; //Coleccion de la db de donde vamos a sacar la data para mostrar
 const headers = { //Columnas de la tabla, formato : {'Title','name'}
@@ -20,6 +23,7 @@ const tableBody = table.getElementsByTagName('tbody')[0];
 const pagination = document.getElementById('dashboard-table-pagination');
 const filters = document.getElementById('dashboard-table-filters');
 const filterBtn = document.getElementById('filter-submit-btn');
+
 const getPage = () => {
     return 0;
 }
@@ -128,3 +132,20 @@ filterBtn.addEventListener('click', (e) => {
     e.preventDefault();
     updateView();
 })
+
+//--------------------------Dashboard---------------------------------------
+
+var intervalId;
+
+var sidebarBtn = document.getElementById('ventum-sidebar-zoom');
+var sidebar = document.getElementById('ventum-sidebar');
+var content = document.getElementById('ventum-content');
+
+const zoomSidebar = (interpol) => {
+    sidebar.style.flex = math.lerp(0.25, 0.1, interpol);
+    content.style.flex = math.lerp(0.75, 0.9, interpol);
+}
+
+sidebarBtn.addEventListener('click', function() {
+    anim.lAnim(zoomSidebar, 1000, () => console.log("Terminó"));
+});
