@@ -1,8 +1,7 @@
 import utils from './../utils/utils.js';
 import math from './../utils/math.js';
 import anim from './../utils/anim.js';
-
-
+/*
 const collection = "collection1"; //Coleccion de la db de donde vamos a sacar la data para mostrar
 const headers = { //Columnas de la tabla, formato : {'Title','name'}
     'Fecha': 'fecha',
@@ -132,20 +131,22 @@ filterBtn.addEventListener('click', (e) => {
     e.preventDefault();
     updateView();
 })
-
+*/
 //--------------------------Dashboard---------------------------------------
 
-var intervalId;
 
-var sidebarBtn = document.getElementById('ventum-sidebar-zoom');
+var root = document.getElementById('ventum-nav');
+root.style.height = window.innerHeight + "px";
+
+var sidebarBtn = document.getElementById('ventum-sidebar-zoomBtn');
 var sidebar = document.getElementById('ventum-sidebar');
 var content = document.getElementById('ventum-content');
 
 const zoomSidebar = (interpol) => {
-    sidebar.style.flex = math.lerp(0.25, 0.1, interpol);
-    content.style.flex = math.lerp(0.75, 0.9, interpol);
+    sidebar.style.flex = math.lerp(0.15, 0.03, interpol);
+    content.style.flex = math.lerp(0.85, 0.97, interpol);
 }
 
 sidebarBtn.addEventListener('click', function() {
-    anim.lAnim(zoomSidebar, 1000, () => console.log("Terminó"));
+    anim.lAnim(zoomSidebar, 200, () => console.log("Terminó"));
 });
