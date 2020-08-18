@@ -24,6 +24,8 @@ Windows 10:
 * DUDAS:
  - Como manejo la capa para llamar a las bds, los separo en sql y nosql?
  - Como hago el manejo si quiero tener varias db con mongo por ejemplo?
+ - Un cluster de MongoDb para cada cliente?
+
 
 *Roadmap:
  - Agregar bd sql (mariadb)
