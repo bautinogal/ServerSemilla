@@ -30,3 +30,4 @@ Windows 10:
 *Roadmap:
  - Agregar bd sql (mariadb)
  - Manejar desconexión de las colas
+ - Encriptar passwords
