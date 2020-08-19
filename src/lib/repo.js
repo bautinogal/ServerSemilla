@@ -3,12 +3,13 @@
 const {get, getCount } = require('../lib/mongodb/mongoDbHelpers');
 const queue = require('../lib/queue');
 const config = require('../config/config');
+const { usersCollection } = require('../config/config');
 
 //TODO: Revisar con alguien que sepa de arquitectura si esta bien agregar el campo reqInfo...
-const post = (collection, message, reqInfo) => {
+const post = (db,collection, message, reqInfo) => {
     console.log(`Repo@post/${collection} message: ${JSON.stringify(message)} reqInfo: ${JSON.stringify(reqInfo)})`);
     message.reqInfo = reqInfo;
-    queue.send(collection, message);
+    queue.send(db,collection, message);
 };
 
 // Si el usuario y la constraseña son correctas, devuelve toda la info del usuario menos el pass
@@ -43,13 +44,15 @@ const getUserData = (name, pass) => {
 }
 
 // Creacion de un nuevo usuario
-const newUser = async(user) => {
-    var result = {};
-    repo.get()
-        //Me fijo si existe el usuario
-        //Me fijo si coincide la constraseña
-        //Devuelvo toda la data menos el pass
-    return result;
+const newUser = (user, reqInfo) => {
+    return new Promise((resolve, reject)=>{
+        try {
+            post(config.usersDB ,config.usersCollection, user, reqInfo);     
+            resolve(user);       
+        } catch (error) {
+            reject(error);
+        }
+    });    
 }
 
-module.exports = { post, get, getCount, getUserData };
+module.exports = { post, get, getCount, getUserData, newUser };

@@ -61,27 +61,23 @@ router.get('/dashboard', async(req, res) => {
 //TODO: VALIDACIONES, LO HICE RAPIDO PARA QUE ANDE NOMAS
 router.post('/api/newUser', async(req, res, next) => {
 
-    var user = {
-        email : req.body.email,
-        password : req.body.password
-    }
+    var user = req.body;
 
     try {
-        user.password = await crypto.hash(user.password);
-        console.log(`routes@/api/login  user:${user.email}, pass:${user.password}`);
-
-        getUserData(user.email, user.password)
-            .then((userData) => {
-                const token = jwt.sign(userData,
-                    config.jwtSecret, {
-                        expiresIn: config.jwtDfltExpires
-                    });
-                res.json({ auth: true, token });
+        user.salt = await crypto.getSalt();
+        user.password = await crypto.hash(user.password, user.salt);
+        user.user = user.email;
+        console.log(`routes@/api/newUser  user:${user.email}, pass:${user.password}`);
+        const reqInfo = getReqInfo(req);
+        repo.newUser(user, reqInfo)
+            .then((userData) => {  
+                res.send('Usuario '+user.email + ' guardado');              
             });
 
     } catch (err) {
-        console.log(`routes@/api/login  error:${err}`);
-    }
+        console.log(`routes@/api/newUser  error:${err}`);
+        res.status(500);
+     }
 
 });
 
@@ -106,13 +102,19 @@ router.post('/api/login', async(req, res, next) => {
                         expiresIn: config.jwtDfltExpires
                     });
                 res.json({ auth: true, token });
-            }).catch((err) => {
-                console.log(err);
-                res.status(403).json({ auth: false });
+            })
+            .catch((err)=>{
+                console.log(`routes@/api/login  error:${err}`);
+                //res.status(403).json({ auth: false, msg: err });
+                //TODO: Ver por que no devuelve mensaje en err
+                res.json({ auth: false, msg: err });
             });
 
-    } catch (err) {
+    } catch (err) {  
         console.log(`routes@/api/login  error:${err}`);
+        //res.status(403).json({ auth: false, msg: err });
+        //TODO: Ver por que no devuelve mensaje en err
+        res.json({ auth: false, msg: err });  
     }
 
 });
