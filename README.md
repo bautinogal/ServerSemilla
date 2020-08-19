@@ -25,6 +25,8 @@ Windows 10:
  - Como manejo la capa para llamar a las bds, los separo en sql y nosql?
  - Como hago el manejo si quiero tener varias db con mongo por ejemplo?
  - Un cluster de MongoDb para cada cliente?
+ - el front end tiene q conocer la estructura del back?
+ - my_secret_key: variable de entorno, esta bien?
 
 
 *Roadmap:
