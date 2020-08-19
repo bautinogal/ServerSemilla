@@ -1,30 +1,48 @@
-var MongoClient = require('mongodb').MongoClient;
-const url = process.env.MONGODB_URI || 'mongodb://localhost:27017';
-const dbName = "ExampleDataBase";
+//TODO: Revisar todo este script y comentar!!
+const config = require('../../config/config');
+const MongoClient = require('mongodb').MongoClient;
 
-function MongoPool() {}
-var p_db;
+const url = config.mongoUri || 'mongodb://localhost:27017';
 
-function initPool() {
+var client;
+var dbs = {};
+
+const getClient = () => {
     return new Promise((resolve, reject) => {
-        const client = new MongoClient(url, { useUnifiedTopology: true, useNewUrlParser: true, });
-        client.connect(function(err) {
-            if (err) { reject("Error conectado a mongodb: ", err) }
-            const db = client.db(dbName);
-            p_db = db;
-            resolve(p_db)
-        })
+        if (client) resolve(client);
+        else {
+            client = new MongoClient(url, { useUnifiedTopology: true, useNewUrlParser: true });
+            client.connect(function(err) {
+                if (err) {
+                    client = null;
+                    reject("Error conectando a mongodb: %s", err);
+                } else {
+                    resolve(client);
+                }
+            });
+        }
+    });
+}
+
+const initPool = (dbName) => {
+    return new Promise((resolve, reject) => {
+        getClient()
+            .then((cli) => {
+                const db = cli.db(dbName);
+                dbs[dbName] = db;
+                resolve(db);
+            }).catch((err) => {
+                reject(err);
+            });
     })
 }
-MongoPool.initPool = initPool;
 
-function getInstance() {
-    if (!p_db) {
-        return initPool()
+const getDb = (db) => {
+    if (db in dbs) {
+        return new Promise((resolve, reject) => { resolve(dbs[db]) });
     } else {
-        return new Promise((resolve, reject) => { resolve(p_db) });
+        return initPool(db);
     }
 }
-MongoPool.getInstance = getInstance;
 
-module.exports = MongoPool;
+module.exports = { getDb };

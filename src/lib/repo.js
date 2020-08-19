@@ -10,4 +10,24 @@ const post = (collection, message, reqInfo) => {
     queue.send(collection, message);
 };
 
+// Si el usuario y la constraseña son correctas, devuelve toda la info del usuario menos el pass
+const getUserData = async(name, pass) => {
+    var user = {};
+    repo.get()
+        //Me fijo si existe el usuario
+        //Me fijo si coincide la constraseña
+        //Devuelvo toda la data menos el pass
+    return user;
+}
+
+// Creacion de un nuevo usuario
+const newUser = async(user) => {
+    var result = {};
+    repo.get()
+        //Me fijo si existe el usuario
+        //Me fijo si coincide la constraseña
+        //Devuelvo toda la data menos el pass
+    return result;
+}
+
 module.exports = { post, get, getCount };
