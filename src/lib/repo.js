@@ -30,4 +30,4 @@ const newUser = async(user) => {
     return result;
 }
 
-module.exports = { post, get, getCount };
+module.exports = { post, get, getCount, getUserData };

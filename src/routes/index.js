@@ -99,14 +99,17 @@ router.post('/api/login', async(req, res, next) => {
     try {
         user.password = await crypto.hash(user.password);
         console.log(`routes@/api/login  user:${user.email}, pass:${user.password}`);
-
-        getUserData(user.email, user.password)
+        //TODO: revisar el codigo de error
+        repo.getUserData(user.email, user.password)
             .then((userData) => {
                 const token = jwt.sign(userData,
                     config.jwtSecret, {
                         expiresIn: config.jwtDfltExpires
                     });
                 res.json({ auth: true, token });
+            }).catch((err) => {
+                console.log(err);
+                res.status(403).json({ auth: false });
             });
 
     } catch (err) {

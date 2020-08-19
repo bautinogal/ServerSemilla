@@ -1,4 +1,5 @@
 require('dotenv').config({ path: __dirname + '/.env' }) // Levanta las variables de entorno del archivo .env
+const config = require('./config/config')
 const path = require('path'); // Herramienta para armar los paths independientemente del S.O.
 const express = require('express'); // Framework de Node para armar servidores
 const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerpo" de los requests
@@ -12,7 +13,7 @@ console.log(`App: Inicializando Servidor...`);
 
 // Configuración del servidor
 console.log(`App: Configurando el Servidor:`);
-app.set('port', process.env.PORT || 3000);
+app.set('port', config.port || 3000);
 console.log(`App: Puerto del servidor seteado en: ${app.get('port')}`);
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
