@@ -2,6 +2,7 @@
 //TODO: Persistir todo en un base relacional a largo plazo
 const {get, getCount } = require('../lib/mongodb/mongoDbHelpers');
 const queue = require('../lib/queue');
+const config = require('../config/config');
 
 //TODO: Revisar con alguien que sepa de arquitectura si esta bien agregar el campo reqInfo...
 const post = (collection, message, reqInfo) => {
@@ -11,13 +12,23 @@ const post = (collection, message, reqInfo) => {
 };
 
 // Si el usuario y la constraseña son correctas, devuelve toda la info del usuario menos el pass
-const getUserData = async(name, pass) => {
+const getUserData = (name, pass) => {
     var user = {};
-    repo.get()
+    return new Promise((resolve, reject) => {
+        get(config.usersDB, config.usersCollection, {}, {})
+        .then((users)=>{
+            console.log(users);
+            resolve(users);
+        })        
+        .catch((err)=>{
+            console.log(err);
+            reject(err);
+        });
         //Me fijo si existe el usuario
         //Me fijo si coincide la constraseña
         //Devuelvo toda la data menos el pass
-    return user;
+    
+    });
 }
 
 // Creacion de un nuevo usuario

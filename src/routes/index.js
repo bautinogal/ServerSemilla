@@ -60,11 +60,10 @@ router.get('/dashboard', async(req, res) => {
 //Endpoint para crear un nuevo usuario
 //TODO: VALIDACIONES, LO HICE RAPIDO PARA QUE ANDE NOMAS
 router.post('/api/newUser', async(req, res, next) => {
-    const user = req.body;
 
     var user = {
-        email,
-        password
+        email : req.body.email,
+        password : req.body.password
     }
 
     try {
