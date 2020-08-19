@@ -15,10 +15,21 @@ const post = (collection, message, reqInfo) => {
 const getUserData = (name, pass) => {
     var user = {};
     return new Promise((resolve, reject) => {
-        get(config.usersDB, config.usersCollection, {}, {})
+        get(config.usersDB, config.usersCollection, {user: name}, {})
         .then((users)=>{
-            console.log(users);
-            resolve(users);
+            const elementsCount = users.length;
+            if (elementsCount == 0){
+                reject('Error: Not users found for: ' + name);
+            } else if(elementsCount>1) {
+                reject('Error: More than one user found for: ' + name);
+            }else {
+                if(pass==users[0].pass){
+                    users[0].pass = null;
+                    resolve(users[0]);
+                }else{
+                    reject('Error: Does not match password for: ' + name);
+                }
+            }
         })        
         .catch((err)=>{
             console.log(err);
