@@ -34,3 +34,4 @@ Windows 10:
  - Agregar bd sql (mariadb)
  - Manejar desconexión de las colas
  - Encriptar passwords
+ - Checkear las vars de entorno cuando arranca
