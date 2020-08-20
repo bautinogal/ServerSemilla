@@ -1,6 +1,6 @@
 //Script que oculta el manejo de las bases de datos...
 //TODO: Persistir todo en un base relacional a largo plazo
-const {get, getCount } = require('../lib/mongodb/mongoDbHelpers');
+const {get, getCount, deleteMany } = require('../lib/mongodb/mongoDbHelpers');
 const queue = require('../lib/queue');
 const config = require('../config/config');
 const crypto = require('./encryptation');
@@ -63,21 +63,31 @@ const newUser = (user, reqInfo) => {
         }
     });
 }
-
-const createRootUser = () => {
+//Funcion que crea usuario root
+const createRootUser = (rootUser) => {
     return new Promise((resolve,reject) =>{
         try {
-            //Valida usuario antes de crearlo 
-            getRootUser()
-            .then((rootUser)=>{
-
-            });
-            if()
-            post()
-        } catch (error) {
-            
+            rootUserQuery = {"role":"root"};
+            //Borra todos los registros de usuarios root para asegurarme que es unico
+            deleteMany(config.usersDB, config.usersCollection, rootUserQuery, {})
+            .then((res)=>{
+                console.log(res);
+                return post(config.usersDB, config.usersCollection, rootUser, {});
+            })
+            .then((resPost)=>{
+                console.log(resPost);
+                resolve(resPost);
+            })
+            .catch((err)=>{
+                console.log(err);
+                reject(err);
+            }); 
+        }
+        catch (error) {
+            console.log(error);
+            reject(error);
         }
     });
 }
 
-module.exports = { post, get, getCount, getUserData, newUser };
+module.exports = { post, get, getCount, getUserData, newUser, createRootUser };
