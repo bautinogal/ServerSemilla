@@ -8,6 +8,8 @@ const config = {
     mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017', //URL del Cluster de MongoDb
     usersDB: process.env.USERS_DB || 'test',
     usersCollection: process.env.USERS_COLLECTION || 'users',
+    rootUser: process.env.ROOT_USER || 'root',
+    rootPass: process.env.ROOT_PASS || 'secret'
 }
 
 module.exports = config
