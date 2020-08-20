@@ -38,21 +38,26 @@ function getCount(database, collection, query, queryOptions) {
         .catch((err) => console.log(err));
 }
 
+// Funcion que usamos para borrar un elemento de una bs/collection
 function deleteOne(database, collection, query, queryOptions) {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         query = formatQuery(query);
         queryOptions = formatQuery(queryOptions);
 
-        let db = MongoPool.getDb(database)
-        .then((instance)=>{
-            instance.collection(collection).deleteOne(query, queryOptions);
-            console.log('Query: ' + query + ' deleted');
-        })
-        .catch((err)=>{
-            console.log(err);
-        });
+        MongoPool.getDb(database)
+            .then((instance) => {
+                return instance.collection(collection).deleteOne(query, queryOptions);
+            })
+            .then((res) => {
+                console.log(`mongoDbHelper@deleteOne db:${database} coll:${collection} query:${query} queryOptions:${queryOptions} Succesfull!`);
+                resolve(res);
+            })
+            .catch((err) => {
+                console.log(`mongoDbHelper@deleteOne error:${err}`);
+                reject(err);
+            });
     });
-        
+
 }
 
 async function deleteMany(database, collection, query) {
@@ -60,13 +65,13 @@ async function deleteMany(database, collection, query) {
     query = formatQuery(query);
 
     let db = await MongoPool.getDb(database)
-    .then((instance)=>{
-        instance.collection(collection).deleteMany(query);
-        console.log('Query: ' + query + ' deleted');
-    })
-    .catch((err)=>{
-        console.log(err);
-    });    
+        .then((instance) => {
+            instance.collection(collection).deleteMany(query);
+            console.log('Query: ' + query + ' deleted');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }
 
 
