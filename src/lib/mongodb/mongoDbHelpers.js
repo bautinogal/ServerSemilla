@@ -1,5 +1,4 @@
 var MongoPool = require('./mongoDbConfig');
-const { delete } = require('request');
 
 function formatQuery(query) {
     query = query || {};
@@ -68,7 +67,7 @@ function deleteMany(database, collection, query, queryOptions) {
 
         MongoPool.getDb(database)
             .then((instance) => {
-                return instance.collection(collection).delete(query, queryOptions);
+                return instance.collection(collection).deleteMany(query, queryOptions);
             })
             .then((res) => {
                 console.log(`mongoDbHelper@deleteMany db:${database} coll:${collection} query:${query} queryOptions:${queryOptions} Succesfull!`);

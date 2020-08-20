@@ -4,9 +4,12 @@ const {get, getCount, deleteMany } = require('../lib/mongodb/mongoDbHelpers');
 const queue = require('../lib/queue');
 const config = require('../config/config');
 const crypto = require('./encryptation');
+const { getSalt } = require('./encryptation');
+const { hash } = require('bcrypt');
 
 //TODO: Revisar con alguien que sepa de arquitectura si esta bien agregar el campo reqInfo...
 const post = (db, collection, message, reqInfo) => {
+
     console.log(`Repo@post/${collection} message: ${JSON.stringify(message)} reqInfo: ${JSON.stringify(reqInfo)})`);
     message.reqInfo = reqInfo;
     queue.send('POST', db, collection, message);
@@ -28,7 +31,7 @@ const getUserData = (name, pass) => {
                 } else if (elementsCount > 1) {
                     reject('Error: More than one user found for: ' + name);
                 } else {
-                    crypto.compare(pass, users[0].password)
+                    crypto.compare(pass, users[0].pass)
                         .then((res) => {
                             if (res) {
                                 users[0].pass = undefined;
@@ -64,24 +67,30 @@ const newUser = (user, reqInfo) => {
     });
 }
 //Funcion que crea usuario root
-const createRootUser = (rootUser) => {
+const createRootUser = () => {
     return new Promise((resolve,reject) =>{
-        try {
-            rootUserQuery = {"role":"root"};
-            //Borra todos los registros de usuarios root para asegurarme que es unico
-            deleteMany(config.usersDB, config.usersCollection, rootUserQuery, {})
-            .then((res)=>{
-                console.log(res);
-                return post(config.usersDB, config.usersCollection, rootUser, {});
-            })
-            .then((resPost)=>{
-                console.log(resPost);
-                resolve(resPost);
-            })
-            .catch((err)=>{
-                console.log(err);
-                reject(err);
-            }); 
+        try {            
+            var password;
+            pass().then((response)=>{
+                password = response;
+                rootUser = {"user" : config.rootUser, "role": "root", "pass": password};
+                rootUserQuery = {"role":"root"};
+                //Borra todos los registros de usuarios root para asegurarme que es unico
+                deleteMany(config.usersDB, config.usersCollection, rootUserQuery, {})
+                .then((res)=>{
+                    console.log(res);
+                    return post(config.usersDB, config.usersCollection, rootUser, {});
+                })
+                .then((resPost)=>{
+                    console.log(resPost);
+                    resolve(resPost);
+                })
+                .catch((err)=>{
+                    console.log(err);
+                    reject(err);
+                });
+            });
+ 
         }
         catch (error) {
             console.log(error);
@@ -89,5 +98,20 @@ const createRootUser = (rootUser) => {
         }
     });
 }
+
+const pass = () => {
+    return new Promise((resolve,reject)=>{
+            crypto.getSalt()
+        .then((salt)=>{
+            const pass =  crypto.hash(config.rootPass, salt);
+            resolve(pass);
+        })
+        .catch((err)=>{console.log(err); reject(err)});
+    });
+    
+} 
+
+
+    
 
 module.exports = { post, get, getCount, getUserData, newUser, createRootUser };
