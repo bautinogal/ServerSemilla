@@ -17,8 +17,8 @@ const channel = () => {
 };
 
 //Funcion para mandar a encolar un mensaje
-const send = (db, collection, message) => {
-    const queue = db + '/' + collection;
+const send = (action, db, collection, message) => {
+    const queue = action + '/' + db + '/' + collection;
     console.log('Queue@send: Message received in queue "%s". Message: %s ', queue, message);
 
     channel().then(channel => {

@@ -1,4 +1,5 @@
 var MongoPool = require('./mongoDbConfig');
+const { delete } = require('request');
 
 function formatQuery(query) {
     query = query || {};
@@ -37,4 +38,36 @@ function getCount(database, collection, query, queryOptions) {
         .catch((err) => console.log(err));
 }
 
-module.exports = { save, get, getCount };
+function deleteOne(database, collection, query, queryOptions) {
+    return new Promise((resolve, reject)=>{
+        query = formatQuery(query);
+        queryOptions = formatQuery(queryOptions);
+
+        let db = MongoPool.getDb(database)
+        .then((instance)=>{
+            instance.collection(collection).deleteOne(query, queryOptions);
+            console.log('Query: ' + query + ' deleted');
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
+    });
+        
+}
+
+async function deleteMany(database, collection, query) {
+
+    query = formatQuery(query);
+
+    let db = await MongoPool.getDb(database)
+    .then((instance)=>{
+        instance.collection(collection).deleteMany(query);
+        console.log('Query: ' + query + ' deleted');
+    })
+    .catch((err)=>{
+        console.log(err);
+    });    
+}
+
+
+module.exports = { save, get, getCount, deleteDocuments };

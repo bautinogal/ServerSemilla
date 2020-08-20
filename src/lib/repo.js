@@ -9,7 +9,12 @@ const crypto = require('./encryptation');
 const post = (db, collection, message, reqInfo) => {
     console.log(`Repo@post/${collection} message: ${JSON.stringify(message)} reqInfo: ${JSON.stringify(reqInfo)})`);
     message.reqInfo = reqInfo;
-    queue.send(db, collection, message);
+    queue.send('POST', db, collection, message);
+};
+
+const deleteDocuments = (db, collection, query, queryInfo, reqInfo) => {
+    console.log(`Repo@delete/${collection} reqInfo: ${JSON.stringify(reqInfo)})`);
+    queue.send('DELETE', db, collection, query);
 };
 
 // Si el usuario y la constraseña son correctas, devuelve toda la info del usuario menos el pass
@@ -59,6 +64,20 @@ const newUser = (user, reqInfo) => {
     });
 }
 
-const createRootUser = )()
+const createRootUser = () => {
+    return new Promise((resolve,reject) =>{
+        try {
+            //Valida usuario antes de crearlo 
+            getRootUser()
+            .then((rootUser)=>{
+
+            });
+            if()
+            post()
+        } catch (error) {
+            
+        }
+    });
+}
 
 module.exports = { post, get, getCount, getUserData, newUser };

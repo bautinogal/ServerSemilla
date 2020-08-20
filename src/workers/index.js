@@ -4,7 +4,7 @@ const mongoDbHelper = require('../lib/mongodb/mongoDbHelpers');
 const config = require('../config/config');
 
 //guarda "document" en "collectionName"
-const queueToDb = (queueName, document) => {
+const postToDb = (queueName, document) => {
    const names = queueName.split('/');
    const dbName = names[0];
    const collectionName = names[1]; 
@@ -17,10 +17,20 @@ const queueToDb = (queueName, document) => {
 //los workers comienzan a escuchar a las colas
 const start = () => {
     //Defino como se van a manejar los mensajes que estan en la cola "collection1"
-    const queueName = config.usersDB +'/'+ config.usersCollection;
+    const queueName = 'POST/'+ config.usersDB +'/'+ config.usersCollection;
     queue.receive(queueName, (document) => {
         console.log(`Worker@consume: ${JSON.stringify(document)} to ${queueName}`);
-        queueToDb(queueName, document);
+        mongoDbHelper.save(dbName, collectionName, document)
+        .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} saved in ${queueName}. Res: ${res} `))
+        .catch(err => console.log(`Routes@queueToDb error: ${err}`));
+    });
+    // WORKER para DELETE
+    const queueName = 'DELETE/'+ config.usersDB +'/'+ config.usersCollection;
+    queue.receive(queueName, (document) => {
+        console.log(`Worker@consume: ${JSON.stringify(document)} to ${queueName}`);
+        mongoDbHelper.save(dbName, collectionName, document)
+        .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} saved in ${queueName}. Res: ${res} `))
+        .catch(err => console.log(`Routes@queueToDb error: ${err}`));
     });
 
 }
