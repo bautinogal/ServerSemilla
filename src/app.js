@@ -6,6 +6,8 @@ const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerp
 const morgan = require('morgan'); // Herramienta para loggear
 const routes = require('./routes/index'); // Script que administra los "Endpoints"
 const workers = require('./workers/index'); // Script que arranca los "workers" que mueven los mensajes de la cola a la bd
+const repo = require('./lib/repo');
+
 
 // Inicializo el servidor
 const app = express();
@@ -47,9 +49,11 @@ routes.stack.forEach(function(r) {
 // Prendo workers que van a mover los mensajes de las colas a la bd
 workers.start();
 
+// Crear usuario root de la app, para asegurarme que siempre haya al menos un usuario 
+repo.createRootUser();
+
 // El servidor comienza a escuchar los requests
 console.log(`App: Servidor Listo!`);
 app.listen(app.get('port'), () => {
     console.log(`App: Servidor escuchando en el puerto:  ${app.get('port')}`);
 });
-

@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken'); // Librería para generar webtokens
 const repo = require('../lib/repo'); // Script que maneja las lecturas/escrituras a las db
 const config = require('../config/config'); // Script de configuracion general
 const crypto = require('../lib/encryptation'); // Script con herramientas para encriptar
-//const { send } = require('../lib/queue');
 
 //Devuelve un objeto con la URL, Protocolo y TimeStamp del request
 //TODO: esta bien agregarle esto a los elementos de las db??
@@ -58,11 +57,10 @@ router.get('/dashboard', async(req, res) => {
 //Endpoints de las APIS:
 
 //Endpoint para crear un nuevo usuario
-//TODO: VALIDACIONES, LO HICE RAPIDO PARA QUE ANDE NOMAS
 router.post('/api/newUser', async(req, res, next) => {
 
     var user = req.body;
-    //
+
     try {
         user.salt = await crypto.getSalt();
         user.password = await crypto.hash(user.password, user.salt);

@@ -21,10 +21,10 @@ const getSalt = async() => {
     return salt;
 }
 
-const compare = (saltedHash0, saltedHash1) => {
-    console.log(saltedHash0);
-    console.log(saltedHash1);
-    return bcrypt.compare(saltedHash0, saltedHash1);
+const compare = (pass, hashedPass) => {
+    console.log(pass);
+    console.log(hashedPass);
+    return bcrypt.compare(pass, hashedPass);
 }
 
 module.exports = { hash, getSalt, compare }

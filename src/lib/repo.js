@@ -59,4 +59,6 @@ const newUser = (user, reqInfo) => {
     });
 }
 
+const createRootUser = )()
+
 module.exports = { post, get, getCount, getUserData, newUser };
