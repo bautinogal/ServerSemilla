@@ -60,19 +60,27 @@ function deleteOne(database, collection, query, queryOptions) {
 
 }
 
-async function deleteMany(database, collection, query) {
+// Funcion que usamos para borrar todos los elementos de una bs/collection
+function deleteMany(database, collection, query, queryOptions) {
+    return new Promise((resolve, reject) => {
+        query = formatQuery(query);
+        queryOptions = formatQuery(queryOptions);
 
-    query = formatQuery(query);
+        MongoPool.getDb(database)
+            .then((instance) => {
+                return instance.collection(collection).delete(query, queryOptions);
+            })
+            .then((res) => {
+                console.log(`mongoDbHelper@deleteMany db:${database} coll:${collection} query:${query} queryOptions:${queryOptions} Succesfull!`);
+                resolve(res);
+            })
+            .catch((err) => {
+                console.log(`mongoDbHelper@deleteMany error:${err}`);
+                reject(err);
+            });
+    });
 
-    let db = await MongoPool.getDb(database)
-        .then((instance) => {
-            instance.collection(collection).deleteMany(query);
-            console.log('Query: ' + query + ' deleted');
-        })
-        .catch((err) => {
-            console.log(err);
-        });
 }
 
 
-module.exports = { save, get, getCount, deleteDocuments };
+module.exports = { save, get, getCount, deleteOne, deleteMany };
