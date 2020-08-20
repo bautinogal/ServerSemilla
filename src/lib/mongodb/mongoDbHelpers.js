@@ -17,13 +17,14 @@ async function save(database, collection, document) { //U: guardar un documento 
     }
 }
 
+//TODO: REVISAR SI ESTAS FUNCIONES NO TIENEN Q SER ASYNC
 function get(database, collection, query, queryOptions) {
     query = formatQuery(query);
     queryOptions = formatQuery(queryOptions);
     console.log(`mongoDbHelper@get db:${database} coll:${collection} query:${query} queryOptions:${queryOptions}`);
     return MongoPool.getDb(database)
         .then((instance) => instance.collection(collection).find(query, queryOptions).toArray())
-        .catch((err) => console.log(err));;
+        .catch((err) => console.log(err));
 }
 
 function getCount(database, collection, query, queryOptions) {
@@ -32,9 +33,8 @@ function getCount(database, collection, query, queryOptions) {
     queryOptions = formatQuery(queryOptions);
 
     return MongoPool.getDb(database)
-        .then((instance) => instance.collection(collection).count(query, queryOptions));
-
-
+        .then((instance) => instance.collection(collection).count(query, queryOptions))
+        .catch((err) => console.log(err));
 }
 
 module.exports = { save, get, getCount };

@@ -2,7 +2,7 @@ function objFilter(obj, filters) { //U:recibe los filters para limpiar el obj pa
     let newObj = {};
     for (let key in obj) {
         if (!filters.includes(key))
-            newObj[key] = obj[key]
+            newObj[key] = obj[key];
     }
     return newObj;
 }

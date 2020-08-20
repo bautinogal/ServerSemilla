@@ -62,7 +62,7 @@ router.get('/dashboard', async(req, res) => {
 router.post('/api/newUser', async(req, res, next) => {
 
     var user = req.body;
-
+    //
     try {
         user.salt = await crypto.getSalt();
         user.password = await crypto.hash(user.password, user.salt);
@@ -70,14 +70,14 @@ router.post('/api/newUser', async(req, res, next) => {
         console.log(`routes@/api/newUser  user:${user.email}, pass:${user.password}`);
         const reqInfo = getReqInfo(req);
         repo.newUser(user, reqInfo)
-            .then((userData) => {  
-                res.send('Usuario '+user.email + ' guardado');              
+            .then((userData) => {
+                res.send('Usuario ' + user.email + ' guardado');
             });
 
     } catch (err) {
         console.log(`routes@/api/newUser  error:${err}`);
         res.status(500);
-     }
+    }
 
 });
 
@@ -91,9 +91,9 @@ router.post('/api/login', async(req, res, next) => {
         password
     }
 
+    console.log(`routes@/api/login  user:${user.email}`);
+
     try {
-        user.password = await crypto.hash(user.password);
-        console.log(`routes@/api/login  user:${user.email}, pass:${user.password}`);
         //TODO: revisar el codigo de error
         repo.getUserData(user.email, user.password)
             .then((userData) => {
@@ -103,18 +103,18 @@ router.post('/api/login', async(req, res, next) => {
                     });
                 res.json({ auth: true, token });
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(`routes@/api/login  error:${err}`);
                 //res.status(403).json({ auth: false, msg: err });
                 //TODO: Ver por que no devuelve mensaje en err
                 res.json({ auth: false, msg: err });
             });
 
-    } catch (err) {  
+    } catch (err) {
         console.log(`routes@/api/login  error:${err}`);
         //res.status(403).json({ auth: false, msg: err });
         //TODO: Ver por que no devuelve mensaje en err
-        res.json({ auth: false, msg: err });  
+        res.json({ auth: false, msg: err });
     }
 
 });
