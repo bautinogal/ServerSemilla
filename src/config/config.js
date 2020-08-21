@@ -11,6 +11,8 @@ const config = {
     jwtDfltExpires: process.env.JWT_DURATION || 3600, // Cuanto duran los tokens por dflt en segundos
     saltWorkFactor: process.env.SALT_WORK_FACTOR || 10, //A: las vueltas que usa bcrypt para encriptar las password
 
+    queueUrl: process.env.AMQP_URI || 'amqp://localhost',
+
     mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017', //URL del Cluster de MongoDb
     usersDB: process.env.USERS_DB || 'test',
     usersCollection: process.env.USERS_COLLECTION || 'users',
