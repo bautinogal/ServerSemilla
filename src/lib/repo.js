@@ -11,11 +11,6 @@ const post = (db, collection, message) => {
     queue.send('POST', db, collection, message);
 };
 
-const deleteDocuments = (db, collection, query) => {
-    console.log(`Repo@delete/${db}/${collection} query:${query}`);
-    queue.send('DELETE', db, collection, query);
-};
-
 // Si el usuario y la constraseña son correctas, devuelve toda la info del usuario menos el pass
 const getUserData = (user, pass) => {
     return new Promise((resolve, reject) => {
@@ -57,13 +52,10 @@ const createRootUser = () => {
             //A: Borra todos los registros de usuarios root anteriores para asegurarme que es único
             deleteMany(config.usersDB, config.usersCollection, rootUserQuery)
                 .then((res) => {
-                    //TODO: PONGO ESTO PARA ASEGURARME QUE EL DELETE PASE ANTES QUE EL POST, PERO ESTA MAL
-                    setTimeout(() => {
-                        //A: Creo el nuevo root user (Ojo que se envía a la cola... no es syncronico)
-                        post(config.usersDB, config.usersCollection, rootUser);
-                        rootUser.pass = "";
-                        resolve(rootUser);
-                    }, 5000)
+                    //A: Creo el nuevo root user (Ojo que se envía a la cola... no es syncronico)
+                    post(config.usersDB, config.usersCollection, rootUser);
+                    rootUser.pass = "";
+                    resolve(rootUser);
                 })
                 .catch((err) => {
                     reject(err);
@@ -74,4 +66,4 @@ const createRootUser = () => {
     });
 }
 
-module.exports = { post, get, getCount, getUserData, createRootUser };
+module.exports = { post, get, getCount, getUserData, createRootUser, deleteMany };

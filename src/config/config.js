@@ -19,7 +19,18 @@ const config = {
 
     //---------------------- Variables de "Semilla" ----------------------------------
 
-    newUserAuthCriteria: { role: "root" } //Defino quien puede crear nuevos usuarios
+    tokensCriteria: {
+        "Masterbus-IOT": {
+            Users: { role: "root" }, //Defino quien puede crear nuevos usuarios
+            INTI: { $or: [{ role: "root" }, { role: "client" }] } //Defino quien puede leer/escribir de esta db
+        }
+    },
+    bodysCriteria: {
+        "Masterbus-IOT": {
+            Users: { role: "root" }, //Defino quien puede crear nuevos usuarios
+            INTI: { $or: [{ role: "root" }, { role: "client" }] } //Defino quien puede leer/escribir de esta db
+        }
+    }
 }
 
 module.exports = config

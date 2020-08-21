@@ -67,30 +67,6 @@ router.get('/dashboard', async(req, res) => {
 
 //-----------------------------------Endpoints de las APIS---------------------------------------------------
 
-//Endpoint para crear un nuevo usuario (ruta protegida)
-router.post('/api/newUser', async(req, res, next) => {
-
-    //A: Me fijo si mando un token 
-    const hashedToken = req.headers['access-token'];
-    if (!hashedToken) res.status(403).send('access-token required!');
-
-    //A: Me fijo si el user tiene permiso para crear nuevos usuarios
-    decodeToken(hashedToken)
-        .then((token) => {
-            if (validateToken(token, config.newUserAuthCriteria)) {
-                //TODO: VALIDAR FORMATO DE USER
-                var newUser = req.body;
-                post(config.usersDB, config.usersCollection, newUser)
-                    .catch((err) => console.log(err));
-                res.send('Usuario ' + userData.user + ' guardado');
-                //Ojo que no se guardo, se puso en la cola...
-            } else {
-                res.status(403).send('invalid access-token!');
-            }
-        })
-        .catch((err) => console.log(err));
-});
-
 //Endpoint q recibe usuario y contraseña, devuelve un webtoken
 router.post('/api/login', async(req, res, next) => {
     const { user, password } = req.body;
@@ -114,11 +90,36 @@ router.post('/api/login', async(req, res, next) => {
 
 });
 
-//Recibo un mensage y lo encolo
+//Recibo un mensage y lo encolo (ruta protegida)
 //TODO: agregar error handler cuando el body es un JSON invalido
 router.post('/api/post/:database/:collection', async(req, res, next) => {
+    //A: Me fijo si mando un token 
+    const hashedToken = req.headers['access-token'];
+    if (!hashedToken) res.status(403).send('access-token required!');
+
+    const db = req.params.database;
+    const coll = req.params.collection;
+
+    //A: Me fijo si el user tiene permiso para postear en esta collection
+    decodeToken(hashedToken)
+        .then((token) => {
+            if (validateToken(token, config.tokensCriteria[db][coll])) {
+                //TODO: VALIDAR BODY
+                var body = req.body;
+                post(db, coll, body)
+                    //Ojo que no se guardo, se puso en la cola...
+                    .then(() => res.send(body + ' guardado en ' + db + "/" + coll))
+                    .catch((err) => console.log(err));
+            } else {
+                res.status(403).send('invalid access-token!');
+            }
+        })
+        .catch((err) => console.log(err));
+
+    //------------------------------------------------------------------------------
+
     //verifico que el token sea valido para esta ruta
-    jwt.verify(req.token, 'my_secret_key', (err, data) => {
+    jwt.verify(req.token, config.jwtSecret, (err, data) => {
         if (!err) {
             res.sendStatus(403);
         } else {
@@ -126,9 +127,10 @@ router.post('/api/post/:database/:collection', async(req, res, next) => {
             const coll = req.params.collection;
             // "addReqInfo" agrega el timeStamp, protocolo y url al objeto "message" ademas de lo q viene en el "req.body"
             var reqInfo = getReqInfo(req);
-            console.log(`Routes@/api/post/${db}/${coll} body: ${JSON.stringify(req.body)} reqInfo: ${JSON.stringify(reqInfo)})`);
-            repo.post(db, coll, req.body, reqInfo);
-            res.end('Routes@api/add: Received ' + JSON.stringify(req.body));
+            console.log(`Routes@/api/post/${db}/${coll} body: ${JSON.stringify(req.body)}`);
+            repo.post(db, coll, req.body)
+                .then(() => res.end('Routes@api/add: Received ' + JSON.stringify(req.body)))
+                .catch((err) => res.end('Routes@api/add: Error: ' + err));
             //TODO: mas adelante debería enviar un mensaje al cliente cuando se guardo en la bd y su ID
         }
     });
