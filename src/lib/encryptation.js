@@ -2,18 +2,16 @@ const bcrypt = require('bcrypt'); // Librería para encryptación
 const config = require('../config/config');
 
 //Función para hashear ej: contraseñas
-const hash = async(input, salt) => {
-    if (typeof input !== 'string') {
-        input = String.toString(input);
-    }
+const hash = async(input) => {
+    if (typeof input !== 'string') input = String.toString(input);
+    var salt = await bcrypt.genSalt();
+
     try {
         const output = bcrypt.hash(input, salt);
-        console.log(output);
         return output;
     } catch (err) {
-        console.log("encryptation@hash: error %s", err);
+        console.log("encryptation@hash: error " + err.toString());
     }
-
 }
 
 const getSalt = async() => {
@@ -22,8 +20,6 @@ const getSalt = async() => {
 }
 
 const compare = (pass, hashedPass) => {
-    console.log(pass);
-    console.log(hashedPass);
     return bcrypt.compare(pass, hashedPass);
 }
 

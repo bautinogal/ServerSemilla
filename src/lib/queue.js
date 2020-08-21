@@ -23,7 +23,6 @@ const send = (action, db, collection, message) => {
 
     channel().then(channel => {
         channel.assertQueue(queue, { durable: false });
-        message.serverEnqueuedTS = Date.now();
         channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));
         console.log('Queue@send: Message enqued in "%s". Message: %s ', queue, message);
     })

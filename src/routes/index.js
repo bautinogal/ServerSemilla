@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken'); // Librería para generar webtokens
 const repo = require('../lib/repo'); // Script que maneja las lecturas/escrituras a las db
 const config = require('../config/config'); // Script de configuracion general
 const crypto = require('../lib/encryptation'); // Script con herramientas para encriptar
+const mingo = require('mingo'); // Librería que me permite verificar si un objeto cumple con el criterio de un query
 
 //Devuelve un objeto con la URL, Protocolo y TimeStamp del request
-//TODO: esta bien agregarle esto a los elementos de las db??
 function getReqInfo(req) {
     var result = {};
     result.serverReceivedTS = Date.now();
@@ -16,18 +16,29 @@ function getReqInfo(req) {
     return result;
 }
 
-//Me aseguro que me enviaron un toquen en los headers, sino devuelvo 403 (forbiden), lo uso para rutas protegidas
-const ensureToken = (req, res, next) => {
-    const bearerHeader = req.headers['authorization'];
-    console.log(`Routes@ensureToken bearerHeader: ${bearerHeader} `);
-    if (typeof bearerHeader !== 'undefined') {
-        const bearer = bearerHeader.split(" ")[1];
-        req.token = bearer;
-        next();
-    } else {
-        send.sendStatus(403);
-    }
+const decodeToken = (hashedToken) => {
+    return new Promise((resolve, reject) => {
+        jwt.verify(token, config.jwtSecret, (err, decoded) => {
+            if (err) {
+                reject('Error decodificando token!');
+            } else {
+                resolve(decoded);
+            }
+        });
+    })
 }
+
+//Ver si el token recibido cumple con la "criteria"
+//TODO: VER SI ESTA BIEN USAR ESTE TIPO DE FILTRO (TIPO QUERY DE MONGO USANDO "MINGO")
+const validateToken = (token, criteria) => {
+    //TODO: validar "criteria"...
+    // creo un query con el criterio
+    let query = new mingo.Query(criteria);
+    // veo si el token cumple con el criterio
+    return query.test(token);
+}
+
+//-----------------------------------Endpoints de las Páginas------------------------------------------------
 
 //Página de login:
 router.get('/login', async(req, res) => {
@@ -54,64 +65,50 @@ router.get('/dashboard', async(req, res) => {
 
 });
 
-//Endpoints de las APIS:
+//-----------------------------------Endpoints de las APIS---------------------------------------------------
 
-//Endpoint para crear un nuevo usuario
+//Endpoint para crear un nuevo usuario (ruta protegida)
 router.post('/api/newUser', async(req, res, next) => {
 
-    var user = req.body;
+    //A: Me fijo si mando un token 
+    const hashedToken = req.headers['access-token'];
+    if (!hashedToken) res.status(403).send('access-token required!');
 
-    try {
-        user.salt = await crypto.getSalt();
-        user.password = await crypto.hash(user.password, user.salt);
-        user.user = user.email;
-        console.log(`routes@/api/newUser  user:${user.email}, pass:${user.password}`);
-        const reqInfo = getReqInfo(req);
-        repo.newUser(user, reqInfo)
-            .then((userData) => {
-                res.send('Usuario ' + user.email + ' guardado');
-            });
-
-    } catch (err) {
-        console.log(`routes@/api/newUser  error:${err}`);
-        res.status(500);
-    }
-
+    //A: Me fijo si el user tiene permiso para crear nuevos usuarios
+    decodeToken(hashedToken)
+        .then((token) => {
+            if (validateToken(token, config.newUserAuthCriteria)) {
+                //TODO: VALIDAR FORMATO DE USER
+                var newUser = req.body;
+                post(config.usersDB, config.usersCollection, newUser)
+                    .catch((err) => console.log(err));
+                res.send('Usuario ' + userData.user + ' guardado');
+                //Ojo que no se guardo, se puso en la cola...
+            } else {
+                res.status(403).send('invalid access-token!');
+            }
+        })
+        .catch((err) => console.log(err));
 });
-
 
 //Endpoint q recibe usuario y contraseña, devuelve un webtoken
 router.post('/api/login', async(req, res, next) => {
-    const { email, password } = req.body;
-
-    var user = {
-        email,
-        password
-    }
-
-    console.log(`routes@/api/login  user:${user.email}`);
+    const { user, password } = req.body;
+    console.log(`routes@/api/login  user:${user}`);
 
     try {
-        //TODO: revisar el codigo de error
-        repo.getUserData(user.email, user.password)
+        repo.getUserData(user, password)
             .then((userData) => {
-                const token = jwt.sign(userData,
-                    config.jwtSecret, {
-                        expiresIn: config.jwtDfltExpires
-                    });
+                //A: genero un webtoken firmado, con la info del usuario
+                const token = jwt.sign(userData, config.jwtSecret, { expiresIn: config.jwtDfltExpires });
                 res.json({ auth: true, token });
             })
             .catch((err) => {
                 console.log(`routes@/api/login  error:${err}`);
-                //res.status(403).json({ auth: false, msg: err });
-                //TODO: Ver por que no devuelve mensaje en err
                 res.json({ auth: false, msg: err });
             });
-
     } catch (err) {
         console.log(`routes@/api/login  error:${err}`);
-        //res.status(403).json({ auth: false, msg: err });
-        //TODO: Ver por que no devuelve mensaje en err
         res.json({ auth: false, msg: err });
     }
 

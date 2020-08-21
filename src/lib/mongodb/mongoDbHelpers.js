@@ -1,40 +1,58 @@
 var MongoPool = require('./mongoDbConfig');
 
+//Me aseguro de que el query y el query options sean objetos
 function formatQuery(query) {
     query = query || {};
     if (typeof query === 'string') query = JSON.parse(query);
     return query;
 }
 
-async function save(database, collection, document) { //U: guardar un documento en la colleccion pasada, devuelve una promesa
-    let db = await MongoPool.getDb(database); //A: obtengo una coneccion existente o creo una nueva con la db
-    if (typeof(document) === "object") {
-        return db.collection(collection).insertOne(document)
-    } else if (typeof(document) === "array") {
-        return db.collection(collection).insertMany(document)
-    } else {
-        console.log("mongoDbHelpers: error in document type: %s", document);
-    }
+//U: guardar un documento en la colleccion 
+function save(database, collection, document) {
+    return new Promise((resolve, reject) => {
+        MongoPool.getDb(database)
+            .then((instance) => instance.collection(collection))
+            .then((col) => {
+                if (typeof(document) === "object") {
+                    return col.insertOne(document);
+                } else if (typeof(document) === "array") {
+                    return col.insertMany(document);
+                } else {
+                    throw "mongoDbHelpers: error in document type: " + document.toString();
+                }
+            })
+            .then((res) => resolve(res))
+            .catch((err) => reject(err));
+    })
 }
 
-//TODO: REVISAR SI ESTAS FUNCIONES NO TIENEN Q SER ASYNC
+// Funcion que me devuelve un array de todos los elementos de la collecion que coinciden con el query
 function get(database, collection, query, queryOptions) {
     query = formatQuery(query);
     queryOptions = formatQuery(queryOptions);
-    console.log(`mongoDbHelper@get db:${database} coll:${collection} query:${query} queryOptions:${queryOptions}`);
-    return MongoPool.getDb(database)
-        .then((instance) => instance.collection(collection).find(query, queryOptions).toArray())
-        .catch((err) => console.log(err));
+
+    return new Promise((resolve, reject) => {
+        MongoPool.getDb(database)
+            .then((instance) => instance.collection(collection))
+            .then((col) => col.find(query, queryOptions))
+            .then((count) => resolve(count.toArray()))
+            .catch((err) => reject(err));
+    })
 }
 
+// Funcion que me devuelve la cantidad de elementos de la collecion que coinciden con el query
 function getCount(database, collection, query, queryOptions) {
 
     query = formatQuery(query);
     queryOptions = formatQuery(queryOptions);
 
-    return MongoPool.getDb(database)
-        .then((instance) => instance.collection(collection).count(query, queryOptions))
-        .catch((err) => console.log(err));
+    return new Promise((resolve, reject) => {
+        MongoPool.getDb(database)
+            .then((instance) => instance.collection(collection))
+            .then((col) => col.count(query, queryOptions))
+            .then((count) => resolve(count))
+            .catch((err) => reject(err));
+    })
 }
 
 // Funcion que usamos para borrar un elemento de una bs/collection
@@ -48,11 +66,9 @@ function deleteOne(database, collection, query, queryOptions) {
                 return instance.collection(collection).deleteOne(query, queryOptions);
             })
             .then((res) => {
-                console.log(`mongoDbHelper@deleteOne db:${database} coll:${collection} query:${query} queryOptions:${queryOptions} Succesfull!`);
                 resolve(res);
             })
             .catch((err) => {
-                console.log(`mongoDbHelper@deleteOne error:${err}`);
                 reject(err);
             });
     });
@@ -70,11 +86,9 @@ function deleteMany(database, collection, query, queryOptions) {
                 return instance.collection(collection).deleteMany(query, queryOptions);
             })
             .then((res) => {
-                console.log(`mongoDbHelper@deleteMany db:${database} coll:${collection} query:${query} queryOptions:${queryOptions} Succesfull!`);
                 resolve(res);
             })
             .catch((err) => {
-                console.log(`mongoDbHelper@deleteMany error:${err}`);
                 reject(err);
             });
     });
