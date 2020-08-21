@@ -28,10 +28,11 @@ Windows 10:
  - Un cluster de MongoDb para cada cliente?
  - el front end tiene q conocer la estructura del back?
  - my_secret_key: variable de entorno, esta bien?
+ - Como logeaer bien
 
 
 *Roadmap:
  - Agregar bd sql (mariadb)
  - Manejar desconexión de las colas
  - Encriptar passwords
- - Checkear las vars de entorno cuando arranca
+ - Hacer tests automáticos
