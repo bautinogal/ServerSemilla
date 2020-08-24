@@ -18,9 +18,9 @@ function getReqInfo(req) {
 
 const decodeToken = (hashedToken) => {
     return new Promise((resolve, reject) => {
-        jwt.verify(token, config.jwtSecret, (err, decoded) => {
+        jwt.verify(hashedToken, config.jwtSecret, (err, decoded) => {
             if (err) {
-                reject('Error decodificando token!');
+                reject('Error decodificando token! ' + err);
             } else {
                 resolve(decoded);
             }
@@ -69,14 +69,14 @@ router.get('/dashboard', async(req, res) => {
 
 //Endpoint q recibe usuario y contraseña, devuelve un webtoken
 router.post('/api/login', async(req, res, next) => {
-    const { user, password } = req.body;
+    const { user, pass } = req.body;
     console.log(`routes@/api/login  user:${user}`);
 
     try {
-        repo.getUserData(user, password)
+        repo.getUserData(user, pass)
             .then((userData) => {
                 //A: genero un webtoken firmado, con la info del usuario
-                const token = jwt.sign(userData, config.jwtSecret, { expiresIn: config.jwtDfltExpires });
+                const token = jwt.sign(userData, config.jwtSecret, { expiresIn: Number(config.jwtDfltExpires) });
                 res.json({ auth: true, token });
             })
             .catch((err) => {
@@ -104,40 +104,57 @@ router.post('/api/post/:database/:collection', async(req, res, next) => {
     decodeToken(hashedToken)
         .then((token) => {
             if (validateToken(token, config.tokensCriteria[db][coll])) {
+                console.log("Token valido!");
                 //TODO: VALIDAR BODY
+                //TODO: ESTO ES UNA CROTADA, ARREGLAR
                 var body = req.body;
-                post(db, coll, body)
-                    //Ojo que no se guardo, se puso en la cola...
-                    .then(() => res.send(body + ' guardado en ' + db + "/" + coll))
-                    .catch((err) => console.log(err));
+                if (body.pass) {
+                    body.pass = crypto.hash(body.pass)
+                        .then((hashedPass) => {
+                            body.pass = hashedPass;
+                            repo.post(db, coll, body)
+                                //Ojo que no se guardo, se puso en la cola...
+                                .then((post) => res.send(post))
+                                .catch((err) => console.log(err));
+                        }).catch();
+                } else {
+                    repo.post(db, coll, body)
+                        //Ojo que no se guardo, se puso en la cola...
+                        .then((post) => res.send(post))
+                        .catch((err) => console.log(err));
+                }
             } else {
+                console.log("Token invalido!");
                 res.status(403).send('invalid access-token!');
             }
         })
-        .catch((err) => console.log(err));
-
-    //------------------------------------------------------------------------------
-
-    //verifico que el token sea valido para esta ruta
-    jwt.verify(req.token, config.jwtSecret, (err, data) => {
-        if (!err) {
-            res.sendStatus(403);
-        } else {
-            const db = req.params.database;
-            const coll = req.params.collection;
-            // "addReqInfo" agrega el timeStamp, protocolo y url al objeto "message" ademas de lo q viene en el "req.body"
-            var reqInfo = getReqInfo(req);
-            console.log(`Routes@/api/post/${db}/${coll} body: ${JSON.stringify(req.body)}`);
-            repo.post(db, coll, req.body)
-                .then(() => res.end('Routes@api/add: Received ' + JSON.stringify(req.body)))
-                .catch((err) => res.end('Routes@api/add: Error: ' + err));
-            //TODO: mas adelante debería enviar un mensaje al cliente cuando se guardo en la bd y su ID
-        }
-    });
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send('error decodificando token!');
+        });
 });
 
 //Devuelvo una lista filtrada por el query
 router.get('/api/get/:database/:collection', async(req, res, next) => {
+    const query = req.query.query || {};
+    const queryOptions = req.query.options || {};
+    const db = req.params.database;
+    const coll = req.params.collection;
+    console.log(`Routes@/api/get/${db}/${coll} query: ${query} options: ${queryOptions}`);
+    repo.get(db, coll, query, queryOptions)
+        .then(result => {
+            result = JSON.stringify(result);
+            console.log(`Routes@/api/get/${db}/${coll} query: ${JSON.stringify(req.query)}  res: ${result}`);
+            res.end(result);
+        })
+        .catch(err => {
+            console.log(`Routes@/api/get/${db}/${coll} query: ${req.query}  err: ${err}`);
+            res.end(err)
+        });
+});
+
+//TODO: Ver prioridades, o como diferencio un "wildcard" de un endpoin determinado
+router.all('/api/:database/:collection', async(req, res, next) => {
     const query = req.query.query || {};
     const queryOptions = req.query.options || {};
     const db = req.params.database;
@@ -160,14 +177,14 @@ router.get('/api/getCount/:database/:collection', async(req, res, next) => {
     const query = req.query.query;
     const queryOptions = req.query.options;
     console.log(`Routes@/api/getCount/${req.params.collection} query: ${query} options: ${queryOptions}`);
-    repo.getCount(req.params.collection, query, queryOptions)
+    repo.getCount(req.params.database, req.params.collection, query, queryOptions)
         .then(result => {
             result = JSON.stringify(result);
-            console.log(`Routes@/api/get/${req.params.collection} query: ${JSON.stringify(req.query)}  res: ${result}`);
+            console.log(`Routes@/api/get/${req.params.database}/${req.params.collection} query: ${JSON.stringify(req.query)}  res: ${result}`);
             res.end(result);
         })
         .catch(err => {
-            console.log(`Routes@/api/get/${req.params.collection} query: ${req.query}  err: ${err}`);
+            console.log(`Routes@/api/get/${req.params.database}/${req.params.collection} query: ${req.query}  err: ${err}`);
             res.end(err)
         });
 });

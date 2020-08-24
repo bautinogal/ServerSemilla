@@ -15,11 +15,19 @@ const start = () => {
             .catch(err => console.log(`Routes@queueToDb error: ${err}`));
     });
     // WORKER para DELETE
-    const queue2 = 'DELETE/' + config.usersDB + '/' + config.usersCollection;
-    queue.receive(queue2, (query) => {
-        console.log(`Worker@consume: ${JSON.stringify(query)} to ${queue2}`);
+    const queueDelete = 'DELETE/' + config.usersDB + '/' + config.usersCollection;
+    queue.receive(queueDelete, (query) => {
+        console.log(`Worker@consume: ${JSON.stringify(query)} to ${queueDelete}`);
         mongoDbHelper.deleteMany(config.usersDB, config.usersCollection, query, queryOptions)
-            .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} deleted from ${queue2}`))
+            .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} deleted from ${queueDelete}`))
+            .catch(err => console.log(`Routes@queueToDb error: ${err}`));
+    });
+
+    const queueINTI = 'POST/' + config.usersDB + '/INTI';
+    queue.receive(queueINTI, (document) => {
+        console.log(`Worker@consume: ${JSON.stringify(document)} to ${queueINTI}`);
+        mongoDbHelper.save(config.usersDB, 'INTI', document)
+            .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} saved in ${queueINTI}`))
             .catch(err => console.log(`Routes@queueToDb error: ${err}`));
     });
 

@@ -20,6 +20,7 @@ const getSalt = async() => {
 }
 
 const compare = (pass, hashedPass) => {
+    console.log("Crypto comparing: " + pass + " with " + hashedPass);
     return bcrypt.compare(pass, hashedPass);
 }
 

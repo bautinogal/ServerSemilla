@@ -14,8 +14,9 @@ const getClient = () => {
             client = new MongoClient(url, { useUnifiedTopology: true, useNewUrlParser: true });
             client.connect(function(err) {
                 if (err) {
+                    console.log(url);
                     client = null;
-                    reject("Error conectando a mongodb: %s", err);
+                    reject("Error conectando a mongodb: %s" + String.toString(err));
                 } else {
                     resolve(client);
                 }
