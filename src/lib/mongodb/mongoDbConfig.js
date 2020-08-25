@@ -1,5 +1,5 @@
 //TODO: Revisar todo este script y comentar!!
-const config = require('../../config/config');
+const config = require('../../config/envVars');
 const MongoClient = require('mongodb').MongoClient;
 
 const url = config.mongoUri || 'mongodb://localhost:27017';
