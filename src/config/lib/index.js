@@ -2,8 +2,45 @@
 //const mongodb = require('../../lib/mongodb/mongoDbHelpers');
 const repo = require('../../lib/repo');
 const crypto = require('../../lib/encryptation');
+const { resolve } = require('mingo/util');
 
 const login = (route, query, queryOptions) => {
+
+    return new Promise((resolve, reject)=>{
+        try {
+            const routeElements = route.split('/');
+            const database = routeElements[0];
+            const collection = routeElements[1];
+
+            get(database, collection, {'user': query.user}, queryOptions)
+            .then((users) => {
+                const elementsCount = users.length;
+                if (elementsCount == 0) {
+                    reject('Error: Not user found for: ' +query.user);
+                } else if (elementsCount > 1) {
+                    reject('Error: More than one user found for: ' + query.user + ", user.user must be a unique identifier!");
+                } else {
+                    crypto.compare(query.pass, users[0].pass)
+                        .then((res) => {
+                            if (res) {
+                                delete users[0].pass;
+                                console.log("getUserData %s", users[0]);
+                                resolve(users[0]);
+                            } else {
+                                reject('Error: Does not match password for: ' + query.user);
+                            }
+                        })
+                        .catch((err) => reject(err));
+                }
+            })
+            .catch((err) => {
+                reject(err);
+            });
+            
+        } catch (error) {
+            reject(error);
+        }
+    })
 
 }
 
