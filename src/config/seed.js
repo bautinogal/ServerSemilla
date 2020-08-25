@@ -1,8 +1,7 @@
 //---------------------- Parámetros "Semilla" ----------------------------------
 //Acá encontramos y configuramos todas las reglas de negocio de cada app en particular
 //lo vamos a usar como parámetros de entrada para la app semilla
-
-const {get, post, encrypt, decrypt, consume } = require('./lib/index');
+const { login, get, post, encrypt, decrypt, consume } = require('./lib/index');
 
 //Acá defino la lógica de cada endpoint
 endpoints = {

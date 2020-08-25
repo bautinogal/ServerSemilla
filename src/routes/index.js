@@ -67,6 +67,10 @@ router.get('/dashboard', async(req, res) => {
 
 //-----------------------------------Endpoints de las APIS---------------------------------------------------
 
+router.all('/api/login', async(req, res, next) => {
+
+});
+
 //Endpoint q recibe usuario y contraseña, devuelve un webtoken
 router.post('/api/login', async(req, res, next) => {
     const { user, pass } = req.body;

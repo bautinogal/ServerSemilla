@@ -8,6 +8,8 @@ const routes = require('./routes/index'); // Script que administra los "Endpoint
 const workers = require('./workers/index'); // Script que arranca los "workers" que mueven los mensajes de la cola a la bd
 const repo = require('./lib/repo');
 
+const seed = require('./config/index');
+
 
 // Inicializo el servidor
 const app = express();
@@ -47,7 +49,7 @@ routes.stack.forEach(function(r) {
 });
 
 // Prendo workers que van a mover los mensajes de las colas a la bd
-workers.start();
+seed.workers.start();
 
 // Crear usuario root de la app, para asegurarme que siempre haya al menos un usuario 
 repo.createRootUser();
