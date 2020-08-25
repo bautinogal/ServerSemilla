@@ -16,27 +16,6 @@ function getReqInfo(req) {
     return result;
 }
 
-const decodeToken = (hashedToken) => {
-    return new Promise((resolve, reject) => {
-        jwt.verify(hashedToken, config.jwtSecret, (err, decoded) => {
-            if (err) {
-                reject('Error decodificando token! ' + err);
-            } else {
-                resolve(decoded);
-            }
-        });
-    })
-}
-
-//Ver si el token recibido cumple con la "criteria"
-//TODO: VER SI ESTA BIEN USAR ESTE TIPO DE FILTRO (TIPO QUERY DE MONGO USANDO "MINGO")
-const validateToken = (token, criteria) => {
-    //TODO: validar "criteria"...
-    // creo un query con el criterio
-    let query = new mingo.Query(criteria);
-    // veo si el token cumple con el criterio
-    return query.test(token);
-}
 
 //-----------------------------------Endpoints de las Páginas------------------------------------------------
 
@@ -105,9 +84,9 @@ router.post('/api/post/:database/:collection', async(req, res, next) => {
     const coll = req.params.collection;
 
     //A: Me fijo si el user tiene permiso para postear en esta collection
-    decodeToken(hashedToken)
+    crypto.decodeToken(hashedToken)
         .then((token) => {
-            if (validateToken(token, config.tokensCriteria[db][coll])) {
+            if (crypto.validateToken(token, config.tokensCriteria[db][coll])) {
                 console.log("Token valido!");
                 //TODO: VALIDAR BODY
                 //TODO: ESTO ES UNA CROTADA, ARREGLAR

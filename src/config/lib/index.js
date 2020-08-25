@@ -1,6 +1,7 @@
 //const {login, get, post, encrypt, decrypt, consume } = require('./lib/index');
 //const mongodb = require('../../lib/mongodb/mongoDbHelpers');
 const repo = require('../../lib/repo');
+const crypto = require('../../lib/encryptation');
 
 const login = (route, query, queryOptions) => {
 
@@ -50,11 +51,32 @@ const post = (route, body) => {
     });
 }
 
-const encrypt = () => {
-
+const encrypt = (pass) => {
+    return new Promise((resolve, reject)=>{
+        
+        crypto.hash(pass)
+        .then((res)=>{
+            resolve(res);
+        })
+        .catch((err)=>{
+            reject(err);
+        });  
+    });
+   
 }
 
-const decrypt = () => {
+const decrypt = (token) => {
+    return new Promise((resolve, reject) => {
+
+        crypto.decodeToken(token)
+        .then((decodedToken)=>{
+            resolve(decodedToken);
+        })
+        .catch((err)=>{
+            reject(err);
+        });
+    })
+
 
 }
 

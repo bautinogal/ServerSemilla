@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt'); // Librería para encryptación
 const config = require('../config/envVars');
+const mingo = require('mingo');
 
 //Función para hashear ej: contraseñas
 const hash = async(input) => {
@@ -24,4 +25,26 @@ const compare = (pass, hashedPass) => {
     return bcrypt.compare(pass, hashedPass);
 }
 
-module.exports = { hash, getSalt, compare }
+const decodeToken = (hashedToken) => {
+    return new Promise((resolve, reject) => {
+        jwt.verify(hashedToken, config.jwtSecret, (err, decoded) => {
+            if (err) {
+                reject('Error decodificando token! ' + err);
+            } else {
+                resolve(decoded);
+            }
+        });
+    })
+}
+
+//Ver si el token recibido cumple con la "criteria"
+//TODO: VER SI ESTA BIEN USAR ESTE TIPO DE FILTRO (TIPO QUERY DE MONGO USANDO "MINGO")
+const validateToken = (token, criteria) => {
+    //TODO: validar "criteria"...
+    // creo un query con el criterio
+    let query = new mingo.Query(criteria);
+    // veo si el token cumple con el criterio
+    return query.test(token);
+}
+
+module.exports = { hash, getSalt, compare, decodeToken, validateToken }
