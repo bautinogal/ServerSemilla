@@ -4,9 +4,9 @@
     "main": "app.js",
     "license": "MIT",
     "scripts": {
-        "test": "node tests/testSeedLib",
-        "dev": "nodemon src/app",
-        "start": "node src/app"
+        "test": "node src/app ./tests/testSeed.js",
+        "dev": "nodemon src/app ./config/seed.js",
+        "start": "node src/app ./config/seed.js"
     },
     "dependencies": {
         "amqp": "^0.2.7",

@@ -7,9 +7,7 @@ const morgan = require('morgan'); // Herramienta para loggear
 const routes = require('./routes/index'); // Script que administra los "Endpoints"
 const workers = require('./workers/index'); // Script que arranca los "workers" que mueven los mensajes de la cola a la bd
 const repo = require('./lib/repo');
-
-const seed = require('./config/index');
-
+const seed = require(process.argv[3] || "./config/seed"); // El seed con todas las regrlas de negocios
 
 // Inicializo el servidor
 const app = express();
@@ -47,6 +45,8 @@ routes.stack.forEach(function(r) {
         console.log(r.route.path)
     }
 });
+
+
 
 // Prendo workers que van a mover los mensajes de las colas a la bd
 workers.start();
