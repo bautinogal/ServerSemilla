@@ -1,7 +1,7 @@
 //Worker que se encarga de mover los mensajes de la cola a la bd de Mongo
 const queue = require('../lib/queue');
 const mongoDbHelper = require('../lib/mongodb/mongoDbHelpers');
-const config = require('../config/config');
+const config = require('../config/envVars');
 
 
 //los workers comienzan a escuchar a las colas
@@ -28,6 +28,14 @@ const start = () => {
         console.log(`Worker@consume: ${JSON.stringify(document)} to ${queueINTI}`);
         mongoDbHelper.save(config.usersDB, 'INTI', document)
             .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} saved in ${queueINTI}`))
+            .catch(err => console.log(`Routes@queueToDb error: ${err}`));
+    });
+// WORKER PARA TEST
+    const queueTest = 'POST/test/test';
+    queue.receive(queueTest, (document) => {
+        console.log(`Worker@consume: ${JSON.stringify(document)} to ${queueTest}`);
+        mongoDbHelper.save('test', 'test', document)
+            .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} saved in ${queueTest}`))
             .catch(err => console.log(`Routes@queueToDb error: ${err}`));
     });
 

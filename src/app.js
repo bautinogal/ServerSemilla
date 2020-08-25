@@ -1,5 +1,5 @@
 require('dotenv').config({ path: __dirname + '/.env' }) // Levanta las variables de entorno del archivo .env
-const config = require('./config/config') // Archivo de configuracion con variables de entorno y globales
+const config = require('./config/envVars') // Archivo de configuracion con variables de entorno y globales
 const path = require('path'); // Herramienta para armar los paths independientemente del S.O.
 const express = require('express'); // Framework de Node para armar servidores
 const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerpo" de los requests
@@ -49,7 +49,7 @@ routes.stack.forEach(function(r) {
 });
 
 // Prendo workers que van a mover los mensajes de las colas a la bd
-seed.workers.start();
+workers.start();
 
 // Crear usuario root de la app, para asegurarme que siempre haya al menos un usuario 
 repo.createRootUser();

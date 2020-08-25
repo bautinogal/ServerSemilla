@@ -4,6 +4,7 @@
     "main": "app.js",
     "license": "MIT",
     "scripts": {
+        "test": "node tests/testSeedLib",
         "dev": "nodemon src/app",
         "start": "node src/app"
     },

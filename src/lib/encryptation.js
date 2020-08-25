@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt'); // Librería para encryptación
-const config = require('../config/config');
+const config = require('../config/envVars');
 
 //Función para hashear ej: contraseñas
 const hash = async(input) => {

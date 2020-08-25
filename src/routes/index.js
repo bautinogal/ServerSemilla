@@ -3,7 +3,7 @@ const router = express.Router(); // Herramientas para crear rutas de Express
 const path = require('path'); // Librería para unificar los path independiente del OS en el que estamos
 const jwt = require('jsonwebtoken'); // Librería para generar webtokens
 const repo = require('../lib/repo'); // Script que maneja las lecturas/escrituras a las db
-const config = require('../config/config'); // Script de configuracion general
+const config = require('../config/envVars'); // Script de configuracion general
 const crypto = require('../lib/encryptation'); // Script con herramientas para encriptar
 const mingo = require('mingo'); // Librería que me permite verificar si un objeto cumple con el criterio de un query
 

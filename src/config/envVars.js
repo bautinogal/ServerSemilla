@@ -1,4 +1,4 @@
-require('dotenv').config({ path: __dirname + '/config/.env' }) // Levanta las variables de entorno del archivo .env
+require('dotenv').config({ path: __dirname + '/.env' }) // Levanta las variables de entorno del archivo .env
 
 //---------------------- Variables de Entorno --------------------------------
 const vars = {
@@ -19,4 +19,4 @@ const vars = {
     rootPass: process.env.ROOT_PASS || 'secret'
 }
 
-module.exports = { vars };
+module.exports = vars;

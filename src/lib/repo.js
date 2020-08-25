@@ -2,7 +2,7 @@
 //TODO: Persistir todo en un base relacional a largo plazo
 const {get, getCount, deleteMany } = require('../lib/mongodb/mongoDbHelpers');
 const queue = require('../lib/queue');
-const config = require('../config/config');
+const config = require('../config/envVars');
 const crypto = require('./encryptation');
 const utils = require('./utils');
 
