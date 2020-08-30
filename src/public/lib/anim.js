@@ -1,4 +1,4 @@
-import math from './../utils/math.js';
+import math from './math.js';
 
 var animations = [];
 var nextId = 0;

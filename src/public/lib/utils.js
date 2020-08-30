@@ -17,4 +17,16 @@ const getCount = (collection, query, queryOptions) => {
         .catch(err => console.log(err));
 }
 
-export default { getData, getCount };
+const addCss = (path) => {
+    var file = path.split("/").pop();
+
+    var link = document.createElement("link");
+    link.href = file.substr(0, file.lastIndexOf(".")) + ".css";
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.media = "screen,print";
+
+    document.getElementsByTagName("head")[0].appendChild(link);
+}
+
+export default { getData, getCount, addCss };

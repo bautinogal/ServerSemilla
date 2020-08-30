@@ -27,18 +27,18 @@ router.get('/login', async(req, res) => {
 //Página para visualizar la data (ruta protegida):
 router.get('/dashboard', async(req, res) => {
 
-    const token = req.headers['x-acces-token'];
-    if (!token) {
-        return res.status(401).json({
-            auth: false,
-            message: "No token provided."
-        })
-    }
+    // const token = req.headers['x-acces-token'];
+    // if (!token) {
+    //     return res.status(401).json({
+    //         auth: false,
+    //         message: "No token provided."
+    //     })
+    // }
 
-    const decoded = jwt.verify(token, config.jwtSecret);
-    console.log(decoded);
+    // const decoded = jwt.verify(token, config.jwtSecret);
+    // console.log(decoded);
 
-    const page = path.join(__dirname, '..', 'public/dashboard/dashboard.html');
+    const page = path.join(__dirname, '..', 'public/pages/index.html');
     console.log("page: " + page);
     res.sendFile(page);
 

@@ -1,6 +1,7 @@
-import utils from './../utils/utils.js';
-import math from './../utils/math.js';
-import anim from './../utils/anim.js';
+import utils from '../utils';
+import math from '../math';
+import anim from '../anim';
+
 /*
 const collection = "collection1"; //Coleccion de la db de donde vamos a sacar la data para mostrar
 const headers = { //Columnas de la tabla, formato : {'Title','name'}
@@ -134,19 +135,81 @@ filterBtn.addEventListener('click', (e) => {
 */
 //--------------------------Dashboard---------------------------------------
 
+const createNav = (data) => {
+    var nav = document.createElement("div");
+    nav.id = data.id + "-nav";
+    nav.className = 'ventum-nav';
 
-var root = document.getElementById('ventum-nav');
-root.style.height = window.innerHeight + "px";
+    result.html = nav;
 
-var sidebarBtn = document.getElementById('ventum-sidebar-zoomBtn');
-var sidebar = document.getElementById('ventum-sidebar');
-var content = document.getElementById('ventum-content');
+    result.addContent = (child) => {
+        nav.appendChild(child.html);
+    }
 
-const zoomSidebar = (interpol) => {
-    sidebar.style.flex = math.lerp(0.15, 0.03, interpol);
-    content.style.flex = math.lerp(0.85, 0.97, interpol);
+    return result;
+};
+
+const createSidebar = (data) => {
+    var sidebar = document.createElement("div");
+    sidebar.id = data.id + "-sidebar";
+    sidebar.className = 'ventum-sidebar';
+
+    result.html = sidebar;
+
+    result.addContent = (child) => {
+        sidebar.appendChild(child.html);
+    }
+
+    return result;
+};
+
+const createContent = (data) => {
+    var content = document.createElement("div");
+    content.id = data.id + "-content";
+    content.className = 'ventum-content';
+
+    content.html = content;
+
+    result.addContent = (child) => {
+        content.appendChild(child.html);
+    }
+
+    return result;
+};
+
+const addZoomInOut = (data) => {
+    var root = document.getElementById('ventum-nav');
+    root.style.height = window.innerHeight + "px";
+
+    var sidebarBtn = document.getElementById('ventum-sidebar-zoomBtn');
+    var sidebar = document.getElementById('ventum-sidebar');
+    var content = document.getElementById('ventum-content');
+
+    const zoomSidebar = (interpol) => {
+        sidebar.style.flex = math.lerp(0.15, 0.03, interpol);
+        content.style.flex = math.lerp(0.85, 0.97, interpol);
+    }
+
+    sidebarBtn.addEventListener('click', function() {
+        anim.lAnim(zoomSidebar, 200, () => console.log("Terminó"));
+    });
 }
 
-sidebarBtn.addEventListener('click', function() {
-    anim.lAnim(zoomSidebar, 200, () => console.log("Terminó"));
-});
+const create = (data, parent) => {
+    var result = {};
+
+    var nav = createNav(data);
+    var sidebar = createSidebar(data);
+    var content = createContent(data);
+
+    nav.addContent(sidebar);
+    nav.addContent(content);
+
+    parent.appendChild(nav.html);
+    //addZoomInOut(data);
+
+    result.html = nav.hmtl;
+    return result;
+}
+
+export default { create };

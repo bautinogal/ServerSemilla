@@ -2,9 +2,19 @@
 //Acá encontramos y configuramos todas las reglas de negocio de cada app en particular
 //lo vamos a usar como parámetros de entrada para la app semilla
 const { login, get, post, encrypt, decrypt, consume } = require('./lib/index');
+const path = require('path'); // Herramienta para armar los paths independientemente del S.O.
 
 //Acá defino la lógica de cada endpoint
+//TODO: ver como podríamos pasar esto a REGEX
 endpoints = {
+    "dashboard": (req, res) => {
+        res.view('index');
+    },
+    "table": {
+        "1": (req, res) => {
+            res.send("table1");
+        }
+    },
     "api": {
         "login": (req, res) => {
             const user = req.body.user;
@@ -35,7 +45,7 @@ endpoints = {
                                         var newUser = req.body;
                                         validate(newUser, {
                                                 $and: [
-                                                    { "usesr": { $type: "string" } },
+                                                    { "user": { $type: "string" } },
                                                     { "pass": { $type: "string" } },
                                                     { "role": { $type: "string" } }
                                                 ]
@@ -61,11 +71,11 @@ endpoints = {
                                 .catch((err) => res.status(500).send("error validando token! " + err));
                             break;
                         default:
-                            res.status(401).send("invalid http method!");
+                            res.status(401).send("Invalid http method!");
                             break;
                     }
                 })
-                .catch((err) => res.status(403).send("access-token invalido: " + err));
+                .catch((err) => res.status(403).send("Access-token invalido: " + err));
         }
     },
     "masterbusIOT": {
