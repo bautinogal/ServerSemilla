@@ -6,9 +6,13 @@ const path = require('path'); // Herramienta para armar los paths independientem
 
 //Acá defino la lógica de cada endpoint
 //TODO: ver como podríamos pasar esto a REGEX
-endpoints = {
+var endpoints = {
     "dashboard": (req, res) => {
-        res.view('index');
+        var path = views.dashboard()
+            .then(view => {
+                res.send(view);
+            })
+            .catch(err => console.log(err)); // Crea un .html y me devuelve el path
     },
     "table": {
         "1": (req, res) => {
@@ -117,9 +121,26 @@ endpoints = {
                 .catch((err) => res.status(403).send("access-token invalido: " + err));
         }
     }
-}
+};
 
-workers = {
+var views = {
+    dashboard: () => {
+        return new Promise((resolve, reject) => {
+            try {
+                const data = {
+
+                };
+                let dashboard = require('./views/dashboard/dashboard');
+                result = dashboard.create(data)
+                    .then(res => resolve(res));
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
+};
+
+var workers = {
     postUsersQueue2DB: () => {
         const queueName = 'POST/' + config.usersDB + '/' + config.usersCollection;
         consume(queueName, (document) => {
@@ -147,6 +168,6 @@ workers = {
                 .catch(err => console.log(`Routes@queueToDb error: ${err}`));
         });
     }
-}
+};
 
-module.exports = { endpoints, workers };
+module.exports = { endpoints, workers, views };

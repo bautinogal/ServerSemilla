@@ -34,9 +34,6 @@
     --grey-5: rgba(255, 255, 255, 1);
 }
 
-
-/* Root ------------------------------------------------------ */
-
 .ventum-nav {
     background-color: var(--grey-0);
     width: 100%;
@@ -44,10 +41,7 @@
 }
 
 
-/* Sidebar --------------------------------------------------- */
-
-
-/* GENERALS */
+/* Sidebar --------------------- */
 
 .ventum-sidebar {
     background-color: var(--grey-1);
@@ -55,7 +49,7 @@
     flex: .17;
 }
 
-.ventum-sidebar-separator-line {
+.ventum-sidebar-line {
     background-color: var(--grey-3);
     margin-left: 10%;
     margin-right: 10%;
@@ -63,17 +57,8 @@
     height: 0.1px;
 }
 
-.ventum-sidebar-separator-space {
-    background-color: transparent;
-    width: 100%;
-    height: 3%;
-}
-
-
-/* COMPANY */
-
 .ventum-sidebar-company {
-    height: 9%;
+    height: 10%;
     display: flex;
 }
 
@@ -97,88 +82,10 @@
 
 .ventum-sidebar-company-name-text {
     color: var(--grey-4);
-    background-color: transparent;
-    border: transparent;
 }
 
 
-/* USER */
-
-.ventum-sidebar-user {
-    height: 9%;
-    display: flex;
-}
-
-.ventum-sidebar-user-logo {
-    order: 1;
-    flex: .25;
-    text-align: center;
-    align-self: center;
-}
-
-.ventum-sidebar-user-logo-i {
-    color: var(--grey-3);
-}
-
-.ventum-sidebar-user-name {
-    order: 2;
-    flex: .75;
-    text-align: left;
-    align-self: center;
-}
-
-.ventum-sidebar-user-name-text {
-    color: var(--grey-4);
-    background-color: transparent;
-    border: transparent;
-}
-
-
-/* MAIN CATEGORY */
-
-.ventum-sidebar-main-category {
-    height: 7%;
-    display: flex;
-}
-
-.ventum-sidebar-main-category-logo {
-    order: 1;
-    flex: .25;
-    text-align: center;
-    align-self: center;
-}
-
-.ventum-sidebar-main-category-logo-i {
-    color: var(--grey-3);
-}
-
-.ventum-sidebar-main-category-name {
-    order: 2;
-    flex: .75;
-    text-align: left;
-    align-self: center;
-}
-
-.ventum-sidebar-main-category-name-text {
-    color: var(--grey-4);
-    background-color: transparent;
-    border: transparent;
-}
-
-.ventum-sidebar-main-category-name-text:hover {
-    color: var(--rgba-primary-1);
-    background-color: transparent;
-    border: transparent;
-}
-
-.ventum-sidebar-main-category-name-text:focus {
-    color: var(--rgba-primary-2);
-    background-color: transparent;
-    border: transparent;
-}
-
-
-/* Content --------------------------------------------- */
+/* Content --------------------- */
 
 .ventum-content {
     background-color: var(--grey-4);
@@ -186,11 +93,11 @@
     flex: .83;
 }
 
-.ventum-content-navbar-div {
-    height: 9%;
+.ventum-content-navbar {
+    height: 10%;
 }
 
-.ventum-content-separator-line {
+.ventum-content-line {
     background-color: var(--grey-3);
     width: 100%;
     height: 0.1px;

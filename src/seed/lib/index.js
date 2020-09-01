@@ -2,7 +2,7 @@
 //const mongodb = require('../../lib/mongodb/mongoDbHelpers');
 const repo = require('../../lib/repo');
 const crypto = require('../../lib/encryptation');
-const config = require('../envVars')
+const config = require('../../config/envVars')
 
 const login = (user, pass) => {
     return new Promise((resolve, reject) => {

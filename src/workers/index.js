@@ -30,7 +30,7 @@ const start = () => {
             .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} saved in ${queueINTI}`))
             .catch(err => console.log(`Routes@queueToDb error: ${err}`));
     });
-// WORKER PARA TEST
+    // WORKER PARA TEST
     const queueTest = 'POST/test/test';
     queue.receive(queueTest, (document) => {
         console.log(`Worker@consume: ${JSON.stringify(document)} to ${queueTest}`);

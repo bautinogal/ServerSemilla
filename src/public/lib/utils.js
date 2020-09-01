@@ -29,4 +29,15 @@ const addCss = (path) => {
     document.getElementsByTagName("head")[0].appendChild(link);
 }
 
-export default { getData, getCount, addCss };
+const fillObjWithDflt = (object, dflt) => {
+    var result = {};
+    Object.keys(dflt).forEach(key => {
+        if (key in object)
+            result[key] = object[key];
+        else
+            result[key] = dflt[key];
+    })
+    return result;
+}
+
+export default { getData, getCount, addCss, fillObjWithDflt };

@@ -6,7 +6,7 @@ const morgan = require('morgan'); // Herramienta para loggear
 const routes = require('./routes/index'); // Script que administra los "Endpoints"
 const workers = require('./workers/index'); // Script que arranca los "workers" que mueven los mensajes de la cola a la bd
 const repo = require('./lib/repo');
-const seed = require('./config/seed'); // El seed con todas las regrlas de negocios
+const seed = require('./seed/seed'); // El seed con todas las regrlas de negocios
 const favicon = require('serve-favicon');
 
 // Inicializo el servidor
@@ -45,14 +45,6 @@ app.use((req, res, next) => {
         const url = req.protocol + "://" + req.get('host') + req.originalUrl;
         console.log("app.getUrl: %s", url);
         return url;
-    };
-    return next();
-});
-app.use((req, res, next) => {
-    res.view = (view) => {
-        const filePath = path.join(__dirname, '/public/views/', view) + '.html';
-        console.log("app.view: %s", filePath);
-        res.sendFile(filePath);
     };
     return next();
 });
