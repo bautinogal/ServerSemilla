@@ -18,6 +18,7 @@
         "express": "^4.17.1",
         "jsdom": "^16.4.0",
         "jsonwebtoken": "^8.5.1",
+        "mariadb": "^2.4.2",
         "mingo": "^3.0.6",
         "mongoose": "^5.9.18",
         "morgan": "^1.10.0",
