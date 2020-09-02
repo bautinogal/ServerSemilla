@@ -1,5 +1,6 @@
 const mariadb = require('mariadb');
 const configMaria = require('./mariaDbConfig');
+const mariaDbConfig = require('./mariaDbConfig');
 
 function querySQL(query, queryValues) {
 
@@ -22,7 +23,7 @@ function querySQL(query, queryValues) {
 
 //Contabiliza todos los registros con la columna COUNTABLE en la tabla TABLE y que cumplan la condicion CONDITION (en caso de no setear condicion poner '1=1')
 const getCount = (countable, table, condition) => {
-    querySQL("SELECT COUNT("+countable+") FROM "+table +" WHERE " +condition);
+    querySQL("SELECT COUNT("+countable+") FROM "+table+" WHERE "+ condition);
 }
 
 module.exports = { querySQL, getCount };
