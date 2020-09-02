@@ -12,11 +12,16 @@ const vars = {
     queueUrl: process.env.AMQP_URI || 'amqp://localhost',
 
     mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017', //URL del Cluster de MongoDb
+    mariaDbName: process.env.MARIADB_NAME || 'semilla', //Nombre de la base de datos relacional (MySQL)
+    mariaDbHost: process.env.MARIADB_HOST || 'localhost', //URL donde se aloja la base de datos relacional 
+    mariaDbUser: process.env.MARIADB_USER || 'root',
+    mariaDbPass: process.env.MARIADB_PASS || '',
 
     usersDB: process.env.USERS_DB || 'test',
     usersCollection: process.env.USERS_COLLECTION || 'users',
     rootUser: process.env.ROOT_USER || 'root',
     rootPass: process.env.ROOT_PASS || 'secret'
+
 }
 
 module.exports = vars;

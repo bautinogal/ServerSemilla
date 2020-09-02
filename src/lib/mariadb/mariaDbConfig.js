@@ -2,10 +2,11 @@ const config = require('../../config/envVars');
 const mariadb = require('mariadb');
 
 const pool = mariadb.createPool({
-    database = config.DATABASE,
-    host = config.HOST,
-    user = config.USER,
-    password = config.PASSWORD
+    database : config.mariaDbName,
+    host : config.mariaDbHost,
+    user : config.mariaDbUser,
+    password : config.mariaDbPass,
+    rowsAsArray: true
 })
 
 const connectDatabase = () => {
