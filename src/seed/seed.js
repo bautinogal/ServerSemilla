@@ -4,6 +4,11 @@
 const { login, get, post, encrypt, decrypt, consume } = require('./lib/index');
 const path = require('path'); // Herramienta para armar los paths independientemente del S.O.
 
+//Genera los archivos públicos necesarios para andar
+const init = () => {
+
+}
+
 //Acá defino la lógica de cada endpoint
 //TODO: ver como podríamos pasar esto a REGEX
 var endpoints = {

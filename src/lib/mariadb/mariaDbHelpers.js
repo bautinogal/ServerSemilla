@@ -1,28 +1,23 @@
 const mariadb = require('mariadb');
-const configMaria = require('./mariaDbConfig'); 
+const configMaria = require('./mariaDbConfig');
 
+function querySQL(query) {
 
-
-function querySQL(queries){
-    
     configMaria.connectDatabase()
-        .then((conn)=>{
-             // CONSULTA SQL 
-             conn.query(queries)
-             .then((rows)=>{
-                 console.log(rows);
-             })
-             .then((res)=>{
-                 console.log(res);
-                 conn.end();
-             })
-             .catch(err => {
-                 console.log(err);
-                 conn.end();
-             })
+        .then((conn) => {
+            // CONSULTA SQL 
+            conn.query(query)
+                .then((rows) => {
+                    console.log(rows);
+                    conn.end();
+                })
+                .catch(err => {
+                    console.log(err);
+                    conn.end();
+                })
         })
         .catch(err => console.log(err));
-           
+
 }
 
 module.exports = { querySQL };
