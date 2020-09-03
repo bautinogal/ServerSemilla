@@ -1,4 +1,6 @@
-require('dotenv').config({ path: __dirname + '/.env' }) // Levanta las variables de entorno del archivo .env
+const path = require('path');
+// Levanta las variables de entorno del archivo .env
+require('dotenv').config({ path: path.join(__dirname, '.env') })
 
 //---------------------- Variables de Entorno --------------------------------
 const vars = {
@@ -20,7 +22,12 @@ const vars = {
     usersDB: process.env.USERS_DB || 'test',
     usersCollection: process.env.USERS_COLLECTION || 'users',
     rootUser: process.env.ROOT_USER || 'root',
-    rootPass: process.env.ROOT_PASS || 'secret'
+    rootPass: process.env.ROOT_PASS || 'secret',
+
+
+    ADNGitUser: process.env.ADN_GIT_USER || 'gitUser',
+    ADNGitRepo: process.env.ADN_GIT_REPO || 'repo',
+    ADNGitAuthToken: process.env.ADN_GIT_AUTH_TOKEN || 'token'
 
 }
 
