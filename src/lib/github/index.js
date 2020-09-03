@@ -1,3 +1,5 @@
+//Librería que usamos para descargar repos de github
+
 //TODO: ver validaciones loggin/authorizacion
 const fetch = require('node-fetch');
 const fs = require('fs');
@@ -54,26 +56,53 @@ const cloneRepo = (owner, repository, path, authToken, folder) => {
             .then(response => response.json())
             .then((json) => {
                 logDir(json);
+                //A: descargo de a uno los archivos/carpetas del directorio
+                // https://stackoverflow.com/questions/40328932/javascript-es6-promise-for-loop/40329190
+                const download = (i, length) => {
+                    return new Promise((resol, reject) => {
+                        if (json[i]['type'] != 'dir') {
+                            fetch(json[i]['download_url'])
+                                .then(res => res.buffer())
+                                .then((data) => saveFile(data, folder, json[i]['name']))
+                                .then(() => {
+                                    const next = i + 1;
+                                    if (next < length) {
+                                        download(next, length)
+                                            .then(() => resol())
+                                            .catch(err => console.log(err));
+                                    } else {
+                                        resol()
+                                    }
 
-                for (const i in json) {
-                    if (json[i]['type'] != 'dir') {
-                        fetch(json[i]['download_url'])
-                            .then(res => res.buffer())
-                            .then((data) => saveFile(data, folder, json[i]['name']))
-                            .then(res => resolve(res))
-                            .catch((err) => reject(err));
-                    } else {
-                        //Si es directorio cambia el path al directorio y obtiene los archivos.
-                        const subFolder = json[i]['name'];
-                        cloneRepo(owner,
-                            repository,
-                            path + '/' + subFolder,
-                            authToken,
-                            pathTool.join(folder, subFolder)
-                        );
-                    }
+                                })
+                                .catch((err) => reject(err));
+                        } else {
+                            //Si es directorio cambia el path al directorio y obtiene los archivos.
+                            const subFolder = json[i]['name'];
+                            cloneRepo(owner,
+                                    repository,
+                                    path + '/' + subFolder,
+                                    authToken,
+                                    pathTool.join(folder, subFolder))
+                                .then(() => {
+                                    const next = i + 1;
+                                    if (next < length) {
+                                        download(next, length)
+                                            .then(() => resol())
+                                            .catch(err => console.log(err));
+                                    } else {
+                                        resol()
+                                    }
+
+                                })
+                                .catch((err) => reject(err));
+                        }
+                    })
                 }
+
+                return download(0, json.length);
             })
+            .then(() => resolve())
             .catch((err) => {
                 reject(err);
             });

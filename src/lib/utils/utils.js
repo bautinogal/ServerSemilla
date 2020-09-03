@@ -37,6 +37,10 @@ function copy(source, deep) {
 //TODO: poder parametrizar cuantos niveles quiero copiar...
 const fillObjWithDflt = (object, dflt) => {
     var result = {};
+
+    // Si no me pasan ningun objeto devuelvo el dflt
+    if (object == null) object = {}
+
     Object.keys(dflt).forEach(key => {
         if (key in object)
             result[key] = object[key];

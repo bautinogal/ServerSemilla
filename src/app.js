@@ -29,10 +29,9 @@ const startListening = () => {
 console.log(`App: Inicializando Servidor...`);
 const app = express();
 
-
-ADNTools.getAppADN({ updateADN: true })
-    // // Inicializo la semilla (agrego public files, etc...)
-    // .then(adn => adn.setup())
+ADNTools.getADN({ updateADN: true })
+    // Inicializo la semilla (agrego public files, etc...)
+    .then(adn => adn.setup())
     // // Seteo los endpoints y el middleware correspondiente
     // .then(adn => { endpoints.setup(app, adn); return adn })
     // // Prendo workers que van a mover los mensajes de las colas a la bd
