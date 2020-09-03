@@ -22,6 +22,7 @@
         "mingo": "^3.0.6",
         "mongoose": "^5.9.18",
         "morgan": "^1.10.0",
+        "node-fetch": "^2.6.0",
         "request": "^2.88.2",
         "serve-favicon": "^2.5.0",
         "websocket": "^1.0.31"

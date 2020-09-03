@@ -1,4 +1,4 @@
-// const express = require('express'); // Librería de Node para armar servidores
+const express = require('express'); // Librería de Node para armar servidores
 // const router = express.Router(); // Herramientas para crear rutas de Express
 const path = require('path'); // Librería para unificar los path independiente del OS en el que estamos
 // const jwt = require('jsonwebtoken'); // Librería para generar webtokens
@@ -9,6 +9,8 @@ const config = require('../../config'); // Script de configuracion general
 const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerpo" de los requests
 const morgan = require('morgan'); // Herramienta para loggear
 const favicon = require('serve-favicon');
+
+const mariadb = require('../../lib/mariadb/mariaDbHelpers'); //Libreria de MariaDbHelpers
 
 
 const setup = (app, adn) => {
@@ -22,17 +24,19 @@ const setup = (app, adn) => {
 
 
     //Middleware:
+
     //"Morgan" es una herramienta para loggear
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
     console.log(`endpoints@setup: 'morgan' middleware aagregado`);
     //"bodyParser" es un middleware que me ayuda a parsear los requests
     app.use(bodyParser.urlencoded());
-    console.log(`endpoints@setup: 'bodyParser.urlencoded' middleware aagregado`);
+    console.log(`endpoints@setup: 'bodyParser.urlencoded' middleware agregado`);
     app.use(bodyParser.json());
-    console.log(`endpoints@setup: 'bodyParser.json' middleware aagregado`);
+    console.log(`endpoints@setup: 'bodyParser.json' middleware agregado`);
     // Esto lo hago para devolver el favicon.ico
     //TODO: ver q es el favicon y si es necesario esto
-    app.use(favicon(path.join(__dirname, 'public/assets/icons', 'favicon.ico')));
+    // app.use(favicon(path.join(__dirname, 'public/assets/icons', 'favicon.ico')));
+
     // Agrego una función que me devuelve la URL que me resulta cómoda
     app.use((req, res, next) => {
         req.getUrl = () => {
@@ -42,11 +46,11 @@ const setup = (app, adn) => {
         };
         return next();
     });
+
     // TODO: SEGURIDAD, VALIDACIONES, ETC...
 
-
     //Endpoint genérico:
-    app.all('/*', function(req, res) {
+    /*app.all('/*', function(req, res) {
         var params = req.params[0].split('/');
         var endpoint = seed.endpoints;
 
@@ -62,10 +66,18 @@ const setup = (app, adn) => {
             endpoint(req, res);
         else
             res.send("Endpoint inválido!");
+    });*/
+
+    app.get('/users', (req, res)=>{ 
+        mariadb.querySQL("SELECT name FROM users", (err, result)=>{
+            if (err) throw err;
+            res.end(result);
+        });   
+        //res.send("La ruta /users funciona");
     });
 };
 
-module.exports = setup;
+module.exports ={ setup };
 
 
 

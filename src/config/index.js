@@ -14,10 +14,13 @@ const vars = {
     queueUrl: process.env.AMQP_URI || 'amqp://localhost',
 
     mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017', //URL del Cluster de MongoDb
+
+    //BASE DE DATOS RELACIONAL
     mariaDbName: process.env.MARIADB_NAME || 'semilla', //Nombre de la base de datos relacional (MySQL)
-    mariaDbHost: process.env.MARIADB_HOST || 'localhost', //URL donde se aloja la base de datos relacional 
+    mariaDbHost: process.env.MARIADB_HOST || 'localhost', //URL del servidor remoto donde se aloja la base de datos relacional 
     mariaDbUser: process.env.MARIADB_USER || 'root',
     mariaDbPass: process.env.MARIADB_PASS || '',
+    mariaDbPort: process.env.MARIADB_PORT || '3306', // Puerto de la base de datos alojada en servidor remoto
 
     usersDB: process.env.USERS_DB || 'test',
     usersCollection: process.env.USERS_COLLECTION || 'users',
