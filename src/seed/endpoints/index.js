@@ -1,4 +1,4 @@
-// const express = require('express'); // Librería de Node para armar servidores
+const express = require('express'); // Librería de Node para armar servidores
 // const router = express.Router(); // Herramientas para crear rutas de Express
 const path = require('path'); // Librería para unificar los path independiente del OS en el que estamos
 // const jwt = require('jsonwebtoken'); // Librería para generar webtokens
@@ -48,7 +48,7 @@ const setup = (app, adn) => {
     //Endpoint genérico:
     app.all('/*', function(req, res) {
         var params = req.params[0].split('/');
-        var endpoint = seed.endpoints;
+        var endpoint = adn.endpoints;
 
         for (let index = 0; index < params.length; index++) {
             const key = params[index];
@@ -65,7 +65,7 @@ const setup = (app, adn) => {
     });
 };
 
-module.exports = setup;
+module.exports = { setup };
 
 
 

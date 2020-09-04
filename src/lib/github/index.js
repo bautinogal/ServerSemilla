@@ -23,7 +23,7 @@ function saveFile(data, folder, filename) {
         }
     });
 }
-
+// TODO: Te tiene que avisar que paso con el token si pudo acceder o fallo
 // TODO: Configurar para recibir una carpeta con archivos e iterar sobre los archivos
 const cloneRepo = (owner, repository, path, authToken, folder) => {
 
