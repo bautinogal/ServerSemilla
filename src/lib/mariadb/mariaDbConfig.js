@@ -1,4 +1,4 @@
-const config = require('../../config/envVars');
+const config = require('../../config/index');
 const mariadb = require('mariadb');
 
 const pool = mariadb.createPool({
@@ -6,6 +6,7 @@ const pool = mariadb.createPool({
     host : config.mariaDbHost,
     user : config.mariaDbUser,
     password : config.mariaDbPass,
+    port: config.mariaDbPort,
     rowsAsArray: true
 })
 
