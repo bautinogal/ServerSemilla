@@ -3,7 +3,9 @@ const configMaria = require('./mariaDbConfig');
 const mariaDbConfig = require('./mariaDbConfig');
 
 function querySQL(query, queryValues) {
-
+/*  La funcion recibe como parámetros una sentencia SQL en query, en queryValues recibe un arreglo de valores 
+    en orden secuencial. Los valores pasados en queryValues son debidamente escapados y sanitizados para realizar 
+    una consulta prevenida de SQLi. */
     configMaria.connectDatabase()
         .then((conn) => {
             // CONSULTA SQL 
