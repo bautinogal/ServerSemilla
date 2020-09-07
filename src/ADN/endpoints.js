@@ -1,28 +1,12 @@
-//---------------------- Parámetros "Semilla" ----------------------------------
-//Acá encontramos y configuramos todas las reglas de negocio de cada app en particular
-//lo vamos a usar como parámetros de entrada para la app semilla
-const { login, get, post, encrypt, decrypt, consume } = require('./lib/index');
-const path = require('path'); // Herramienta para armar los paths independientemente del S.O.
+const views = require('./views');
 
-//Genera los archivos públicos necesarios para andar
-const init = () => {
-
-}
-
-//Acá defino la lógica de cada endpoint
-//TODO: ver como podríamos pasar esto a REGEX
-var endpoints = {
+const endpoints = {
     "dashboard": (req, res) => {
-        var path = views.dashboard()
+        views.dashboard() // Crea un .html y me devuelve el path
             .then(view => {
                 res.send(view);
             })
-            .catch(err => console.log(err)); // Crea un .html y me devuelve el path
-    },
-    "table": {
-        "1": (req, res) => {
-            res.send("table1");
-        }
+            .catch(err => console.log(err));
     },
     "api": {
         "login": (req, res) => {
@@ -128,51 +112,4 @@ var endpoints = {
     }
 };
 
-var views = {
-    dashboard: () => {
-        return new Promise((resolve, reject) => {
-            try {
-                const data = {
-
-                };
-                let dashboard = require('./views/dashboard/dashboard');
-                result = dashboard.create(data)
-                    .then(res => resolve(res));
-            } catch (error) {
-                reject(error);
-            }
-        })
-    }
-};
-
-var workers = {
-    postUsersQueue2DB: () => {
-        const queueName = 'POST/' + config.usersDB + '/' + config.usersCollection;
-        consume(queueName, (document) => {
-            console.log(`Worker@consume: ${JSON.stringify(document)} to ${queueName}`);
-            post(config.usersDB, config.usersCollection, document)
-                .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} saved in ${queueName}`))
-                .catch(err => console.log(`Routes@queueToDb error: ${err}`));
-        });
-    },
-    deleteUsersQueue2DB: () => {
-        const queueName = 'DELETE/' + config.usersDB + '/' + config.usersCollection;
-        queue.receive(queueName, (query) => {
-            console.log(`Worker@consume: ${JSON.stringify(query)} to ${queueName}`);
-            mongoDbHelper.deleteMany(config.usersDB, config.usersCollection, query, queryOptions)
-                .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} deleted from ${queueName}`))
-                .catch(err => console.log(`Routes@queueToDb error: ${err}`));
-        });
-    },
-    postINTIQueue2DB: () => {
-        const queueName = 'POST/Masterbus-IOT/INTI';
-        consume(queueName, (document) => {
-            console.log(`Worker@consume: ${JSON.stringify(document)} to ${queueName}`);
-            save(config.usersDB, config.usersCollection, document)
-                .then(res => console.log(`Routes@queueToDb ${JSON.stringify(document)} saved in ${queueName}`))
-                .catch(err => console.log(`Routes@queueToDb error: ${err}`));
-        });
-    }
-};
-
-module.exports = { endpoints, workers, views };
+module.exports = endpoints;

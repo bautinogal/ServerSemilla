@@ -1,13 +1,39 @@
 const config = require('../../config');
 const path = require('path');
-const utils = require('../../lib/utils/utils');
+const utils = require('../../lib/utils');
 const github = require('../../lib/github');
-const fs = require('fs');
 
 // Valores dflt que va a tomar el parametro de "getAppADN"
 const dftlOptions = {
     updateADN: false,
     eraseOldADN: false //TODO: HACER QUE ESTO FUNCIONA
+}
+
+// Cargo el modulo ADN desde la carpeta donde se decargó
+const loadModule = (ADNAbsFolder) => {
+    return new Promise((resolve, reject) => {
+        try {
+            console.log("ADNTools@loadModule: loading ADN from: " + ADNAbsFolder);
+            const ADN = require(ADNAbsFolder);
+            console.table(ADN);
+            resolve(ADN);
+        } catch (err) {
+            reject(err)
+        }
+    });
+}
+
+// Descargo un nuevo ADN desde github
+const downloadADN = () => {
+    return new Promise((resolve, reject) => {
+        const user = config.ADNGitUser;
+        const repo = config.ADNGitRepo;
+        const token = config.ADNGitAuthToken;
+        console.log("ADNTools@downloadADN: downloading 'ADN' from github repo: " + user + "/" + repo);
+        github.cloneRepo(user, repo, "", token, ADNAbsFolder)
+            .then((res) => resolve(res))
+            .catch(err => reject(err));
+    });
 }
 
 // Me devuelve el "ADN" de la App con todas las reglas de negocios e información para su creación
@@ -19,24 +45,14 @@ const getADN = (options) => {
 
     return new Promise((resolve, reject) => {
         if (options.updateADN) {
-            const user = config.ADNGitUser;
-            const repo = config.ADNGitRepo;
-            const token = config.ADNGitAuthToken;
-            console.log("ADNTools@getAppADN: trying to download 'ADN' from git: " + user + "/" + repo);
-            github.cloneRepo(user, repo, "", token, ADNAbsFolder)
-                .then((res) => {
-                    console.log("ADNTools@getAppADN: 'ADN' downloaded from git: " + user + "/" + repo);
-                    const ADN = require(ADNAbsFolder);
-                    resolve(ADN);
-                })
+            downloadADN()
+                .then(loadModule(ADNAbsFolder))
+                .then(res => resolve(res))
                 .catch(err => reject(err));
         } else {
-            try {
-                const ADN = require(ADNAbsFolder);
-                resolve(ADN);
-            } catch (err) {
-                reject(err)
-            }
+            loadModule(ADNAbsFolder)
+                .then(res => resolve(res))
+                .catch(err => reject(err));
         }
     });
 }

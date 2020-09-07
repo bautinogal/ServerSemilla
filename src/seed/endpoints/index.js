@@ -10,17 +10,21 @@ const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerp
 const morgan = require('morgan'); // Herramienta para loggear
 const favicon = require('serve-favicon');
 
-
-const setup = (app, adn) => {
-
-    //Configuración básica:
+//Seteo el puerto del servidor
+const setPort = (app, adn) => {
     app.set('port', config.port || 3000);
     console.log(`endpoints@setup: Puerto del servidor seteado en: ${app.get('port')}`);
+}
+
+//Marco la carpeta que voy a compartir con el frontend
+const setPublicFolder = (app, adn) => {
     const publicFolderPath = path.join(__dirname, 'public');
     app.use('/public', express.static(publicFolderPath));
     console.log(`endpoints@setup: Carpeta publica ${publicFolderPath} en: /public`);
+}
 
-
+//Agrego todos los middlewares
+const setMiddleWare = (app, adn) => {
     //Middleware:
     //"Morgan" es una herramienta para loggear
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
@@ -32,29 +36,33 @@ const setup = (app, adn) => {
     console.log(`endpoints@setup: 'bodyParser.json' middleware aagregado`);
     // Esto lo hago para devolver el favicon.ico
     //TODO: ver q es el favicon y si es necesario esto
-    app.use(favicon(path.join(__dirname, 'public/assets/icons', 'favicon.ico')));
+    app.use(favicon(path.join(__dirname, '../../public/assets/icons', 'favicon.ico')));
     // Agrego una función que me devuelve la URL que me resulta cómoda
     app.use((req, res, next) => {
         req.getUrl = () => {
             const url = req.protocol + "://" + req.get('host') + req.originalUrl;
-            console.log("app.getUrl: %s", url);
+            console.log("Req URL: %s", url);
             return url;
         };
+        req.getUrl();
         return next();
     });
     // TODO: SEGURIDAD, VALIDACIONES, ETC...
+}
 
-
-    //Endpoint genérico:
+//Creo los endpoints a partid de la info que levanto del "ADN"
+const setEndpoints = (app, adn) => {
     app.all('/*', function(req, res) {
         var params = req.params[0].split('/');
         var endpoint = adn.endpoints;
 
+        //Recorro el objeto "endpoint" con los parametros del request
         for (let index = 0; index < params.length; index++) {
             const key = params[index];
-            if (key in endpoint)
+            if (key in endpoint) {
+                console.log("key");
                 endpoint = endpoint[key];
-            else
+            } else
                 break;
         }
 
@@ -62,6 +70,25 @@ const setup = (app, adn) => {
             endpoint(req, res);
         else
             res.send("Endpoint inválido!");
+    });
+}
+
+//Configuro el servidor y endpoints
+const setup = (app, adn) => {
+    console.log(`endpoints@setup: starting!`);
+    console.table(adn.endpoints);
+    return new Promise((resolve, reject) => {
+        try {
+            setPort(app, adn);
+            setPublicFolder(app, adn);
+            setMiddleWare(app, adn);
+            setEndpoints(app, adn);
+
+            resolve(adn);
+
+        } catch (error) {
+            reject(error);
+        }
     });
 };
 

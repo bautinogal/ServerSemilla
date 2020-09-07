@@ -1,53 +1,58 @@
 //Script que oculta el manejo de las bases de datos...
 //TODO: Persistir todo en un base relacional a largo plazo
-const {get, getCount, deleteMany } = require('../lib/mongodb/mongoDbHelpers');
-const queue = require('../lib/queue');
-const config = require('../config/envVars');
-const crypto = require('./encryptation');
-const utils = require('./utils');
+// const {get, getCount, deleteMany } = require('../lib/mongodb/mongoDbHelpers');
+const queue = require('../queues');
+const mongoDb = require('../lib/mongodb/mongoDbHelpers');
+const config = require('../../config');
+const crypto = require('../../lib/encryptation');
+const utils = require('../../lib/utils');
 
-//TODO: DEBERÍA DEVOLVERME OTRA PROMESA QUE SE CUMPLA UNA VEZ QUE SE GUARDA EN LA BD NO EN LA COLA
-const post = (db, collection, message) => {
-    return new Promise((resolve, reject) => {
-        try {
-            console.log(`Repo@post/${db}/${collection} message: ${JSON.stringify(message)}`);
-            queue.send('POST', db, collection, message);
-            resolve(message);
-        } catch (err) {
-            reject(err)
-        }
-    });
-};
+// //TODO: DEBERÍA DEVOLVERME OTRA PROMESA QUE SE CUMPLA UNA VEZ QUE SE GUARDA EN LA BD NO EN LA COLA
+// const post = (db, collection, message) => {
+//     return new Promise((resolve, reject) => {
+//         try {
+//             console.log(`Repo@post/${db}/${collection} message: ${JSON.stringify(message)}`);
+//             queue.send('POST', db, collection, message);
+//             resolve(message);
+//         } catch (err) {
+//             reject(err)
+//         }
+//     });
+// };
 
-// Si el usuario y la constraseña son correctas, devuelve toda la info del usuario menos el pass
-const getUserData = (user, pass) => {
-    return new Promise((resolve, reject) => {
-        get(config.usersDB, config.usersCollection, { user: user }, {})
-            .then((users) => {
-                const elementsCount = users.length;
-                if (elementsCount == 0) {
-                    reject('Error: Not user found for: ' + user);
-                } else if (elementsCount > 1) {
-                    reject('Error: More than one user found for: ' + user + ", user.user must be a unique identifier!");
-                } else {
-                    crypto.compare(pass, users[0].pass)
-                        .then((res) => {
-                            if (res) {
-                                delete users[0].pass;
-                                console.log("getUserData %s", users[0]);
-                                resolve(users[0]);
-                            } else {
-                                reject('Error: Does not match password for: ' + user);
-                            }
-                        })
-                        .catch((err) => reject(err));
-                }
-            })
-            .catch((err) => {
-                reject(err);
-            });
-    });
-};
+// // Si el usuario y la constraseña son correctas, devuelve toda la info del usuario menos el pass
+// const getUserData = (user, pass) => {
+//     return new Promise((resolve, reject) => {
+//         get(config.usersDB, config.usersCollection, { user: user }, {})
+//             .then((users) => {
+//                 const elementsCount = users.length;
+//                 if (elementsCount == 0) {
+//                     reject('Error: Not user found for: ' + user);
+//                 } else if (elementsCount > 1) {
+//                     reject('Error: More than one user found for: ' + user + ", user.user must be a unique identifier!");
+//                 } else {
+//                     crypto.compare(pass, users[0].pass)
+//                         .then((res) => {
+//                             if (res) {
+//                                 delete users[0].pass;
+//                                 console.log("getUserData %s", users[0]);
+//                                 resolve(users[0]);
+//                             } else {
+//                                 reject('Error: Does not match password for: ' + user);
+//                             }
+//                         })
+//                         .catch((err) => reject(err));
+//                 }
+//             })
+//             .catch((err) => {
+//                 reject(err);
+//             });
+//     });
+// };
+
+var a;
+// Me devuelve un token si el usuario y pass son correctos
+const login = (user, pass) => {};
 
 //Funcion que crea usuario 'root'
 const createRootUser = () => {
@@ -70,6 +75,31 @@ const createRootUser = () => {
                 reject(err);
             });
     });
+};
+msg = {
+    msg: { user: "usuario1", action: "accion3" },
+    db: {
+        type: "mongodb",
+        name: "users/actions"
+    },
+    query: {
+
+    }
+
 }
 
-module.exports = { post, get, getCount, getUserData, createRootUser, deleteMany };
+const consume = (msg) => {
+
+}
+
+// Inicializo el repositorio del proyecto
+const setup = (ADN) => {
+    return new Promise((resolve, reject) => {
+        createRootUser()
+            .then(resolve(ADN))
+            .catch(err => reject(err));
+    });
+};
+
+// module.exports = { setup, post, get, getCount, getUserData, createRootUser, deleteMany };
+module.exports = { setup, createRootUser, login, enqueue };

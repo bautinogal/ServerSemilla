@@ -1,43 +1,46 @@
-//const {login, get, post, encrypt, decrypt, consume } = require('./lib/index');
-//const mongodb = require('../../lib/mongodb/mongoDbHelpers');
-const repo = require('../../lib/repo');
+const repo = require('../../seed/repo');
 const crypto = require('../../lib/encryptation');
-const config = require('../../config/envVars')
+// const config = require('../../config/envVars');
+const seedUtils = require('../../lib/utils');
+const repo = require('../../seed/repo');
 
-const login = (user, pass) => {
-    return new Promise((resolve, reject) => {
-        try {
-            get(config.usersDB + "/" + config.usersCollection, { 'user': user }, {})
-                .then((users) => {
-                    const elementsCount = users.length;
-                    if (elementsCount == 0) {
-                        reject('Error: Not user found for: ' + user);
-                    } else if (elementsCount > 1) {
-                        reject('Error: More than one user found for: ' + user + ", user.user must be a unique identifier!");
-                    } else {
-                        crypto.compare(pass, users[0].pass)
-                            .then((res) => {
-                                if (res) {
-                                    delete users[0].pass;
-                                    console.log("getUserData %s", users[0]);
-                                    resolve(users[0]);
-                                } else {
-                                    reject('Error: Does not match password for: ' + user);
-                                }
-                            })
-                            .catch((err) => reject(err));
-                    }
-                })
-                .catch((err) => {
-                    reject(err);
-                });
+const login = repo.login;
 
-        } catch (error) {
-            reject(error);
-        }
-    })
+//const login = (user, pass) => {
+//     return new Promise((resolve, reject) => {
 
-}
+// try {
+//     get(config.usersDB + "/" + config.usersCollection, { 'user': user }, {})
+//         .then((users) => {
+//             const elementsCount = users.length;
+//             if (elementsCount == 0) {
+//                 reject('Error: Not user found for: ' + user);
+//             } else if (elementsCount > 1) {
+//                 reject('Error: More than one user found for: ' + user + ", user.user must be a unique identifier!");
+//             } else {
+//                 crypto.compare(pass, users[0].pass)
+//                     .then((res) => {
+//                         if (res) {
+//                             delete users[0].pass;
+//                             console.log("getUserData %s", users[0]);
+//                             resolve(users[0]);
+//                         } else {
+//                             reject('Error: Does not match password for: ' + user);
+//                         }
+//                     })
+//                     .catch((err) => reject(err));
+//             }
+//         })
+//         .catch((err) => {
+//             reject(err);
+//         });
+
+// } catch (error) {
+//     reject(error);
+// }
+//     })
+
+// };
 
 const get = (route, query, queryOptions) => {
 
@@ -59,7 +62,7 @@ const get = (route, query, queryOptions) => {
         }
 
     });
-}
+};
 
 const post = (route, body) => {
 
@@ -81,7 +84,7 @@ const post = (route, body) => {
             reject(error)
         }
     });
-}
+};
 
 const encrypt = (pass) => {
     return new Promise((resolve, reject) => {
@@ -95,7 +98,7 @@ const encrypt = (pass) => {
             });
     });
 
-}
+};
 
 const decrypt = (token) => {
     return new Promise((resolve, reject) => {
@@ -110,10 +113,10 @@ const decrypt = (token) => {
     })
 
 
-}
+};
 
-const consume = () => {
+const consume = () => {};
 
-}
+const copyFile = seedUtils.copyFile;
 
-module.exports = { login, get, post, encrypt, decrypt, consume };
+module.exports = { login, get, post, encrypt, decrypt, consume, copyFile };
