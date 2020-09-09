@@ -3,7 +3,6 @@
 // const mongoDbHelper = require('../lib/mongodb/mongoDbHelpers');
 // const config = require('../config/envVars');
 
-
 //los workers comienzan a escuchar a las colas
 const setup = (ADN) => {
     return new Promise((resolve, reject) => {

@@ -30,7 +30,7 @@ const push = (queue, message) => {
 
         channel()
             .then(channel => {
-                await channel.assertQueue(queue, { durable: false });
+                channel.assertQueue(queue, { durable: false });
                 console.log('Queue@send: Queue asserted: queue "%s".', queue);
                 channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));
                 console.log('Queue@send: Message enqued in "%s". Message: %s ', queue, message);
@@ -57,4 +57,11 @@ const consume = (queue, handler) => {
     });
 };
 
-module.exports = { push, consume };
+const setup = (app, adn) => {
+    return new Promise((resolve, reject) => {
+        console.log('Queue@setup: Setup!');
+        resolve(adn);
+    });
+};
+
+module.exports = { push, consume, setup };

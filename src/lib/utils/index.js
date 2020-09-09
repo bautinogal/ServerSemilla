@@ -1,3 +1,6 @@
+const mkdirp = require('mkdirp');
+const fs = require('fs');
+
 function objFilter(obj, filters) { //U:recibe los filters para limpiar el obj pasado como parametro
     let newObj = {};
     for (let key in obj) {
@@ -50,18 +53,24 @@ const fillObjWithDflt = (object, dflt) => {
     return result;
 }
 
-function copyFile(source, target) {
-    var rd = fs.createReadStream(source);
-    var wr = fs.createWriteStream(target);
-    return new Promise(function(resolve, reject) {
-        rd.on('error', reject);
-        wr.on('error', reject);
-        wr.on('finish', resolve);
-        rd.pipe(wr);
-    }).catch(function(error) {
-        rd.destroy();
-        wr.end();
-        throw error;
+const copyFile = (source, target) => {
+    return new Promise((resolve, reject) => {
+        console.log("utils@copyFile: from %s to %s", source, target);
+        //Si no existe la carpeta creo una nueva...
+        var path = target;
+        path = target.split('/');
+        path.pop();
+        path = path.join();
+        mkdirp(path, function(err) {
+            if (err) reject(err);
+            var rd = fs.createReadStream(source);
+            var wr = fs.createWriteStream(target);
+            // path exists unless there was an error
+            rd.on('error', reject);
+            wr.on('error', reject);
+            wr.on('finish', resolve);
+            rd.pipe(wr);
+        });
     });
 }
 

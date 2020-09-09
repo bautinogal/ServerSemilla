@@ -1,8 +1,9 @@
 //Script que oculta el manejo de las bases de datos...
 //TODO: Persistir todo en un base relacional a largo plazo
 // const {get, getCount, deleteMany } = require('../lib/mongodb/mongoDbHelpers');
-const queue = require('../queues');
-const mongoDb = require('../lib/mongodb/mongoDbHelpers');
+// const queue = require('../queues');
+const mongoDb = require('../../lib/mongodb');
+const mariaDb = require('../../lib/mariadb');
 const config = require('../../config');
 const crypto = require('../../lib/encryptation');
 const utils = require('../../lib/utils');
@@ -50,7 +51,35 @@ const utils = require('../../lib/utils');
 //     });
 // };
 
-var a;
+// msg = {
+//     content: {
+
+//     },
+//     type: "mongodb",
+//     method: "GET",
+//     query: {},
+//     path: "users/actions",
+//     ts: "141233",
+//     from: {
+//         url: "",
+//         user: "",
+//     }
+// }
+
+const consume = (msg) => {
+    switch (msg.type) {
+        case "mongo":
+            mongoDb(msg);
+            break;
+        case "maria":
+            mariaDb(msg);
+            break;
+        default:
+            console.error("repo@consume: Incorrect msg type: %s", msg.type);
+            break;
+    }
+};
+
 // Me devuelve un token si el usuario y pass son correctos
 const login = (user, pass) => {};
 
@@ -76,21 +105,6 @@ const createRootUser = () => {
             });
     });
 };
-msg = {
-    msg: { user: "usuario1", action: "accion3" },
-    db: {
-        type: "mongodb",
-        name: "users/actions"
-    },
-    query: {
-
-    }
-
-}
-
-const consume = (msg) => {
-
-}
 
 // Inicializo el repositorio del proyecto
 const setup = (ADN) => {
@@ -102,4 +116,4 @@ const setup = (ADN) => {
 };
 
 // module.exports = { setup, post, get, getCount, getUserData, createRootUser, deleteMany };
-module.exports = { setup, createRootUser, login, enqueue };
+module.exports = { setup, createRootUser, login };

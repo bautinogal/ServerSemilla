@@ -18,12 +18,12 @@ function querySQL(query, queryValues) {
                 })
         })
         .catch(err => console.log(err));
-
 }
 
+//TODO: necesitamos esta función acá? Porque con la anterior también le podemos pasar un query que devuelva la cantidad (a diferencia de mongo que los querys solo devuelven listas)
 //Contabiliza todos los registros con la columna COUNTABLE en la tabla TABLE y que cumplan la condicion CONDITION (en caso de no setear condicion poner '1=1')
 const getCount = (countable, table, condition) => {
-    querySQL("SELECT COUNT("+countable+") FROM "+table+" WHERE "+ condition);
+    querySQL("SELECT COUNT(" + countable + ") FROM " + table + " WHERE " + condition);
 }
 
 module.exports = { querySQL, getCount };

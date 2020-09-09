@@ -10,20 +10,11 @@ const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerp
 const morgan = require('morgan'); // Herramienta para loggear
 const favicon = require('serve-favicon');
 
-<<<<<<< HEAD
 //Seteo el puerto del servidor
 const setPort = (app, adn) => {
-=======
-const mariadb = require('../../lib/mariadb/mariaDbHelpers'); //Libreria de MariaDbHelpers
-
-
-const setup = (app, adn) => {
-
-    //Configuración básica:
->>>>>>> e2e721b34999b25c9a5b52c9935c26f579470d5d
     app.set('port', config.port || 3000);
     console.log(`endpoints@setup: Puerto del servidor seteado en: ${app.get('port')}`);
-}
+};
 
 //Marco la carpeta que voy a compartir con el frontend
 const setPublicFolder = (app, adn) => {
@@ -46,12 +37,8 @@ const setMiddleWare = (app, adn) => {
     console.log(`endpoints@setup: 'bodyParser.json' middleware agregado`);
     // Esto lo hago para devolver el favicon.ico
     //TODO: ver q es el favicon y si es necesario esto
-<<<<<<< HEAD
     app.use(favicon(path.join(__dirname, '../../public/assets/icons', 'favicon.ico')));
-=======
-    // app.use(favicon(path.join(__dirname, 'public/assets/icons', 'favicon.ico')));
 
->>>>>>> e2e721b34999b25c9a5b52c9935c26f579470d5d
     // Agrego una función que me devuelve la URL que me resulta cómoda
     app.use((req, res, next) => {
         req.getUrl = () => {
@@ -62,20 +49,15 @@ const setMiddleWare = (app, adn) => {
         req.getUrl();
         return next();
     });
-<<<<<<< HEAD
     // TODO: SEGURIDAD, VALIDACIONES, ETC...
 }
 
 //Creo los endpoints a partid de la info que levanto del "ADN"
 const setEndpoints = (app, adn) => {
-    app.all('/*', function(req, res) {
-=======
-
     // TODO: SEGURIDAD, VALIDACIONES, ETC...
-
     //Endpoint genérico:
-    /*app.all('/*', function(req, res) {
->>>>>>> e2e721b34999b25c9a5b52c9935c26f579470d5d
+    app.all('/*', function(req, res) {
+
         var params = req.params[0].split('/');
         var endpoint = adn.endpoints;
 
@@ -93,16 +75,16 @@ const setEndpoints = (app, adn) => {
             endpoint(req, res);
         else
             res.send("Endpoint inválido!");
-    });*/
-
-    app.get('/users', (req, res)=>{ 
-        mariadb.querySQL("SELECT name FROM users", (err, result)=>{
-            if (err) throw err;
-            res.end(result);
-        });   
-        //res.send("La ruta /users funciona");
     });
 }
+
+// app.get('/users', (req, res) => {
+//     mariadb.querySQL("SELECT name FROM users", (err, result) => {
+//         if (err) throw err;
+//         res.end(result);
+//     });
+//     //res.send("La ruta /users funciona");
+// });
 
 //Configuro el servidor y endpoints
 const setup = (app, adn) => {
@@ -123,11 +105,8 @@ const setup = (app, adn) => {
     });
 };
 
-<<<<<<< HEAD
 module.exports = { setup };
-=======
-module.exports ={ setup };
->>>>>>> e2e721b34999b25c9a5b52c9935c26f579470d5d
+
 
 
 

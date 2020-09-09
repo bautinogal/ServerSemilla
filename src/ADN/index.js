@@ -1,12 +1,14 @@
 const repo = require('./repo');
 const endpoints = require('./endpoints');
 const workers = require('./workers');
-const { copyFile } = require('./lib');
+const { copyFile, copyFolderContent } = require('./lib');
 
 // Copio los archivos que necesita el front end a la carpeta public
 const copyPublicFiles = (files) => {
     return new Promise((resolve, reject) => {
-        resolve();
+        copyFolderContent("public", "../public", { deleteExistingContent: false })
+            .then(resolve())
+            .catch(err => reject(err));
     })
 };
 
@@ -14,7 +16,7 @@ const copyPublicFiles = (files) => {
 const setup = () => {
     console.log(`adn@setup: starting!`);
     return new Promise((resolve, reject) => {
-        copyPublicFiles(publicFiles)
+        copyPublicFiles()
             .then(() => {
                 console.log(`adn@setup: complete!`);
                 resolve(module.exports);

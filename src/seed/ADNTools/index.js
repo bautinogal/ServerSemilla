@@ -6,7 +6,7 @@ const github = require('../../lib/github');
 // Valores dflt que va a tomar el parametro de "getAppADN"
 const dftlOptions = {
     updateADN: false,
-    eraseOldADN: false //TODO: HACER QUE ESTO FUNCIONA
+    eraseOldADN: false //TODO: HACER QUE ESTO FUNCIONE
 }
 
 // Cargo el modulo ADN desde la carpeta donde se decargó

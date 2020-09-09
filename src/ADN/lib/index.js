@@ -2,7 +2,6 @@ const repo = require('../../seed/repo');
 const crypto = require('../../lib/encryptation');
 // const config = require('../../config/envVars');
 const seedUtils = require('../../lib/utils');
-const repo = require('../../seed/repo');
 
 const login = repo.login;
 
@@ -119,4 +118,8 @@ const consume = () => {};
 
 const copyFile = seedUtils.copyFile;
 
-module.exports = { login, get, post, encrypt, decrypt, consume, copyFile };
+const copyFolderContent = (from, to, options) => {
+
+}
+
+module.exports = { login, get, post, encrypt, decrypt, consume, copyFile, copyFolderContent };
