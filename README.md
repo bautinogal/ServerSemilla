@@ -22,16 +22,21 @@ Windows 10:
 (server inicia los brokers como una aplicación / service los inicia como servicio) Tener en cuenta que se ejecuta una de las opciones, no  ambas, para este ejemplo se utilizo rabbitmq-server.bat
 
 * DUDAS:
+ - Como armo un sistema de colas robusta con manejo de errores.
+ - Debería cambiar rabbitmq por kafka?
+ - Websockets vs long-polling vs server-events
  - Esta bien agregarle la metadata (tiempo, url, etc..) a cada post?
  - Como manejo la capa para llamar a las bds, los separo en sql y nosql?
  - Como hago el manejo si quiero tener varias db con mongo por ejemplo?
  - Un cluster de MongoDb para cada cliente?
  - el front end tiene q conocer la estructura del back?
  - my_secret_key: variable de entorno, esta bien?
+ - variables de entorno o variables en ADN?
  - Como logeaer bien
 
 
 *Roadmap:
+ - Agregar manejo de reconexiones y "monitoring" de rabbitmq
  - Agregar bd sql (mariadb)
  - Manejar desconexión de las colas
  - Encriptar passwords
