@@ -89,7 +89,7 @@ const setEndpoints = (app, adn) => {
 //Configuro el servidor y endpoints
 const setup = (app, adn) => {
     console.log(`endpoints@setup: starting!`);
-    console.table(adn.endpoints);
+    //console.table(adn.endpoints);
     return new Promise((resolve, reject) => {
         try {
             setPort(app, adn);

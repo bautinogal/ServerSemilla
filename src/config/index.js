@@ -1,37 +1,43 @@
-const path = require('path');
 // Levanta las variables de entorno del archivo .env
-require('dotenv').config({ path: path.join(__dirname, '.env') })
+require('dotenv').config({ path: require('path').join(__dirname, '.env') })
 
 //---------------------- Variables de Entorno --------------------------------
-const vars = {
+let vars = {
+    //General
     env: process.env.NODE_ENV || 'development',
     port: process.env.PORT || 3000,
 
-    jwtSecret: process.env.JWT_SECRET || "YOUR_secret_key", // key privada que uso para hashear passwords
-    jwtDfltExpires: process.env.JWT_DURATION || 3600, // Cuanto duran los tokens por dflt en segundos
-    saltWorkFactor: process.env.SALT_WORK_FACTOR || 10, //A: las vueltas que usa bcrypt para encriptar las password
+    //ADN
+    ADNGitUser: process.env.ADN_GIT_USER || 'adn', // <ADN-GIT-USER>
+    ADNGitRepo: process.env.ADN_GIT_REPO || 'repo', // <ADN-GIT-USER-REPO>
+    ADNGitAuthToken: process.env.ADN_GIT_AUTH_TOKEN || 'token', // <AUTH-TOKEN>
 
-    queueUrl: process.env.AMQP_URI || 'amqp://localhost',
-
-    mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017', //URL del Cluster de MongoDb
-
-    //BASE DE DATOS RELACIONAL
-    mariaDbName: process.env.MARIADB_NAME || 'semilla', //Nombre de la base de datos relacional (MySQL)
-    mariaDbHost: process.env.MARIADB_HOST || 'localhost', //URL del servidor remoto donde se aloja la base de datos relacional 
-    mariaDbUser: process.env.MARIADB_USER || 'root',
-    mariaDbPass: process.env.MARIADB_PASS || '',
-    mariaDbPort: process.env.MARIADB_PORT || '3306', // Puerto de la base de datos alojada en servidor remoto
-
+    //Usuarios
     usersDB: process.env.USERS_DB || 'test',
     usersCollection: process.env.USERS_COLLECTION || 'users',
     rootUser: process.env.ROOT_USER || 'root',
     rootPass: process.env.ROOT_PASS || 'secret',
 
+    //Encryptacion JWT
+    jwtSecret: process.env.JWT_SECRET || "YOUR_secret_key", // key privada que uso para hashear passwords
+    jwtDfltExpires: process.env.JWT_DURATION || 3600, // Cuanto duran los tokens por dflt en segundos
+    saltWorkFactor: process.env.SALT_WORK_FACTOR || 10, //A: las vueltas que usa bcrypt para encriptar las password
 
-    ADNGitUser: process.env.ADN_GIT_USER || 'gitUser',
-    ADNGitRepo: process.env.ADN_GIT_REPO || 'repo',
-    ADNGitAuthToken: process.env.ADN_GIT_AUTH_TOKEN || 'token'
+    //Cola AMQP
+    queueUrl: process.env.AMQP_URI || 'amqp://localhost', //URL de la cola AMQP
 
+    //MongoDB
+    mongoUri: process.env.MONGODB_URI || 'mongodb://localhost:27017', //URL del Cluster de MongoDb
+    // mongoUri: process.env.MONGODB_PUBLIC_KEY || 'CXSIZTBG', // Clave pública del Cluster de MongoDb
+    // mongoUri: process.env.MONGODB_PRIVATE_KEY || 'b25b1b51-72dd-4da3-9aea-c64f12437e966', // Clave privada del 
+
+    //TODO: ver si usamos user/pass o ssh
+    //MariaDB
+    mariaDbName: process.env.MARIADB_NAME || 'semilla', //Nombre de la base de datos relacional (MySQL)
+    mariaDbHost: process.env.MARIADB_HOST || 'localhost', //URL del servidor remoto donde se aloja la base de datos relacional 
+    mariaDbUser: process.env.MARIADB_USER || 'root',
+    mariaDbPass: process.env.MARIADB_PASS || '',
+    mariaDbPort: process.env.MARIADB_PORT || '3306', // Puerto de la base de datos alojada en servidor remoto
 }
 
 module.exports = vars;
