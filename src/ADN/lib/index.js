@@ -1,123 +1,102 @@
 const repo = require('../../seedLib/repo');
+const queue = require('../../seedLib/queues');
 const crypto = require('../../lib/encryptation');
-// const config = require('../../config/envVars');
 const seedUtils = require('../../lib/utils');
+const mingo = require('mingo');
 
-const login = repo.login;
+const cmd = repo.cmd;
+const cmds = repo.cmds;
 
-//const login = (user, pass) => {
-//     return new Promise((resolve, reject) => {
+const enqueue = queue.push;
 
-// try {
-//     get(config.usersDB + "/" + config.usersCollection, { 'user': user }, {})
-//         .then((users) => {
-//             const elementsCount = users.length;
-//             if (elementsCount == 0) {
-//                 reject('Error: Not user found for: ' + user);
-//             } else if (elementsCount > 1) {
-//                 reject('Error: More than one user found for: ' + user + ", user.user must be a unique identifier!");
-//             } else {
-//                 crypto.compare(pass, users[0].pass)
-//                     .then((res) => {
-//                         if (res) {
-//                             delete users[0].pass;
-//                             console.log("getUserData %s", users[0]);
-//                             resolve(users[0]);
-//                         } else {
-//                             reject('Error: Does not match password for: ' + user);
-//                         }
-//                     })
-//                     .catch((err) => reject(err));
-//             }
-//         })
-//         .catch((err) => {
-//             reject(err);
-//         });
+const encrypt = crypto.encrypt;
+const compareEncrypted = crypto.compareEncrypted;
+const createJWT = crypto.createJWT;
+const decodeJWT = crypto.decodeJWT;
 
-// } catch (error) {
-//     reject(error);
-// }
-//     })
 
-// };
+const login = (user, pass) => {
+    var findUserCmd = {
+        type: "mongo",
+        method: "GET",
+        db: repo.users.db,
+        collection: repo.users.col,
+        query: { user: user }
+    };
 
-const get = (route, query, queryOptions) => {
-
-    return new Promise((resolve, reject) => {
-        try {
-            const routeElements = route.split('/');
-            const database = routeElements[0];
-            const collection = routeElements[1];
-
-            repo.get(database, collection, query, queryOptions)
-                .then((results) => {
-                    resolve(results);
-                })
-                .catch((error) => {
-                    reject(error);
-                });
-        } catch (error) {
-            reject(error);
-        }
-
+    return new Promise((res, rej) => {
+        var result = {};
+        cmd(findUserCmd)
+            .then(founds => {
+                if (!founds) rej("lib@login: Error looking for user %s in db!", user);
+                else if (founds.length == 0) rej("lib@login: No user found with: %s!", user);
+                else if (founds.length > 1) rej("lib@login: More than one user found with: %s", user);
+                else {
+                    result = founds[0];
+                    return compareEncrypted(pass, result.pass);
+                }
+            })
+            .then(correct => {
+                if (correct) {
+                    delete result.pass;
+                    return createJWT(result);
+                } else
+                    rej("lib@login: Incorrect Password!");
+            })
+            .then(JWT => res(JWT))
+            .catch(err => rej(err));
     });
 };
 
-const post = (route, body) => {
+const createUser = (data) => {
+    var createUserCmd = {
+        type: "mongo",
+        method: "POST",
+        db: repo.users.db,
+        collection: repo.users.col,
+        content: data
+    };
 
-    return new Promise((resolve, reject) => {
-
-        try {
-            const routeElements = route.split('/');
-            const database = routeElements[0];
-            const collection = routeElements[1];
-
-            repo.post(database, collection, body)
-                .then((results) => {
-                    resolve(results);
+    return new Promise((res, rej) => {
+        if (validate(createUserCmd.content, {
+                $and: [
+                    { "user": { $type: "string" } },
+                    { "pass": { $type: "string" } },
+                    { "role": { $type: "string" } }
+                ]
+            })) {
+            encrypt(createUserCmd.content.pass)
+                .then(hashedPass => {
+                    createUserCmd.content.pass = hashedPass;
+                    return cmd(createUserCmd);
                 })
-                .catch((error) => {
-                    reject(error);
-                });
-        } catch (error) {
-            reject(error)
+                .then(() => res())
+                .catch(err => rej(err));
+        } else {
+            rej("lib@createUser: new user must have fields: 'user', 'pass' and 'role'");
         }
     });
 };
+const deleteUsers = (query, queryOptions) => {
+    var deleteUsersCmd = {
+        type: "mongo",
+        method: "DELETE",
+        db: repo.users.db,
+        collection: repo.users.col,
+        query: query,
+        queryOptions: queryOptions
+    };
 
-const encrypt = (pass) => {
-    return new Promise((resolve, reject) => {
-
-        crypto.hash(pass)
-            .then((res) => {
-                resolve(res);
-            })
-            .catch((err) => {
-                reject(err);
-            });
-    });
-
-};
-
-const decrypt = (token) => {
-    return new Promise((resolve, reject) => {
-
-        crypto.decodeToken(token)
-            .then((decodedToken) => {
-                resolve(decodedToken);
-            })
-            .catch((err) => {
-                reject(err);
-            });
-    })
-
-
-};
-
-const consume = () => {};
+    return cmd(deleteUsersCmd);
+}
 
 const copyFile = seedUtils.copyFile;
+const copyFolder = seedUtils.copyFolderContent;
 
-const copyFolderContent = seedUtils.copyFolderContent;
+const validate = (obj, query) => {
+    let mingoQuery = new mingo.Query(query);
+    // test if an object matches query
+    return mingoQuery.test(obj);
+};
 
-module.exports = { login, get, post, encrypt, decrypt, consume, copyFile, copyFolderContent };
+module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate };

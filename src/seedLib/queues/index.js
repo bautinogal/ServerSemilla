@@ -128,10 +128,10 @@ const push = (queue, message) => {
 const consume = (queue, handler) => {
     return new Promise((resolve, reject) => {
         console.log('Queue@consume: Suscribing to queue "%s".', queue);
-        channel().then(channel => {
-            channel.assertQueue(queue, { durable: false });
+        getChannel().then(cha => {
+            cha.assertQueue(queue, { durable: false });
             console.log('Queue@consume: Queue asserted: queue "%s".', queue);
-            channel.consume(queue,
+            cha.consume(queue,
                 msg => handler(JSON.parse(msg.content.toString())), { noAck: true, });
             console.log('Queue@consume: Listening for messages on queue "%s"', queue);
             resolve();

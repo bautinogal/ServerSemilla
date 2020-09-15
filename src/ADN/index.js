@@ -1,15 +1,21 @@
 const views = require('./views');
-const path = require('path');
-const lib = require('./lib');
+const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate } = require('./lib');
 
-const createRootUserRepoCmd = () => {
-    repo.setupCmds.push({
-        user: "admin",
-        pass: lib.encrypt("secreto")
+
+//------------------------------------- Objetos Específicos de la APP ----------------------------------
+
+const createUsers = () => {
+    return new Promise((res, rej) => {
+        deleteUsers({}) //Borró todos los usuarios viejos
+            .then(() => createUser({ user: "admin@ventum", pass: "123456", role: "admin" }))
+            .then(() => createUser({ user: "INTI", pass: "INTI-MB", role: "client" }))
+            .then(() => res())
+            .catch(err => rej(err));
     });
-};
+}
 
-//--------------------------------------------------------------------------------------
+
+//------------------------------------- Objetos Obligatorios ----------------------------------
 
 const config = {
     //General
@@ -50,51 +56,32 @@ const queue = {
 };
 
 var repo = {
-    // Función que me devuelve la data de cada bd
-    getDB: (db) => {
-        switch (db) {
-            case "mongo":
-                return {
-                    url: "mongodb+srv://masterbus-iot-server:masterbus@cluster0.uggrc.mongodb.net/INTI-Test?retryWrites=true&w=majority",
-                    dfltDb: "dflt"
-                };
-            case "maria":
-                return {
-                    name: "semilla_test",
-                    url: "semilla.c7mwpiipndbn.us-west-1.rds.amazonaws.com",
-                    user: "ventum",
-                    pass: "VentumAdmin",
-                    port: 3306
-                };
-            default:
-                return {};
-        }
+    users: {
+        db: "Masterbus-IOT",
+        col: "Users"
     },
-
-    // Comandos que se van a llamar cuando se inicializa el repo
-    setupCmds: [
-        //eraseOldRootUsers 
-        {
-            type: "mongo",
-            method: "DELETE",
-            db: "dflt",
-            collection: "users",
-            query: { role: "root" },
-            queryOptions: {}
-        }
-    ]
+    mongo: {
+        url: "mongodb+srv://masterbus-iot-server:masterbus@cluster0.uggrc.mongodb.net/INTI-Test?retryWrites=true&w=majority",
+        dfltDb: "dflt"
+    },
+    maria: {
+        name: "semilla_test",
+        url: "semilla.c7mwpiipndbn.us-west-1.rds.amazonaws.com",
+        user: "ventum",
+        pass: "VentumAdmin",
+        port: 3306
+    }
 };
 
 const endpoints = {
-    "test": (req, res) => {
-        res.send("hola");
-    },
-    "dashboard": (req, res) => {
-        views.dashboard() // Crea un .html y me devuelve el path
-            .then(view => {
-                res.send(view);
-            })
-            .catch(err => console.log(err));
+    "pages": {
+        "dashboard": (req, res) => {
+            views.dashboard.create() // Crea un .html y me devuelve el path
+                .then(view => {
+                    res.send(view);
+                })
+                .catch(err => console.log(err));
+        }
     },
     "api": {
         "login": (req, res) => {
@@ -104,8 +91,8 @@ const endpoints = {
                 switch (req.method) {
                     case "POST":
                         login(user, pass)
-                            .then((loginData) => res.status(200).send(JSON.stringify(loginData)))
-                            .catch((err) => res.status(403).send("user o pass invalido!"));
+                            .then((token) => res.status(200).send(token))
+                            .catch((err) => res.status(403).send(err));
                         break;
                     default:
                         res.status(401).send("invalid http method!");
@@ -116,6 +103,120 @@ const endpoints = {
             }
         },
         "users": (req, res) => {
+            decodeJWT(req.headers['access-token'])
+                .then((token) => {
+                    switch (req.method) {
+                        case "GET":
+                            if (validate(token, { role: "admin" })) {
+                                cmd({
+                                        type: "mongo",
+                                        method: "GET",
+                                        db: repo.users.db,
+                                        collection: repo.users.col,
+                                        query: {},
+                                        queryOptions: {}
+                                    })
+                                    .then(users => {
+                                        users.forEach(user => {
+                                            delete user.pass;
+                                        });
+                                        res.status(403).send(users);
+                                    })
+                                    .catch(err => res.status(500).send(err));
+                            } else {
+                                res.status(403).send("usuario no autorizado!");
+                            }
+                            break;
+                        default:
+                            res.status(401).send("Invalid http method!");
+                            break;
+                    }
+                })
+                .catch((err) => res.status(403).send("Access-token invalido: " + err));
+        },
+        "newUser": (req, res) => {
+            decrypt(req.headers['access-token'])
+                .then((token) => {
+                    switch (req.method) {
+                        case "POST":
+                            validate(token, { role: "root" })
+                                .then((authorized) => {
+                                    if (authorized) {
+                                        var newUser = req.body;
+                                        validate(newUser, {
+                                                $and: [
+                                                    { "user": { $type: "string" } },
+                                                    { "pass": { $type: "string" } },
+                                                    { "role": { $type: "string" } }
+                                                ]
+                                            })
+                                            .then((bodyCorrect) => {
+                                                if (bodyCorrect)
+                                                    encrypt(newUser.pass)
+                                                    .then((hashedPass) => {
+                                                        post("masterbusIOT/users", req.body)
+                                                            .then((users) => res.send(JSON.stringify(users)))
+                                                            .catch((err) => res.status(500).send("error creando el usuario! " + err));
+                                                    })
+                                                    .catch((err) => res.status(500).send("error creando el usuario!" + err));
+                                                else
+                                                    res.send("formato del nuevo usuario incorrecto!");
+                                            })
+                                            .catch((err) => res.status(500).send("error validando el nuevo usuario! " + err));
+
+                                    } else {
+                                        res.status(403).send("usuario no autorizado!");
+                                    }
+                                })
+                                .catch((err) => res.status(500).send("error validando token! " + err));
+                            break;
+                        default:
+                            res.status(401).send("Invalid http method!");
+                            break;
+                    }
+                })
+                .catch((err) => res.status(403).send("Access-token invalido: " + err));
+        },
+        "post": (req, res) => {
+            decrypt(req.headers['access-token'])
+                .then((token) => {
+                    switch (req.method) {
+                        case "POST":
+                            validate(token, { role: "root" })
+                                .then((authorized) => {
+                                    if (authorized) {
+                                        var newUser = req.body;
+                                        return validate(newUser, {
+                                            $and: [
+                                                { "user": { $type: "string" } },
+                                                { "pass": { $type: "string" } },
+                                                { "role": { $type: "string" } }
+                                            ]
+                                        });
+                                    } else {
+                                        res.send("formato del nuevo usuario incorrecto!");
+                                    }
+                                })
+                                .then((bodyCorrect) => {
+                                    if (bodyCorrect == true)
+                                        encrypt(newUser.pass)
+                                        .then((hashedPass) => {
+                                            enqueue("masterbusIOT/users", req.body)
+                                                .then((users) => res.send(JSON.stringify(users)))
+                                                .catch((err) => res.status(500).send("error creando el usuario! " + err));
+                                        })
+                                        .catch((err) => res.status(500).send("error creando el usuario!" + err));
+                                    else if (bodyCorrect == false) //Puede ser null si falló antes
+                                        res.send("formato del nuevo usuario incorrecto!");
+                                })
+                                .catch((err) => res.status(500).send("error validando el nuevo usuario! " + err));
+                        default:
+                            res.status(401).send("Invalid http method!");
+                    }
+                })
+                .catch((err) => res.status(500).send("error desencryptando token! " + err))
+        },
+        "get": (req, res) => {
             decrypt(req.headers['access-token'])
                 .then((token) => {
                     switch (req.method) {
@@ -158,57 +259,70 @@ const endpoints = {
                 })
                 .catch((err) => res.status(403).send("Access-token invalido: " + err));
         }
-    },
-    "masterbusIOT": {
-        "INTI": (req, res) => {
-            decrypt(req.headers['access-token'])
-                .then((token) => {
-                    switch (req.method) {
-                        case "POST":
-                            validate(token, { $or: [{ role: "root" }, { role: "client" }] })
-                                .then((authorized) => {
-                                    if (authorized) {
-                                        post("masterbusIOT/INTI", req.body)
-                                            .then((users) => res.send(JSON.stringify(users)))
-                                            .catch((err) => res.status(500).send("error creando el usuario!"));
-                                    } else {
-                                        res.status(403).send("usuario no autorizado!");
-                                    }
-                                })
-                                .catch((err) => res.status(500).send("error validando token! " + err));
-                            break;
-                        case "GET":
-                            validate(token, { $or: [{ role: "root" }, { role: "client" }] })
-                                .then((authorized) => {
-                                    if (authorized) {
-                                        get("masterbusIOT/INTI", req.query.query, req.query.queryOptions)
-                                            .then((data) => res.send(JSON.stringify(data)))
-                                            .catch((err) => res.status(500).send("error creando el usuario!"));
-                                    } else {
-                                        res.status(403).send("usuario no autorizado!");
-                                    }
-                                })
-                                .catch((err) => res.status(500).send("error validando token! " + err));
-                            break;
-                        default:
-                            res.status(401).send("invalid http method!");
-                            break;
-                    }
-                })
-                .catch((err) => res.status(403).send("access-token invalido: " + err));
-        }
     }
 };
 
-const workers = {};
+// decrypt(req.headers['access-token'])
+//     .then((token) => {
+//         switch (req.method) {
+//             case "POST":
+//                 validate(token, { $or: [{ role: "root" }, { role: "client" }] })
+//                     .then((authorized) => {
+//                         if (authorized) {
+//                             post("masterbusIOT/INTI", req.body)
+//                                 .then((users) => res.send(JSON.stringify(users)))
+//                                 .catch((err) => res.status(500).send("error creando el usuario!"));
+//                         } else {
+//                             res.status(403).send("usuario no autorizado!");
+//                         }
+//                     })
+//                     .catch((err) => res.status(500).send("error validando token! " + err));
+//                 break;
+//             case "GET":
+//                 validate(token, { $or: [{ role: "root" }, { role: "client" }] })
+//                     .then((authorized) => {
+//                         if (authorized) {
+//                             get("masterbusIOT/INTI", req.query.query, req.query.queryOptions)
+//                                 .then((data) => res.send(JSON.stringify(data)))
+//                                 .catch((err) => res.status(500).send("error creando el usuario!"));
+//                         } else {
+//                             res.status(403).send("usuario no autorizado!");
+//                         }
+//                     })
+//                     .catch((err) => res.status(500).send("error validando token! " + err));
+//                 break;
+//             default:
+//                 res.status(401).send("invalid http method!");
+//                 break;
+//         }
+//     })
+//     .catch((err) => res.status(403).send("access-token invalido: " + err));
+
+
+const workers = [{
+    queue: "Incoming",
+    work: (msj) => {
+        cmd(msj);
+    }
+}];
 
 // Incializo mi app semilla
-const setup = () => {
+const onStart = () => {
     console.log(`adn@setup: starting!`);
     return new Promise((resolve, reject) => {
-        createRootUserRepoCmd();
         resolve(module.exports);
     });
 };
 
-module.exports = { setup, queue, repo, endpoints, workers };
+const onReady = () => {
+    return new Promise((resolve, reject) => {
+        createUsers()
+            .then(() => {
+                console.log(`adn@onReady: ready!`);
+                resolve(module.exports);
+            })
+            .catch(err => reject(err));
+    });
+}
+
+module.exports = { onStart, onReady, queue, repo, endpoints, workers };

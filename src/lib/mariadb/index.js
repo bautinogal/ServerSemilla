@@ -26,4 +26,10 @@ const getCount = (countable, table, condition) => {
     querySQL("SELECT COUNT(" + countable + ") FROM " + table + " WHERE " + condition);
 }
 
-module.exports = { querySQL, getCount };
+//TODO: PLACEHOLDER
+const query = () => {
+    return new Promise((resolve, reject) => {
+        resolve();
+    })
+};
+module.exports = { query, querySQL, getCount };

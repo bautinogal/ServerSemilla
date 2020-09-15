@@ -46,9 +46,10 @@ const copyPublicFiles = (ADN, options) => {
     return utils.copyFolderContent(from, to, options);
 };
 
+//-------------------------------------------------------------
 
 // Inicializo el ADN
-const setupADN = (ADN, options) => {
+const initADN = (ADN, options) => {
     return new Promise((resolve, reject) => {
         if (ADN.setup) {
             ADN.setup()
@@ -57,6 +58,17 @@ const setupADN = (ADN, options) => {
                 .catch(err => reject(err));
         } else {
             copyPublicFiles(ADN, options)
+                .then(() => resolve(ADN))
+                .catch(err => reject(err));
+        }
+    });
+}
+
+// Config final del ADN
+const readyADN = (ADN, options) => {
+    return new Promise((resolve, reject) => {
+        if (ADN.onReady) {
+            ADN.onReady()
                 .then(() => resolve(ADN))
                 .catch(err => reject(err));
         }
@@ -76,4 +88,4 @@ const getADN = (options) => {
     });
 }
 
-module.exports = { getADN, setupADN };
+module.exports = { getADN, initADN, readyADN };

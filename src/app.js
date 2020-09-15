@@ -33,7 +33,7 @@ const app = express();
 
 ADNTools.getADN({ updateADN: false })
     //  Inicializo la semilla, descargo files adicionales, copio los files publicos del ADN al seed...
-    .then(adn => ADNTools.setupADN(adn, { deleteExistingContent: false }))
+    .then(adn => ADNTools.initADN(adn, { deleteExistingContent: false }))
     // Incializo las colas (RabbitMQ)
     .then(adn => queues.setup(app, adn))
     // Seteo los endpoints y el middleware correspondiente
@@ -42,6 +42,8 @@ ADNTools.getADN({ updateADN: false })
     .then(adn => repo.setup(adn))
     // Prendo workers que van a mover los mensajes de las colas a la bd
     .then(adn => workers.setup(adn))
+    //Función del ADN que se llama al final del setup
+    .then(adn => ADNTools.readyADN(adn, {}))
     //El servidor comienza a escuchar
     .then(adn => startListening(adn))
     .catch(err => console.log(err));
