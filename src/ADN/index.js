@@ -189,9 +189,17 @@ const endpoints = {
 
 
 const workers = [{
-    queue: "Incoming",
-    work: (msj) => {
-        cmd(msj);
+    queue: "INTI",
+    work: (msg) => {
+        cmd({
+                type: "mongo",
+                method: "POST",
+                db: "Masterbus-IOT",
+                collection: "INTI",
+                content: msg
+            })
+            .then(() => console.log("mensaje guardado en MASTERBUS-IOT: %s", JSON.stringify(msg)))
+            .catch(err => console.log(err));
     }
 }];
 
