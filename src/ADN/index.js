@@ -12,8 +12,7 @@ const createUsers = () => {
             .then(() => res())
             .catch(err => rej(err));
     });
-}
-
+};
 
 //------------------------------------- Objetos Obligatorios ----------------------------------
 
@@ -134,41 +133,20 @@ const endpoints = {
                 })
                 .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
-        "newUser": (req, res) => {
-            decrypt(req.headers['access-token'])
+        "post": (req, res) => {
+            decodeJWT(req.headers['access-token'])
                 .then((token) => {
                     switch (req.method) {
                         case "POST":
-                            validate(token, { role: "root" })
-                                .then((authorized) => {
-                                    if (authorized) {
-                                        var newUser = req.body;
-                                        validate(newUser, {
-                                                $and: [
-                                                    { "user": { $type: "string" } },
-                                                    { "pass": { $type: "string" } },
-                                                    { "role": { $type: "string" } }
-                                                ]
-                                            })
-                                            .then((bodyCorrect) => {
-                                                if (bodyCorrect)
-                                                    encrypt(newUser.pass)
-                                                    .then((hashedPass) => {
-                                                        post("masterbusIOT/users", req.body)
-                                                            .then((users) => res.send(JSON.stringify(users)))
-                                                            .catch((err) => res.status(500).send("error creando el usuario! " + err));
-                                                    })
-                                                    .catch((err) => res.status(500).send("error creando el usuario!" + err));
-                                                else
-                                                    res.send("formato del nuevo usuario incorrecto!");
-                                            })
-                                            .catch((err) => res.status(500).send("error validando el nuevo usuario! " + err));
-
-                                    } else {
-                                        res.status(403).send("usuario no autorizado!");
-                                    }
-                                })
-                                .catch((err) => res.status(500).send("error validando token! " + err));
+                            if (validate(token, { $or: [{ role: "client" }, { role: "admin" }] })) {
+                                enqueue("INTI", req.body)
+                                    .then(() => {
+                                        res.status(200).send(JSON.stringify(req.body) + " received!");
+                                    })
+                                    .catch(err => res.status(500).send(err));
+                            } else {
+                                res.status(403).send("usuario no autorizado!");
+                            }
                             break;
                         default:
                             res.status(401).send("Invalid http method!");
@@ -177,80 +155,27 @@ const endpoints = {
                 })
                 .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
-        "post": (req, res) => {
-            decrypt(req.headers['access-token'])
-                .then((token) => {
-                    switch (req.method) {
-                        case "POST":
-                            validate(token, { role: "root" })
-                                .then((authorized) => {
-                                    if (authorized) {
-                                        var newUser = req.body;
-                                        return validate(newUser, {
-                                            $and: [
-                                                { "user": { $type: "string" } },
-                                                { "pass": { $type: "string" } },
-                                                { "role": { $type: "string" } }
-                                            ]
-                                        });
-                                    } else {
-                                        res.send("formato del nuevo usuario incorrecto!");
-                                    }
-                                })
-                                .then((bodyCorrect) => {
-                                    if (bodyCorrect == true)
-                                        encrypt(newUser.pass)
-                                        .then((hashedPass) => {
-                                            enqueue("masterbusIOT/users", req.body)
-                                                .then((users) => res.send(JSON.stringify(users)))
-                                                .catch((err) => res.status(500).send("error creando el usuario! " + err));
-                                        })
-                                        .catch((err) => res.status(500).send("error creando el usuario!" + err));
-                                    else if (bodyCorrect == false) //Puede ser null si falló antes
-                                        res.send("formato del nuevo usuario incorrecto!");
-                                })
-                                .catch((err) => res.status(500).send("error validando el nuevo usuario! " + err));
-                        default:
-                            res.status(401).send("Invalid http method!");
-                    }
-                })
-                .catch((err) => res.status(500).send("error desencryptando token! " + err))
-        },
         "get": (req, res) => {
-            decrypt(req.headers['access-token'])
+            decodeJWT(req.headers['access-token'])
                 .then((token) => {
                     switch (req.method) {
-                        case "POST":
-                            validate(token, { role: "root" })
-                                .then((authorized) => {
-                                    if (authorized) {
-                                        var newUser = req.body;
-                                        validate(newUser, {
-                                                $and: [
-                                                    { "user": { $type: "string" } },
-                                                    { "pass": { $type: "string" } },
-                                                    { "role": { $type: "string" } }
-                                                ]
-                                            })
-                                            .then((bodyCorrect) => {
-                                                if (bodyCorrect)
-                                                    encrypt(newUser.pass)
-                                                    .then((hashedPass) => {
-                                                        post("masterbusIOT/users", req.body)
-                                                            .then((users) => res.send(JSON.stringify(users)))
-                                                            .catch((err) => res.status(500).send("error creando el usuario! " + err));
-                                                    })
-                                                    .catch((err) => res.status(500).send("error creando el usuario!" + err));
-                                                else
-                                                    res.send("formato del nuevo usuario incorrecto!");
-                                            })
-                                            .catch((err) => res.status(500).send("error validando el nuevo usuario! " + err));
-
-                                    } else {
-                                        res.status(403).send("usuario no autorizado!");
-                                    }
-                                })
-                                .catch((err) => res.status(500).send("error validando token! " + err));
+                        case "GET":
+                            if (validate(token, { $or: [{ role: "client" }, { role: "admin" }] })) {
+                                cmd({
+                                        type: "mongo",
+                                        method: "GET",
+                                        db: "Masterbus-IOT",
+                                        collection: "INTI",
+                                        query: req.query.query,
+                                        queryOptions: req.query.queryOptions
+                                    })
+                                    .then(posts => {
+                                        res.status(200).send(posts);
+                                    })
+                                    .catch(err => res.status(500).send(err));
+                            } else {
+                                res.status(403).send("usuario no autorizado!");
+                            }
                             break;
                         default:
                             res.status(401).send("Invalid http method!");
@@ -261,42 +186,6 @@ const endpoints = {
         }
     }
 };
-
-// decrypt(req.headers['access-token'])
-//     .then((token) => {
-//         switch (req.method) {
-//             case "POST":
-//                 validate(token, { $or: [{ role: "root" }, { role: "client" }] })
-//                     .then((authorized) => {
-//                         if (authorized) {
-//                             post("masterbusIOT/INTI", req.body)
-//                                 .then((users) => res.send(JSON.stringify(users)))
-//                                 .catch((err) => res.status(500).send("error creando el usuario!"));
-//                         } else {
-//                             res.status(403).send("usuario no autorizado!");
-//                         }
-//                     })
-//                     .catch((err) => res.status(500).send("error validando token! " + err));
-//                 break;
-//             case "GET":
-//                 validate(token, { $or: [{ role: "root" }, { role: "client" }] })
-//                     .then((authorized) => {
-//                         if (authorized) {
-//                             get("masterbusIOT/INTI", req.query.query, req.query.queryOptions)
-//                                 .then((data) => res.send(JSON.stringify(data)))
-//                                 .catch((err) => res.status(500).send("error creando el usuario!"));
-//                         } else {
-//                             res.status(403).send("usuario no autorizado!");
-//                         }
-//                     })
-//                     .catch((err) => res.status(500).send("error validando token! " + err));
-//                 break;
-//             default:
-//                 res.status(401).send("invalid http method!");
-//                 break;
-//         }
-//     })
-//     .catch((err) => res.status(403).send("access-token invalido: " + err));
 
 
 const workers = [{

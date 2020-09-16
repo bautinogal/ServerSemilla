@@ -112,7 +112,7 @@ const push = (queue, message) => {
     return new Promise((resolve, reject) => {
         console.log('Queue@send: Enquieing message in queue "%s". Message: %s ', queue, message);
 
-        channel()
+        getChannel()
             .then(channel => {
                 channel.assertQueue(queue, { durable: false });
                 console.log('Queue@send: Queue asserted: queue "%s".', queue);
