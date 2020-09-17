@@ -177,11 +177,12 @@
     flex: .83;
 }
 
-.ventum-content-navbar {
-    height: 10%;
+.ventum-content-navbar-div {
+    height: 8%;
+    background-color: var(--grey-4);
 }
 
-.ventum-content-line {
+.ventum-content-separator-line {
     background-color: var(--grey-3);
     width: 100%;
     height: 0.1px;
