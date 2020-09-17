@@ -41,7 +41,7 @@ const downloadADN = (downloadADN) => {
 // Copio los archivos que necesita el front end a la carpeta public
 const copyPublicFiles = (ADN, options) => {
     const from = path.join(__dirname, '../../ADN/public');
-    const to = path.join(__dirname, '../public');
+    const to = path.join(__dirname, '../../public');
     console.log("ADN@copyPublicFiles: from %s to %s", from, to);
     return utils.copyFolderContent(from, to, options);
 };

@@ -1,7 +1,7 @@
-import utils from '../utils.js';
-import math from '../math.js';
-import anim from '../anim.js';
-
+import utils from '../lib/utils.js';
+import math from '../lib/math.js';
+import anim from '../lib/anim.js';
+console.log("WAD");
 /*
 const collection = "collection1"; //Coleccion de la db de donde vamos a sacar la data para mostrar
 const headers = { //Columnas de la tabla, formato : {'Title','name'}

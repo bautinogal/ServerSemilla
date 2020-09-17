@@ -1,4 +1,4 @@
-const views = require('./views');
+const path = require('path');
 const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate } = require('./lib');
 
 
@@ -14,7 +14,7 @@ const createUsers = () => {
     });
 };
 
-//------------------------------------- Objetos Obligatorios ----------------------------------
+//------------------------------------- Limbo ---------------------------------------------------
 
 const config = {
     //General
@@ -49,6 +49,35 @@ const config = {
     mariaDbPort: '3306', // Puerto de la base de datos alojada en servidor remoto
 };
 
+const { JSDOM } = require("jsdom"); //librería para editar archivos .html
+const views = {
+    dashboard: () => {
+        const data = {};
+        const originPath = path.join(__dirname, '../public/dashboard', 'dashboard.html');
+        console.log(originPath);
+        return new Promise((resolve, reject) => {
+            try {
+                JSDOM.fromFile(originPath)
+                    .then(dom => {
+                        var script = dom.window.document.createElement("script");
+                        script.type = "module";
+                        //var innerHTML = `console.log("hola");`;
+                        var innerHTML = `import dashboard from "/public/dashboard/dashboard.js";`;
+                        innerHTML += `dashboard.init((${JSON.stringify(data)}))`;
+                        script.innerHTML = innerHTML;
+                        dom.window.document.body.appendChild(script);
+                        resolve(dom.serialize());
+                    })
+                    .catch(err => reject(err));
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
+}
+
+//------------------------------------- Objetos Obligatorios ----------------------------------
+
 const queue = {
     url: "amqps://xmwycwwn:rKfv_uKSj8oXp0qg63G2kzqmPN3ZekpO@coyote.rmq.cloudamqp.com/xmwycwwn",
     pass: "rKfv_uKSj8oXp0qg63G2kzqmPN3ZekpO"
@@ -75,9 +104,9 @@ var repo = {
 const endpoints = {
     "pages": {
         "dashboard": (req, res) => {
-            views.dashboard.create() // Crea un .html y me devuelve el path
-                .then(view => {
-                    res.send(view);
+            views.dashboard() // Crea un .html y me devuelve el path
+                .then(html => {
+                    res.send(html);
                 })
                 .catch(err => console.log(err));
         }
@@ -186,7 +215,6 @@ const endpoints = {
         }
     }
 };
-
 
 const workers = [{
     queue: "INTI",

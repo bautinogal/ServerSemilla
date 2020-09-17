@@ -18,9 +18,8 @@ const setPort = (app, adn) => {
 
 //Marco la carpeta que voy a compartir con el frontend
 const setPublicFolder = (app, adn) => {
-    const publicFolderPath = path.join(__dirname, 'public');
-    app.use('/public', express.static(publicFolderPath));
-    console.log(`endpoints@setup: Carpeta publica ${publicFolderPath} en: /public`);
+    app.use('/public', express.static('public'))
+    console.log(`endpoints@setup: Carpeta publica en: /public`);
 }
 
 //Agrego todos los middlewares
@@ -60,6 +59,9 @@ const setEndpoints = (app, adn) => {
 
         var params = req.params[0].split('/');
         var endpoint = adn.endpoints;
+
+        if (params[0] == "public")
+            return;
 
         //Recorro el objeto "endpoint" con los parametros del request
         for (let index = 0; index < params.length; index++) {
