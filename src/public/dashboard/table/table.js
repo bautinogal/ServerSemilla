@@ -182,27 +182,225 @@ import card from '../card/card.js';
       </tbody> */
 }
 
-
-
 const dflt = {
     id: "noID",
+    filters: [{
+            label: "Desde",
+            type: "date",
+            placeholder: "placeholder",
+            value: "ok",
+            required: "",
+            query: (value) => {
+                return value;
+            }
+        },
+        {
+            label: "Hasta",
+            type: "date",
+            placeholder: "placeholder",
+            value: "ok",
+            required: "",
+            query: (value) => {
+                return value;
+            }
+        },
+        {
+            label: "Interno (ID)",
+            type: "text",
+            placeholder: "0",
+            value: "0",
+            required: "",
+            query: (value) => {
+                return value;
+            }
+        },
+        {
+            label: "Velocidad Mínima",
+            type: "text",
+            placeholder: "0",
+            value: "0",
+            required: "",
+            query: (value) => {
+                return value;
+            }
+        },
+        {
+            label: "Velocidad Máxima",
+            type: "text",
+            placeholder: "0",
+            value: "0",
+            required: "",
+            query: (value) => {
+                return value;
+            }
+        }
+    ],
     headers: {
-        col1: "col1",
-        col2: "col2",
-        col3: "col3",
-        col4: "col4",
+
+        Direccion: "Dirección",
+        ID: "ID",
+        Fecha: "Fecha",
+        Hora: "Hora",
+        Longitud: "Longitud",
+        Latitud: "Latitud",
+        Accel: "Aceleración",
+        Velocidad: "Velocidad",
+        Sensor1: "S1",
+        Sensor2: "S2",
+        Sensor3: "S3",
+        Sensor4: "S4",
+
     },
-    data: [
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
-        { col1: "hola", col2: "chau", col3: "asd", col4: "aswww" },
+    data: [{
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
+        {
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
+        {
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
+        {
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
+        {
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
+        {
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
+        {
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
+        {
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
+        {
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
+        {
+            "Direccion": "277",
+            "ID": "865067021297901",
+            "OnOff": "1",
+            "Fecha": "20200611",
+            "Hora": 120000,
+            "Latitud": "-34.582744",
+            "Longitud": "-58.491359",
+            "Sensor1": "",
+            "Sensor2": "",
+            "Sensor3": "",
+            "Sensor4": "",
+            "Accel": "",
+            "Velocidad": "87"
+        },
     ],
     emptyRow: "-"
 }
@@ -214,6 +412,68 @@ const create = (data, parent) => {
         div.id = data.id + "-table-filters";
         div.className = "ventum-table-filters ";
         cardParent.body.appendChild(div);
+
+        /* <form>
+        //   <div class="form-row">
+        //     <div class="col-2">
+        //       <label for="validationServer01">First name</label>
+        //       <input type="text" class="form-control" id="validationServer01" placeholder="First name" value="Mark" required="">
+        //       <div class="valid-feedback">
+        //         Looks good!
+        //       </div>
+        //     </div> */
+
+        var form = document.createElement("form");
+        form.id = data.id + "-table-filters-form";
+        form.className = "ventum-table-filters-form";
+        div.appendChild(form);
+
+        var formRow = document.createElement("div");
+        formRow.id = data.id + "-table-filters-form-row";
+        formRow.className = "form-row ventum-table-filters-form-row";
+        form.appendChild(formRow);
+
+        //TODO modificar para que se puedan poner mas de 5 filtros
+        for (let index = 0; index < 5; index++) {
+            var col = document.createElement("div");
+            col.id = data.id + "-table-filters-form-col-" + index.toString();
+            col.className = "col-2";
+            formRow.appendChild(col);
+            if (data.filters.length > index) {
+                var label = document.createElement("label");
+                label.id = data.id + "-table-filters-form-col-" + index.toString() + "-label";
+                label.innerHTML = data.filters[index].label;
+                col.appendChild(label);
+                var input = document.createElement("input");
+                input.type = data.filters[index].type;
+                input.className = "form-control";
+                input.placeholder = data.filters[index].placeholder;
+                input.value = data.filters[index].value;
+                input.required = data.filters[index].required;
+                col.appendChild(input);
+            }
+
+        }
+        var col = document.createElement("div");
+        col.id = data.id + "-table-filters-form-col-" + "6";
+        col.className = "col-2";
+        col.style.textAlign = "center";
+        formRow.appendChild(col);
+        var label = document.createElement("label");
+        label.id = data.id + "-table-filters-form-col-" + "submit" + "-label";
+        label.innerHTML = "  &nbsp";
+        label.style.position = "relative";
+        label.style.width = '100%';
+        col.appendChild(label);
+        var btn = document.createElement("button");
+        btn.type = "submit";
+        btn.className = "btn btn-primary";
+        btn.value = "submit";
+        btn.innerHTML = "Filtrar";
+        btn.style.position = "relative";
+        btn.style.width = '90%';
+        col.appendChild(btn);
+
         return div;
     };
     const createContent = () => {
@@ -255,9 +515,12 @@ const create = (data, parent) => {
                 th.id = data.id + "-table-body-th";
                 th.className = "";
                 if (key in row) {
-                    th.innerHTML = row[key];
+                    if (row[key] == "")
+                        th.innerHTML = data.emptyRow;
+                    else
+                        th.innerHTML = row[key];
                 } else {
-                    th.innerHTML = emptyRow;
+                    th.innerHTML = data.emptyRow;
                 }
                 tr.appendChild(th);
             });
@@ -266,11 +529,27 @@ const create = (data, parent) => {
         return table;
     };
     const createFooter = () => {
-        var div = document.createElement("div");
-        div.id = data.id + "-card-div";
-        div.className = "card shadow ventum-card";
-        cardParent.footer.appendChild(div);
-        return div;
+        var nav = document.createElement("nav");
+        nav.id = data.id + "-card-footer-nav";
+        nav.className = "ventum-table-footer";
+        cardParent.footer.appendChild(nav);
+
+        var ul = document.createElement("ul");
+        ul.id = data.id + "-card-footer-ul";
+        ul.className = "pagination ventum-table-footer-ul";
+        nav.appendChild(ul);
+
+        for (let index = 0; index < 10; index++) {
+            var li = document.createElement("li");
+            li.className = "page-item";
+            ul.appendChild(li);
+            var button = document.createElement("button");
+            button.className = "page-link ventum-pagination-btn";
+            button.innerHTML = index.toString();
+            li.appendChild(button);
+        }
+
+        return nav;
     };
 
     data = utils.fillObjWithDflt(data, dflt);
@@ -278,9 +557,9 @@ const create = (data, parent) => {
 
     var filters = createFilters();
     var content = createContent();
-    //var footer = createFooter();
+    var footer = createFooter();
 
-    return { filters, content }
+    return { filters, content, footer }
 };
 
 export default { create };

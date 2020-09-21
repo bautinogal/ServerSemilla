@@ -48,10 +48,11 @@
 
 .ventum-card-body {
     background-color: white;
+    padding: 0;
 }
 
 .ventum-card-footer {
-    background-color: var(--rgba-complement-4);
+    background-color: white;
     border-bottom-left-radius: 15px !important;
     border-bottom-right-radius: 15px !important;
 }

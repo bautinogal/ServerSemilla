@@ -2,7 +2,7 @@ import utils from '../../lib/utils.js';
 
 const dflt = {
     id: "noId",
-    title: "NO TITLE"
+    title: "INTI"
 }
 
 const create = (data, parent) => {
@@ -33,7 +33,6 @@ const create = (data, parent) => {
         var footer = document.createElement("div");
         footer.id = data.id + "-card-footer";
         footer.className = "card-footer ventum-card-footer";
-        footer.innerHTML = "Card Footer";
         div.appendChild(footer);
         return footer
     };

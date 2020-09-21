@@ -33,14 +33,14 @@ const getCards = (data, parent) => {
 const dflt = {
     id: "id",
     company: {
-        name: "COMPANY NAME"
+        name: "Masterbus"
     },
     user: {
-        name: "USER NAME"
+        name: "Admin"
     },
     categories: {
         dashboard: {
-            name: "DASHBOARD",
+            name: "URBE TRACK",
             html: (parent) => {
 
 
@@ -67,11 +67,8 @@ const dflt = {
                 return root;
             }
         },
-        ingreso: {
-            name: "INGRESO",
-        },
         basedatos: {
-            name: "TABLE",
+            name: "INTI",
             html: (parent) => {
                 const margins = 10;
                 var tableRoot = document.createElement("div");
