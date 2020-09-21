@@ -2,9 +2,33 @@ import utils from '../lib/utils.js';
 import math from '../lib/math.js';
 import anim from '../lib/anim.js';
 import table from './table/table.js';
-
+import card from './card/card.js';
 //--------------------------Dashboard---------------------------------------
 var contentDiv; //Contenedor donde voy a dibujar cada pantalla...
+
+const getCards = (data, parent) => {
+    // var root = document.createElement("div");
+    // var cards = [, ];
+    // parent.appendChild(root);
+    // for (let col = 0; col < colCount; col++) {
+    //     for (let row = 0; row < rowCount; row++) {
+    //         const element =
+    //             cards[row, col] = element;
+    //     }
+    // }
+    // return { root: root, cards: cards }
+    var test1 = document.createElement("div");
+    test1.className = "col-6";
+    test1.style.backgroundColor = 'transparent';
+    root.appendChild(test1);
+    table.create({}, test1);
+
+    var test2 = document.createElement("div");
+    test2.className = "col-6";
+    test2.style.backgroundColor = 'transparent';
+    root.appendChild(test2);
+    table.create({}, test2);
+};
 
 const dflt = {
     id: "id",
@@ -18,19 +42,29 @@ const dflt = {
         dashboard: {
             name: "DASHBOARD",
             html: (parent) => {
-                var test = document.createElement("div");
-                test.id = "test";
-                test.style.margin = 'auto';
-                // test.style.marginTop = (parent.offsetHeight * 0.05) + 'px';
-                // test.style.marginBottom = (parent.offsetHeight * 0.05) + 'px';
-                // test.style.marginLeft = (parent.offsetWidth * 0.05) + 'px';
-                // test.style.marginRight = (parent.offsetWidth * 0.05) + 'px';
-                test.style.width = (parent.offsetWidth * 0.5) + 'px';
-                test.style.height = (parent.offsetHeight * 0.5) + 'px';
-                test.style.color = 'red';
-                test.style.backgroundColor = 'red';
-                parent.appendChild(test);
-                return test;
+
+
+                // {
+                //     /* <div class="row">
+                //       <div class="col-sm-4">.col-sm-4</div>
+                //       <div class="col-sm-4">.col-sm-4</div>
+                //       <div class="col-sm-4">.col-sm-4</div>
+                //     </div> */
+                // }
+
+                var test1 = document.createElement("div");
+                test1.className = "col-6";
+                test1.style.backgroundColor = 'transparent';
+                root.appendChild(test1);
+                table.create({}, test1);
+
+                var test2 = document.createElement("div");
+                test2.className = "col-6";
+                test2.style.backgroundColor = 'transparent';
+                root.appendChild(test2);
+                table.create({}, test2);
+
+                return root;
             }
         },
         ingreso: {
@@ -39,19 +73,22 @@ const dflt = {
         basedatos: {
             name: "TABLE",
             html: (parent) => {
-                var test = document.createElement("div");
-                test.id = "test";
-                test.style.margin = 'auto';
-                test.style.width = parent.offsetWidth + 'px';
-                test.style.height = parent.offsetHeight + 'px';
-                test.style.backgroundColor = 'transparent';
-                parent.appendChild(test);
-                table.create({}, test);
-                return test;
+                const margins = 10;
+                var tableRoot = document.createElement("div");
+                tableRoot.style.position = 'relative';
+                tableRoot.style.left = margins + 'px';
+                tableRoot.style.right = margins + 'px';
+                tableRoot.style.top = margins + 'px';
+                tableRoot.style.bottom = margins + 'px';
+                tableRoot.style.width = (parent.offsetWidth - margins * 2) * 100 / parent.offsetWidth + '%';
+                tableRoot.style.height = (parent.offsetHeight - margins * 2) * 100 / parent.offsetHeight + '%';
+                parent.appendChild(tableRoot);
+                table.create({}, tableRoot);
+                return tableRoot;
             }
         },
     }
-}
+};
 
 const createNav = (data) => {
     var result = {};
@@ -189,8 +226,8 @@ const createSidebar = (data) => {
     var result = {};
     var sidebar = document.createElement("div");
     sidebar.id = data.id + "-sidebar";
-    sidebar.className = 'ventum-sidebar shadow';
-    sidebar.style.zIndex = 9999;
+    sidebar.className = 'ventum-sidebar';
+
     sidebar.appendChild(companyInfo());
     sidebar.appendChild(separatorLine());
     sidebar.appendChild(userInfo());
@@ -261,10 +298,9 @@ const addZoomInOut = (data) => {
     sidebarBtn.addEventListener('click', function() {
         anim.lAnim(zoomSidebar, 200, () => console.log("Terminó"));
     });
-}
+};
 
 const init = (data) => {
-    console.log("hola");
     var result = {};
     data = utils.fillObjWithDflt(data, dflt);
 
@@ -281,9 +317,8 @@ const init = (data) => {
     contentDiv = content.mainDiv;
 
     result.html = nav.result;
-    console.log("chau");
     return result;
-}
+};
 
 const setContent = (content) => {
     if (contentDiv == null) {
@@ -293,6 +328,6 @@ const setContent = (content) => {
         if (content)
             content(contentDiv); //dibujo el contenido dentro de contentDiv
     }
-}
+};
 
 export default { init, setContent };

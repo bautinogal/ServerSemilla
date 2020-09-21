@@ -31,10 +31,15 @@ const addCss = (path) => {
 
 const fillObjWithDflt = (object, dflt) => {
     var result = {};
+    if (object == null || object == undefined) object = {};
+    if (dflt == null || dflt == undefined) dflt = {};
     Object.keys(dflt).forEach(key => {
-        if (key in object)
-            result[key] = object[key];
-        else
+        if (key in object) {
+            if (typeof(object[key]) == 'object')
+                result[key] = fillObjWithDflt(object[key], dflt[key]);
+            else
+                result[key] = object[key];
+        } else
             result[key] = dflt[key];
     })
     return result;

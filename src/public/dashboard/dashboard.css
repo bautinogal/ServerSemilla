@@ -52,7 +52,9 @@
 .ventum-sidebar {
     background-color: var(--grey-1);
     order: 1;
-    flex: .17;
+    flex: .15;
+    box-shadow: 1px 0px 6px 0px;
+    z-index: 9999;
 }
 
 
@@ -174,7 +176,7 @@
 .ventum-content {
     background-color: var(--grey-4);
     order: 2;
-    flex: .83;
+    flex: .85;
 }
 
 .ventum-content-navbar-div {
