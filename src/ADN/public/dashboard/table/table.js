@@ -130,106 +130,99 @@ import card from '../card/card.js';
 // // })
 
 
-/* <div class="card text-center">
-  <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div> */
-
-
-{
-    /* <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody> */
-}
 
 const dflt = {
     id: "noID",
     filters: [{
             label: "Desde",
-            type: "date",
-            placeholder: "placeholder",
-            value: "ok",
-            required: "",
-            query: (value) => {
-                return value;
+            inputs: {
+                desde: {
+                    type: "date",
+                    placeholder: "Desde",
+                    value: "",
+                    required: "",
+                }
+            },
+            query: (values) => {
+                return values;
             }
         },
         {
             label: "Hasta",
-            type: "date",
-            placeholder: "placeholder",
-            value: "ok",
-            required: "",
-            query: (value) => {
-                return value;
+            inputs: {
+                hasta: {
+                    type: "date",
+                    placeholder: "Hasta",
+                    value: "",
+                    required: "",
+                }
+            },
+            query: (values) => {
+                return values;
             }
         },
         {
             label: "Interno (ID)",
-            type: "text",
-            placeholder: "0",
-            value: "0",
-            required: "",
+            inputs: {
+                id: {
+                    type: "text",
+                    placeholder: "ID",
+                    value: "",
+                    required: "",
+                }
+            },
+            query: (values) => {
+                return values;
+            }
+        },
+        {
+            label: "Velocidad",
+            inputs: {
+                desde: {
+                    type: "text",
+                    placeholder: "A",
+                    value: "",
+                    required: "",
+                },
+                hasta: {
+                    type: "text",
+                    placeholder: "B",
+                    value: "",
+                    required: "",
+                },
+                deSsde: {
+                    type: "text",
+                    placeholder: "C",
+                    value: "",
+                    required: "",
+                },
+                hasSta: {
+                    type: "text",
+                    placeholder: "D",
+                    value: "",
+                    required: "",
+                }
+            },
             query: (value) => {
                 return value;
             }
         },
         {
-            label: "Velocidad Mínima",
-            type: "text",
-            placeholder: "0",
-            value: "0",
-            required: "",
-            query: (value) => {
-                return value;
-            }
-        },
-        {
-            label: "Velocidad Máxima",
-            type: "text",
-            placeholder: "0",
-            value: "0",
-            required: "",
+            label: "Aceleración",
+            inputs: {
+                desde: {
+                    type: "number",
+                    placeholder: "Desde",
+                    value: "",
+                    required: "",
+                },
+                hasta: {
+                    type: "number",
+                    placeholder: "Hasta",
+                    value: "",
+                    required: "",
+                }
+            },
             query: (value) => {
                 return value;
             }
@@ -402,7 +395,7 @@ const dflt = {
             "Velocidad": "87"
         },
     ],
-    emptyRow: "-"
+    emptyRow: "-",
 }
 
 const create = (data, parent) => {
@@ -444,13 +437,43 @@ const create = (data, parent) => {
                 label.id = data.id + "-table-filters-form-col-" + index.toString() + "-label";
                 label.innerHTML = data.filters[index].label;
                 col.appendChild(label);
-                var input = document.createElement("input");
-                input.type = data.filters[index].type;
-                input.className = "form-control";
-                input.placeholder = data.filters[index].placeholder;
-                input.value = data.filters[index].value;
-                input.required = data.filters[index].required;
-                col.appendChild(input);
+                // <div id="noID-table-filters-form-row" class="form-row ventum-table-filters-form-row"><div id="noID-table-filters-form-col-0" class="col-2"></div>
+
+                var inputs = document.createElement("div");
+                inputs.className = "form-row";
+                col.appendChild(inputs);
+
+                var inputsArray = Object.values(data.filters[index].inputs);
+                console.log(inputsArray.length);
+                inputsArray.forEach(input => {
+                    var inputCol = document.createElement("div");
+                    switch (inputsArray.length) {
+                        case 1:
+                            inputCol.className = "col-12";
+                            break;
+                        case 2:
+                            inputCol.className = "col-6";
+                            break;
+                        case 3:
+                            inputCol.className = "col-4";
+                            break;
+                        case 4:
+                            inputCol.className = "col-3";
+                            break;
+                        default:
+                            inputCol.className = "col-12";
+                            break;
+                    }
+                    inputs.appendChild(inputCol);
+
+                    var field = document.createElement("input");
+                    field.type = input.type;
+                    field.className = "form-control";
+                    field.placeholder = input.placeholder;
+                    field.value = input.value;
+                    field.required = input.required;
+                    inputCol.appendChild(field);
+                });
             }
 
         }
@@ -545,7 +568,7 @@ const create = (data, parent) => {
             ul.appendChild(li);
             var button = document.createElement("button");
             button.className = "page-link ventum-pagination-btn";
-            button.innerHTML = index.toString();
+            button.innerHTML = (index + 1).toString();
             li.appendChild(button);
         }
 
