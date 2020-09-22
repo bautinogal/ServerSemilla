@@ -1,15 +1,15 @@
 // Framework de Node para crear servidores
 const express = require('express');
 // Herramientas para manipular el "ADN" de la app
-const ADNTools = require('./seed/ADNTools');
+const ADNTools = require('./seedLib/ADNTools');
 // Script que administra las colas
-const queues = require('./seed/queues');
+const queues = require('./seedLib/queues');
 // Script que administra los "Endpoints" y sus middlewares
-const endpoints = require('./seed/endpoints');
+const endpoints = require('./seedLib/endpoints');
 // Script que arranca los "workers" que mueven los mensajes de la cola a la bd
-const workers = require('./seed/workers');
+const workers = require('./seedLib/workers');
 // Script que administra las bds y colas del sistema
-const repo = require('./seed/repo');
+const repo = require('./seedLib/repo');
 
 //TODO: agregar certificados ssl y caa
 // El servidor comienza a escuchar los requests
@@ -32,8 +32,8 @@ console.log(`App: Inicializando Servidor...`);
 const app = express();
 
 ADNTools.getADN({ updateADN: false })
-    // Inicializo la semilla (agrego public files, etc...)
-    .then(adn => adn.setup(app))
+    //  Inicializo la semilla, descargo files adicionales, copio los files publicos del ADN al seed...
+    .then(adn => ADNTools.initADN(adn, { deleteExistingContent: false }))
     // Incializo las colas (RabbitMQ)
     .then(adn => queues.setup(app, adn))
     // Seteo los endpoints y el middleware correspondiente
@@ -42,6 +42,8 @@ ADNTools.getADN({ updateADN: false })
     .then(adn => repo.setup(adn))
     // Prendo workers que van a mover los mensajes de las colas a la bd
     .then(adn => workers.setup(adn))
+    //Función del ADN que se llama al final del setup
+    .then(adn => ADNTools.readyADN(adn, {}))
     //El servidor comienza a escuchar
     .then(adn => startListening(adn))
     .catch(err => console.log(err));
