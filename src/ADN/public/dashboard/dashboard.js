@@ -43,20 +43,11 @@ const dflt = {
             name: "URBE TRACK",
             html: (parent) => {
 
-
-                // {
-                //     /* <div class="row">
-                //       <div class="col-sm-4">.col-sm-4</div>
-                //       <div class="col-sm-4">.col-sm-4</div>
-                //       <div class="col-sm-4">.col-sm-4</div>
-                //     </div> */
-                // }
-
                 var test1 = document.createElement("div");
                 test1.className = "col-6";
                 test1.style.backgroundColor = 'transparent';
                 root.appendChild(test1);
-                table.create({}, test1);
+                table.create({ fetchPath: "api/get" }, test1);
 
                 var test2 = document.createElement("div");
                 test2.className = "col-6";
@@ -80,7 +71,7 @@ const dflt = {
                 tableRoot.style.width = (parent.offsetWidth - margins * 2) * 100 / parent.offsetWidth + '%';
                 tableRoot.style.height = (parent.offsetHeight - margins * 2) * 100 / parent.offsetHeight + '%';
                 parent.appendChild(tableRoot);
-                table.create({}, tableRoot);
+                table.create({ fetchPath: "api/get" }, tableRoot);
                 return tableRoot;
             }
         },

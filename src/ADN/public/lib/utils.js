@@ -45,4 +45,14 @@ const fillObjWithDflt = (object, dflt) => {
     return result;
 }
 
-export default { getData, getCount, addCss, fillObjWithDflt };
+const jsonToURLQuery = (query) => {
+    var result = "?";
+    if (typeof(query) != 'object') {
+        return result;
+    }
+    Object.keys(query).forEach((key) => {
+        result += key + "=" + query[key] + "&";
+    });
+    return result;
+}
+export default { getData, getCount, addCss, fillObjWithDflt, jsonToURLQuery };

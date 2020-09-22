@@ -1,18 +1,7 @@
 import utils from '../../lib/utils.js';
 import card from '../card/card.js';
+var state = {};
 
-// const collection = "collection1"; //Coleccion de la db de donde vamos a sacar la data para mostrar
-// const headers = { //Columnas de la tabla, formato : {'Title','name'}
-//     'Fecha': 'fecha',
-//     'Código': 'codigo',
-//     'Descripción': "descripcion",
-//     'Ubicación': 'ubicacion',
-//     'Interno': 'interno',
-//     'Patente': 'patente'
-// };
-// const dataMapping = {
-
-// };
 
 // //Referencias al documento--------------------------------
 // const table = document.getElementById('dashboard-table');
@@ -130,6 +119,51 @@ import card from '../card/card.js';
 // // })
 
 
+//TODO: Poner spinner o algo así...
+const loadingModal = () => {
+
+}
+
+const updateView = (result) => {
+    return new Promise((resolve, reject) => {});
+};
+
+const fetchData = (path, query) => {
+    return new Promise((resolve, reject) => {
+        loadingModal();
+        query = utils.jsonToURLQuery(query);
+        const fullURL = "/" + path + query;
+        console.log(fullURL);
+        fetch(fullURL, {
+                method: 'GET', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                referrerPolicy: "origin-when-cross-origin"
+            })
+            .then(response => {
+                console.log('Response:', response);
+                return response.text();
+            })
+            .then(response => {
+                console.log('Success:', response);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+};
+
+const update = (url, query) => {
+    return new Promise((resolve, reject) => {
+        fetchData(url, query)
+            .then(result => updateView(result))
+            .then(resolve())
+            .catch(err => reject(err));
+    });
+};
+
+//-----------------------------------------------------------------------------------------------
 
 const dflt = {
     id: "noID",
@@ -137,6 +171,7 @@ const dflt = {
             label: "Desde",
             inputs: {
                 desde: {
+                    name: "desde",
                     type: "date",
                     placeholder: "Desde",
                     value: "",
@@ -151,6 +186,7 @@ const dflt = {
             label: "Hasta",
             inputs: {
                 hasta: {
+                    name: "hasta",
                     type: "date",
                     placeholder: "Hasta",
                     value: "",
@@ -165,6 +201,7 @@ const dflt = {
             label: "Interno (ID)",
             inputs: {
                 id: {
+                    name: "interno",
                     type: "text",
                     placeholder: "ID",
                     value: "",
@@ -179,26 +216,16 @@ const dflt = {
             label: "Velocidad",
             inputs: {
                 desde: {
-                    type: "text",
-                    placeholder: "A",
+                    name: "velocidad-desde",
+                    type: "number",
+                    placeholder: "Desde",
                     value: "",
                     required: "",
                 },
                 hasta: {
-                    type: "text",
-                    placeholder: "B",
-                    value: "",
-                    required: "",
-                },
-                deSsde: {
-                    type: "text",
-                    placeholder: "C",
-                    value: "",
-                    required: "",
-                },
-                hasSta: {
-                    type: "text",
-                    placeholder: "D",
+                    name: "velocidad-hasta",
+                    type: "number",
+                    placeholder: "Hasta",
                     value: "",
                     required: "",
                 }
@@ -211,12 +238,14 @@ const dflt = {
             label: "Aceleración",
             inputs: {
                 desde: {
+                    name: "aceleracion-desde",
                     type: "number",
                     placeholder: "Desde",
                     value: "",
                     required: "",
                 },
                 hasta: {
+                    name: "aceleracion-hasta",
                     type: "number",
                     placeholder: "Hasta",
                     value: "",
@@ -396,6 +425,7 @@ const dflt = {
         },
     ],
     emptyRow: "-",
+    fetchPath: "api/get"
 }
 
 const create = (data, parent) => {
@@ -405,16 +435,6 @@ const create = (data, parent) => {
         div.id = data.id + "-table-filters";
         div.className = "ventum-table-filters ";
         cardParent.body.appendChild(div);
-
-        /* <form>
-        //   <div class="form-row">
-        //     <div class="col-2">
-        //       <label for="validationServer01">First name</label>
-        //       <input type="text" class="form-control" id="validationServer01" placeholder="First name" value="Mark" required="">
-        //       <div class="valid-feedback">
-        //         Looks good!
-        //       </div>
-        //     </div> */
 
         var form = document.createElement("form");
         form.id = data.id + "-table-filters-form";
@@ -437,14 +457,12 @@ const create = (data, parent) => {
                 label.id = data.id + "-table-filters-form-col-" + index.toString() + "-label";
                 label.innerHTML = data.filters[index].label;
                 col.appendChild(label);
-                // <div id="noID-table-filters-form-row" class="form-row ventum-table-filters-form-row"><div id="noID-table-filters-form-col-0" class="col-2"></div>
 
                 var inputs = document.createElement("div");
                 inputs.className = "form-row";
                 col.appendChild(inputs);
 
                 var inputsArray = Object.values(data.filters[index].inputs);
-                console.log(inputsArray.length);
                 inputsArray.forEach(input => {
                     var inputCol = document.createElement("div");
                     switch (inputsArray.length) {
@@ -467,6 +485,7 @@ const create = (data, parent) => {
                     inputs.appendChild(inputCol);
 
                     var field = document.createElement("input");
+                    field.name = input.name;
                     field.type = input.type;
                     field.className = "form-control";
                     field.placeholder = input.placeholder;
@@ -490,12 +509,19 @@ const create = (data, parent) => {
         col.appendChild(label);
         var btn = document.createElement("button");
         btn.type = "submit";
-        btn.className = "btn btn-primary";
+        btn.className = "btn btn-success";
         btn.value = "submit";
         btn.innerHTML = "Filtrar";
         btn.style.position = "relative";
         btn.style.width = '90%';
         col.appendChild(btn);
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const entries = Object.fromEntries(formData.entries());
+            update(data.fetchPath, entries);
+        });
 
         return div;
     };
@@ -581,6 +607,8 @@ const create = (data, parent) => {
     var filters = createFilters();
     var content = createContent();
     var footer = createFooter();
+
+    state.dbURL = data.dbURL;
 
     return { filters, content, footer }
 };

@@ -52,7 +52,7 @@ const config = {
 const { JSDOM } = require("jsdom"); //librería para editar archivos .html
 const views = {
     dashboard: () => {
-        const data = {};
+        const data = { fetchPass: "api/get" };
         const originPath = path.join(__dirname, '../public/dashboard', 'dashboard.html');
         console.log(originPath);
         return new Promise((resolve, reject) => {
