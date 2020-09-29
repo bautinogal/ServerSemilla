@@ -33,7 +33,7 @@ const app = express();
 
 ADNTools.getADN({ updateADN: false })
     //  Inicializo la semilla, descargo files adicionales, copio los files publicos del ADN al seed...
-    .then(adn => ADNTools.initADN(adn, { deleteExistingContent: false }))
+    .then(adn => ADNTools.initADN(adn, { deleteExistingContent: true }))
     // Incializo las colas (RabbitMQ)
     .then(adn => queues.setup(app, adn))
     // Seteo los endpoints y el middleware correspondiente

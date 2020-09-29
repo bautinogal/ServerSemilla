@@ -16,7 +16,7 @@ const loadModule = (ADNAbsFolder) => {
             const ADN = require(ADNAbsFolder);
             resolve(ADN);
         } catch (err) {
-            reject(err)
+            reject(err);
         }
     });
 }
@@ -29,7 +29,7 @@ const downloadADN = (downloadADN) => {
             const repo = config.ADNGitRepo;
             const token = config.ADNGitAuthToken;
             console.log("ADNTools@downloadADN: downloading 'ADN' from github repo: " + user + "/" + repo);
-            github.cloneRepo(user, repo, "", token, ADNAbsFolder)
+            github.cloneRepo(user, repo, "", token, "ADN")
                 .then((res) => resolve(res))
                 .catch(err => reject(err));
         });

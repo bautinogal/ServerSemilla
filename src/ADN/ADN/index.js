@@ -1,7 +1,6 @@
 const path = require('path');
 const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate } = require('./lib');
-var requireFromUrl = require('require-from-url/sync');
-const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
+
 
 //------------------------------------- Objetos Específicos de la APP ----------------------------------
 
@@ -50,38 +49,35 @@ const config = {
     mariaDbPort: '3306', // Puerto de la base de datos alojada en servidor remoto
 };
 
-// const views = {
-//     dashboard: () => {
-//         const data = { fetchPass: "api/get" };
-//         const originPath = "https://drive.google.com/uc?export=view&id=1o_7lBi3mSyakXCzO1DHLHv3t5yotUEeA";
+const { JSDOM } = require("jsdom"); //librería para editar archivos .html
+const views = {
+    dashboard: () => {
+        const data = { fetchPass: "api/get" };
+        const originPath = path.join(__dirname, '../public/dashboard', 'dashboard.html');
+        console.log(originPath);
+        return new Promise((resolve, reject) => {
+            try {
+                JSDOM.fromFile(originPath)
+                    .then(dom => {
+                        var script = dom.window.document.createElement("script");
+                        script.type = "module";
+                        //var innerHTML = `console.log("hola");`;
+                        var innerHTML = `import dashboard from "/public/dashboard/dashboard.js";`;
+                        innerHTML += `dashboard.init((${JSON.stringify(data)}))`;
+                        script.innerHTML = innerHTML;
+                        dom.window.document.body.appendChild(script);
+                        resolve(dom.serialize());
+                    })
+                    .catch(err => reject(err));
+            } catch (error) {
+                reject(error);
+            }
+        })
+    },
+    login: () => {
 
-//         console.log(originPath);
-//         return new Promise((resolve, reject) => {
-//             try {
-//                 JSDOM.fromURL(originPath)
-//                     .then(dom => {
-//                         var script = dom.window.document.createElement("script");
-//                         script.type = "module";
-//                         //var innerHTML = `console.log("hola");`;
-//                         // var innerHTML = `import dashboard from "/public/dashboard/dashboard.js";`;
-//                         // var innerHTML = `import dashboard from "https://drive.google.com/uc?export=view&id=1oXP8QSonh3s_pwp9oxos4UaMJvz5xPFw";`;
-//                         // var innerHTML = `import dashboard from "https://www.googleapis.com/drive/v2/files/1oXP8QSonh3s_pwp9oxos4UaMJvz5xPFw?alt=media&source=downloadUrl";`;
-//                         // innerHTML += `dashboard.init((${JSON.stringify(data)}))`;
-//                         var innerHTML = `init((${JSON.stringify(data)}))`;
-//                         script.innerHTML = innerHTML;
-//                         dom.window.document.body.appendChild(script);
-//                         resolve(dom.serialize());
-//                     })
-//                     .catch(err => reject(err));
-//             } catch (error) {
-//                 reject(error);
-//             }
-//         })
-//     },
-//     login: () => {
-
-//     }
-// }
+    }
+}
 
 //------------------------------------- Objetos Obligatorios ----------------------------------
 
@@ -111,18 +107,18 @@ var repo = {
 const endpoints = {
     "pages": {
         "login": (req, res) => {
-            if (req.cookies["access-token"] == null) {
-                views.login(req, res, {});
-            } else {
-                views.dashboard(req, res, {});
-            }
+            views.login() // Crea un .html y me devuelve el path
+                .then(html => {
+                    res.send(html);
+                })
+                .catch(err => console.log(err));
         },
         "dashboard": (req, res) => {
-            if (req.cookies["access-token"] == null) {
-                views.login(req, res, {});
-            } else {
-                views.dashboard(req, res, {});
-            }
+            views.dashboard() // Crea un .html y me devuelve el path
+                .then(html => {
+                    res.send(html);
+                })
+                .catch(err => console.log(err));
         }
     },
     "api": {
@@ -134,7 +130,7 @@ const endpoints = {
                     case "POST":
                         login(user, pass)
                             .then((token) => {
-                                res.cookie("access-token", JSON.stringify(token), {});
+                                res.cookie("access-token", JSON.stringify(token), { maxAge: 3600, httpOnly: true });
                                 res.status(200).send(token)
                             })
                             .catch((err) => res.status(403).send(err));
@@ -202,10 +198,6 @@ const endpoints = {
                 .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
         "get": (req, res) => {
-            // Cookies that have not been signed
-            console.log('Cookies: ', req.cookies);
-            // Cookies that have been signed
-            console.log('Signed Cookies: ', req.signedCookies);
             decodeJWT(req.cookies['access-token'])
                 .then((token) => {
                     switch (req.method) {

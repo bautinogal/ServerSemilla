@@ -128,7 +128,7 @@ const updateView = (result) => {
     return new Promise((resolve, reject) => {});
 };
 
-const fetchData = (path, query) => {
+const fetchData = (path, query, token) => {
     return new Promise((resolve, reject) => {
         loadingModal();
         query = utils.jsonToURLQuery(query);
@@ -138,6 +138,7 @@ const fetchData = (path, query) => {
                 method: 'GET', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',
+                    'Access-Token': token
                 },
                 referrerPolicy: "origin-when-cross-origin"
             })
@@ -154,9 +155,9 @@ const fetchData = (path, query) => {
     });
 };
 
-const update = (url, query) => {
+const update = (url, query, token) => {
     return new Promise((resolve, reject) => {
-        fetchData(url, query)
+        fetchData(url, query, token)
             .then(result => updateView(result))
             .then(resolve())
             .catch(err => reject(err));

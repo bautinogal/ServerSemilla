@@ -6,11 +6,11 @@ let vars = {
     //General
     env: process.env.NODE_ENV || 'development',
     port: process.env.PORT || 3000,
-
+    pwd: process.env.PWD || "",
     //ADN
-    ADNGitUser: process.env.ADN_GIT_USER || 'adn', // <ADN-GIT-USER>
-    ADNGitRepo: process.env.ADN_GIT_REPO || 'repo', // <ADN-GIT-USER-REPO>
-    ADNGitAuthToken: process.env.ADN_GIT_AUTH_TOKEN || 'token', // <AUTH-TOKEN>
+    ADNGitUser: process.env.ADN_GIT_USER || 'VentumSoftware', // <ADN-GIT-USER>
+    ADNGitRepo: process.env.ADN_GIT_REPO || 'ADN-Masterbus-IOT', // <ADN-GIT-USER-REPO>
+    ADNGitAuthToken: process.env.ADN_GIT_AUTH_TOKEN || '3a1ac47be5a730bb221aa6a5387e7658a3f79704', // <AUTH-TOKEN>
 
     //Usuarios
     usersDB: process.env.USERS_DB || 'test',
