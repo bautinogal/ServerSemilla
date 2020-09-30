@@ -47,9 +47,16 @@ const getDb = (db) => {
 
 //Me aseguro de que el query y el query options sean objetos
 function formatQuery(query) {
-    query = query || {};
-    if (typeof query === 'string') query = JSON.parse(query);
-    return query;
+    try {
+        query = query || {};
+        if (typeof query === 'string') query = JSON.parse(query);
+        console.log(query);
+        return query;
+    } catch (error) {
+        console.log(error);
+        return {};
+    }
+
 };
 
 //U: guardar un documento en la colleccion 
@@ -78,13 +85,25 @@ function get(database, collection, query, queryOptions) {
     console.log(`mongo@get: db: ${database} col: ${collection} q: ${query} qo:${queryOptions}`);
     query = formatQuery(query);
     queryOptions = formatQuery(queryOptions);
-
     return new Promise((resolve, reject) => {
         getDb(database)
-            .then((instance) => instance.collection(collection))
-            .then((col) => col.find(query, queryOptions))
-            .then((count) => resolve(count.toArray()))
-            .catch((err) => reject(err));
+            .then((db) => {
+                return db.collection(collection);
+            })
+            .then((col) => {
+                return col.find(query, queryOptions);
+            })
+            .then((res) => {
+                return res.toArray();
+            })
+            .then((res) => {
+                console.log(`mongo@get: result: ${res}`);
+                resolve(res);
+            })
+            .catch((err) => {
+                console.log(`mongo@get: error:${err}`);
+                reject(err);
+            });
     })
 };
 
@@ -96,10 +115,20 @@ function getCount(database, collection, query, queryOptions) {
 
     return new Promise((resolve, reject) => {
         getDb(database)
-            .then((instance) => instance.collection(collection))
-            .then((col) => col.count(query, queryOptions))
-            .then((count) => resolve(count))
-            .catch((err) => reject(err));
+            .then((db) => {
+                return db.collection(collection);
+            })
+            .then((col) => {
+                return col.count(query, queryOptions);
+            })
+            .then((res) => {
+                console.log(`mongo@getCount: result: ${res}`);
+                resolve(res);
+            })
+            .catch((err) => {
+                console.log(`mongo@getCount: error:${err}`);
+                reject(err);
+            });
     })
 };
 
@@ -139,6 +168,7 @@ const validateMsg = (msg) => {
 };
 
 const query = (msg) => {
+    console.log("Mongodb query: " + JSON.stringify(msg));
     if (validateMsg(msg))
         switch (msg.method) {
             case 'POST':

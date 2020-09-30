@@ -111,18 +111,28 @@ var repo = {
 const endpoints = {
     "pages": {
         "login": (req, res) => {
-            if (req.cookies["access-token"] == null) {
-                views.login(req, res, {});
-            } else {
-                views.dashboard(req, res, {});
-            }
+            var accessToken = req.cookies['access-token'];
+            if (accessToken)
+                decodeJWT(req.cookies['access-token'].replace(/"/g, ""))
+                .then((token) => views.dashboard(req, res, {}))
+                .catch(err => {
+                    console.log(err);
+                    views.login(req, res, {})
+                });
+            else
+                views.login(req, res, {})
         },
         "dashboard": (req, res) => {
-            if (req.cookies["access-token"] == null) {
-                views.login(req, res, {});
-            } else {
-                views.dashboard(req, res, {});
-            }
+            var accessToken = req.cookies['access-token'];
+            if (accessToken)
+                decodeJWT(req.cookies['access-token'].replace(/"/g, ""))
+                .then((token) => views.dashboard(req, res, {}))
+                .catch(err => {
+                    console.log(err);
+                    views.login(req, res, {})
+                });
+            else
+                views.login(req, res, {})
         }
     },
     "api": {
@@ -148,7 +158,7 @@ const endpoints = {
             }
         },
         "users": (req, res) => {
-            decodeJWT(req.headers['access-token'])
+            decodeJWT(req.cookies['access-token'].replace(/"/g, "")) //Le saco las comillas 
                 .then((token) => {
                     switch (req.method) {
                         case "GET":
@@ -180,7 +190,7 @@ const endpoints = {
                 .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
         "post": (req, res) => {
-            decodeJWT(req.headers['access-token'])
+            decodeJWT(req.headers['access-token'].replace(/"/g, ""))
                 .then((token) => {
                     switch (req.method) {
                         case "POST":
@@ -203,14 +213,17 @@ const endpoints = {
         },
         "get": (req, res) => {
             // Cookies that have not been signed
+            console.log(req.cookies['access-token']);
             console.log('Cookies: ', req.cookies);
             // Cookies that have been signed
             console.log('Signed Cookies: ', req.signedCookies);
-            decodeJWT(req.cookies['access-token'])
+            decodeJWT(req.cookies['access-token'].replace(/"/g, ""))
                 .then((token) => {
                     switch (req.method) {
                         case "GET":
                             if (validate(token, { $or: [{ role: "client" }, { role: "admin" }] })) {
+                                var result = {};
+                                console.log("req.query.queryOptions: " + req.query.queryOptions);
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
@@ -220,7 +233,21 @@ const endpoints = {
                                         queryOptions: req.query.queryOptions
                                     })
                                     .then(posts => {
-                                        res.status(200).send(posts);
+                                        console.log("Results: " + JSON.stringify(posts));
+                                        result.rows = posts;
+                                        return cmd({
+                                            type: "mongo",
+                                            method: "COUNT",
+                                            db: "Masterbus-IOT",
+                                            collection: "INTI",
+                                            query: req.query.query,
+                                            queryOptions: {}
+                                        });
+                                    })
+                                    .then(count => {
+                                        console.log("Count: " + JSON.stringify(count));
+                                        result.count = count;
+                                        res.status(200).send(result);
                                     })
                                     .catch(err => res.status(500).send(err));
                             } else {
@@ -233,7 +260,7 @@ const endpoints = {
                     }
                 })
                 .catch((err) => res.status(403).send("Access-token invalido: " + err));
-        }
+        },
     }
 };
 
@@ -269,6 +296,6 @@ const onReady = () => {
             })
             .catch(err => reject(err));
     });
-}
+};
 
 module.exports = { onStart, onReady, queue, repo, endpoints, workers };
