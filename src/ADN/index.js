@@ -190,12 +190,19 @@ const endpoints = {
                 .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
         "post": (req, res) => {
-            decodeJWT(req.headers['access-token'].replace(/"/g, ""))
+            decodeJWT(req.headers['access-token'])
                 .then((token) => {
                     switch (req.method) {
                         case "POST":
                             if (validate(token, { $or: [{ role: "client" }, { role: "admin" }] })) {
-                                enqueue("INTI", req.body)
+                                // enqueue("INTI", req.body)
+                                cmd({
+                                        type: "mongo",
+                                        method: "POST",
+                                        db: "Masterbus-IOT",
+                                        collection: "INTI",
+                                        body: req.body
+                                    })
                                     .then(() => {
                                         res.status(200).send(JSON.stringify(req.body) + " received!");
                                     })
