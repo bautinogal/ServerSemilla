@@ -190,33 +190,44 @@ const endpoints = {
                 .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
         "post": (req, res) => {
-            decodeJWT(req.headers['access-token'])
-                .then((token) => {
-                    switch (req.method) {
-                        case "POST":
-                            if (validate(token, { $or: [{ role: "client" }, { role: "admin" }] })) {
-                                // enqueue("INTI", req.body)
-                                cmd({
-                                        type: "mongo",
-                                        method: "POST",
-                                        db: "Masterbus-IOT",
-                                        collection: "INTI",
-                                        body: req.body
-                                    })
-                                    .then(() => {
-                                        res.status(200).send(JSON.stringify(req.body) + " received!");
-                                    })
-                                    .catch(err => res.status(500).send(err));
-                            } else {
-                                res.status(403).send("usuario no autorizado!");
-                            }
-                            break;
-                        default:
-                            res.status(401).send("Invalid http method!");
-                            break;
-                    }
+            cmd({
+                    type: "mongo",
+                    method: "POST",
+                    db: "Masterbus-IOT",
+                    collection: "INTI",
+                    content: req.body
                 })
-                .catch((err) => res.status(403).send("Access-token invalido: " + err));
+                .then(() => {
+                    res.status(200).send(JSON.stringify(req.body) + " received!");
+                })
+                .catch(err => res.status(500).send(err));
+            // decodeJWT(req.headers['access-token'])
+            //     .then((token) => {
+            //         switch (req.method) {
+            //             case "POST":
+            //                 if (validate(token, { $or: [{ role: "client" }, { role: "admin" }] })) {
+            //                     // enqueue("INTI", req.body)
+            //                     cmd({
+            //                             type: "mongo",
+            //                             method: "POST",
+            //                             db: "Masterbus-IOT",
+            //                             collection: "INTI",
+            //                             body: req.body
+            //                         })
+            //                         .then(() => {
+            //                             res.status(200).send(JSON.stringify(req.body) + " received!");
+            //                         })
+            //                         .catch(err => res.status(500).send(err));
+            //                 } else {
+            //                     res.status(403).send("usuario no autorizado!");
+            //                 }
+            //                 break;
+            //             default:
+            //                 res.status(401).send("Invalid http method!");
+            //                 break;
+            //         }
+            //     })
+            //     .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
         "get": (req, res) => {
             // Cookies that have not been signed
