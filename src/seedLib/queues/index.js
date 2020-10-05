@@ -6,29 +6,6 @@ var connection = null;
 var channel = null;
 var offlineQueue = [];
 
-// //TODO: HACER que cada cierto tiempo verifica que la conexión este activa
-// const watchDogStart = () => {
-//     const tryReconnect = (timeout, tryies) => {
-
-//     }
-
-//     if (connection) {
-//         try {
-//             connection.on("error", (err) => {
-//                 if (err.message !== "Connection closing") {
-//                     console.error("[AMQP] conn error", err.message);
-//                 }
-//             });
-//             connection.on("close", () => {
-//                 console.error("[AMQP] closing");
-//                 tryReconnect(5000, 5);
-//             });
-//         } catch (error) {
-//             console.log("Watchdog error: %s", error);
-//         }
-//     } else console.log("Watchdog no arrancó porque no existe una conexión!");
-// }
-
 // Mato todas las conexiones y canales
 const killConnections = () => {
     if (connection) connection.close();
@@ -146,10 +123,15 @@ const setup = (app, adn) => {
     return new Promise((resolve, reject) => {
         try {
             //TODO: validar URL y Key
-            console.log('Queue@setup: url %s!', adn.queue.url);
-            resetConnection(adn.queue.url, adn.queue.key)
-                .then(res => resolve(adn))
-                .catch(err => reject(err));
+            if (adn.queues.rabbitmq) {
+                console.log('Queue@setup: url %s!', adn.queues.rabbitmq.url);
+                resetConnection(adn.queues.rabbitmq.url, adn.queues.rabbitmq.key)
+                    .then(res => resolve(adn))
+                    .catch(err => reject(err));
+            } else {
+                console.log('Queue@setup: rabbitmq no encontrado en el ADN!');
+                resolve(adn);
+            }
         } catch (error) {
             reject(error);
         }

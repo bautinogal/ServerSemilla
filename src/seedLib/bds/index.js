@@ -11,9 +11,9 @@ const utils = require('../../lib/utils');
 var users = {};
 
 const setBDS = (ADN) => {
-    const repo = ADN.repo;
+    const bds = ADN.bds;
     return new Promise((resolve, reject) => {
-        mongoDb.setup(repo['mongo'])
+        mongoDb.setup(bds['mongo'])
             //.then(res => mariaDb.setup(repo.getDB('maria')))
             .then(res => resolve(ADN))
             .catch(err => reject(err));
@@ -54,8 +54,8 @@ const cmds = (msgs) => {
 // Inicializo el repositorio del proyecto
 const setup = (ADN) => {
     return new Promise((resolve, reject) => {
-        users.db = ADN.repo.users.db;
-        users.col = ADN.repo.users.col;
+        users.db = ADN.config.users.db;
+        users.col = ADN.config.users.col;
         setBDS(ADN)
             .then(res => {
                 console.log("repo@setup: ready!");

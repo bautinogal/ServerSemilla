@@ -9,7 +9,7 @@ const endpoints = require('./seedLib/endpoints');
 // Script que arranca los "workers" que mueven los mensajes de la cola a la bd
 const workers = require('./seedLib/workers');
 // Script que administra las bds y colas del sistema
-const repo = require('./seedLib/repo');
+const bds = require('./seedLib/bds');
 
 //TODO: agregar certificados ssl y caa
 // El servidor comienza a escuchar los requests
@@ -39,7 +39,7 @@ ADNTools.getADN({ updateADN: false })
     // Seteo los endpoints y el middleware correspondiente
     .then(adn => endpoints.setup(app, adn))
     // Configuro BDs y creao el usuario root de la app, para asegurarme que siempre haya al menos un usuario 
-    .then(adn => repo.setup(adn))
+    .then(adn => bds.setup(adn))
     // Prendo workers que van a mover los mensajes de las colas a la bd
     .then(adn => workers.setup(adn))
     //Función del ADN que se llama al final del setup

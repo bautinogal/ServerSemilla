@@ -1,4 +1,4 @@
-const repo = require('../../seedLib/repo');
+const repo = require('../../seedLib/bds');
 const queue = require('../../seedLib/queues');
 const crypto = require('../../lib/encryptation');
 const seedUtils = require('../../lib/utils');

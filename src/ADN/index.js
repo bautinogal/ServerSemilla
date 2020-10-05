@@ -15,90 +15,246 @@ const createUsers = () => {
     });
 };
 
-//------------------------------------- Limbo ---------------------------------------------------
+const checkAccessToken = (req, res, criteria) => {
+    return new Promise((resolve, reject) => {
+        try {
+            var accessToken = req.cookies['access-token'];
+            if (accessToken)
+                decodeJWT(req.cookies['access-token'].replace(/"/g, ""))
+                .then((token) => {
+                    if (validate(token, criteria))
+                        resolve(token);
+                    else
+                        reject("access-token invalid");
+                })
+                .catch(err => {
+                    reject("error decoding access-token: " + err.msg);
+                });
+            else
+                reject("no access-token");
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 
-const config = {
+const data = {
+    dashboard: {
+        id: "id",
+        company: {
+            name: "Masterbus"
+        },
+        user: {
+            name: "Admin"
+        },
+        categories: {
+            dashboard: {
+                name: "URBE TRACK",
+                html: (parent) => {
+
+                    var test1 = document.createElement("div");
+                    test1.className = "col-6";
+                    test1.style.backgroundColor = 'transparent';
+                    parent.appendChild(test1);
+                    table.create({ fetchPath: "api/get" }, test1);
+
+                    var test2 = document.createElement("div");
+                    test2.className = "col-6";
+                    test2.style.backgroundColor = 'transparent';
+                    root.appendChild(test2);
+                    table.create({}, test2);
+
+                    return root;
+                }
+            },
+            INTI: {
+                name: "INTI",
+                html: (parent) => {
+                    const tableData = {
+                        id: "noID",
+                        filters: [{
+                                label: "Desde",
+                                inputs: {
+                                    desde: {
+                                        name: "desde",
+                                        type: "date",
+                                        placeholder: "Desde",
+                                        value: "",
+                                        required: "",
+                                    }
+                                },
+                                query: (values) => {
+                                    return values;
+                                }
+                            },
+                            {
+                                label: "Hasta",
+                                inputs: {
+                                    hasta: {
+                                        name: "hasta",
+                                        type: "date",
+                                        placeholder: "Hasta",
+                                        value: "",
+                                        required: "",
+                                    }
+                                },
+                                query: (values) => {
+                                    return values;
+                                }
+                            },
+                            {
+                                label: "Interno (ID)",
+                                inputs: {
+                                    id: {
+                                        name: "interno",
+                                        type: "text",
+                                        placeholder: "ID",
+                                        value: "",
+                                        required: "",
+                                    }
+                                },
+                                query: (values) => {
+                                    return values;
+                                }
+                            },
+                            {
+                                label: "Velocidad",
+                                inputs: {
+                                    desde: {
+                                        name: "velocidad-desde",
+                                        type: "number",
+                                        placeholder: "Desde",
+                                        value: "",
+                                        required: "",
+                                    },
+                                    hasta: {
+                                        name: "velocidad-hasta",
+                                        type: "number",
+                                        placeholder: "Hasta",
+                                        value: "",
+                                        required: "",
+                                    }
+                                },
+                                query: (value) => {
+                                    return value;
+                                }
+                            },
+                            {
+                                label: "Aceleración",
+                                inputs: {
+                                    desde: {
+                                        name: "aceleracion-desde",
+                                        type: "number",
+                                        placeholder: "Desde",
+                                        value: "",
+                                        required: "",
+                                    },
+                                    hasta: {
+                                        name: "aceleracion-hasta",
+                                        type: "number",
+                                        placeholder: "Hasta",
+                                        value: "",
+                                        required: "",
+                                    }
+                                },
+                                query: (value) => {
+                                    return value;
+                                }
+                            }
+                        ],
+                        headers: {
+                            Direccion: "Dirección",
+                            ID: "ID",
+                            Fecha: "Fecha",
+                            Hora: "Hora",
+                            Longitud: "Longitud",
+                            Latitud: "Latitud",
+                            Accel: "Aceleración",
+                            Velocidad: "Velocidad",
+                            Sensor1: "Comb.",
+                            Sensor2: "RPM",
+                            Sensor3: "Motor",
+                            Sensor4: "Vel.",
+                        },
+                        data: [],
+                        emptyRow: "-",
+                        fetchPath: "/api/get",
+                        fetch: (path, query) => {
+                            console.log("fetch:" + path + query);
+                            return new Promise((resolve, reject) => {
+                                fetch(path + query, {
+                                        referrerPolicy: "origin-when-cross-origin",
+                                        credentials: 'include',
+                                        method: 'GET',
+                                        headers: {
+                                            'Content-Type': 'application/json;charset=utf-8',
+                                        }
+                                    })
+                                    .then(res => res.json())
+                                    .then(res => {
+                                        var temp = []
+                                        res.rows.forEach(row => {
+                                            if (row.paquete) temp.push(row.paquete);
+                                            else if (row.package) temp.push(row.package);
+                                            else temp.push(row);
+                                        });
+                                        res.rows = temp;
+                                        resolve(res);
+                                    })
+                                    .catch(err => {
+                                        console.log(err);
+                                        reject(err)
+                                    });
+                            });
+                        },
+
+                    };
+                    var tableRoot = mainCard(parent);
+                    table.create(tableData, tableRoot);
+                    return tableRoot;
+                }
+            },
+        },
+        logOut: () => {
+            document.cookie = "access-token=; expires=0; path=/";
+            location.reload();
+        },
+    }
+};
+
+//------------------------------------- Objetos Obligatorios ----------------------------------
+
+var config = {
     //General
     env: 'development',
     port: 3000,
 
     //Usuarios
-    usersDB: 'test',
-    usersCollection: 'users',
-    rootUser: 'root',
-    rootPass: 'secret',
+    users: {
+        db: "Masterbus-IOT",
+        col: "Users"
+    },
 
     //Encryptacion JWT
     jwtSecret: "YOUR_secret_key", // key privada que uso para hashear passwords
     jwtDfltExpires: 3600, // Cuanto duran los tokens por dflt en segundos
     saltWorkFactor: 10, //A: las vueltas que usa bcrypt para encriptar las password
-
-    //Cola AMQP
-    amqpUrl: 'amqp://localhost', //URL de la cola AMQP
-
-    //MongoDB
-    mongoUri: 'mongodb://localhost:27017', //URL del Cluster de MongoDb
-    // mongoUri: process.env.MONGODB_PUBLIC_KEY || 'CXSIZTBG', // Clave pública del Cluster de MongoDb
-    // mongoUri: process.env.MONGODB_PRIVATE_KEY || 'b25b1b51-72dd-4da3-9aea-c64f12437e966', // Clave privada del 
-
-    //TODO: ver si usamos user/pass o ssh
-    //MariaDB
-    mariaDbName: 'semilla', //Nombre de la base de datos relacional (MySQL)
-    mariaDbHost: 'localhost', //URL del servidor remoto donde se aloja la base de datos relacional 
-    mariaDbUser: 'root',
-    mariaDbPass: '',
-    mariaDbPort: '3306', // Puerto de la base de datos alojada en servidor remoto
 };
 
-// const views = {
-//     dashboard: () => {
-//         const data = { fetchPass: "api/get" };
-//         const originPath = "https://drive.google.com/uc?export=view&id=1o_7lBi3mSyakXCzO1DHLHv3t5yotUEeA";
-
-//         console.log(originPath);
-//         return new Promise((resolve, reject) => {
-//             try {
-//                 JSDOM.fromURL(originPath)
-//                     .then(dom => {
-//                         var script = dom.window.document.createElement("script");
-//                         script.type = "module";
-//                         //var innerHTML = `console.log("hola");`;
-//                         // var innerHTML = `import dashboard from "/public/dashboard/dashboard.js";`;
-//                         // var innerHTML = `import dashboard from "https://drive.google.com/uc?export=view&id=1oXP8QSonh3s_pwp9oxos4UaMJvz5xPFw";`;
-//                         // var innerHTML = `import dashboard from "https://www.googleapis.com/drive/v2/files/1oXP8QSonh3s_pwp9oxos4UaMJvz5xPFw?alt=media&source=downloadUrl";`;
-//                         // innerHTML += `dashboard.init((${JSON.stringify(data)}))`;
-//                         var innerHTML = `init((${JSON.stringify(data)}))`;
-//                         script.innerHTML = innerHTML;
-//                         dom.window.document.body.appendChild(script);
-//                         resolve(dom.serialize());
-//                     })
-//                     .catch(err => reject(err));
-//             } catch (error) {
-//                 reject(error);
-//             }
-//         })
-//     },
-//     login: () => {
-
-//     }
-// }
-
-//------------------------------------- Objetos Obligatorios ----------------------------------
-
-const queue = {
-    url: "amqps://xmwycwwn:rKfv_uKSj8oXp0qg63G2kzqmPN3ZekpO@coyote.rmq.cloudamqp.com/xmwycwwn",
-    pass: "rKfv_uKSj8oXp0qg63G2kzqmPN3ZekpO"
-};
-
-var repo = {
-    users: {
-        db: "Masterbus-IOT",
-        col: "Users"
+var queues = {
+    rabbitmq: {
+        url: "amqps://xmwycwwn:rKfv_uKSj8oXp0qg63G2kzqmPN3ZekpO@coyote.rmq.cloudamqp.com/xmwycwwn",
+        pass: "rKfv_uKSj8oXp0qg63G2kzqmPN3ZekpO"
     },
+};
+
+var bds = {
+
     mongo: {
         url: "mongodb+srv://masterbus-iot-server:masterbus@cluster0.uggrc.mongodb.net/INTI-Test?retryWrites=true&w=majority",
         dfltDb: "dflt"
     },
+
     maria: {
         name: "semilla_test",
         url: "semilla.c7mwpiipndbn.us-west-1.rds.amazonaws.com",
@@ -111,28 +267,14 @@ var repo = {
 const endpoints = {
     "pages": {
         "login": (req, res) => {
-            var accessToken = req.cookies['access-token'];
-            if (accessToken)
-                decodeJWT(req.cookies['access-token'].replace(/"/g, ""))
-                .then((token) => views.dashboard(req, res, {}))
-                .catch(err => {
-                    console.log(err);
-                    views.login(req, res, {})
-                });
-            else
-                views.login(req, res, {})
+            checkAccessToken(req, res, { $or: [{ role: "client" }, { role: "admin" }] })
+                .then((token) => res.redirect('/pages/dashboard'))
+                .catch((err) => views.login(req, res, {}));
         },
         "dashboard": (req, res) => {
-            var accessToken = req.cookies['access-token'];
-            if (accessToken)
-                decodeJWT(req.cookies['access-token'].replace(/"/g, ""))
+            checkAccessToken(req, res, { $or: [{ role: "client" }, { role: "admin" }] })
                 .then((token) => views.dashboard(req, res, {}))
-                .catch(err => {
-                    console.log(err);
-                    views.login(req, res, {})
-                });
-            else
-                views.login(req, res, {})
+                .catch((err) => res.redirect('/pages/login'));
         }
     },
     "api": {
@@ -230,54 +372,45 @@ const endpoints = {
             //     .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
         "get": (req, res) => {
-            // Cookies that have not been signed
-            console.log(req.cookies['access-token']);
-            console.log('Cookies: ', req.cookies);
-            // Cookies that have been signed
-            console.log('Signed Cookies: ', req.signedCookies);
-            decodeJWT(req.cookies['access-token'].replace(/"/g, ""))
+            checkAccessToken(req, res, { $or: [{ role: "client" }, { role: "admin" }] })
                 .then((token) => {
                     switch (req.method) {
                         case "GET":
-                            if (validate(token, { $or: [{ role: "client" }, { role: "admin" }] })) {
-                                var result = {};
-                                console.log("req.query.queryOptions: " + req.query.queryOptions);
-                                cmd({
+                            var result = {};
+                            console.log("req.query.queryOptions: " + req.query.queryOptions);
+                            cmd({
+                                    type: "mongo",
+                                    method: "GET",
+                                    db: "Masterbus-IOT",
+                                    collection: "INTI",
+                                    query: req.query.query,
+                                    queryOptions: req.query.queryOptions
+                                })
+                                .then(results => {
+                                    console.log("Results: " + JSON.stringify(results));
+                                    result.rows = results;
+                                    return cmd({
                                         type: "mongo",
-                                        method: "GET",
+                                        method: "COUNT",
                                         db: "Masterbus-IOT",
                                         collection: "INTI",
                                         query: req.query.query,
-                                        queryOptions: req.query.queryOptions
-                                    })
-                                    .then(posts => {
-                                        console.log("Results: " + JSON.stringify(posts));
-                                        result.rows = posts;
-                                        return cmd({
-                                            type: "mongo",
-                                            method: "COUNT",
-                                            db: "Masterbus-IOT",
-                                            collection: "INTI",
-                                            query: req.query.query,
-                                            queryOptions: {}
-                                        });
-                                    })
-                                    .then(count => {
-                                        console.log("Count: " + JSON.stringify(count));
-                                        result.count = count;
-                                        res.status(200).send(result);
-                                    })
-                                    .catch(err => res.status(500).send(err));
-                            } else {
-                                res.status(403).send("usuario no autorizado!");
-                            }
+                                        queryOptions: {}
+                                    });
+                                })
+                                .then(count => {
+                                    console.log("Count: " + JSON.stringify(count));
+                                    result.count = count;
+                                    res.status(200).send(result);
+                                })
+                                .catch(err => res.status(500).send(err));
                             break;
                         default:
                             res.status(401).send("Invalid http method!");
                             break;
                     }
                 })
-                .catch((err) => res.status(403).send("Access-token invalido: " + err));
+                .catch((err) => res.status(403).send("Access-token invalido: " + err.msg));
         },
     }
 };
@@ -316,4 +449,4 @@ const onReady = () => {
     });
 };
 
-module.exports = { onStart, onReady, queue, repo, endpoints, workers };
+module.exports = { onStart, onReady, config, queues, bds, endpoints, workers };
