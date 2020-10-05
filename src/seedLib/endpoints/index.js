@@ -7,6 +7,8 @@ const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerp
 const morgan = require('morgan'); // Herramienta para loggear
 const favicon = require('serve-favicon');
 
+const webSocket = require('../../lib/websocket');
+
 //Seteo el puerto del servidor
 const setPort = (app, adn) => {
     app.set('port', config.port || 3000);
@@ -54,7 +56,6 @@ const setEndpoints = (app, adn) => {
     // TODO: SEGURIDAD, VALIDACIONES, ETC...
     //Endpoint genérico:
     app.all('/*', function(req, res) {
-
         var params = req.params[0].split('/');
         var endpoint = adn.endpoints;
 
@@ -76,6 +77,8 @@ const setEndpoints = (app, adn) => {
         else
             res.send("Endpoint inválido!");
     });
+
+    webSocket.create(app, adn.endpoints.webSockets);
 }
 
 //Configuro el servidor y endpoints
@@ -88,7 +91,6 @@ const setup = (app, adn) => {
             setPublicFolder(app, adn);
             setMiddleWare(app, adn);
             setEndpoints(app, adn);
-
             resolve(adn);
 
         } catch (error) {

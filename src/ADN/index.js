@@ -287,7 +287,7 @@ const endpoints = {
                         login(user, pass)
                             .then((token) => {
                                 res.cookie("access-token", JSON.stringify(token), {});
-                                res.status(200).send(token)
+                                res.status(200).send(`{"token":"${JSON.stringify(token)}"}`);
                             })
                             .catch((err) => res.status(403).send(err));
                         break;
