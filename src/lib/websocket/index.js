@@ -1,5 +1,6 @@
 const WebSocket = require('ws');
 
+<<<<<<< HEAD
 //------------------------------ Funciones Publicas -------------------------
 
 const create = (app, data) => {
@@ -18,3 +19,15 @@ const create = (app, data) => {
 }
 
 module.exports = { create };
+=======
+var wss = null;
+
+const setup = (data) => {    
+    //data contiene la información para la conexion WebSocket
+    wss = new WebSocket.Server({'port': data.port, 'path': data.path});
+
+    wss.on('connection', data.onConnection);
+}
+
+module.exports = { setup }
+>>>>>>> b2025cca84418284ccf7591b22ba96e5066739ad
