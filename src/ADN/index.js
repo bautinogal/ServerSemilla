@@ -430,6 +430,23 @@ const workers = [{
     }
 }];
 
+const websocket = {
+    port : 8080,
+    path : '/ws',
+    onConnection : (ws) => {
+        ws.send("Hola cliente");
+        ws.on("open", ()=>{
+            console.log("Conexion exitosa!");
+        });        
+        ws.on("message", (msg)=>{
+            console.log(msg);
+        });
+        ws.on("close", ()=>{
+            console.log("Conexion cerrada!");
+        });
+    }
+};
+
 // Incializo mi app semilla
 const onStart = () => {
     console.log(`adn@setup: starting!`);
@@ -449,4 +466,4 @@ const onReady = () => {
     });
 };
 
-module.exports = { onStart, onReady, config, queues, bds, endpoints, workers };
+module.exports = { onStart, onReady, config, queues, bds, endpoints, workers, websocket };

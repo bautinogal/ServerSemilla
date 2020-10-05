@@ -5,7 +5,9 @@ const config = require('../../config'); // Script de configuracion general
 const cookieParser = require('cookie-parser') // Herramienta para parsear las cookies
 const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerpo" de los requests
 const morgan = require('morgan'); // Herramienta para loggear
+const wsHelper = require('../../lib/websocket/index');
 const favicon = require('serve-favicon');
+const ADN = require('../../ADN');
 
 //Seteo el puerto del servidor
 const setPort = (app, adn) => {
@@ -78,6 +80,12 @@ const setEndpoints = (app, adn) => {
     });
 }
 
+const setWebSocketServer = (app, adn) => {
+
+    wsHelper.setup(adn.websocket);
+    
+}
+
 //Configuro el servidor y endpoints
 const setup = (app, adn) => {
     console.log(`endpoints@setup: starting!`);
@@ -88,6 +96,7 @@ const setup = (app, adn) => {
             setPublicFolder(app, adn);
             setMiddleWare(app, adn);
             setEndpoints(app, adn);
+            setWebSocketServer(app, adn);
 
             resolve(adn);
 
