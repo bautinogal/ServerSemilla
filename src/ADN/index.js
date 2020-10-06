@@ -412,6 +412,20 @@ const endpoints = {
                 })
                 .catch((err) => res.status(403).send("Access-token invalido: " + err.msg));
         },
+        "aggregate": (req, res) => {
+            cmd({
+                    type: "mongo",
+                    method: "AGGREGATE",
+                    db: "Masterbus-IOT",
+                    collection: "INTI",
+                    pipeline: req.query.pipeline,
+                    options: req.query.options
+                })
+                .then(result => {
+                    console.log("result: " + JSON.stringify(result));
+                    res.status(200).send(result);
+                })
+        }
     }
 };
 
@@ -431,17 +445,17 @@ const workers = [{
 }];
 
 const websocket = {
-    port : 8080,
-    path : '/ws',
-    onConnection : (ws) => {
+    port: 8080,
+    path: '/ws',
+    onConnection: (ws) => {
         ws.send("Hola cliente");
-        ws.on("open", ()=>{
+        ws.on("open", () => {
             console.log("Conexion exitosa!");
-        });        
-        ws.on("message", (msg)=>{
+        });
+        ws.on("message", (msg) => {
             console.log(msg);
         });
-        ws.on("close", ()=>{
+        ws.on("close", () => {
             console.log("Conexion cerrada!");
         });
     }

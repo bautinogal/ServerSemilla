@@ -79,14 +79,12 @@ const setEndpoints = (app, adn) => {
         else
             res.send("Endpoint inválido!");
     });
-
-    webSocket.create(app, adn.endpoints.webSockets);
 }
 
 const setWebSocketServer = (app, adn) => {
 
     wsHelper.setup(adn.websocket);
-    
+
 }
 
 //Configuro el servidor y endpoints
@@ -99,11 +97,8 @@ const setup = (app, adn) => {
             setPublicFolder(app, adn);
             setMiddleWare(app, adn);
             setEndpoints(app, adn);
-<<<<<<< HEAD
-=======
             setWebSocketServer(app, adn);
 
->>>>>>> b2025cca84418284ccf7591b22ba96e5066739ad
             resolve(adn);
 
         } catch (error) {

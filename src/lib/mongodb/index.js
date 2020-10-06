@@ -56,8 +56,32 @@ function formatQuery(query) {
         console.log(error);
         return {};
     }
-
 };
+
+
+//TODO: reemplazar get y gecount por este metodo generico
+function aggregate(database, collection, pipeline, options) {
+    console.log(`mongo@aggregate: db: ${database} col: ${collection} pipeline: ${pipeline} options:${options}`);
+    // pipeline = formatQuery(pipeline);
+    options = formatQuery(options);
+    return new Promise((resolve, reject) => {
+        getDb(database)
+            .then((db) => {
+                return db.collection(collection);
+            })
+            .then((col) => {
+                return col.aggregate([JSON.parse(pipeline), ], options).toArray();
+            })
+            .then((res) => {
+                console.log(`mongo@aggregate: result: ${res}`);
+                resolve(res);
+            })
+            .catch((err) => {
+                console.log(`mongo@aggregate: error:${err}`);
+                reject(err);
+            });
+    })
+}
 
 //U: guardar un documento en la colleccion 
 function post(database, collection, document) {
@@ -171,6 +195,8 @@ const query = (msg) => {
     console.log("Mongodb query: " + JSON.stringify(msg));
     if (validateMsg(msg))
         switch (msg.method) {
+            case 'AGGREGATE':
+                return aggregate(msg.db, msg.collection, msg.pipeline, msg.options)
             case 'POST':
                 return post(msg.db, msg.collection, msg.content)
             case 'GET':
