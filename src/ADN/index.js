@@ -10,6 +10,7 @@ const createUsers = () => {
         deleteUsers({}) //Borró todos los usuarios viejos
             .then(() => createUser({ user: "admin@ventum", pass: "123456", role: "admin" }))
             .then(() => createUser({ user: "INTI", pass: "INTI-MB", role: "client" }))
+            .then(() => createUser({ user: "URBE", pass: "URBE-MB", role: "client" }))
             .then(() => res())
             .catch(err => rej(err));
     });
@@ -332,11 +333,12 @@ const endpoints = {
                 .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
         "post": (req, res) => {
+            var params = req.params[0].split('/');
             cmd({
                     type: "mongo",
                     method: "POST",
-                    db: "Masterbus-IOT",
-                    collection: "INTI",
+                    db: params[2],
+                    collection: params[3],
                     content: req.body
                 })
                 .then(() => {
@@ -425,6 +427,10 @@ const endpoints = {
                     console.log("result: " + JSON.stringify(result));
                     res.status(200).send(result);
                 })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).send(err)
+                });
         }
     }
 };

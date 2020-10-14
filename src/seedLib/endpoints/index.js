@@ -83,7 +83,7 @@ const setEndpoints = (app, adn) => {
 
 const setWebSocketServer = (app, adn) => {
 
-    wsHelper.setup(adn.websocket);
+    wsHelper.setup(app, adn.websocket);
 
 }
 

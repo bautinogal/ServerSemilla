@@ -58,19 +58,18 @@ function formatQuery(query) {
     }
 };
 
-
 //TODO: reemplazar get y gecount por este metodo generico
 function aggregate(database, collection, pipeline, options) {
     console.log(`mongo@aggregate: db: ${database} col: ${collection} pipeline: ${pipeline} options:${options}`);
     // pipeline = formatQuery(pipeline);
-    options = formatQuery(options);
+    //options = formatQuery(options);
     return new Promise((resolve, reject) => {
         getDb(database)
             .then((db) => {
                 return db.collection(collection);
             })
             .then((col) => {
-                return col.aggregate([JSON.parse(pipeline), ], options).toArray();
+                return col.aggregate(JSON.parse(pipeline), JSON.parse(options)).toArray();
             })
             .then((res) => {
                 console.log(`mongo@aggregate: result: ${res}`);
