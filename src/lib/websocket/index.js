@@ -1,4 +1,3 @@
-const http = require('http');
 const WebSocket = require('ws');
 const url = require('url');
 
@@ -12,11 +11,16 @@ const setup = (app, adn) => {
                 paths: {
                     "/INTIWS": {
                         onConnection: (ws) => {
-                            ws.on('message', function incoming(message) {
+                            console.log("Connection succesful!");
+                            ws.on("message", (message) => {
                                 console.log('ws received: %s', message);
                             });
 
-                            ws.send('something');
+                            ws.on("close", ()=>{
+                                console.log("Connection closed! :(");
+                            });
+
+                            ws.send("Probando envío de datos por WebSocket Protocol.");
                         }
                     }
                 },
