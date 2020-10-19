@@ -68,7 +68,7 @@ const setEndpoints = (app, adn) => {
         for (let index = 0; index < params.length; index++) {
             const key = params[index];
             if (key in endpoint) {
-                console.log("key");
+                console.log("key: "+key);
                 endpoint = endpoint[key];
             } else
                 break;
@@ -97,7 +97,7 @@ const setup = (app, adn) => {
             setPublicFolder(app, adn);
             setMiddleWare(app, adn);
             setEndpoints(app, adn);
-            setWebSocketServer(app, adn);
+            //setWebSocketServer(app, adn); 
 
             resolve(adn);
 

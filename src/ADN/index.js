@@ -464,6 +464,7 @@ const websocket = {
         ws.on("close", () => {
             console.log("Conexion cerrada!");
         });
+        ws.send("Probando envío de datos por WebSocket Protocol.");
     }
 };
 

@@ -1,7 +1,6 @@
 const path = require('path');
 const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate } = require('./lib');
 
-
 //------------------------------------- Objetos Específicos de la APP ----------------------------------
 
 const createUsers = () => {
@@ -50,6 +49,7 @@ const config = {
 };
 
 const { JSDOM } = require("jsdom"); //librería para editar archivos .html
+const ADN = require('..');
 const views = {
     dashboard: () => {
         const data = { fetchPass: "api/get" };

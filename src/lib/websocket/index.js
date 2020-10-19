@@ -1,4 +1,3 @@
-const http = require('http');
 const WebSocket = require('ws');
 const url = require('url');
 
@@ -12,11 +11,16 @@ const setup = (app, adn) => {
                 paths: {
                     "/INTIWS": {
                         onConnection: (ws) => {
-                            ws.on('message', function incoming(message) {
+                            console.log("Connection succesful!");
+                            ws.on("message", (message) => {
                                 console.log('ws received: %s', message);
                             });
 
-                            ws.send('something');
+                            ws.on("close", ()=>{
+                                console.log("Connection closed! :(");
+                            });
+
+                            ws.send("Probando envío de datos por WebSocket Protocol.");
                         }
                     }
                 },
@@ -28,30 +32,27 @@ const setup = (app, adn) => {
     try {
         Object.keys(data.servers).forEach(key => {
             var serverData = data.servers[key];
-            var server = http.createServer();
-
             var paths = {};
             Object.keys(serverData.paths).forEach(pathname => {
-                const wss = new WebSocket.Server({ noServer: true });
+
+                const wss = new WebSocket.Server({ noServer:true });
+
                 wss.on('connection', serverData.paths[pathname].onConnection);
-                paths[pathname] = (request, socket, head) => {
-                    wss.handleUpgrade(request, socket, head, (ws) => {
-                        wss.emit('connection', ws, request);
-                    });
-                }
+                console.log(serverData.paths[pathname]);
             });
 
             server.on('upgrade', (request, socket, head) => {
                 const pathname = url.parse(request.url).pathname;
 
                 if (paths[pathname] != null) {
-                    paths[pathname](request, socket, head);
+                    wss.handleUpgrade(request, socket, head, (ws) => {
+                        console.log("Upgraded!");
+                        wss.emit('connection', ws, request);
+                    });
                 } else {
                     socket.destroy();
                 }
             });
-
-            server.listen(serverData.port);
         });
     } catch (error) {
         console.log("Error creando websocket: " + error);
