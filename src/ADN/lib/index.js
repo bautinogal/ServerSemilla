@@ -14,7 +14,6 @@ const compareEncrypted = crypto.compareEncrypted;
 const createJWT = crypto.createJWT;
 const decodeJWT = crypto.decodeJWT;
 
-
 const login = (user, pass) => {
     var findUserCmd = {
         type: "mongo",
