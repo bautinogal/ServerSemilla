@@ -620,9 +620,55 @@ const endpoints = {
                 });
         },
         "firmware": (req, res) => {
-            console.log(req.file);
-            res.send(req.file);
-        }
+            const user = req.body.user;
+            const pass = req.body.pass;
+            if (user && pass) {
+                switch (req.method) {
+                    case "GET":
+                        cmd({
+                                type: "mongo",
+                                method: "GET",
+                                db: "Masterbus-IOT",
+                                collection: "firmwares",
+                            })
+                            .then(result => {
+                                var p = path.join(__dirname, "../../", result[result.length - 1].file.path);
+                                console.log("result: " + p);
+                                res.status(200).sendFile(p, {});
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                res.status(500).send(err)
+                            });
+                        break;
+                    case "POST":
+                        var body = {
+                            file: req.file
+                        };
+                        cmd({
+                                type: "mongo",
+                                method: "POST",
+                                db: "Masterbus-IOT",
+                                collection: "firmwares",
+                                content: body
+                            })
+                            .then(result => {
+                                console.log("result: " + JSON.stringify(result));
+                                res.status(200).send(result);
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                res.status(500).send(err)
+                            });
+                        break;
+                    default:
+                        res.status(401).send("Invalid http method!");
+                        break;
+                }
+            } else {
+                res.status(403).send("user y pass requeridos!");
+            }
+        },
     },
 };
 

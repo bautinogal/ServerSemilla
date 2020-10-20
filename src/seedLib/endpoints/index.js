@@ -9,6 +9,17 @@ const wsHelper = require('../../lib/websocket/index');
 const favicon = require('serve-favicon');
 const ADN = require('../../ADN');
 
+const multer = require('multer');
+const upload = multer({ dest: 'public/uploads/' });
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname);
+    }
+});
+
 const webSocket = require('../../lib/websocket');
 
 //Seteo el puerto del servidor
@@ -51,6 +62,8 @@ const setMiddleWare = (app, adn) => {
         return next();
     });
     // TODO: SEGURIDAD, VALIDACIONES, ETC...
+    app.use(upload.single('file'));
+
 }
 
 //Creo los endpoints a partid de la info que levanto del "ADN"
@@ -68,7 +81,7 @@ const setEndpoints = (app, adn) => {
         for (let index = 0; index < params.length; index++) {
             const key = params[index];
             if (key in endpoint) {
-                console.log("key: "+key);
+                console.log("key: " + key);
                 endpoint = endpoint[key];
             } else
                 break;
