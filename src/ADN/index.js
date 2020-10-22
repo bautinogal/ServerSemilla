@@ -109,9 +109,9 @@ const getDashboardData = (token) => {
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
+                                                            var: "Fecha",
                                                             op: "$gte",
-                                                            transform: "date"
+                                                            transform: ""
                                                         }
                                                     }
                                                 }
@@ -127,9 +127,9 @@ const getDashboardData = (token) => {
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$gte",
-                                                            transform: "date"
+                                                            var: "Fecha",
+                                                            op: "$lte",
+                                                            transform: ""
                                                         }
                                                     }
                                                 }
@@ -138,16 +138,16 @@ const getDashboardData = (token) => {
                                                 label: "Código",
                                                 inputs: {
                                                     desde: {
-                                                        name: "fecha-hasta",
+                                                        name: "codigo",
                                                         type: "text",
                                                         placeholder: "Código",
                                                         value: "",
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$gte",
-                                                            transform: "date"
+                                                            var: "Codigo",
+                                                            op: "",
+                                                            transform: ""
                                                         }
                                                     }
                                                 }
@@ -156,16 +156,16 @@ const getDashboardData = (token) => {
                                                 label: "Interno",
                                                 inputs: {
                                                     desde: {
-                                                        name: "fecha-hasta",
+                                                        name: "interno",
                                                         type: "text",
                                                         placeholder: "Interno",
                                                         value: "",
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$gte",
-                                                            transform: "date"
+                                                            var: "Interno",
+                                                            op: "",
+                                                            transform: ""
                                                         }
                                                     }
                                                 }
@@ -174,23 +174,23 @@ const getDashboardData = (token) => {
                                                 label: "Patente",
                                                 inputs: {
                                                     desde: {
-                                                        name: "fecha-hasta",
+                                                        name: "patente",
                                                         type: "text",
                                                         placeholder: "Patente",
                                                         value: "",
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$gte",
-                                                            transform: "date"
+                                                            var: "Patente",
+                                                            op: "",
+                                                            transform: ""
                                                         }
                                                     }
                                                 }
                                             }
                                         },
                                         finalStages: {
-                                            0: '{"$sort":{"paquete.Fecha":-1,"paquete.Hora":-1}}'
+                                            0: '{"$sort":{"Fecha":-1}}'
                                         }
                                     }
                                 }
@@ -316,7 +316,7 @@ const getDashboardData = (token) => {
                                                         stage: {
                                                             type: "match",
                                                             var: "paquete.ID",
-                                                            op: "$lte",
+                                                            op: "",
                                                         }
                                                     }
                                                 }
@@ -325,27 +325,29 @@ const getDashboardData = (token) => {
                                                 label: "Aceleración",
                                                 inputs: {
                                                     desde: {
-                                                        name: "fecha-hasta",
-                                                        type: "text",
+                                                        name: "aceleracion-desde",
+                                                        type: "number",
                                                         placeholder: "Desde",
                                                         value: "",
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$lte",
+                                                            var: "paquete.aceleracion",
+                                                            op: "$gte",
+                                                            transform:"acel",
                                                         }
                                                     },
                                                     hasta: {
-                                                        name: "fecha-hasta",
-                                                        type: "text",
+                                                        name: "aceleracion-hasta",
+                                                        type: "number",
                                                         placeholder: "Hasta",
                                                         value: "",
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
+                                                            var: "paquete.aceleracion",
                                                             op: "$lte",
+                                                            transform:"acel",
                                                         }
                                                     }
                                                 }
@@ -354,26 +356,26 @@ const getDashboardData = (token) => {
                                                 label: "Velocidad",
                                                 inputs: {
                                                     desde: {
-                                                        name: "fecha-hasta",
+                                                        name: "velocidad-desde",
                                                         type: "text",
                                                         placeholder: "Desde",
                                                         value: "",
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$lte",
+                                                            var: "paquete.Velocidad",
+                                                            op: "$gte",
                                                         }
                                                     },
                                                     hasta: {
-                                                        name: "fecha-hasta",
+                                                        name: "velocidad-hasta",
                                                         type: "text",
                                                         placeholder: "Hasta",
                                                         value: "",
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
+                                                            var: "paquete.Velocidad",
                                                             op: "$lte",
                                                         }
                                                     }
