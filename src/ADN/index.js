@@ -146,7 +146,7 @@ const getDashboardData = (token) => {
                                                         stage: {
                                                             type: "match",
                                                             var: "Codigo",
-                                                            op: "",
+                                                            op: "$eq",
                                                             transform: ""
                                                         }
                                                     }
@@ -164,7 +164,7 @@ const getDashboardData = (token) => {
                                                         stage: {
                                                             type: "match",
                                                             var: "Interno",
-                                                            op: "",
+                                                            op: "$eq",
                                                             transform: ""
                                                         }
                                                     }
@@ -182,7 +182,7 @@ const getDashboardData = (token) => {
                                                         stage: {
                                                             type: "match",
                                                             var: "Patente",
-                                                            op: "",
+                                                            op: "$eq",
                                                             transform: ""
                                                         }
                                                     }
