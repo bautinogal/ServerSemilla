@@ -447,11 +447,14 @@ var bds = {
     },
 
     maria: {
-        name: "semilla_test",
-        url: "semilla.c7mwpiipndbn.us-west-1.rds.amazonaws.com",
-        user: "ventum",
-        pass: "VentumAdmin",
-        port: 3306
+        pool:{
+            name: "SEMILLA_LOCAL",
+            url: "127.0.0.1",
+            user: "root",
+            pass: "",
+            port: 3306,
+            rowsAsArray: true
+        }
     }
 };
 

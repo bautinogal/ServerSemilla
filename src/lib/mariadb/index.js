@@ -1,4 +1,5 @@
 //const mariadb = require('mariadb');
+const { createPool } = require('mariadb');
 const mariaDbHelpers = require('./mariaDbHelpers');
 
 function querySQL(query, queryValues) {
@@ -27,12 +28,25 @@ const getCount = (countable, table, condition) => {
     querySQL("SELECT COUNT(" + countable + ") FROM " + table + " WHERE " + condition);
 }
 
+const query = (msg) => {
+    qry = msg.query;
+    queryValues = msg.queryValues;
+    mariadb.createPool(msg.pool)    
+        // CONSULTA SQL 
+        .query(qry, queryValues)
+            .then((rows) => {
+                console.log(rows);
+            })
+            .catch(err => {
+                console.log(err);
+                conn.release();
+            })
+}
+
 const setup = (data) => {
     return new Promise((resolve, reject) => {
         try {
-            dbs = data.name;
-            url = data.url;
-            mariaDbHelpers.setConnection(dbs,url)
+            mariaDbHelpers.setConnection(data)
                 .then((res)=>{
                     resolve(res);
                 })
@@ -43,4 +57,4 @@ const setup = (data) => {
         }
     });
 }
-module.exports = { querySQL, getCount, setup };
+module.exports = { query, getCount, setup };

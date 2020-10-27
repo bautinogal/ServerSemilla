@@ -1,16 +1,9 @@
 const config = require('../../config/index');
 const mariadb = require('mariadb');
 
-const setConnection = (database, url) => {
+const setConnection = (data) => {
 
-const pool = mariadb.createPool({
-    database : database,
-    host : url,
-    user : config.mariaDbUser,
-    password : config.mariaDbPass,
-    port: config.mariaDbPort,
-    rowsAsArray: true
-});
+const pool = mariadb.createPool(data.pool)
 
 return connectDatabase(pool)
 }
