@@ -1,12 +1,11 @@
-const mariadb = require('mariadb');
-const configMaria = require('./mariaDbConfig');
-const mariaDbConfig = require('./mariaDbConfig');
+//const mariadb = require('mariadb');
+const mariaDbHelpers = require('./mariaDbHelpers');
 
 function querySQL(query, queryValues) {
 /*  La funcion recibe como parámetros una sentencia SQL en query, en queryValues recibe un arreglo de valores 
     en orden secuencial. Los valores pasados en queryValues son debidamente escapados y sanitizados para realizar 
     una consulta prevenida de SQLi. */
-    configMaria.connectDatabase()
+    mariaDbHelpers.connectDatabase()
         .then((conn) => {
             // CONSULTA SQL 
             conn.query(query, queryValues)
@@ -28,10 +27,20 @@ const getCount = (countable, table, condition) => {
     querySQL("SELECT COUNT(" + countable + ") FROM " + table + " WHERE " + condition);
 }
 
-//TODO: PLACEHOLDER
-const query = () => {
+const setup = (data) => {
     return new Promise((resolve, reject) => {
-        resolve();
-    })
-};
-module.exports = { query, querySQL, getCount };
+        try {
+            dbs = data.name;
+            url = data.url;
+            mariaDbHelpers.setConnection(dbs,url)
+                .then((res)=>{
+                    resolve(res);
+                })
+                .catch(e => reject(e));
+            
+        } catch (err) {
+            reject(err);
+        }
+    });
+}
+module.exports = { querySQL, getCount, setup };

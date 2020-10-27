@@ -1,16 +1,21 @@
 const config = require('../../config/index');
 const mariadb = require('mariadb');
 
+const setConnection = (database, url) => {
+
 const pool = mariadb.createPool({
-    database : config.mariaDbName,
-    host : config.mariaDbHost,
+    database : database,
+    host : url,
     user : config.mariaDbUser,
     password : config.mariaDbPass,
     port: config.mariaDbPort,
     rowsAsArray: true
-})
+});
 
-const connectDatabase = () => {
+return connectDatabase(pool)
+}
+
+const connectDatabase = (pool) => {
     return new Promise((resolve, reject) => {
         pool.getConnection()
             .then((conn) => {
@@ -24,4 +29,4 @@ const connectDatabase = () => {
     })
 }
 
-module.exports = { connectDatabase };
+module.exports = { connectDatabase, setConnection };

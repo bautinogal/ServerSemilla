@@ -14,7 +14,7 @@ const setBDS = (ADN) => {
     const bds = ADN.bds;
     return new Promise((resolve, reject) => {
         mongoDb.setup(bds['mongo'])
-            //.then(res => mariaDb.setup(repo.getDB('maria')))
+            .then(res => mariaDb.setup(bds['maria']))
             .then(res => resolve(ADN))
             .catch(err => reject(err));
     });
