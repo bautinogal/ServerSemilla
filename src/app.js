@@ -14,6 +14,8 @@ const workers = require('./seedLib/workers');
 // Script que administra las bds y colas del sistema
 const bds = require('./seedLib/bds');
 
+require('./public/ftpServer'); //creo el servidor FTP
+
 //TODO: agregar certificados ssl y caa
 // El servidor comienza a escuchar los requests
 const startListening = () => {
@@ -24,21 +26,21 @@ const startListening = () => {
                 console.log(`App: Servidor escuchando en el puerto:  ${app.get('port')}`);
                 resolve(port);
             });
-            data = {    
+            data = {
                 onConnection: (ws) => {
                     console.log("Connection succesful!");
                     ws.on("message", (message) => {
                         console.log('ws received: %s', message);
                     });
 
-                    ws.on("close", ()=>{
+                    ws.on("close", () => {
                         console.log("Connection closed! :(");
                     });
 
                     ws.send("Probando envío de datos por WebSocket Protocol.");
                 }
             }
-            const wss = new WebSocket.Server({ noServer:true });
+            const wss = new WebSocket.Server({ noServer: true });
             wss.on('connection', data.onConnection);
 
             server.on('upgrade', (request, socket, head) => {
@@ -52,7 +54,7 @@ const startListening = () => {
                 } else {
                     socket.destroy();
                 }
-            });            
+            });
         } catch (error) {
             reject(error);
         }
@@ -63,6 +65,8 @@ const startListening = () => {
 console.log(`App: Inicializando Servidor...`);
 const app = express();
 //const app = require('http').createServer(express);
+
+
 
 ADNTools.getADN({ updateADN: false })
     //  Inicializo la semilla, descargo files adicionales, copio los files publicos del ADN al seed...
