@@ -4,6 +4,10 @@ var url = null;
 var client = null;
 var dbs = {};
 
+/*---------------------------------INICIALIZACION DE MONGODB -------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------*/
+
 const getClient = () => {
     return new Promise((resolve, reject) => {
         if (client) resolve(client);
@@ -43,7 +47,8 @@ const getDb = (db) => {
     }
 };
 
-//--------------------------------------------------------------------------------------------
+//----------------------------------- IMPLEMENTACION DE FUNCIONES AUXILIARES --------------------------------------------
+//----------------------------------------------- DE CONSULTA -----------------------------------------------------
 
 //Me aseguro de que el query y el query options sean objetos
 function formatQuery(query) {
@@ -183,7 +188,7 @@ function deleteMany(database, collection, query, queryOptions) {
     });
 };
 
-//-------------------------------------------------------------------------------------------
+//----------------------------- IMPLEMENTACION DE LAS FUNCIONES A INVOCAR EXTERNAMENTE ------------------------------------
 
 // TODO: Verifico que el msg tenga el formato correcto
 const validateMsg = (msg) => {

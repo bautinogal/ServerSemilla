@@ -94,12 +94,6 @@ const setEndpoints = (app, adn) => {
     });
 }
 
-const setWebSocketServer = (app, adn) => {
-
-    wsHelper.setup(app, adn.websocket);
-
-}
-
 //Configuro el servidor y endpoints
 const setup = (app, adn) => {
     console.log(`endpoints@setup: starting!`);
