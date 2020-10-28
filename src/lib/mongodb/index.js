@@ -223,6 +223,10 @@ const query = (msg) => {
 
 const setup = (data) => {
     return new Promise((resolve, reject) => {
+        if (data == null) {
+            console.log("Mongodb not set.");
+            resolve();
+        }
         try {
             if (client) client.close();
             client = null;
@@ -230,9 +234,13 @@ const setup = (data) => {
             url = data.url;
             getDb(data.dfltDb)
                 .then(db => resolve())
-                .catch(err => reject(err));
+                .catch(e => {
+                    console.log(e);
+                    resolve();
+                });
         } catch (err) {
-            reject(err);
+            console.log(err);
+            resolve();
         }
     });
 };

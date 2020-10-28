@@ -3,9 +3,9 @@ const mariadb = require('mariadb');
 
 const setConnection = (data) => {
 
-const pool = mariadb.createPool(data.pool)
+    const pool = mariadb.createPool(data.pool)
 
-return connectDatabase(pool)
+    return connectDatabase(pool)
 }
 
 const connectDatabase = (pool) => {

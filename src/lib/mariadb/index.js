@@ -3,9 +3,9 @@ const { createPool } = require('mariadb');
 const mariaDbHelpers = require('./mariaDbHelpers');
 
 function querySQL(query, queryValues) {
-/*  La funcion recibe como parámetros una sentencia SQL en query, en queryValues recibe un arreglo de valores 
-    en orden secuencial. Los valores pasados en queryValues son debidamente escapados y sanitizados para realizar 
-    una consulta prevenida de SQLi. */
+    /*  La funcion recibe como parámetros una sentencia SQL en query, en queryValues recibe un arreglo de valores 
+        en orden secuencial. Los valores pasados en queryValues son debidamente escapados y sanitizados para realizar 
+        una consulta prevenida de SQLi. */
     mariaDbHelpers.connectDatabase()
         .then((conn) => {
             // CONSULTA SQL 
@@ -31,29 +31,36 @@ const getCount = (countable, table, condition) => {
 const query = (msg) => {
     qry = msg.query;
     queryValues = msg.queryValues;
-    mariadb.createPool(msg.pool)    
+    mariadb.createPool(msg.pool)
         // CONSULTA SQL 
         .query(qry, queryValues)
-            .then((rows) => {
-                console.log(rows);
-            })
-            .catch(err => {
-                console.log(err);
-                conn.release();
-            })
+        .then((rows) => {
+            console.log(rows);
+        })
+        .catch(err => {
+            console.log(err);
+            conn.release();
+        })
 }
 
 const setup = (data) => {
     return new Promise((resolve, reject) => {
+        if (data == null) {
+            console.log("Mariadb not set.");
+            resolve();
+        }
         try {
             mariaDbHelpers.setConnection(data)
-                .then((res)=>{
+                .then((res) => {
                     resolve(res);
                 })
-                .catch(e => reject(e));
-            
+                .catch(e => {
+                    console.log(e);
+                    resolve();
+                });
         } catch (err) {
-            reject(err);
+            console.log(err);
+            resolve();
         }
     });
 }

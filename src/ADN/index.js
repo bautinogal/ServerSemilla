@@ -23,9 +23,10 @@ const checkAccessToken = (req, res, criteria) => {
             if (accessToken)
                 decodeJWT(req.cookies['access-token'].replace(/"/g, ""))
                 .then((token) => {
-                    if (validate(token, criteria))
+                    if (validate(token, criteria)) {
+                        console.log(`${token.user} logged in!`);
                         resolve(token);
-                    else
+                    } else
                         reject("access-token invalid");
                 })
                 .catch(err => {
@@ -447,16 +448,16 @@ var bds = {
         dfltDb: "dflt"
     },
 
-    maria: {
-        pool: {
-            name: "SEMILLA_LOCAL",
-            url: "127.0.0.1",
-            user: "root",
-            pass: "",
-            port: 3306,
-            rowsAsArray: true
-        }
-    }
+    // maria: {
+    //     pool: {
+    //         name: "SEMILLA_LOCAL",
+    //         url: "127.0.0.1",
+    //         user: "root",
+    //         pass: "",
+    //         port: 3306,
+    //         rowsAsArray: true
+    //     }
+    // }
 };
 
 const endpoints = {
@@ -539,33 +540,6 @@ const endpoints = {
                     res.status(200).send(JSON.stringify(req.body) + " received!");
                 })
                 .catch(err => res.status(500).send(err));
-            // decodeJWT(req.headers['access-token'])
-            //     .then((token) => {
-            //         switch (req.method) {
-            //             case "POST":
-            //                 if (validate(token, { $or: [{ role: "client" }, { role: "admin" }] })) {
-            //                     // enqueue("INTI", req.body)
-            //                     cmd({
-            //                             type: "mongo",
-            //                             method: "POST",
-            //                             db: "Masterbus-IOT",
-            //                             collection: "INTI",
-            //                             body: req.body
-            //                         })
-            //                         .then(() => {
-            //                             res.status(200).send(JSON.stringify(req.body) + " received!");
-            //                         })
-            //                         .catch(err => res.status(500).send(err));
-            //                 } else {
-            //                     res.status(403).send("usuario no autorizado!");
-            //                 }
-            //                 break;
-            //             default:
-            //                 res.status(401).send("Invalid http method!");
-            //                 break;
-            //         }
-            //     })
-            //     .catch((err) => res.status(403).send("Access-token invalido: " + err));
         },
         "get": (req, res) => {
             var params = req.params[0].split('/');
