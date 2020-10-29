@@ -766,10 +766,10 @@ var bds = {
 
     // maria: {
     //     pool: {
-    //         name: "SEMILLA_LOCAL",
-    //         url: "127.0.0.1",
+    //         database: "SEMILLA_LOCAL",
+    //         host: "127.0.0.1",
     //         user: "root",
-    //         pass: "",
+    //         password: "",
     //         port: 3306,
     //         rowsAsArray: true
     //     }
@@ -818,12 +818,20 @@ const endpoints = {
                         case "GET":
                             if (validate(token, { role: "admin" })) {
                                 cmd({
-                                        type: "mongo",
+                                        type: "maria",
                                         method: "GET",
-                                        db: repo.users.db,
-                                        collection: repo.users.col,
-                                        query: {},
-                                        queryOptions: {}
+                                        db: config.users.db,
+                                        collection: config.users.col,
+                                        query: "SELECT * FROM users",
+                                        queryValues: "",
+                                        pool:{
+                                                database: "SEMILLA_LOCAL",
+                                                host: "127.0.0.1",
+                                                user: "root",
+                                                password: "",
+                                                port: 3306,
+                                                rowsAsArray: true
+                                            }
                                     })
                                     .then(users => {
                                         users.forEach(user => {
