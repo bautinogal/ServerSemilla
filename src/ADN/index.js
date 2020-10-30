@@ -501,33 +501,6 @@ const getDashboardData = (token) => {
                                                     label: "Empresa",
                                                     placeholder: "Empresa"
                                                 },
-                                            },
-                                            1: {
-                                                0: {
-                                                    type: "text",
-                                                    label: "Sector",
-                                                    placeholder: "Sector"
-                                                },
-                                                1: {
-                                                    type: "text",
-                                                    label: "Posición",
-                                                    placeholder: "Posición"
-                                                },
-                                                2: {
-                                                    type: "text",
-                                                    label: "Mail",
-                                                    placeholder: "Mail"
-                                                },
-                                                3: {
-                                                    type: "text",
-                                                    label: "Teléfono",
-                                                    placeholder: ""
-                                                },
-                                                4: {
-                                                    type: "text",
-                                                    label: "Dirección",
-                                                    placeholder: "Dirección"
-                                                },
                                             }
                                         }
                                     }
@@ -824,14 +797,14 @@ const endpoints = {
                                         collection: config.users.col,
                                         query: "SELECT * FROM users",
                                         queryValues: "",
-                                        pool:{
-                                                database: "SEMILLA_LOCAL",
-                                                host: "127.0.0.1",
-                                                user: "root",
-                                                password: "",
-                                                port: 3306,
-                                                rowsAsArray: true
-                                            }
+                                        pool: {
+                                            database: "SEMILLA_LOCAL",
+                                            host: "127.0.0.1",
+                                            user: "root",
+                                            password: "",
+                                            port: 3306,
+                                            rowsAsArray: true
+                                        }
                                     })
                                     .then(users => {
                                         users.forEach(user => {
