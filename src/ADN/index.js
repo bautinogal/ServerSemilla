@@ -33,7 +33,7 @@ const checkAccessToken = (req, res, criteria) => {
                 .catch(err => {
                     reject("error decoding access-token: " + err.msg);
                 });
-            else
+            else   
                 reject("no access-token");
         } catch (error) {
             reject(error);
@@ -876,7 +876,7 @@ const endpoints = {
             if (user && pass) {
                 switch (req.method) {
                     case "POST":
-                        login(user, pass)
+                        login(user, pass) //CHEQUEAR SI HAY EXPRESIONES INESPERADAS.
                             .then((token) => {
                                 res.cookie("access-token", JSON.stringify(token), {});
                                 res.status(200).send(`{"token":"${JSON.stringify(token)}"}`);

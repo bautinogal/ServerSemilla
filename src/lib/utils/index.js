@@ -141,4 +141,25 @@ const copyFolderContent = (from, to, options) => {
     });
 }
 
-module.exports = { objFilter, copy: copyObject, copyFolderContent, fillObjWithDflt, copyFile };
+const noSQLQueryValidated = (username, password) => {
+    if (typeof(username) === 'object' || typeof(password) === 'object'){
+        user = JSON.stringify(username);
+        pass = JSON.stringify(password);
+        let regex = /\$/gi;
+        if (regex.test(user) || regex.test(pass)) {
+            console.log(user +"---"+pass);
+            delete username;
+            delete password;
+            console.log("Campos rechazados y reemplazados: " + user + ", "+ pass);
+            return reject();
+        }else {
+            return true;
+        }
+    } else {
+        console.log(username + password);
+        console.log("Validación aprobada!");
+        return true;
+    }    
+}
+
+module.exports = { objFilter, copy: copyObject, copyFolderContent, fillObjWithDflt, copyFile, noSQLQueryValidated };

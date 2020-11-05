@@ -24,26 +24,29 @@ const login = (user, pass) => {
     };
 
     return new Promise((res, rej) => {
-        var result = {};
-        cmd(findUserCmd)
-            .then(founds => {
-                if (!founds) rej("lib@login: Error looking for user %s in db!", user);
-                else if (founds.length == 0) rej("lib@login: No user found with: %s!", user);
-                else if (founds.length > 1) rej("lib@login: More than one user found with: %s", user);
-                else {
-                    result = founds[0];
-                    return compareEncrypted(pass, result.pass);
-                }
-            })
-            .then(correct => {
-                if (correct) {
-                    delete result.pass;
-                    return createJWT(result);
-                } else
-                    rej("lib@login: Incorrect Password!");
-            })
-            .then(JWT => res(JWT))
-            .catch(err => rej(err));
+        
+        if (seedUtils.noSQLQueryValidated(user, pass)) {
+            var result = {};
+            cmd(findUserCmd)
+                .then(founds => {
+                    if (!founds) rej("lib@login: Error looking for user %s in db!", user);
+                    else if (founds.length == 0) rej("lib@login: No user found with: %s!", user);
+                    else if (founds.length > 1) rej("lib@login: More than one user found with: %s", user);
+                    else {
+                        result = founds[0];
+                        return compareEncrypted(pass, result.pass);
+                    }
+                })
+                .then(correct => {
+                    if (correct) {
+                        delete result.pass;
+                        return createJWT(result);
+                    } else
+                        rej("lib@login: Incorrect Password!");
+                })
+                .then(JWT => res(JWT))
+                .catch(err => rej(err));
+        }     
     });
 };
 
