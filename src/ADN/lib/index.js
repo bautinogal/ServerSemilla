@@ -25,28 +25,26 @@ const login = (user, pass) => {
 
     return new Promise((res, rej) => {
         
-        if (seedUtils.noSQLQueryValidated(user, pass)) {
-            var result = {};
-            cmd(findUserCmd)
-                .then(founds => {
-                    if (!founds) rej("lib@login: Error looking for user %s in db!", user);
-                    else if (founds.length == 0) rej("lib@login: No user found with: %s!", user);
-                    else if (founds.length > 1) rej("lib@login: More than one user found with: %s", user);
-                    else {
-                        result = founds[0];
-                        return compareEncrypted(pass, result.pass);
-                    }
-                })
-                .then(correct => {
-                    if (correct) {
-                        delete result.pass;
-                        return createJWT(result);
-                    } else
-                        rej("lib@login: Incorrect Password!");
-                })
-                .then(JWT => res(JWT))
-                .catch(err => rej(err));
-        }     
+        var result = {};
+        cmd(findUserCmd)
+            .then(founds => {
+                if (!founds) rej("lib@login: Error looking for user %s in db!", user);
+                else if (founds.length == 0) rej("lib@login: No user found with: %s!", user);
+                else if (founds.length > 1) rej("lib@login: More than one user found with: %s", user);
+                else {
+                    result = founds[0];
+                    return compareEncrypted(pass, result.pass);
+                }
+            })
+            .then(correct => {
+                if (correct) {
+                    delete result.pass;
+                    return createJWT(result);
+                } else
+                    rej("lib@login: Incorrect Password!");
+            })
+            .then(JWT => res(JWT))
+            .catch(err => rej(err));
     });
 };
 
@@ -101,4 +99,29 @@ const validate = (obj, query) => {
     return mingoQuery.test(obj);
 };
 
-module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate };
+const noSQLQueryValidated = (param) => {
+    let validator = false;
+    const props = param.body;
+    for (const key in props) {
+        if (props.hasOwnProperty(key)) {
+            const element = props[key];            
+            if(typeof(element) === 'object'){
+                let regex = /\$/gi;
+                if (regex.test(JSON.stringify(element))) {
+                    console.log("La propiedad: "+key+" "+ element + " es inapropiada y no pasó la validación.");
+                    delete element;
+                    return false;
+                } else {
+                    console.log("La propiedad "+ key +" "+ element +" es apropiada y pasa la validación.");
+                    validator = true;
+                }
+            } else {
+                console.log("La propiedad "+key +" "+ element +" no es un objeto inesperado y pasa la validación.");
+                validator = true;
+            }            
+        }
+    }
+    return validator;
+}
+
+module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated };

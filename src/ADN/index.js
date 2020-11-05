@@ -1,5 +1,5 @@
 const path = require('path');
-const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate } = require('./lib');
+const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
 
@@ -766,23 +766,28 @@ const endpoints = {
         "login": (req, res) => {
             const user = req.body.user;
             const pass = req.body.pass;
-            if (user && pass) {
-                switch (req.method) {
-                    case "POST":
-                        login(user, pass) //CHEQUEAR SI HAY EXPRESIONES INESPERADAS.
-                            .then((token) => {
-                                res.cookie("access-token", JSON.stringify(token), {});
-                                res.status(200).send(`{"token":"${JSON.stringify(token)}"}`);
-                            })
-                            .catch((err) => res.status(403).send(err));
-                        break;
-                    default:
-                        res.status(401).send("invalid http method!");
-                        break;
+            if (noSQLQueryValidated(req)){
+                if (user && pass) {
+                    switch (req.method) {
+                        case "POST":
+                            login(user, pass) 
+                                .then((token) => {
+                                    res.cookie("access-token", JSON.stringify(token), {});
+                                    res.status(200).send(`{"token":"${JSON.stringify(token)}"}`);
+                                })
+                                .catch((err) => res.status(403).send(err));
+                            break;
+                        default:
+                            res.status(401).send("invalid http method!");
+                            break;
+                    }
+                } else {
+                    res.status(403).send("user y pass requeridos!");
                 }
-            } else {
-                res.status(403).send("user y pass requeridos!");
+            }else {
+                res.status(403).send("¡Petición inválida!");
             }
+            
         },
         "users": (req, res) => {
             decodeJWT(req.cookies['access-token'].replace(/"/g, "")) //Le saco las comillas 
