@@ -40,7 +40,6 @@ const checkAccessToken = (req, res, criteria) => {
         }
     });
 };
-
 const getDashboardData = (token) => {
 
     var getCategories = () => {
@@ -187,6 +186,87 @@ const getDashboardData = (token) => {
                                         },
                                         finalStages: {
                                             0: '{"$sort":{"paquete.Fecha":-1,"paquete.Hora":-1}}'
+                                        },
+                                        footerButtons: {
+                                            add: {
+                                                label: "Agregar",
+                                                type: "add",
+                                                modal: {
+                                                    type: "form",
+                                                    msg: "",
+                                                    title: "Modal Form",
+                                                    cols: {
+                                                        0: {
+                                                            0: {
+                                                                type: "text",
+                                                                label: "DNI",
+                                                                placeholder: "DNI"
+                                                            },
+                                                            1: {
+                                                                type: "text",
+                                                                label: "Nombre",
+                                                                placeholder: "Nombre"
+                                                            },
+                                                            2: {
+                                                                type: "text",
+                                                                label: "Apellido",
+                                                                placeholder: "Apellido"
+                                                            },
+                                                            3: {
+                                                                type: "date",
+                                                                label: "Fecha N.",
+                                                                placeholder: ""
+                                                            },
+                                                            4: {
+                                                                type: "text",
+                                                                label: "Empresa",
+                                                                placeholder: "Empresa"
+                                                            },
+                                                        },
+                                                        1: {
+                                                            0: {
+                                                                type: "text",
+                                                                label: "Sector",
+                                                                placeholder: "Sector"
+                                                            },
+                                                            1: {
+                                                                type: "text",
+                                                                label: "Posición",
+                                                                placeholder: "Posición"
+                                                            },
+                                                            2: {
+                                                                type: "text",
+                                                                label: "Mail",
+                                                                placeholder: "Mail"
+                                                            },
+                                                            3: {
+                                                                type: "text",
+                                                                label: "Teléfono",
+                                                                placeholder: ""
+                                                            },
+                                                            4: {
+                                                                type: "text",
+                                                                label: "Dirección",
+                                                                placeholder: "Dirección"
+                                                            },
+                                                        }
+                                                    },
+                                                    onConfirm: {
+
+                                                    }
+                                                }
+                                            },
+                                            finish: {
+                                                label: "Finalizar",
+                                                type: "submit",
+                                                modal: {
+                                                    type: "confirm",
+                                                    msg: "Esta seguro que desea cargar estos datos?",
+                                                    onConfirm: {
+
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -408,7 +488,7 @@ const getDashboardData = (token) => {
                                 0: {
                                     type: "form",
                                     payload: {
-                                        title: "FORM1",
+                                        title: "INTI",
                                         cols: {
                                             0: {
                                                 0: {
@@ -473,7 +553,7 @@ const getDashboardData = (token) => {
                                 0: {
                                     type: "form",
                                     payload: {
-                                        title: "FORM2",
+                                        title: "INTI",
                                         cols: {
                                             0: {
                                                 0: {
@@ -500,6 +580,33 @@ const getDashboardData = (token) => {
                                                     type: "text",
                                                     label: "Empresa",
                                                     placeholder: "Empresa"
+                                                },
+                                            },
+                                            1: {
+                                                0: {
+                                                    type: "text",
+                                                    label: "Sector",
+                                                    placeholder: "Sector"
+                                                },
+                                                1: {
+                                                    type: "text",
+                                                    label: "Posición",
+                                                    placeholder: "Posición"
+                                                },
+                                                2: {
+                                                    type: "text",
+                                                    label: "Mail",
+                                                    placeholder: "Mail"
+                                                },
+                                                3: {
+                                                    type: "text",
+                                                    label: "Teléfono",
+                                                    placeholder: ""
+                                                },
+                                                4: {
+                                                    type: "text",
+                                                    label: "Dirección",
+                                                    placeholder: "Dirección"
                                                 },
                                             }
                                         }
