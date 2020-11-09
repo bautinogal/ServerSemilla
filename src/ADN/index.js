@@ -1012,6 +1012,31 @@ const endpoints = {
                 res.status(403).send("user y pass requeridos!");
             }
         },
+        "test": {
+            "mariadb": (req,res) => {
+                cmdSQLMsg = {
+                    type: "maria",
+                    method:"GET",
+                    query: req.body.query,
+                    queryValues: req.body.queryValues,
+                    pool: {
+                        database: "SEMILLA_LOCAL",
+                        host: "127.0.0.1",
+                        user: "root",
+                        password: "",
+                        port: 3306,
+                        rowsAsArray: true
+                    }
+                }
+                cmd(cmdSQLMsg)
+                    .then((result)=>{
+                        console.log(result);
+                        res.status(200).send(result);
+                    })
+                    .catch(err => res.status(403).send(err));
+
+            } 
+        },
     },
 };
 
