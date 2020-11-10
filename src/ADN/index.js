@@ -1,5 +1,5 @@
 const path = require('path');
-const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate } = require('./lib');
+const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
 
@@ -857,82 +857,169 @@ var bds = {
 };
 
 const endpoints = {
-        "pages": {
-            "login": (req, res) => {
-                checkAccessToken(req, res, { $or: [{ role: "client" }, { role: "admin" }] })
-                    .then((token) => res.redirect('/pages/dashboard'))
-                    .catch((err) => views.login(req, res, {}));
-            },
-            "dashboard": (req, res) => {
-                checkAccessToken(req, res, { $or: [{ role: "client" }, { role: "admin" }] })
-                    .then((token) => views.dashboard(req, res, getDashboardData(token)))
-                    .catch((err) => res.redirect('/pages/login'));
+    "pages": {
+        "login": (req, res) => {
+            checkAccessToken(req, res, { $or: [{ role: "client" }, { role: "admin" }] })
+                .then((token) => res.redirect('/pages/dashboard'))
+                .catch((err) => views.login(req, res, {}));
+        },
+        "dashboard": (req, res) => {
+            checkAccessToken(req, res, { $or: [{ role: "client" }, { role: "admin" }] })
+                .then((token) => views.dashboard(req, res, getDashboardData(token)))
+                .catch((err) => res.redirect('/pages/login'));
+        }
+
+    },
+    "api": {
+        "login": (req, res) => {
+            const user = req.body.user;
+            const pass = req.body.pass;
+            if (user && pass) {
+                switch (req.method) {
+                    case "POST":
+                        login(user, pass) //CHEQUEAR SI HAY EXPRESIONES INESPERADAS.
+                            .then((token) => {
+                                res.cookie("access-token", JSON.stringify(token), {});
+                                res.status(200).send(`{"token":"${JSON.stringify(token)}"}`);
+                            })
+                            .catch((err) => res.status(403).send(err));
+                        break;
+                    default:
+                        res.status(401).send("invalid http method!");
+                        break;
+                }
+            } else {
+                res.status(403).send("user y pass requeridos!");
             }
         },
-        "api": {
-            "login": (req, res) => {
-                const user = req.body.user;
-                const pass = req.body.pass;
-                if (user && pass) {
+        "users": (req, res) => {
+            decodeJWT(req.cookies['access-token'].replace(/"/g, "")) //Le saco las comillas 
+                .then((token) => {
                     switch (req.method) {
-                        case "POST":
-                            login(user, pass) //CHEQUEAR SI HAY EXPRESIONES INESPERADAS.
-                                .then((token) => {
-                                    res.cookie("access-token", JSON.stringify(token), {});
-                                    res.status(200).send(`{"token":"${JSON.stringify(token)}"}`);
-                                })
-                                .catch((err) => res.status(403).send(err));
+                        case "GET":
+                            if (validate(token, { role: "admin" })) {
+                                cmd({
+                                        type: "maria",
+                                        method: "GET",
+                                        db: config.users.db,
+                                        collection: config.users.col,
+                                        query: "SELECT * FROM users",
+                                        queryValues: "",
+                                        pool: {
+                                            database: "SEMILLA_LOCAL",
+                                            host: "127.0.0.1",
+                                            user: "root",
+                                            password: "",
+                                            port: 3306,
+                                            rowsAsArray: true
+                                        }
+                                    })
+                                    .then(users => {
+                                        users.forEach(user => {
+                                            delete user.pass;
+                                        });
+                                        res.status(403).send(users);
+                                    })
+                                    .catch(err => res.status(500).send(err));
+                            } else {
+                                res.status(403).send("usuario no autorizado!");
+                            }
                             break;
                         default:
-                            res.status(401).send("invalid http method!");
+                            res.status(401).send("Invalid http method!");
                             break;
                     }
-                } else {
-                    res.status(403).send("user y pass requeridos!");
-                }
-            },
-            "users": (req, res) => {
-                decodeJWT(req.cookies['access-token'].replace(/"/g, "")) //Le saco las comillas 
-                    .then((token) => {
-                        switch (req.method) {
-                            case "GET":
-                                if (validate(token, { role: "admin" })) {
-                                    cmd({
-                                            type: "maria",
-                                            method: "GET",
-                                            db: config.users.db,
-                                            collection: config.users.col,
-                                            query: "SELECT * FROM users",
-                                            queryValues: "",
-                                            pool: {
-                                                database: "SEMILLA_LOCAL",
-                                                host: "127.0.0.1",
-                                                user: "root",
-                                                password: "",
-                                                port: 3306,
-                                                rowsAsArray: true
-                                            }
-                                        })
-                                        .then(users => {
-                                            users.forEach(user => {
-                                                delete user.pass;
-                                            });
-                                            res.status(403).send(users);
-                                        })
-                                        .catch(err => res.status(500).send(err));
-                                } else {
-                                    res.status(403).send("usuario no autorizado!");
-                                }
-                                break;
-                            default:
-                                res.status(401).send("Invalid http method!");
-                                break;
-                        }
-                    })
-                    .catch((err) => res.status(403).send("Access-token invalido: " + err));
-            },
-            "post": (req, res) => {
+                })
+                .catch((err) => res.status(403).send("Access-token invalido: " + err));
+        },
+        "post": (req, res) => {
+            var params = req.params[0].split('/');
+            cmd({
+                    type: "mongo",
+                    method: "POST",
+                    db: params[2],
+                    collection: params[3],
+                    content: req.body
+                })
+                .then(() => {
+                    //mandar a los webhook subscriptos
+                    res.status(200).send(JSON.stringify(req.body) + " received!");
+                })
+                .catch(err => res.status(500).send(err));
+        },
+        "get": (req, res) => {
+            var params = req.params[0].split('/');
+            var bd = params[2];
+            var col = params[3];
+            checkAccessToken(req, res, { $or: [{ role: "client" }, { role: "admin" }] })
+                .then((token) => {
+                    switch (req.method) {
+                        case "GET":
+                            var result = {};
+                            console.log("req.query.queryOptions: " + req.query.queryOptions);
+                            cmd({
+                                    type: "mongo",
+                                    method: "GET",
+                                    db: bd,
+                                    collection: col,
+                                    query: req.query.query,
+                                    queryOptions: req.query.queryOptions
+                                })
+                                .then(results => {
+                                    console.log("Results: " + JSON.stringify(results));
+                                    result.rows = results;
+                                    return cmd({
+                                        type: "mongo",
+                                        method: "COUNT",
+                                        db: bd,
+                                        collection: col,
+                                        query: req.query.query,
+                                        queryOptions: {}
+                                    });
+                                })
+                                .then(count => {
+                                    console.log("Count: " + JSON.stringify(count));
+                                    result.count = count;
+                                    res.status(200).send(result);
+                                })
+                                .catch(err => res.status(500).send(err));
+                            break;
+                        default:
+                            res.status(401).send("Invalid http method!");
+                            break;
+                    }
+                })
+                .catch((err) => res.status(403).send("Access-token invalido: " + err.msg));
+        },
+        "aggregate": (req, res) => {
+            var params = req.params[0].split('/');
+            var bd = params[2];
+            var col = params[3];
+            cmd({
+                    type: "mongo",
+                    method: "AGGREGATE",
+                    db: bd,
+                    collection: col,
+                    pipeline: req.query.pipeline,
+                    options: req.query.options
+                })
+                .then(result => {
+                    console.log("result: " + JSON.stringify(result));
+                    res.status(200).send(result);
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).send(err)
+                });
+        },
+        "webhook": (req, res) => { //Endpoint para suscribirnos a un evento
+            //api/webhook/Masterbus-IOT/urbetrack/
+            //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
+            //TODO: Valido el req.header.token
+            var tokenValido = true;
+            if (tokenValido) {
                 var params = req.params[0].split('/');
+                //TODO: Validar body url y codigos 
                 cmd({
                         type: "mongo",
                         method: "POST",
@@ -941,99 +1028,38 @@ const endpoints = {
                         content: req.body
                     })
                     .then(() => {
-                        //mandar a los webhook subscriptos
                         res.status(200).send(JSON.stringify(req.body) + " received!");
                     })
                     .catch(err => res.status(500).send(err));
-            },
-            "get": (req, res) => {
-                var params = req.params[0].split('/');
-                var bd = params[2];
-                var col = params[3];
-                checkAccessToken(req, res, { $or: [{ role: "client" }, { role: "admin" }] })
-                    .then((token) => {
-                        switch (req.method) {
-                            case "GET":
-                                var result = {};
-                                console.log("req.query.queryOptions: " + req.query.queryOptions);
-                                cmd({
-                                        type: "mongo",
-                                        method: "GET",
-                                        db: bd,
-                                        collection: col,
-                                        query: req.query.query,
-                                        queryOptions: req.query.queryOptions
-                                    })
-                                    .then(results => {
-                                        console.log("Results: " + JSON.stringify(results));
-                                        result.rows = results;
-                                        return cmd({
-                                            type: "mongo",
-                                            method: "COUNT",
-                                            db: bd,
-                                            collection: col,
-                                            query: req.query.query,
-                                            queryOptions: {}
-                                        });
-                                    })
-                                    .then(count => {
-                                        console.log("Count: " + JSON.stringify(count));
-                                        result.count = count;
-                                        res.status(200).send(result);
-                                    })
-                                    .catch(err => res.status(500).send(err));
-                                break;
-                            default:
-                                res.status(401).send("Invalid http method!");
-                                break;
-                        }
-                    })
-                    .catch((err) => res.status(403).send("Access-token invalido: " + err.msg));
-            },
-            "aggregate": (req, res) => {
-                var params = req.params[0].split('/');
-                var bd = params[2];
-                var col = params[3];
-                cmd({
-                        type: "mongo",
-                        method: "AGGREGATE",
-                        db: bd,
-                        collection: col,
-                        pipeline: req.query.pipeline,
-                        options: req.query.options
-                    })
-                    .then(result => {
-                        console.log("result: " + JSON.stringify(result));
-                        res.status(200).send(result);
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        res.status(500).send(err)
-                    });
-            },
-            "webhook": (req, res) => { //Endpoint para suscribirnos a un evento
-                //api/webhook/Masterbus-IOT/urbetrack/
-                //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
-                //TODO: Valido el req.header.token
-                var tokenValido = true;
-                if (tokenValido) {
-                    var params = req.params[0].split('/');
-                    //TODO: Validar body url y codigos 
-                    cmd({
-                            type: "mongo",
-                            method: "POST",
-                            db: params[2],
-                            collection: params[3],
-                            content: req.body
-                        })
-                        .then(() => {
-                            res.status(200).send(JSON.stringify(req.body) + " received!");
-                        })
-                        .catch(err => res.status(500).send(err));
-                } else {
-                    res.send(403).send("Error validando el token");
+            } else {
+                res.send(403).send("Error validando el token");
+            }
+        }
+
+    },
+    "test": {
+        "mariadb": (req, res) => {
+            cmdSQLMsg = {
+                type: "maria",
+                method: "GET",
+                query: req.body.query,
+                queryValues: req.body.queryValues,
+                pool: {
+                    database: "SEMILLA_LOCAL",
+                    host: "127.0.0.1",
+                    user: "root",
+                    password: "",
+                    port: 3306,
+                    rowsAsArray: true
                 }
             }
+            cmd(cmdSQLMsg)
+                .then((result) => {
+                    console.log(result);
+                    res.status(200).send(result);
+                })
+                .catch(err => res.status(403).send(err));
+
         }
     },
 
