@@ -1,6 +1,7 @@
 const path = require('path');
 const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
+const { default: fetch } = require('node-fetch');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
 
 //------------------------------------- Objetos Específicos de la APP ----------------------------------
@@ -943,7 +944,33 @@ const endpoints = {
                     content: req.body
                 })
                 .then(() => {
-                    //mandar a los webhook subscriptos
+                    //Push de datos a los webhooks suscriptos (POST REQUEST).
+                    //Verificar body (Si son datos para urbe, ejecutar evento).
+                    
+                    cmd({
+                        type: "mongo",
+                        method: "GET", //Aggregate() o GET de webhooks?
+                        db: "Masterbus-IOT",
+                        collection: "webhooks", 
+                        query:{},
+                        queryOptions:{}
+                    })
+                        .then((res)=>{                                
+                            for (let index = 0; index < res.length; index++) {
+                                const objeto = res[index];
+                                let webhookURL = objeto.url;
+                                if(objeto.codigos.includes(req.body.Codigo)){}
+                                fetch(webhookURL, {
+                                    method:"POST",
+                                    body:JSON.stringify(req.body),
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+                                });                                    
+                            }                                
+                        })
+                        .catch(err => console.log(err)); 
+                    
                     res.status(200).send(JSON.stringify(req.body) + " received!");
                 })
                 .catch(err => res.status(500).send(err));
@@ -1013,19 +1040,23 @@ const endpoints = {
                     res.status(500).send(err)
                 });
         },
-        "webhook": (req, res) => { //Endpoint para suscribirnos a un evento
-            //api/webhook/Masterbus-IOT/urbetrack/
+        /*Endpoint para suscribir a webhook de Masterbus-IOT. 
+            TODO: 
+                Validar token... (en URL o HEADER?)
+        */ 
+        "webhook": (req, res) => {
+            //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
             //TODO: Valido el req.header.token
-            var tokenValido = true;
-            if (tokenValido) {
+            var tokenValido = req.params[4];  // TOKEN en la URL que se suscribe
+            if (true) {
                 var params = req.params[0].split('/');
                 //TODO: Validar body url y codigos 
                 cmd({
                         type: "mongo",
                         method: "POST",
                         db: params[2],
-                        collection: params[3],
+                        collection: params[3], // Colección de los webhooks
                         content: req.body
                     })
                     .then(() => {
@@ -1033,10 +1064,9 @@ const endpoints = {
                     })
                     .catch(err => res.status(500).send(err));
             } else {
-                res.send(403).send("Error validando el token");
+                res.send(403).send("Error de validación");
             }
         }
-
     },
     "test": {
         "mariadb": (req, res) => {
@@ -1063,6 +1093,10 @@ const endpoints = {
 
         }
     },
+    "log": (req,res) => {
+        console.log(req.body);
+        res.status(200).send(req.body);
+    }
 
 };
 
