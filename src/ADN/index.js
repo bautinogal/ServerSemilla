@@ -40,6 +40,7 @@ const checkAccessToken = (req, res, criteria) => {
         }
     });
 };
+
 const getDashboardData = (token) => {
 
     var getCategories = () => {
