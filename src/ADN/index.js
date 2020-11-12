@@ -1,5 +1,5 @@
 const path = require('path');
-const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated } = require('./lib');
+const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const { default: fetch } = require('node-fetch');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
@@ -900,20 +900,12 @@ const endpoints = {
                         case "GET":
                             if (validate(token, { role: "admin" })) {
                                 cmd({
-                                        type: "maria",
+                                        type: "mongo",
                                         method: "GET",
                                         db: config.users.db,
                                         collection: config.users.col,
-                                        query: "SELECT * FROM users",
-                                        queryValues: "",
-                                        pool: {
-                                            database: "SEMILLA_LOCAL",
-                                            host: "127.0.0.1",
-                                            user: "root",
-                                            password: "",
-                                            port: 3306,
-                                            rowsAsArray: true
-                                        }
+                                        query: {},
+                                        queryOptions: {},
                                     })
                                     .then(users => {
                                         users.forEach(user => {
@@ -945,6 +937,9 @@ const endpoints = {
                 .then(() => {
                     //Push de datos a los webhooks suscriptos (POST REQUEST).
                     //Verificar body (Si son datos para urbe, ejecutar evento).
+                    //
+                    //
+                    //Validar URLs que no se repitan... y considerar Caso de UPDATE.
                     
                     cmd({
                         type: "mongo",
@@ -954,19 +949,26 @@ const endpoints = {
                         query:{},
                         queryOptions:{}
                     })
-                        .then((res)=>{                                
+                        .then((res)=>{    
+                            //VALIDAR URL SUSCRIPTAS      
+
                             for (let index = 0; index < res.length; index++) {
+
+                                
+
                                 const objeto = res[index];
                                 let webhookURL = objeto.url;
-                                if(objeto.codigos.includes(req.body.Codigo)){}
+                                if(objeto.codigos.includes(req.body.Codigo)){
                                 fetch(webhookURL, {
                                     method:"POST",
                                     body:JSON.stringify(req.body),
                                     headers: {
                                         'Content-Type': 'application/json'
+                                        }
                                     }
-                                });                                    
-                            }                                
+                                );  
+                            }                                                            
+                        }                                                      
                         })
                         .catch(err => console.log(err)); 
                     
@@ -1041,30 +1043,50 @@ const endpoints = {
         },
         /*Endpoint para suscribir a webhook de Masterbus-IOT. 
             TODO: 
-                Validar token... (en URL o HEADER?)
+                DONE - Validar token de Cookies (Login)... 
         */ 
         "webhook": (req, res) => {
             //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
-            //TODO: Valido el req.header.token
-            var tokenValido = req.params[4];  // TOKEN en la URL que se suscribe
-            if (true) {
-                var params = req.params[0].split('/');
-                //TODO: Validar body url y codigos 
-                cmd({
+            const params = req.params[0].split('/');
+            let token = req.cookies['access-token'].replace(/"/g, "");  // TOKEN en las cookies post-login
+            decodeJWT(token)
+            .then((response)=>{
+                if (validate(response, {role : "client"})) {
+                    //TODO: Validar que la URL no esté suscripta.
+                    cmd({
                         type: "mongo",
-                        method: "POST",
-                        db: params[2],
-                        collection: params[3], // Colección de los webhooks
-                        content: req.body
+                        method: "GET", 
+                        db: "Masterbus-IOT",
+                        collection: "webhooks", 
+                        query:{},
+                        queryOptions:{}
                     })
-                    .then(() => {
-                        res.status(200).send(JSON.stringify(req.body) + " received!");
+                    .then((webhooksList)=>
+                    {
+                        if(isOnlySubscribedURL(req.body.url, webhooksList)){
+                            cmd({
+                                type: "mongo",
+                                method: "POST",
+                                db: params[2],
+                                collection: params[3], // Colección de los webhooks
+                                content: req.body
+                            })
+                            .then(() => {
+                                res.status(200).send(JSON.stringify(req.body) + " received!");
+                            })
+                            .catch(err => res.status(500).send(err));
+                        } else {
+                            res.status(403).send("La URL "+ req.body.url + " con la que intenta suscribirse ya está suscripta al sistema.")
+                        }
                     })
-                    .catch(err => res.status(500).send(err));
-            } else {
-                res.send(403).send("Error de validación");
-            }
+                    
+                    .catch(err => console.log(err));
+                    
+                } else {
+                    res.send(403).send("Error de validación");
+                }
+            })
         }
     },
     "test": {

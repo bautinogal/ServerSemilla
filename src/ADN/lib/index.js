@@ -13,6 +13,7 @@ const encrypt = crypto.encrypt;
 const compareEncrypted = crypto.compareEncrypted;
 const createJWT = crypto.createJWT;
 const decodeJWT = crypto.decodeJWT;
+const isValidToken = crypto.isValidToken;
 
 const login = (user, pass) => {
     var findUserCmd = {
@@ -124,4 +125,19 @@ const noSQLQueryValidated = (param) => {
     return validator;
 }
 
-module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated };
+const isOnlySubscribedURL = (url, urlList) => {
+    //Contrastar URL con la lista...
+    let validator = true;
+    console.log(url);
+    //console.log(urlList);
+    for (let index = 0; index < urlList.length; index++) {
+        const element = urlList[index];
+        if(element.url == url){
+            validator = false
+            return validator;
+        }
+    }
+    return validator;
+}
+
+module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL };

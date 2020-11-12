@@ -58,5 +58,10 @@ const decodeJWT = (hashedToken) => {
     });
 }
 
+const isValidToken = (tokenToValidate) => {
+    let tokenDecoded = decodeJWT(tokenToValidate);
+    return(typeof(tokenDecoded) == 'object'); //Pensar alguna condición mejor para verificar que sea Token válido.
+}
 
-module.exports = { encrypt, compareEncrypted, createJWT, decodeJWT }
+
+module.exports = { encrypt, compareEncrypted, createJWT, decodeJWT, isValidToken }
