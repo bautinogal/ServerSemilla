@@ -946,31 +946,34 @@ const endpoints = {
                 .then(() => {
                     //Push de datos a los webhooks suscriptos (POST REQUEST).
                     //Verificar body (Si son datos para urbe, ejecutar evento).
-                    
-                    cmd({
-                        type: "mongo",
-                        method: "GET", //Aggregate() o GET de webhooks?
-                        db: "Masterbus-IOT",
-                        collection: "webhooks", 
-                        query:{},
-                        queryOptions:{}
-                    })
-                        .then((res)=>{                                
-                            for (let index = 0; index < res.length; index++) {
-                                const objeto = res[index];
-                                let webhookURL = objeto.url;
-                                if(objeto.codigos.includes(req.body.Codigo)){}
-                                fetch(webhookURL, {
-                                    method:"POST",
-                                    body:JSON.stringify(req.body),
-                                    headers: {
-                                        'Content-Type': 'application/json'
+                    try {
+                        cmd({
+                                type: "mongo",
+                                method: "GET", //Aggregate() o GET de webhooks?
+                                db: "Masterbus-IOT",
+                                collection: "webhooks",
+                                query: {},
+                                queryOptions: {}
+                            })
+                            .then((suscribers) => {
+                                for (let index = 0; index < suscribers.length; index++) {
+                                    const suscriber = suscribers[index];
+                                    let webhookURL = suscriber.url;
+                                    if (suscriber.codigos.includes(req.body.Codigo)) {
+                                        fetch(webhookURL, {
+                                            method: "POST",
+                                            body: JSON.stringify(req.body),
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            }
+                                        });
                                     }
-                                });                                    
-                            }                                
-                        })
-                        .catch(err => console.log(err)); 
-                    
+                                }
+                            })
+                            .catch(err => console.log(err));
+                    } catch (error) {
+                        res.status(200).send(JSON.stringify(req.body) + " received!");
+                    }
                     res.status(200).send(JSON.stringify(req.body) + " received!");
                 })
                 .catch(err => res.status(500).send(err));
@@ -1043,12 +1046,12 @@ const endpoints = {
         /*Endpoint para suscribir a webhook de Masterbus-IOT. 
             TODO: 
                 Validar token... (en URL o HEADER?)
-        */ 
+        */
         "webhook": (req, res) => {
             //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
             //TODO: Valido el req.header.token
-            var tokenValido = req.params[4];  // TOKEN en la URL que se suscribe
+            var tokenValido = req.params[4]; // TOKEN en la URL que se suscribe
             if (true) {
                 var params = req.params[0].split('/');
                 //TODO: Validar body url y codigos 
@@ -1093,7 +1096,7 @@ const endpoints = {
 
         }
     },
-    "log": (req,res) => {
+    "log": (req, res) => {
         console.log(req.body);
         res.status(200).send(req.body);
     }
