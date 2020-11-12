@@ -945,30 +945,31 @@ const endpoints = {
                 .then(() => {
                     //Push de datos a los webhooks suscriptos (POST REQUEST).
                     //Verificar body (Si son datos para urbe, ejecutar evento).
-                    if(req.body.Codigo == "910" || req.body.Codigo == "920"){
-                        cmd({
-                            type: "mongo",
-                            method: "GET", //Aggregate() o GET de webhooks?
-                            db: "Masterbus-IOT",
-                            collection: "urbetrack",
-                            query:{},
-                            queryOptions:{}
+                    
+                    cmd({
+                        type: "mongo",
+                        method: "GET", //Aggregate() o GET de webhooks?
+                        db: "Masterbus-IOT",
+                        collection: "webhooks", 
+                        query:{},
+                        queryOptions:{}
+                    })
+                        .then((res)=>{                                
+                            for (let index = 0; index < res.length; index++) {
+                                const objeto = res[index];
+                                let webhookURL = objeto.url;
+                                if(objeto.codigos.includes(req.body.Codigo)){}
+                                fetch(webhookURL, {
+                                    method:"POST",
+                                    body:JSON.stringify(req.body),
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+                                });                                    
+                            }                                
                         })
-                            .then((res)=>{                                
-                                for (let index = 0; index < res.length; index++) {
-                                    const objeto = res[index];
-                                    let webhookURL = objeto.url;
-                                    fetch(webhookURL, {
-                                        method:"POST",
-                                        body:JSON.stringify(req.body),
-                                        headers: {
-                                            'Content-Type': 'application/json'
-                                        }
-                                    });                                    
-                                }                                
-                            })
-                            .catch(err => console.log(err)); 
-                    }
+                        .catch(err => console.log(err)); 
+                    
                     res.status(200).send(JSON.stringify(req.body) + " received!");
                 })
                 .catch(err => res.status(500).send(err));
@@ -1047,14 +1048,14 @@ const endpoints = {
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
             //TODO: Valido el req.header.token
             var tokenValido = req.params[4];  // TOKEN en la URL que se suscribe
-            if (tokenValido) {
+            if (true) {
                 var params = req.params[0].split('/');
                 //TODO: Validar body url y codigos 
                 cmd({
                         type: "mongo",
                         method: "POST",
                         db: params[2],
-                        collection: params[3],
+                        collection: params[3], // Colección de los webhooks
                         content: req.body
                     })
                     .then(() => {
@@ -1091,6 +1092,10 @@ const endpoints = {
 
         }
     },
+    "log": (req,res) => {
+        console.log(req.body);
+        res.status(200).send(req.body);
+    }
 
 };
 
