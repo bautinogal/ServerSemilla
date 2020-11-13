@@ -1118,9 +1118,46 @@ const endpoints = {
                             res.status(403).send("Error de validación")
                         }   
                     break;
+                    case "UPDATE":
+                        if (validate(response, { $or : [{role : "client"},{role:"admin"}] })) {
+                            //TODO: Validar que la URL exista en la colección.
+                            cmd({
+                                type: "mongo",
+                                method: "GET", 
+                                db: "Masterbus-IOT",
+                                collection: "webhooks", 
+                                query:req.body.url,
+                                queryOptions:{}
+                            })
+                            .then((webhookToUpdate)=>
+                            {
+                                if(Array.isArray(webhookToUpdate) && webhookToUpdate.length){
+                                    cmd({
+                                        type: "mongo",
+                                        method: "UPDATE",
+                                        db: params[2],
+                                        collection: params[3], // Colección de los webhooks
+                                        query: req.body.url,
+                                        update: req.body.values
+                                    })
+                                    .then(() => {
+                                        res.status(200).send(JSON.stringify(req.body) + " updated!");
+                                    })
+                                    .catch(err => res.status(500).send(err));
+                                } else {
+                                    res.status(403).send("La URL "+ req.body.url + " que intenta actualizar ha tenido un inconveniente.")
+                                }
+                            })
+                            
+                            .catch(err => console.log(err));
+                            
+                        } else {
+                            res.send(403).send("Error de validación");
+                        }
+                    break;
                     default:
                         res.send(403).send("¡Petición inválida!");
-                        break;    
+                    break;    
                 }
                 
             })
