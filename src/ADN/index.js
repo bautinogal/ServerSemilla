@@ -1035,51 +1035,94 @@ const endpoints = {
                     res.status(500).send(err)
                 });
         },
-        /*Endpoint para suscribir a webhook de Masterbus-IOT. 
-            TODO: 
-                DONE - Validar token de Cookies (Login)... 
-        */ 
+        /*Endpoint para suscribir a webhook de Masterbus-IOT. */ 
         "webhook": (req, res) => {
             //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
             const params = req.params[0].split('/');
             let token = req.cookies['access-token'].replace(/"/g, "");  // TOKEN en las cookies post-login
+            let urlToDelete = req.body.url;
             decodeJWT(token)
             .then((response)=>{
-                if (validate(response, {role : "client"})) {
-                    //TODO: Validar que la URL no esté suscripta.
-                    cmd({
-                        type: "mongo",
-                        method: "GET", 
-                        db: "Masterbus-IOT",
-                        collection: "webhooks", 
-                        query:{},
-                        queryOptions:{}
-                    })
-                    .then((webhooksList)=>
-                    {
-                        if(isOnlySubscribedURL(req.body.url, webhooksList)){
+                switch(req.method) {
+                    case "POST":
+                        if (validate(response, { $or : [{role : "client"},{role:"admin"}] })) {
+                            //TODO: Validar que la URL no esté suscripta.
                             cmd({
                                 type: "mongo",
-                                method: "POST",
-                                db: params[2],
-                                collection: params[3], // Colección de los webhooks
-                                content: req.body
+                                method: "GET", 
+                                db: "Masterbus-IOT",
+                                collection: "webhooks", 
+                                query:{},
+                                queryOptions:{}
                             })
-                            .then(() => {
-                                res.status(200).send(JSON.stringify(req.body) + " received!");
+                            .then((webhooksList)=>
+                            {
+                                if(isOnlySubscribedURL(req.body.url, webhooksList)){
+                                    cmd({
+                                        type: "mongo",
+                                        method: "POST",
+                                        db: params[2],
+                                        collection: params[3], // Colección de los webhooks
+                                        content: req.body
+                                    })
+                                    .then(() => {
+                                        res.status(200).send(JSON.stringify(req.body) + " received!");
+                                    })
+                                    .catch(err => res.status(500).send(err));
+                                } else {
+                                    res.status(403).send("La URL "+ req.body.url + " con la que intenta suscribirse ya está suscripta al sistema.")
+                                }
                             })
-                            .catch(err => res.status(500).send(err));
+                            
+                            .catch(err => console.log(err));
+                            
                         } else {
-                            res.status(403).send("La URL "+ req.body.url + " con la que intenta suscribirse ya está suscripta al sistema.")
+                            res.send(403).send("Error de validación");
                         }
-                    })
-                    
-                    .catch(err => console.log(err));
-                    
-                } else {
-                    res.send(403).send("Error de validación");
+                    break;
+                    case "DELETE":
+                        if(validate(response, { $or : [{role : "client"},{role:"admin"}] })){
+                            cmd({
+                                type: "mongo",
+                                method: "GET", 
+                                db: "Masterbus-IOT",
+                                collection: "webhooks", 
+                                query:{url:urlToDelete},
+                                queryOptions:{}
+                            })
+                            .then((result)=>{
+                                //console.log(JSON.stringify(result));
+                                if (Array.isArray(result) && result.length){
+                                    cmd({
+                                        type: "mongo",
+                                        method: "DELETE_ONE", 
+                                        db: "Masterbus-IOT",
+                                        collection: "webhooks", 
+                                        query:{url:urlToDelete},
+                                        queryOptions:{}
+                                    })
+                                    .then((response)=>{
+                                        res.status(200).send("La URL asignada se desuscribió exitosamente. Detalles: "+ response);
+                                    })
+                                    .catch((err)=>{
+                                        console.log(err);
+                                        res.status(500).send("Error al procesar la solicitud: "+err);
+                                    });
+                                } else {
+                                    res.status(403).send("La solicitud no se pudo procesar. La URL provista no está suscripta.");
+                                }                                
+                            })
+                            .catch(e => console.log(e));                            
+                        } else {
+                            res.status(403).send("Error de validación")
+                        }   
+                    break;
+                    default:
+                        res.send(403).send("¡Petición inválida!");
+                        break;    
                 }
+                
             })
         }
     },
