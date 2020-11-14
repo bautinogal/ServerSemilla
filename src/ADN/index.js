@@ -12,6 +12,7 @@ const createUsers = () => {
             .then(() => createUser({ user: "Admin", pass: "123456", role: "admin" }))
             .then(() => createUser({ user: "INTI", pass: "INTI-MB", role: "client" }))
             .then(() => createUser({ user: "URBE", pass: "URBE-MB", role: "client" }))
+            .then(() => createUser({ user: "LEO", pass: "LEO-MB", role: "client" }))
             .then(() => res())
             .catch(err => rej(err));
     });
@@ -1038,49 +1039,48 @@ const endpoints = {
         /*Endpoint para suscribir a webhook de Masterbus-IOT. 
             TODO: 
                 DONE - Validar token de Cookies (Login)... 
-        */ 
+        */
         "webhook": (req, res) => {
             //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
             const params = req.params[0].split('/');
-            let token = req.cookies['access-token'].replace(/"/g, "");  // TOKEN en las cookies post-login
+            let token = req.cookies['access-token'].replace(/"/g, ""); // TOKEN en las cookies post-login
             decodeJWT(token)
-            .then((response)=>{
-                if (validate(response, {role : "client"})) {
-                    //TODO: Validar que la URL no esté suscripta.
-                    cmd({
-                        type: "mongo",
-                        method: "GET", 
-                        db: "Masterbus-IOT",
-                        collection: "webhooks", 
-                        query:{},
-                        queryOptions:{}
-                    })
-                    .then((webhooksList)=>
-                    {
-                        if(isOnlySubscribedURL(req.body.url, webhooksList)){
-                            cmd({
+                .then((response) => {
+                    if (validate(response, { role: "client" })) {
+                        //TODO: Validar que la URL no esté suscripta.
+                        cmd({
                                 type: "mongo",
-                                method: "POST",
-                                db: params[2],
-                                collection: params[3], // Colección de los webhooks
-                                content: req.body
+                                method: "GET",
+                                db: "Masterbus-IOT",
+                                collection: "webhooks",
+                                query: {},
+                                queryOptions: {}
                             })
-                            .then(() => {
-                                res.status(200).send(JSON.stringify(req.body) + " received!");
+                            .then((webhooksList) => {
+                                if (isOnlySubscribedURL(req.body.url, webhooksList)) {
+                                    cmd({
+                                            type: "mongo",
+                                            method: "POST",
+                                            db: params[2],
+                                            collection: params[3], // Colección de los webhooks
+                                            content: req.body
+                                        })
+                                        .then(() => {
+                                            res.status(200).send(JSON.stringify(req.body) + " received!");
+                                        })
+                                        .catch(err => res.status(500).send(err));
+                                } else {
+                                    res.status(403).send("La URL " + req.body.url + " con la que intenta suscribirse ya está suscripta al sistema.")
+                                }
                             })
-                            .catch(err => res.status(500).send(err));
-                        } else {
-                            res.status(403).send("La URL "+ req.body.url + " con la que intenta suscribirse ya está suscripta al sistema.")
-                        }
-                    })
-                    
-                    .catch(err => console.log(err));
-                    
-                } else {
-                    res.send(403).send("Error de validación");
-                }
-            })
+
+                        .catch(err => console.log(err));
+
+                    } else {
+                        res.send(403).send("Error de validación");
+                    }
+                })
         }
     },
     "test": {
