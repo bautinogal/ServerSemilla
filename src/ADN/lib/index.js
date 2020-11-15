@@ -25,7 +25,7 @@ const login = (user, pass) => {
     };
 
     return new Promise((res, rej) => {
-        
+
         var result = {};
         cmd(findUserCmd)
             .then(founds => {
@@ -105,21 +105,21 @@ const noSQLQueryValidated = (param) => {
     const props = param.body;
     for (const key in props) {
         if (props.hasOwnProperty(key)) {
-            const element = props[key];            
-            if(typeof(element) === 'object'){
+            const element = props[key];
+            if (typeof(element) === 'object') {
                 let regex = /\$/gi;
                 if (regex.test(JSON.stringify(element))) {
-                    console.log("La propiedad: "+key+" "+ element + " es inapropiada y no pasó la validación.");
+                    console.log("La propiedad: " + key + " " + element + " es inapropiada y no pasó la validación.");
                     delete element;
                     return false;
                 } else {
-                    console.log("La propiedad "+ key +" "+ element +" es apropiada y pasa la validación.");
+                    console.log("La propiedad " + key + " " + element + " es apropiada y pasa la validación.");
                     validator = true;
                 }
             } else {
-                console.log("La propiedad "+key +" "+ element +" no es un objeto inesperado y pasa la validación.");
+                console.log("La propiedad " + key + " " + element + " no es un objeto inesperado y pasa la validación.");
                 validator = true;
-            }            
+            }
         }
     }
     return validator;
@@ -127,17 +127,30 @@ const noSQLQueryValidated = (param) => {
 
 const isOnlySubscribedURL = (url, urlList) => {
     //Contrastar URL con la lista...
-    let validator = true;
-    console.log(url);
-    //console.log(urlList);
-    for (let index = 0; index < urlList.length; index++) {
-        const element = urlList[index];
-        if(element.url == url){
-            validator = false
+    try {
+        let validator = true;
+        console.log(typeof(url));
+        console.log(typeof(urlList));
+        console.log(urlList);
+        if (typeof(url) != "string" || typeof(urlList) != "object") {
+            console.log("isOnlySubscribedURL: error with parameters types!");
+            validator = false;
             return validator;
         }
+        //console.log(urlList);
+        for (let index = 0; index < urlList.length; index++) {
+            const element = urlList[index];
+            if (element.url == url) {
+                validator = false;
+            }
+        }
+        return validator;
+    } catch (error) {
+        console.log(error);
+        validator = false;
     }
     return validator;
+
 }
 
 module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL };

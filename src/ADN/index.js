@@ -882,10 +882,12 @@ const endpoints = {
                     case "POST":
                         login(user, pass) //CHEQUEAR SI HAY EXPRESIONES INESPERADAS.
                             .then((token) => {
-                                res.cookie("access-token", JSON.stringify(token), {});
-                                res.status(200).send(`{"token":"${JSON.stringify(token)}"}`);
+                                res
+                                    .cookie("access-token", JSON.stringify(token), {})
+                                    .status(200)
+                                    .send(`{"token":${JSON.stringify(token)}}`);
                             })
-                            .catch((err) => res.status(403).send(err));
+                            .catch((err) => res.status(403).send(JSON.stringify(err)));
                         break;
                     default:
                         res.status(401).send("invalid http method!");
@@ -937,37 +939,36 @@ const endpoints = {
                     content: req.body
                 })
                 .then(() => {
+                    res.status(200).send(JSON.stringify(req.body) + " received!");
                     //Push de datos a los webhooks suscriptos (POST REQUEST).
                     //Verificar body (Si son datos para urbe, ejecutar evento).
-                    try {
-                        cmd({
-                                type: "mongo",
-                                method: "GET", //Aggregate() o GET de webhooks?
-                                db: "Masterbus-IOT",
-                                collection: "webhooks",
-                                query: {},
-                                queryOptions: {}
-                            })
-                            .then((suscribers) => {
-                                for (let index = 0; index < suscribers.length; index++) {
-                                    const suscriber = suscribers[index];
-                                    let webhookURL = suscriber.url;
-                                    if (suscriber.codigos.includes(req.body.Codigo)) {
-                                        fetch(webhookURL, {
-                                            method: "POST",
-                                            body: JSON.stringify(req.body),
-                                            headers: {
-                                                'Content-Type': 'application/json'
-                                            }
-                                        });
+                    return cmd({
+                        type: "mongo",
+                        method: "GET", //Aggregate() o GET de webhooks?
+                        db: "Masterbus-IOT",
+                        collection: "webhooks",
+                        query: {},
+                        queryOptions: {}
+                    })
+                })
+                .then((suscribers) => {
+                    for (let index = 0; index < suscribers.length; index++) {
+                        const suscriber = suscribers[index];
+                        let webhookURL = suscriber.url;
+                        try {
+                            if (suscriber.codigos.includes(req.body.Codigo)) {
+                                fetch(webhookURL, {
+                                    method: "POST",
+                                    body: JSON.stringify(req.body),
+                                    headers: {
+                                        'Content-Type': 'application/json'
                                     }
-                                }
-                            })
-                            .catch(err => console.log(err));
-                    } catch (error) {
-                        res.status(200).send(JSON.stringify(req.body) + " received!");
+                                });
+                            }
+                        } catch (err) {
+                            console.log(err);
+                        }
                     }
-                    res.status(200).send(JSON.stringify(req.body) + " received!");
                 })
                 .catch(err => res.status(500).send(err));
         },
@@ -1040,45 +1041,98 @@ const endpoints = {
         "webhook": (req, res) => {
             //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
+
+
             const params = req.params[0].split('/');
-            let token = req.cookies['access-token'].replace(/"/g, ""); // TOKEN en las cookies post-login
+            if (params.length < 3) {
+                res.status(404).send("URL must define db in url: /api/webhooks/:database");
+                return;
+            };
+
+            let token = req.headers['access-token'];
+            try {
+                token.replace(/"/g, ""); // TOKEN en las cookies post-login
+            } catch (error) {
+                res.status(403).send("cookie: 'access-token' required!");
+                return;
+            }
+
+            //Bau: porque "urlToDelete"? no depende del metodo que viene despues?
             let urlToDelete = req.body.url;
             decodeJWT(token)
+                //Bau: quizas "decodedToken" en vez de "response" sería mas descriptivo? 
                 .then((response) => {
                     switch (req.method) {
-                        case "POST":
-                            if (validate(response, { $or: [{ role: "client" }, { role: "admin" }] })) {
-                                //TODO: Validar que la URL no esté suscripta.
+                        case "GET":
+                            if (validate(response, { $or: [{ role: "admin" }] })) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
-                                        db: "Masterbus-IOT",
-                                        collection: "webhooks",
+                                        db: params[2],
+                                        collection: "webhooks", // Colección de los webhooks
                                         query: {},
                                         queryOptions: {}
                                     })
                                     .then((webhooksList) => {
-                                        if (isOnlySubscribedURL(req.body.url, webhooksList)) {
-                                            cmd({
-                                                    type: "mongo",
-                                                    method: "POST",
-                                                    db: params[2],
-                                                    collection: params[3], // Colección de los webhooks
-                                                    content: req.body
-                                                })
-                                                .then(() => {
-                                                    res.status(200).send(JSON.stringify(req.body) + " received!");
-                                                })
-                                                .catch(err => res.status(500).send(err));
+                                        res.status(200).send(JSON.stringify(webhooksList));
+                                    })
+                                    .catch(err => {
+                                        console.log(err);
+                                        res.status(500).send("Error en la validación");
+                                    });
+                            } else {
+                                res.status(403).send("Error de validación");
+                            }
+                            break;
+                        case "POST":
+                            if (validate(response, { $or: [{ role: "client" }, { role: "admin" }] })) {
+                                cmd({
+                                        type: "mongo",
+                                        method: "GET",
+                                        db: params[2],
+                                        collection: "webhooks", // Colección de los webhooks
+                                        query: {},
+                                        queryOptions: {}
+                                    })
+                                    .then((webhooksList) => {
+                                        console.log("req body:");
+                                        console.log(req.body);
+                                        const body = req.body;
+                                        console.log(body);
+                                        if (isOnlySubscribedURL(body.url, webhooksList)) {
+                                            if (typeof(body.codigos) == 'object') {
+                                                cmd({
+                                                        type: "mongo",
+                                                        method: "POST",
+                                                        db: params[2],
+                                                        collection: "webhooks", // Colección de los webhooks
+                                                        content: body
+                                                    })
+                                                    .then(() => {
+                                                        res.status(200).send(body.url + " suscribed to : " + JSON.stringify(body.codigos));
+                                                    })
+                                                    .catch(err => res.status(500).send(err));
+                                            } else {
+                                                console.log("error con los codigos!");
+                                                res.status(403).send("error con los codigos!");
+                                            }
+
+                                        } else if (body.url) {
+                                            console.log(body.url);
+                                            console.log(body);
+                                            res.status(403).send("La URL " + req.body.url + " con la que intenta suscribirse ya está suscripta al sistema.");
                                         } else {
-                                            res.status(403).send("La URL " + req.body.url + " con la que intenta suscribirse ya está suscripta al sistema.")
+                                            console.log(body.url);
+                                            console.log(body);
+                                            res.status(403).send("Debe contener una URL en el body!");
                                         }
                                     })
-
-                                .catch(err => console.log(err));
-
+                                    .catch(err => {
+                                        console.log(err);
+                                        res.status(403).send("Error con el query");
+                                    });
                             } else {
-                                res.send(403).send("Error de validación");
+                                res.status(403).send("Error de validación");
                             }
                             break;
                         case "DELETE":
@@ -1086,8 +1140,8 @@ const endpoints = {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
-                                        db: "Masterbus-IOT",
-                                        collection: "webhooks",
+                                        db: params[2],
+                                        collection: "webhooks", // Colección de los webhooks
                                         query: { url: urlToDelete },
                                         queryOptions: {}
                                     })
@@ -1097,8 +1151,8 @@ const endpoints = {
                                             cmd({
                                                     type: "mongo",
                                                     method: "DELETE_ONE",
-                                                    db: "Masterbus-IOT",
-                                                    collection: "webhooks",
+                                                    db: params[2],
+                                                    collection: "webhooks", // Colección de los webhooks
                                                     query: { url: urlToDelete },
                                                     queryOptions: {}
                                                 })
@@ -1118,14 +1172,14 @@ const endpoints = {
                                 res.status(403).send("Error de validación")
                             }
                             break;
-                        case "UPDATE":
+                        case "PUT":
                             if (validate(response, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 //TODO: Validar que la URL exista en la colección.
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
-                                        db: "Masterbus-IOT",
-                                        collection: "webhooks",
+                                        db: params[2],
+                                        collection: "webhooks", // Colección de los webhooks
                                         query: req.body.url,
                                         queryOptions: {}
                                     })
@@ -1135,7 +1189,7 @@ const endpoints = {
                                                     type: "mongo",
                                                     method: "UPDATE",
                                                     db: params[2],
-                                                    collection: params[3], // Colección de los webhooks
+                                                    collection: "webhooks", // Colección de los webhooks
                                                     query: req.body.url,
                                                     update: req.body.values
                                                 })
@@ -1151,14 +1205,16 @@ const endpoints = {
                                 .catch(err => console.log(err));
 
                             } else {
-                                res.send(403).send("Error de validación");
+                                res.status(403).send("Error de validación");
                             }
                             break;
                         default:
-                            res.send(403).send("¡Petición inválida!");
+                            res.status(403).send(`¡Método invalido: ${req.method}!`);
                             break;
                     }
-
+                })
+                .catch(err => {
+                    res.status(403).send("Incorrect token!");
                 })
         }
     },
