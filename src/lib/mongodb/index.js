@@ -140,7 +140,7 @@ function get(database, collection, query, queryOptions) {
 function update(database, collection, query, updateValues){
     console.log(`mongo@Update: db: ${database} col: ${collection} q: ${query} values: ${updateValues}`);
     query = formatQuery(query);
-    valuesToUpdate = formatQuery(updateValues); //$set operator PARA HACER UPDATE
+    valuesToUpdate =formatQuery(updateValues); //$set operator PARA HACER UPDATE
 
     return new Promise((resolve, reject)=>{
         getDb(database)
@@ -149,10 +149,7 @@ function update(database, collection, query, updateValues){
             })
             .then((col)=>{//TODO: VERIFICAR QUE LA QUERY TENGA LA ESTRUCTURA SIGUIENTE: updateOne(queryFilter, queryToUpdate) 
                           //queryToUpdate es una expresión con el operador $set.
-                return col.updateOne(query, valuesToUpdate);
-            })
-            .then((res)=>{
-                return res.toArray();
+                return col.updateOne(query, valuesToUpdate); // {usuario: "Pepito"} , {$set: {codigos: [920,910]}}
             })
             .then((res)=>{
                 console.log(`mongo@update: result: ${res}`);
