@@ -1040,8 +1040,7 @@ const endpoints = {
         "webhook": (req, res) => {
             //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
-
-
+            
             const params = req.params[0].split('/');
             if (params.length < 3) {
                 res.status(404).send("URL must define db in url: /api/webhooks/:database");
@@ -1056,14 +1055,12 @@ const endpoints = {
                 return;
             }
 
-            //Bau: porque "urlToDelete"? no depende del metodo que viene despues?
-            let urlToDelete = req.body.url;
-            decodeJWT(token)
-                //Bau: quizas "decodedToken" en vez de "response" sería mas descriptivo? 
-                .then((response) => {
+            let url = req.body.url;
+            decodeJWT(token) 
+                .then((decodedToken) => {
                     switch (req.method) {
                         case "GET":
-                            if (validate(response, { $or: [{ role: "admin" }] })) {
+                            if (validate(decodedToken, { $or: [{ role: "admin" }] })) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
@@ -1084,7 +1081,7 @@ const endpoints = {
                             }
                             break;
                         case "POST":
-                            if (validate(response, { $or: [{ role: "client" }, { role: "admin" }] })) {
+                            if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
@@ -1096,10 +1093,12 @@ const endpoints = {
                                     .then((webhooksList) => {
                                         console.log("req body:");
                                         console.log(req.body);
-                                        const body = req.body;
+                                        const body = { user : decodedToken.user,
+                                                       content: req.body
+                                                    };
                                         console.log(body);
-                                        if (isOnlySubscribedURL(body.url, webhooksList)) {
-                                            if (typeof(body.codigos) == 'object') {
+                                        if (isOnlySubscribedURL(body.content.url, webhooksList)) {
+                                            if (typeof(body.content.codigos) === 'string') {
                                                 cmd({
                                                         type: "mongo",
                                                         method: "POST",
@@ -1108,7 +1107,7 @@ const endpoints = {
                                                         content: body
                                                     })
                                                     .then(() => {
-                                                        res.status(200).send(body.url + " suscribed to : " + JSON.stringify(body.codigos));
+                                                        res.status(200).send(body.content.url + " suscribed to : " + JSON.stringify(body.content.codigos));
                                                     })
                                                     .catch(err => res.status(500).send(err));
                                             } else {
@@ -1116,12 +1115,12 @@ const endpoints = {
                                                 res.status(403).send("error con los codigos!");
                                             }
 
-                                        } else if (body.url) {
-                                            console.log(body.url);
+                                        } else if (body.content.url) {
+                                            console.log(body.content.url);
                                             console.log(body);
                                             res.status(403).send("La URL " + req.body.url + " con la que intenta suscribirse ya está suscripta al sistema.");
                                         } else {
-                                            console.log(body.url);
+                                            console.log(body.content.url);
                                             console.log(body);
                                             res.status(403).send("Debe contener una URL en el body!");
                                         }
@@ -1135,24 +1134,23 @@ const endpoints = {
                             }
                             break;
                         case "DELETE":
-                            if (validate(response, { $or: [{ role: "client" }, { role: "admin" }] })) {
+                            if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
                                         db: params[2],
                                         collection: "webhooks", // Colección de los webhooks
-                                        query: { url: urlToDelete },
+                                        query: { url: url }, //Busca si existe la URL a borrar
                                         queryOptions: {}
                                     })
                                     .then((result) => {
-                                        //console.log(JSON.stringify(result));
                                         if (Array.isArray(result) && result.length) {
                                             cmd({
                                                     type: "mongo",
                                                     method: "DELETE_ONE",
                                                     db: params[2],
                                                     collection: "webhooks", // Colección de los webhooks
-                                                    query: { url: urlToDelete },
+                                                    query: { url: url }, // Gon: Borra el documento por la URL... (¿Debería borrar por usuario?)
                                                     queryOptions: {}
                                                 })
                                                 .then((response) => {
@@ -1172,9 +1170,9 @@ const endpoints = {
                             }
                             break;
                         case "PUT":
-                            if (validate(response, { $or: [{ role: "client" }, { role: "admin" }] })) {
+                            if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 //TODO: Validar que la URL exista en la colección.
-                                cmd({
+                                cmd({   //Se valida que la URL pasada existe en la colección con el GET.
                                         type: "mongo",
                                         method: "GET",
                                         db: params[2],
@@ -1189,8 +1187,8 @@ const endpoints = {
                                                     method: "UPDATE",
                                                     db: params[2],
                                                     collection: "webhooks", // Colección de los webhooks
-                                                    query: req.body.url,
-                                                    update: req.body.values
+                                                    query: req.body.url,  //Filtra documentos por URL
+                                                    update: req.body.values  //Actualiza los valores del primer documento que cumple el filtro
                                                 })
                                                 .then(() => {
                                                     res.status(200).send(JSON.stringify(req.body) + " updated!");
