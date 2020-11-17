@@ -871,7 +871,6 @@ const endpoints = {
                 .then((token) => views.dashboard(req, res, getDashboardData(token)))
                 .catch((err) => res.redirect('/pages/login'));
         }
-
     },
     "api": {
         "login": (req, res) => {
