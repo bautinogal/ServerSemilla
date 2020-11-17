@@ -1,5 +1,5 @@
 const path = require('path');
-const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL } = require('./lib');
+const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const { default: fetch } = require('node-fetch');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
@@ -1039,15 +1039,13 @@ const endpoints = {
         },
         /*Endpoint para suscribir a webhook de Masterbus-IOT. */
         "webhook": (req, res) => {
-            //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
-            //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
-            
+            //api/webhook/Masterbus-IOT/webhooks/
+            //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}            
             const params = req.params[0].split('/');
             if (params.length < 3) {
                 res.status(404).send("URL must define db in url: /api/webhooks/:database");
                 return;
             };
-
             let token = req.headers['access-token'];
             try {
                 token.replace(/"/g, ""); // TOKEN en las cookies post-login
@@ -1055,8 +1053,7 @@ const endpoints = {
                 res.status(403).send("cookie: 'access-token' required!");
                 return;
             }
-
-            let url = req.body.url;
+            let url = req.body.url;            
             decodeJWT(token) 
                 .then((decodedToken) => {
                     switch (req.method) {
@@ -1082,7 +1079,8 @@ const endpoints = {
                             }
                             break;
                         case "POST":
-                            if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
+                            if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] }) 
+                                && validContent(req.body)) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
@@ -1092,8 +1090,7 @@ const endpoints = {
                                         queryOptions: {}
                                     })
                                     .then((webhooksList) => {
-                                        console.log("req body:");
-                                        console.log(req.body);
+                                        console.log(`req body: ${req.body}`);
                                         const body = { user : decodedToken.user,
                                                        content: req.body
                                                     };
@@ -1134,7 +1131,7 @@ const endpoints = {
                                 res.status(403).send("Error de validación");
                             }
                             break;
-                        case "DELETE":
+                        case "DELETE": //TODO: Hubo un cambio en la colección. La URL se guarda dentro de un array body
                             if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 cmd({
                                         type: "mongo",
