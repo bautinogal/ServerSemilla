@@ -70,13 +70,14 @@ function aggregate(database, collection, pipeline, options) {
     console.log(`mongo@aggregate: db: ${database} col: ${collection} pipeline: ${pipeline} options:${options}`);
     // pipeline = formatQuery(pipeline);
     //options = formatQuery(options);
+    options.allowDiskUse = true; // con esto me deja hacer querys q usen mas de 100mb
     return new Promise((resolve, reject) => {
         getDb(database)
             .then((db) => {
                 return db.collection(collection);
             })
             .then((col) => {
-                return col.aggregate(JSON.parse(pipeline), JSON.parse(options)).toArray();
+                return col.aggregate(JSON.parse(pipeline), { "allowDiskUse": true }).toArray();
             })
             .then((res) => {
                 console.log(`mongo@aggregate: result: ${res}`);
@@ -137,25 +138,25 @@ function get(database, collection, query, queryOptions) {
     })
 };
 //FUNCION PARA ACTUALIZAR LOS VALORES DE UN DOCUMENTO
-function update(database, collection, query, updateValues){
+function update(database, collection, query, updateValues) {
     console.log(`mongo@Update: db: ${database} col: ${collection} q: ${query} values: ${updateValues}`);
     query = formatQuery(query);
-    valuesToUpdate =formatQuery(updateValues); //$set operator PARA HACER UPDATE
+    valuesToUpdate = formatQuery(updateValues); //$set operator PARA HACER UPDATE
 
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         getDb(database)
-            .then((db)=>{
+            .then((db) => {
                 return db.collection(collection);
             })
-            .then((col)=>{//TODO: VERIFICAR QUE LA QUERY TENGA LA ESTRUCTURA SIGUIENTE: updateOne(queryFilter, queryToUpdate) 
-                          //queryToUpdate es una expresión con el operador $set.
+            .then((col) => { //TODO: VERIFICAR QUE LA QUERY TENGA LA ESTRUCTURA SIGUIENTE: updateOne(queryFilter, queryToUpdate) 
+                //queryToUpdate es una expresión con el operador $set.
                 return col.updateOne(query, valuesToUpdate); // {usuario: "Pepito"} , {$set: {codigos: [920,910]}}
             })
-            .then((res)=>{
+            .then((res) => {
                 console.log(`mongo@update: result: ${res}`);
                 resolve(res);
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(`mongo@update: error:${err}`);
                 reject(err);
             })
