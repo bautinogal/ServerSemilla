@@ -1042,8 +1042,14 @@ const endpoints = {
         },
         /*Endpoint para suscribir a webhook de Masterbus-IOT. */
         "webhook": (req, res) => {
+<<<<<<< HEAD
+            //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
+            //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
+
+=======
             //api/webhook/Masterbus-IOT/webhooks/
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}            
+>>>>>>> 0e8949ffdeff14f1b690997379717b3abf41c051
             const params = req.params[0].split('/');
             if (params.length < 3) {
                 res.status(404).send("URL must define db in url: /api/webhooks/:database");
@@ -1056,8 +1062,14 @@ const endpoints = {
                 res.status(403).send("cookie: 'access-token' required!");
                 return;
             }
+<<<<<<< HEAD
+
+            let url = req.body.url;
+            decodeJWT(token)
+=======
             let url = req.body.url;            
             decodeJWT(token) 
+>>>>>>> 0e8949ffdeff14f1b690997379717b3abf41c051
                 .then((decodedToken) => {
                     switch (req.method) {
                         case "GET":
@@ -1093,10 +1105,19 @@ const endpoints = {
                                         queryOptions: {}
                                     })
                                     .then((webhooksList) => {
+<<<<<<< HEAD
+                                        console.log("req body:");
+                                        console.log(req.body);
+                                        const body = {
+                                            user: decodedToken.user,
+                                            content: req.body
+                                        };
+=======
                                         console.log(`req body: ${req.body}`);
                                         const body = { user : decodedToken.user,
                                                        content: req.body
                                                     };
+>>>>>>> 0e8949ffdeff14f1b690997379717b3abf41c051
                                         console.log(body);
                                         if (isOnlySubscribedURL(body.content.url, webhooksList)) {
                                             if (typeof(body.content.codigos) === 'string') {
@@ -1173,7 +1194,7 @@ const endpoints = {
                         case "PUT":
                             if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 //TODO: Validar que la URL exista en la colección.
-                                cmd({   //Se valida que la URL pasada existe en la colección con el GET.
+                                cmd({ //Se valida que la URL pasada existe en la colección con el GET.
                                         type: "mongo",
                                         method: "GET",
                                         db: params[2],
@@ -1188,8 +1209,8 @@ const endpoints = {
                                                     method: "UPDATE",
                                                     db: params[2],
                                                     collection: "webhooks", // Colección de los webhooks
-                                                    query: req.body.url,  //Filtra documentos por URL
-                                                    update: req.body.values  //Actualiza los valores del primer documento que cumple el filtro
+                                                    query: req.body.url, //Filtra documentos por URL
+                                                    update: req.body.values //Actualiza los valores del primer documento que cumple el filtro
                                                 })
                                                 .then(() => {
                                                     res.status(200).send(JSON.stringify(req.body) + " updated!");
@@ -1244,8 +1265,13 @@ const endpoints = {
     "log": (req, res) => {
         console.log(req.body);
         res.status(200).send(req.body);
+    },
+    "ingreso": {
+        "nuevo-equipo": (req, res) => {
+            console.log(req.body);
+            res.send("ok");
+        }
     }
-
 };
 
 const workers = [{
