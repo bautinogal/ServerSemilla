@@ -153,4 +153,7 @@ const isOnlySubscribedURL = (url, urlList) => {
 
 }
 
-module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL };
+const validContent = (content)=>{
+    return (typeof(content) === 'object' && content.hasOwnProperty(url) && content.hasOwnProperty(codigos))
+}
+module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent };
