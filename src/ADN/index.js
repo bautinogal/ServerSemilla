@@ -1,5 +1,5 @@
 const path = require('path');
-const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent } = require('./lib');
+const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent, setUTCTimezoneTo } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const { default: fetch } = require('node-fetch');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
@@ -958,7 +958,11 @@ const endpoints = {
                             if (suscriber.codigos.includes(req.body.Codigo)) {
                                 fetch(webhookURL, {
                                     method: "POST",
-                                    body: JSON.stringify(req.body),
+                                    body: {
+                                        bus : parseInt(req.body.Interno),
+                                        fecha : setUTCTimezoneTo(req.body.Fecha, -3),//UTC -3 = ARGENTINA/BS AS TODO: Agregarlo como .Env 
+                                        body: req.body 
+                                    },
                                     headers: {
                                         'Content-Type': 'application/json'
                                     }

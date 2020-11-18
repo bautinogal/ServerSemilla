@@ -156,4 +156,9 @@ const isOnlySubscribedURL = (url, urlList) => {
 const validContent = (content)=>{
     return (typeof(content) === 'object' && content.hasOwnProperty(url) && content.hasOwnProperty(codigos))
 }
-module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent };
+const setUTCTimezoneTo = (dateToTransform, timezone) => {
+    let globalTime = dateToTransform.getTime();
+    let localeTime =new Date(dateToTransform.setTime(globalTime + (timezone*60*60*1000)));  	
+    return(localeTime.toISOString().split('.')[0]);
+}
+module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent, setUTCTimezoneTo };
