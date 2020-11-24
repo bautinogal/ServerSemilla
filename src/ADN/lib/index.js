@@ -164,12 +164,12 @@ const setUTCTimezoneTo = (dateToTransform, timezone) => {
     return(localeTime.toISOString().split('.')[0]);
 }
 
-const  suscribeToWebhook = (body, urlParams, events) => {
+const  suscribeToWebhook = (body, database, events) => {
     if (typeof(events) === 'string') {
         cmd({
                 type: "mongo",
                 method: "POST",
-                db: urlParams[2],
+                db: database,
                 collection: "webhooks", // Colección de los webhooks
                 content: body
             })
@@ -182,4 +182,51 @@ const  suscribeToWebhook = (body, urlParams, events) => {
         res.status(403).send("Error con los eventos a los cuales desea suscribir!");
     }
 }
-module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent, setUTCTimezoneTo, suscribeToWebhook };
+const deleteOneWebhook = (valueToQuery, database) => {
+    cmd({
+        type: "mongo",
+        method: "DELETE_ONE",
+        db: database,
+        collection: "webhooks", // Colección de los webhooks
+        query: valueToQuery , // Gon: Borra el documento por la URL... (¿Debería borrar por usuario?)
+        queryOptions: {}
+    })
+    .then((response) => {
+        res.status(200).send("La URL asignada se desuscribió exitosamente. Detalles: " + response);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).send("Error al procesar la solicitud: " + err);
+    });
+}
+const updateOneWebhook = (valueToQuery, valuesToUpdate, database) => {
+    cmd({
+        type: "mongo",
+        method: "UPDATE",
+        db: database,
+        collection: "webhooks", // Colección de los webhooks
+        query: valueToQuery, //Filtra documentos por URL
+        update: valuesToUpdate //Actualiza los valores del primer documento que cumple el filtro
+    })
+    .then(() => {
+        res.status(200).send(JSON.stringify(valueToQuery) + " updated!");
+    })
+    .catch(err => res.status(500).send(err));
+}
+const fetchToWebhook = (fetchBody, webhookURL, events, req)=>{
+    try {
+        if (events.includes(req.body.Codigo)) {
+            fetch(webhookURL, fetchBody).then(res => {
+                    console.log(res);
+                    console.log(`posted to webhook ${webhookURL} ${req.body}`);
+                })
+                .catch(err => console.log(err));
+        }
+    } catch (err) {
+        console.log(`Error reenviando a suscribers: ${err}`);
+    }
+}
+
+module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted,
+     createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL,
+     validContent, setUTCTimezoneTo, suscribeToWebhook, deleteOneWebhook, updateOneWebhook, fetchToWebhook };

@@ -1,5 +1,7 @@
 const path = require('path');
-const { login, createUser, deleteUsers, cmd, decodeJWT, validate, isOnlySubscribedURL, validContent, setUTCTimezoneTo, suscribeToWebhook } = require('./lib');
+const { login, createUser, deleteUsers, cmd, decodeJWT, validate,
+        isOnlySubscribedURL, validContent, setUTCTimezoneTo, suscribeToWebhook, 
+        deleteOneWebhook, updateOneWebhook, fetchToWebhook} = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const { default: fetch } = require('node-fetch');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
@@ -952,32 +954,21 @@ const endpoints = {
                     })
                 })
                 .then((suscribers) => {
-                    for (let index = 0; index < suscribers.length; index++) {
-                        const suscriber = suscribers[index];
-                        let webhookURL = suscriber.content.url;
-                        try {
-                            //console.log(suscriber);
-                            if (suscriber.content.codigos.includes(req.body.Codigo)) {
-                                fetch(webhookURL, {
-                                        method: "POST",
-                                        body: JSON.stringify({
-                                            bus: parseInt(req.body.Interno),
-                                            fecha: setUTCTimezoneTo(req.body.Fecha, -3), //UTC -3 = ARGENTINA/BS AS TODO: Agregarlo como .Env 
-                                            body: req.body
-                                        }),
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
-                                        }
-                                    }).then(res => {
-                                        console.log(res);
-                                        console.log(`posted to webhook ${webhookURL} ${req.body}`);
-                                    })
-                                    .catch(err => console.log(err));
+                    let initFetch = {
+                            method: "POST",
+                            body: JSON.stringify({
+                                bus: parseInt(req.body.Interno),
+                                fecha: setUTCTimezoneTo(req.body.Fecha, -3), //UTC -3 = ARGENTINA/BS AS TODO: Agregarlo como .Env 
+                                body: req.body
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
                             }
-                        } catch (err) {
-                            console.log(`Error reenviando a suscribers: ${err}`);
-                        }
+                        };
+                    for (let index = 0; index < suscribers.length; index++) {
+                        const elem = suscribers[index];
+                        fetchToWebhook(initFetch, elem.content.url, elem.content.codigos, req);                        
                     }
                 })
                 .catch(err => res.status(500).send(err));
@@ -1127,33 +1118,20 @@ const endpoints = {
                             }
                             break;
                         case "DELETE":
+                            let query = {"content.url" : url};
                             if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
                                         db: params[2],
                                         collection: "webhooks", // Colección de los webhooks
-                                        query: { "content.url": url }, //Busca si existe la URL a borrar
+                                        query: query, //Busca si existe la URL a borrar
                                         queryOptions: {}
                                     })
                                     .then((result) => {
                                         console.log(result);
                                         if (Array.isArray(result) && result.length) {
-                                            cmd({
-                                                    type: "mongo",
-                                                    method: "DELETE_ONE",
-                                                    db: params[2],
-                                                    collection: "webhooks", // Colección de los webhooks
-                                                    query: { "content.url": url }, // Gon: Borra el documento por la URL... (¿Debería borrar por usuario?)
-                                                    queryOptions: {}
-                                                })
-                                                .then((response) => {
-                                                    res.status(200).send("La URL asignada se desuscribió exitosamente. Detalles: " + response);
-                                                })
-                                                .catch((err) => {
-                                                    console.log(err);
-                                                    res.status(500).send("Error al procesar la solicitud: " + err);
-                                                });
+                                            deleteOneWebhook(query, params[2]);
                                         } else {
                                             res.status(403).send("La solicitud no se pudo procesar. La URL provista no está suscripta.");
                                         }
@@ -1164,29 +1142,20 @@ const endpoints = {
                             }
                             break;
                         case "PUT":
+                            let query = { "content.url": req.body.url };
+                            let updateValues = req.body.updateValues;
                             if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 cmd({ //Se valida que la URL pasada existe en la colección con el GET.
                                         type: "mongo",
                                         method: "GET",
                                         db: params[2],
                                         collection: "webhooks", // Colección de los webhooks
-                                        query: { "content.url": req.body.url },
+                                        query: query,
                                         queryOptions: {}
                                     })
                                     .then((webhookToUpdate) => {
                                         if (Array.isArray(webhookToUpdate) && webhookToUpdate.length) {
-                                            cmd({
-                                                    type: "mongo",
-                                                    method: "UPDATE",
-                                                    db: params[2],
-                                                    collection: "webhooks", // Colección de los webhooks
-                                                    query: JSON.stringify({ "content.url": req.body.url }), //Filtra documentos por URL
-                                                    update: req.body.values //Actualiza los valores del primer documento que cumple el filtro
-                                                })
-                                                .then(() => {
-                                                    res.status(200).send(JSON.stringify(req.body) + " updated!");
-                                                })
-                                                .catch(err => res.status(500).send(err));
+                                            updateOneWebhook(query, updateValues, params[2]);
                                         } else {
                                             res.status(403).send("La URL " + req.body.url + " que intenta actualizar ha tenido un inconveniente.")
                                         }
