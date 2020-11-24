@@ -843,6 +843,7 @@ var queues = {
 var bds = {
 
     mongo: {
+        //url: "mongodb://localhost:27017/Masterbus-IOT",
         url: "mongodb+srv://masterbus-iot-server:masterbus@cluster0.uggrc.mongodb.net/INTI-Test?retryWrites=true&w=majority",
         dfltDb: "dflt"
     },
@@ -955,17 +956,23 @@ const endpoints = {
                         const suscriber = suscribers[index];
                         let webhookURL = suscriber.url;
                         try {
-                            if (suscriber.codigos.includes(req.body.Codigo)) {
+                            if (suscriber.codigos && suscriber.codigos.includes(req.body.Codigo)) {
                                 fetch(webhookURL, {
-                                    method: "POST",
-                                    body: JSON.stringify(req.body),
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    }
-                                });
+                                        method: "POST",
+                                        body: JSON.stringify(req.body),
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
+                                        }
+                                    })
+                                    .then(res => {
+                                        console.log(res);
+                                        console.log(`posted to webhook ${webhookURL} ${req.body}`);
+                                    })
+                                    .catch(err => console.log(err));
                             }
                         } catch (err) {
-                            console.log(err);
+                            console.log(`Error reenviando a suscribers: ${err}`);
                         }
                     }
                 })
@@ -1038,14 +1045,8 @@ const endpoints = {
         },
         /*Endpoint para suscribir a webhook de Masterbus-IOT. */
         "webhook": (req, res) => {
-<<<<<<< HEAD
-            //api/webhook/Masterbus-IOT/urbetrack/sdf789345897fas9df87895487
-            //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}
-
-=======
             //api/webhook/Masterbus-IOT/webhooks/
             //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}            
->>>>>>> 0e8949ffdeff14f1b690997379717b3abf41c051
             const params = req.params[0].split('/');
             if (params.length < 3) {
                 res.status(404).send("URL must define db in url: /api/webhooks/:database");
@@ -1058,14 +1059,8 @@ const endpoints = {
                 res.status(403).send("cookie: 'access-token' required!");
                 return;
             }
-<<<<<<< HEAD
-
             let url = req.body.url;
             decodeJWT(token)
-=======
-            let url = req.body.url;            
-            decodeJWT(token) 
->>>>>>> 0e8949ffdeff14f1b690997379717b3abf41c051
                 .then((decodedToken) => {
                     switch (req.method) {
                         case "GET":
@@ -1090,8 +1085,8 @@ const endpoints = {
                             }
                             break;
                         case "POST":
-                            if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] }) 
-                                && validContent(req.body)) {
+                            if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] }) &&
+                                validContent(req.body)) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
@@ -1101,19 +1096,11 @@ const endpoints = {
                                         queryOptions: {}
                                     })
                                     .then((webhooksList) => {
-<<<<<<< HEAD
-                                        console.log("req body:");
-                                        console.log(req.body);
+                                        console.log(`req body: ${req.body}`);
                                         const body = {
                                             user: decodedToken.user,
                                             content: req.body
                                         };
-=======
-                                        console.log(`req body: ${req.body}`);
-                                        const body = { user : decodedToken.user,
-                                                       content: req.body
-                                                    };
->>>>>>> 0e8949ffdeff14f1b690997379717b3abf41c051
                                         console.log(body);
                                         if (isOnlySubscribedURL(body.content.url, webhooksList)) {
                                             if (typeof(body.content.codigos) === 'string') {
@@ -1264,8 +1251,8 @@ const endpoints = {
     },
     "ingreso": {
         "nuevo-equipo": (req, res) => {
-            console.log(req.body);
-            res.send("ok");
+            console.log(JSON.stringify(req.body.inputs));
+            setTimeout(() => { res.send("ok"); }, 2000);
         }
     }
 };
