@@ -1,5 +1,5 @@
 const path = require('path');
-const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent, setUTCTimezoneTo } = require('./lib');
+const { login, createUser, deleteUsers, cmd, decodeJWT, validate, isOnlySubscribedURL, validContent, setUTCTimezoneTo, suscribeToWebhook } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const { default: fetch } = require('node-fetch');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
@@ -1042,22 +1042,22 @@ const endpoints = {
                 });
         },
         /*Endpoint para suscribir a webhook de Masterbus-IOT. */
-        "webhook": (req, res) => {
-            //api/webhook/Masterbus-IOT/webhooks/
-            //BODY: {url: "laurlenlaqquierenrecibir", codigos:["910","920"]}            
+        "webhook": (req, res) => {            
             const params = req.params[0].split('/');
+            let token = req.headers['access-token'];
+            let url = req.body.url; 
+            let codigos = req.body.codigos;
+            
             if (params.length < 3) {
                 res.status(404).send("URL must define db in url: /api/webhooks/:database");
                 return;
-            };
-            let token = req.headers['access-token'];
+            };            
             try {
                 token.replace(/"/g, ""); // TOKEN en las cookies post-login
             } catch (error) {
                 res.status(403).send("cookie: 'access-token' required!");
                 return;
-            }
-            let url = req.body.url;            
+            }                       
             decodeJWT(token) 
                 .then((decodedToken) => {
                     switch (req.method) {
@@ -1098,25 +1098,8 @@ const endpoints = {
                                         const body = { user : decodedToken.user,
                                                        content: req.body
                                                     };
-                                        console.log(body);
                                         if (isOnlySubscribedURL(body.content.url, webhooksList)) {
-                                            if (typeof(body.content.codigos) === 'string') {
-                                                cmd({
-                                                        type: "mongo",
-                                                        method: "POST",
-                                                        db: params[2],
-                                                        collection: "webhooks", // Colección de los webhooks
-                                                        content: body
-                                                    })
-                                                    .then(() => {
-                                                        res.status(200).send(body.content.url + " suscribed to : " + JSON.stringify(body.content.codigos));
-                                                    })
-                                                    .catch(err => res.status(500).send(err));
-                                            } else {
-                                                console.log("error con los codigos!");
-                                                res.status(403).send("error con los codigos!");
-                                            }
-
+                                            suscribeToWebhook(body,params,codigos); //SUSCRIBE A LOS EVENTOS
                                         } else if (body.content.url) {
                                             console.log(body.content.url);
                                             console.log(body);
@@ -1174,7 +1157,6 @@ const endpoints = {
                             break;
                         case "PUT":
                             if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
-                                //TODO: Validar que la URL exista en la colección.
                                 cmd({ //Se valida que la URL pasada existe en la colección con el GET.
                                         type: "mongo",
                                         method: "GET",

@@ -163,4 +163,23 @@ const setUTCTimezoneTo = (dateToTransform, timezone) => {
     let localeTime =new Date(formattedDate.setTime(globalTime + (timezone*60*60*1000)));  	
     return(localeTime.toISOString().split('.')[0]);
 }
-module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent, setUTCTimezoneTo };
+
+const  suscribeToWebhook = (body, urlParams, events) => {
+    if (typeof(events) === 'string') {
+        cmd({
+                type: "mongo",
+                method: "POST",
+                db: urlParams[2],
+                collection: "webhooks", // Colección de los webhooks
+                content: body
+            })
+            .then(() => {
+                res.status(200).send(body.content.url + " suscribed to : " + JSON.stringify(events));
+            })
+            .catch(err => res.status(500).send(err));
+    } else {
+        console.log("Error con los eventos a los cuales desea suscribir!");
+        res.status(403).send("Error con los eventos a los cuales desea suscribir!");
+    }
+}
+module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent, setUTCTimezoneTo, suscribeToWebhook };
