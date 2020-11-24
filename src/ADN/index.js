@@ -1,5 +1,5 @@
 const path = require('path');
-const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent } = require('./lib');
+const { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted, createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL, validContent, setUTCTimezoneTo } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const { default: fetch } = require('node-fetch');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
@@ -954,18 +954,22 @@ const endpoints = {
                 .then((suscribers) => {
                     for (let index = 0; index < suscribers.length; index++) {
                         const suscriber = suscribers[index];
-                        let webhookURL = suscriber.url;
+                        let webhookURL = suscriber.content.url;
                         try {
-                            if (suscriber.codigos && suscriber.codigos.includes(req.body.Codigo)) {
+                            //console.log(suscriber);
+                            if (suscriber.content.codigos.includes(req.body.Codigo)) {
                                 fetch(webhookURL, {
                                         method: "POST",
-                                        body: JSON.stringify(req.body),
+                                        body: JSON.stringify({
+                                            bus: parseInt(req.body.Interno),
+                                            fecha: setUTCTimezoneTo(req.body.Fecha, -3), //UTC -3 = ARGENTINA/BS AS TODO: Agregarlo como .Env 
+                                            body: req.body
+                                        }),
                                         headers: {
                                             'Content-Type': 'application/json',
                                             'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
                                         }
-                                    })
-                                    .then(res => {
+                                    }).then(res => {
                                         console.log(res);
                                         console.log(`posted to webhook ${webhookURL} ${req.body}`);
                                     })
@@ -1138,24 +1142,25 @@ const endpoints = {
                                 res.status(403).send("Error de validación");
                             }
                             break;
-                        case "DELETE": //TODO: Hubo un cambio en la colección. La URL se guarda dentro de un array body
+                        case "DELETE":
                             if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
                                         db: params[2],
                                         collection: "webhooks", // Colección de los webhooks
-                                        query: { url: url }, //Busca si existe la URL a borrar
+                                        query: { "content.url": url }, //Busca si existe la URL a borrar
                                         queryOptions: {}
                                     })
                                     .then((result) => {
+                                        console.log(result);
                                         if (Array.isArray(result) && result.length) {
                                             cmd({
                                                     type: "mongo",
                                                     method: "DELETE_ONE",
                                                     db: params[2],
                                                     collection: "webhooks", // Colección de los webhooks
-                                                    query: { url: url }, // Gon: Borra el documento por la URL... (¿Debería borrar por usuario?)
+                                                    query: { "content.url": url }, // Gon: Borra el documento por la URL... (¿Debería borrar por usuario?)
                                                     queryOptions: {}
                                                 })
                                                 .then((response) => {
@@ -1182,7 +1187,7 @@ const endpoints = {
                                         method: "GET",
                                         db: params[2],
                                         collection: "webhooks", // Colección de los webhooks
-                                        query: req.body.url,
+                                        query: { "content.url": req.body.url },
                                         queryOptions: {}
                                     })
                                     .then((webhookToUpdate) => {
@@ -1192,7 +1197,7 @@ const endpoints = {
                                                     method: "UPDATE",
                                                     db: params[2],
                                                     collection: "webhooks", // Colección de los webhooks
-                                                    query: req.body.url, //Filtra documentos por URL
+                                                    query: JSON.stringify({ "content.url": req.body.url }), //Filtra documentos por URL
                                                     update: req.body.values //Actualiza los valores del primer documento que cumple el filtro
                                                 })
                                                 .then(() => {
@@ -1216,6 +1221,7 @@ const endpoints = {
                     }
                 })
                 .catch(err => {
+                    console.log(err);
                     res.status(403).send("Incorrect token!");
                 })
         }
@@ -1246,7 +1252,7 @@ const endpoints = {
         }
     },
     "log": (req, res) => {
-        console.log(req.body);
+        console.log(JSON.stringify(req.body));
         res.status(200).send(req.body);
     },
     "ingreso": {
