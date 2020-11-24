@@ -1063,14 +1063,8 @@ const endpoints = {
             } catch (error) {
                 res.status(403).send("cookie: 'access-token' required!");
                 return;
-<<<<<<< HEAD
             }                       
             decodeJWT(token) 
-=======
-            }
-            let url = req.body.url;
-            decodeJWT(token)
->>>>>>> 131029fad54bba2502db9ef3eca52b585d5d00ee
                 .then((decodedToken) => {
                     switch (req.method) {
                         case "GET":
@@ -1107,17 +1101,11 @@ const endpoints = {
                                     })
                                     .then((webhooksList) => {
                                         console.log(`req body: ${req.body}`);
-<<<<<<< HEAD
-                                        const body = { user : decodedToken.user,
-                                                       content: req.body
-                                                    };
-=======
                                         const body = {
                                             user: decodedToken.user,
                                             content: req.body
                                         };
                                         console.log(body);
->>>>>>> 131029fad54bba2502db9ef3eca52b585d5d00ee
                                         if (isOnlySubscribedURL(body.content.url, webhooksList)) {
                                             suscribeToWebhook(body,params,codigos); //SUSCRIBE A LOS EVENTOS
                                         } else if (body.content.url) {
