@@ -843,6 +843,7 @@ var queues = {
 var bds = {
 
     mongo: {
+        //url: "mongodb://localhost:27017/Masterbus-IOT",
         url: "mongodb+srv://masterbus-iot-server:masterbus@cluster0.uggrc.mongodb.net/INTI-Test?retryWrites=true&w=majority",
         dfltDb: "dflt"
     },
@@ -958,19 +959,24 @@ const endpoints = {
                             //console.log(suscriber);
                             if (suscriber.content.codigos.includes(req.body.Codigo)) {
                                 fetch(webhookURL, {
-                                    method: "POST",
-                                    body: JSON.stringify({
-                                        bus : parseInt(req.body.Interno),
-                                        fecha : setUTCTimezoneTo(req.body.Fecha, -3),//UTC -3 = ARGENTINA/BS AS TODO: Agregarlo como .Env 
-                                        body: req.body 
-                                    }),
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    }
-                                });
+                                        method: "POST",
+                                        body: JSON.stringify({
+                                            bus: parseInt(req.body.Interno),
+                                            fecha: setUTCTimezoneTo(req.body.Fecha, -3), //UTC -3 = ARGENTINA/BS AS TODO: Agregarlo como .Env 
+                                            body: req.body
+                                        }),
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
+                                        }
+                                    }).then(res => {
+                                        console.log(res);
+                                        console.log(`posted to webhook ${webhookURL} ${req.body}`);
+                                    })
+                                    .catch(err => console.log(err));
                             }
                         } catch (err) {
-                            console.log(err);
+                            console.log(`Error reenviando a suscribers: ${err}`);
                         }
                     }
                 })
@@ -1057,8 +1063,14 @@ const endpoints = {
             } catch (error) {
                 res.status(403).send("cookie: 'access-token' required!");
                 return;
+<<<<<<< HEAD
             }                       
             decodeJWT(token) 
+=======
+            }
+            let url = req.body.url;
+            decodeJWT(token)
+>>>>>>> 131029fad54bba2502db9ef3eca52b585d5d00ee
                 .then((decodedToken) => {
                     switch (req.method) {
                         case "GET":
@@ -1083,8 +1095,8 @@ const endpoints = {
                             }
                             break;
                         case "POST":
-                            if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] }) 
-                                && validContent(req.body)) {
+                            if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] }) &&
+                                validContent(req.body)) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
@@ -1095,9 +1107,17 @@ const endpoints = {
                                     })
                                     .then((webhooksList) => {
                                         console.log(`req body: ${req.body}`);
+<<<<<<< HEAD
                                         const body = { user : decodedToken.user,
                                                        content: req.body
                                                     };
+=======
+                                        const body = {
+                                            user: decodedToken.user,
+                                            content: req.body
+                                        };
+                                        console.log(body);
+>>>>>>> 131029fad54bba2502db9ef3eca52b585d5d00ee
                                         if (isOnlySubscribedURL(body.content.url, webhooksList)) {
                                             suscribeToWebhook(body,params,codigos); //SUSCRIBE A LOS EVENTOS
                                         } else if (body.content.url) {
@@ -1118,14 +1138,14 @@ const endpoints = {
                                 res.status(403).send("Error de validación");
                             }
                             break;
-                        case "DELETE": 
+                        case "DELETE":
                             if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 cmd({
                                         type: "mongo",
                                         method: "GET",
                                         db: params[2],
                                         collection: "webhooks", // Colección de los webhooks
-                                        query: {"content.url": url}, //Busca si existe la URL a borrar
+                                        query: { "content.url": url }, //Busca si existe la URL a borrar
                                         queryOptions: {}
                                     })
                                     .then((result) => {
@@ -1162,7 +1182,7 @@ const endpoints = {
                                         method: "GET",
                                         db: params[2],
                                         collection: "webhooks", // Colección de los webhooks
-                                        query: {"content.url":req.body.url},
+                                        query: { "content.url": req.body.url },
                                         queryOptions: {}
                                     })
                                     .then((webhookToUpdate) => {
@@ -1172,7 +1192,7 @@ const endpoints = {
                                                     method: "UPDATE",
                                                     db: params[2],
                                                     collection: "webhooks", // Colección de los webhooks
-                                                    query: JSON.stringify({"content.url":req.body.url}), //Filtra documentos por URL
+                                                    query: JSON.stringify({ "content.url": req.body.url }), //Filtra documentos por URL
                                                     update: req.body.values //Actualiza los valores del primer documento que cumple el filtro
                                                 })
                                                 .then(() => {
@@ -1232,8 +1252,8 @@ const endpoints = {
     },
     "ingreso": {
         "nuevo-equipo": (req, res) => {
-            console.log(req.body);
-            res.send("ok");
+            console.log(JSON.stringify(req.body.inputs));
+            setTimeout(() => { res.send("ok"); }, 2000);
         }
     }
 };
