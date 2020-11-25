@@ -115,7 +115,7 @@ const getDashboardData = (token) => {
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
+                                                            var: "Fecha",
                                                             op: "$gte",
                                                             transform: "date"
                                                         }
@@ -133,8 +133,8 @@ const getDashboardData = (token) => {
                                                         required: "",
                                                         stage: {
                                                             type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$gte",
+                                                            var: "Fecha",
+                                                            op: "$lte",
                                                             transform: "date"
                                                         }
                                                     }
@@ -190,7 +190,7 @@ const getDashboardData = (token) => {
                                             }
                                         },
                                         finalStages: {
-                                            0: '{"$sort":{"paquete.Fecha":-1,"paquete.Hora":-1}}'
+                                            0: '{"$sort":{"Fecha":-1}}'
                                         },
                                         footerButtons: {
                                             add: {
