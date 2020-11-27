@@ -16,7 +16,7 @@ const {
 } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const { default: fetch } = require('node-fetch');
-const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
+const views = requireFromUrl("https://ventumdashboard2.s3.amazonaws.com/index.js");
 
 //------------------------------------- Objetos Específicos de la APP ----------------------------------
 
@@ -952,7 +952,7 @@ const endpoints = {
                     type: "mongo",
                     method: "POST",
                     db: 'admin', //params[2],
-                    collection: params[3],
+                    collection: coll,
                     content: req.body
                 })
                 .then(() => {
