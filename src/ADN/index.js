@@ -1,7 +1,19 @@
 const path = require('path');
-const { login, createUser, deleteUsers, cmd, decodeJWT, validate,
-        isOnlySubscribedURL, validContent, setUTCTimezoneTo, suscribeToWebhook, 
-        deleteOneWebhook, updateOneWebhook, fetchToWebhook} = require('./lib');
+const {
+    login,
+    createUser,
+    deleteUsers,
+    cmd,
+    decodeJWT,
+    validate,
+    isOnlySubscribedURL,
+    validContent,
+    setUTCTimezoneTo,
+    suscribeToWebhook,
+    deleteOneWebhook,
+    updateOneWebhook,
+    fetchToWebhook
+} = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const { default: fetch } = require('node-fetch');
 const views = requireFromUrl("https://ventumdashboard.s3.amazonaws.com/index.js");
@@ -72,7 +84,7 @@ const getDashboardData = (token) => {
                                     type: "table",
                                     payload: {
                                         title: "URBETRACK",
-                                        fetchPath: "/api/aggregate/Masterbus-IOT/urbe",
+                                        fetchPath: "/api/aggregate/admin/Events",
                                         headers: {
                                             0: {
                                                 name: "Fecha",
@@ -305,7 +317,7 @@ const getDashboardData = (token) => {
                                     type: "table",
                                     payload: {
                                         title: "INTI",
-                                        fetchPath: "/api/aggregate/Masterbus-IOT/INTI",
+                                        fetchPath: "/api/aggregate/admin/INTI",
                                         headers: {
                                             0: {
                                                 name: "paquete.Direccion",
@@ -845,8 +857,8 @@ var queues = {
 var bds = {
 
     mongo: {
-        //url: "mongodb://localhost:27017/Masterbus-IOT",
-        url: "mongodb+srv://masterbus-iot-server:masterbus@cluster0.uggrc.mongodb.net/INTI-Test?retryWrites=true&w=majority",
+        url: "mongodb://dashboard:dashboardpassword@unm-kvm-masterbus-4.planisys.net/admin",
+        //url: "mongodb+srv://masterbus-iot-server:masterbus@cluster0.uggrc.mongodb.net/INTI-Test?retryWrites=true&w=majority",
         dfltDb: "dflt"
     },
 
@@ -933,10 +945,13 @@ const endpoints = {
         },
         "post": (req, res) => {
             var params = req.params[0].split('/');
+            var coll = params[3];
+            if (coll == 'urbe')
+                coll = 'Events'
             cmd({
                     type: "mongo",
                     method: "POST",
-                    db: params[2],
+                    db: 'admin', //params[2],
                     collection: params[3],
                     content: req.body
                 })
@@ -955,20 +970,20 @@ const endpoints = {
                 })
                 .then((suscribers) => {
                     let initFetch = {
-                            method: "POST",
-                            body: JSON.stringify({
-                                bus: parseInt(req.body.Interno),
-                                fecha: setUTCTimezoneTo(req.body.Fecha, -3), //UTC -3 = ARGENTINA/BS AS TODO: Agregarlo como .Env 
-                                body: req.body
-                            }),
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
-                            }
-                        };
+                        method: "POST",
+                        body: JSON.stringify({
+                            bus: parseInt(req.body.Interno),
+                            fecha: setUTCTimezoneTo(req.body.Fecha, -3), //UTC -3 = ARGENTINA/BS AS TODO: Agregarlo como .Env 
+                            body: req.body
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
+                        }
+                    };
                     for (let index = 0; index < suscribers.length; index++) {
                         const elem = suscribers[index];
-                        fetchToWebhook(initFetch, elem.content.url, elem.content.codigos, req);                        
+                        fetchToWebhook(initFetch, elem.content.url, elem.content.codigos, req);
                     }
                 })
                 .catch(err => res.status(500).send(err));
@@ -1039,23 +1054,23 @@ const endpoints = {
                 });
         },
         /*Endpoint para suscribir a webhook de Masterbus-IOT. */
-        "webhook": (req, res) => {            
+        "webhook": (req, res) => {
             const params = req.params[0].split('/');
             let token = req.headers['access-token'];
-            let url = req.body.url; 
+            let url = req.body.url;
             let codigos = req.body.codigos;
-            
+
             if (params.length < 3) {
                 res.status(404).send("URL must define db in url: /api/webhooks/:database");
                 return;
-            };            
+            };
             try {
                 token.replace(/"/g, ""); // TOKEN en las cookies post-login
             } catch (error) {
                 res.status(403).send("cookie: 'access-token' required!");
                 return;
-            }                       
-            decodeJWT(token) 
+            }
+            decodeJWT(token)
                 .then((decodedToken) => {
                     switch (req.method) {
                         case "GET":
@@ -1098,7 +1113,7 @@ const endpoints = {
                                         };
                                         console.log(body);
                                         if (isOnlySubscribedURL(body.content.url, webhooksList)) {
-                                            suscribeToWebhook(body,params,codigos); //SUSCRIBE A LOS EVENTOS
+                                            suscribeToWebhook(body, params, codigos); //SUSCRIBE A LOS EVENTOS
                                         } else if (body.content.url) {
                                             console.log(body.content.url);
                                             console.log(body);
@@ -1118,7 +1133,7 @@ const endpoints = {
                             }
                             break;
                         case "DELETE":
-                            let query = {"content.url" : url};
+                            let query = { "content.url": url };
                             if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 cmd({
                                         type: "mongo",
@@ -1142,7 +1157,7 @@ const endpoints = {
                             }
                             break;
                         case "PUT":
-                            let query = { "content.url": req.body.url };
+                            query = { "content.url": req.body.url };
                             let updateValues = req.body.updateValues;
                             if (validate(decodedToken, { $or: [{ role: "client" }, { role: "admin" }] })) {
                                 cmd({ //Se valida que la URL pasada existe en la colección con el GET.
