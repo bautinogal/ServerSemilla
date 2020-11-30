@@ -841,6 +841,16 @@ var config = {
         col: "Users"
     },
 
+    //Credenciales de Broker MQTT
+    mqtt: {
+        url: "ws://52.90.77.249:8083/mqtt",
+        credentials:{
+            username : "admin",
+            password : "public"
+        },
+        topics:['inti/865067021324796/start', 'inti/865067021324796/quick', 'inti/865067021324796/slow', 'testtopic']
+    },
+
     //Encryptacion JWT
     jwtSecret: "YOUR_secret_key", // key privada que uso para hashear passwords
     jwtDfltExpires: 3600, // Cuanto duran los tokens por dflt en segundos
