@@ -35,7 +35,7 @@ function connectToBroker(url, credentials, topics){
 }
 
 const sendMessageToDB = (topic, message) => {
-    let mensaje = message.toString();
+    let mensaje = JSON.parse(message.toString());
     cmd({
         type: "mongo",
         method: "POST",
