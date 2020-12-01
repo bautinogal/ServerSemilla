@@ -14,7 +14,6 @@ function connectToBroker(url, credentials, topics){
         console.log(`Mensaje: ${message} --- Recibido de Topico ${topic}.`);
         sendMessageToDB(topic, message);
         console.log(`Mensaje ${message} con tópico ${topic} enviado a la colección -> ${topic}`);
-        }
     });
 }
 
