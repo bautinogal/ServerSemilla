@@ -12,26 +12,8 @@ function connectToBroker(url, credentials, topics){
 
     mqttClient.on("message", (topic, message)=>{
         console.log(`Mensaje: ${message} --- Recibido de Topico ${topic}.`);
-        switch (topic) {
-            case "start":
-                sendMessageToDB(topic, message);
-                console.log(`Mensaje: ${message} enviado a la base de datos!`);
-                break;
-            case "quick":
-                sendMessageToDB(topic, message);
-                console.log(`Mensaje: ${message} enviado a la base de datos!`);
-                break;
-            case "slow":
-                sendMessageToDB(topic, message);
-                console.log(`Mensaje: ${message} enviado a la base de datos!`);
-                break;
-            case "testtopic":
-                sendMessageToDB(topic, message);
-                console.log(`Mensaje: ${message} enviado a la base de datos!`);
-                break;
-            default:
-                console.log('El mensaje recibido no coincide con los tópicos suscriptos. MSG: ' + message);
-                break;
+        sendMessageToDB(topic, message);
+        console.log(`Mensaje ${message} con tópico ${topic} enviado a la colección -> ${topic}`);
         }
     });
 }
