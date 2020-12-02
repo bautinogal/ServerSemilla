@@ -3,6 +3,7 @@ const queue = require('../../seedLib/queues');
 const crypto = require('../../lib/encryptation');
 const seedUtils = require('../../lib/utils');
 const mingo = require('mingo');
+const fetch = require('node-fetch');
 
 const cmd = repo.cmd;
 const cmds = repo.cmds;
@@ -213,12 +214,28 @@ const updateOneWebhook = (valueToQuery, valuesToUpdate, database) => {
     })
     .catch(err => res.status(500).send(err));
 }
+const fetchToSubscriber = (webhookURL, events, req) => {
+    try {
+        if(events.includes(req.body.Codigo)){
+            fetch(webhookURL).then(res => {
+                console.log(res);
+                console.log(`posted to webhook ${webhookURL} ${req.body}`);
+                res.status(200).send(`Evento/s: ${events} enviado/s a suscriptores`);
+            })
+            .catch(err => console.log(err));
+        }
+    } catch (error) {
+        console.log(`Error enviando datos a los suscriptores: ${error}`);
+    }
+}
+
 const fetchToWebhook = (fetchBody, webhookURL, events, req)=>{
     try {
         if (events.includes(req.body.Codigo)) {
             fetch(webhookURL, fetchBody).then(res => {
                     console.log(res);
                     console.log(`posted to webhook ${webhookURL} ${req.body}`);
+                    res.status(200).send(`Evento/s: ${events} enviado/s a suscriptores`);
                 })
                 .catch(err => console.log(err));
         }
@@ -229,4 +246,5 @@ const fetchToWebhook = (fetchBody, webhookURL, events, req)=>{
 
 module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted,
      createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL,
-     validContent, setUTCTimezoneTo, suscribeToWebhook, deleteOneWebhook, updateOneWebhook, fetchToWebhook };
+     validContent, setUTCTimezoneTo, suscribeToWebhook, deleteOneWebhook, updateOneWebhook, fetchToWebhook,
+    fetchToSubscriber };

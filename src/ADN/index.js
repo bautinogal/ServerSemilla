@@ -12,10 +12,10 @@ const {
     suscribeToWebhook,
     deleteOneWebhook,
     updateOneWebhook,
-    fetchToWebhook
+    fetchToWebhook,
+    fetchToSubscriber
 } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
-const { default: fetch } = require('node-fetch');
 const views = requireFromUrl("https://ventumdashboard2.s3.amazonaws.com/index.js");
 
 //------------------------------------- Objetos Específicos de la APP ----------------------------------
@@ -956,8 +956,8 @@ const endpoints = {
         "post": (req, res) => {
             var params = req.params[0].split('/');
             var coll = params[3];
-            if (coll == 'urbe')
-                coll = 'Events'
+            if (coll == 'urbe'){
+                coll = 'Events';}
             cmd({
                     type: "mongo",
                     method: "POST",
@@ -966,37 +966,41 @@ const endpoints = {
                     content: req.body
                 })
                 .then(() => {
-                    res.status(200).send(JSON.stringify(req.body) + " received!");
+                    //res.status(200).send(JSON.stringify(req.body) + " received!");
                     //Push de datos a los webhooks suscriptos (POST REQUEST).
                     //Verificar body (Si son datos para urbe, ejecutar evento).
                     return cmd({
                         type: "mongo",
                         method: "GET", //Aggregate() o GET de webhooks?
-                        db: "Masterbus-IOT",
-                        collection: "webhooks",
+                        db: "admin",
+                        collection: "Webhooks",
                         query: {},
                         queryOptions: {}
                     })
-                })
-                .then((suscribers) => {
-                    let initFetch = {
-                        method: "POST",
-                        body: JSON.stringify({
-                            bus: parseInt(req.body.Interno),
-                            fecha: setUTCTimezoneTo(req.body.Fecha, -3), //UTC -3 = ARGENTINA/BS AS TODO: Agregarlo como .Env 
-                            body: req.body
-                        }),
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
+                    .then((suscribers) => {
+                        let urlParams = { 
+                                        bus : parseInt(req.body.Interno),
+                                        fecha : setUTCTimezoneTo(req.body.Fecha, -3)
+                                        };
+                        let initFetch = {
+                            method: "GET",
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
+                            }
+                        };
+                        for (let index = 0; index < suscribers.length; index++) {
+                            const elem = suscribers[index];
+                            const url = new URL(elem.content.url);
+                            url.search = new URLSearchParams(urlParams);
+                            const urlWithParams = url;
+                            console.log(url);
+                            fetchToWebhook(initFetch, urlWithParams, elem.content.codigos, req);
                         }
-                    };
-                    for (let index = 0; index < suscribers.length; index++) {
-                        const elem = suscribers[index];
-                        fetchToWebhook(initFetch, elem.content.url, elem.content.codigos, req);
-                    }
+                    })
+                    .catch(err => res.status(500).send("Error:"+err));
                 })
-                .catch(err => res.status(500).send(err));
+                .catch(error => res.status(500).send(error));
         },
         "get": (req, res) => {
             var params = req.params[0].split('/');
