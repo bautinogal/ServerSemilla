@@ -1,6 +1,5 @@
 // Framework de Node para crear servidores
 const express = require('express');
-//
 const WebSocket = require('ws');
 const url = require('url');
 // Herramientas para manipular el "ADN" de la app
@@ -13,8 +12,6 @@ const endpoints = require('./seedLib/endpoints');
 const workers = require('./seedLib/workers');
 // Script que administra las bds y colas del sistema
 const bds = require('./seedLib/bds');
-
-require('./public/ftpServer'); //creo el servidor FTP
 
 //TODO: agregar certificados ssl y caa
 // El servidor comienza a escuchar los requests
@@ -67,7 +64,7 @@ const app = express();
 //const app = require('http').createServer(express);
 
 
-
+//el parametro "updateADN" define si va a descargar el ADN, o va a buscarlo directo en ADN/index.js
 ADNTools.getADN({ updateADN: false })
     //  Inicializo la semilla, descargo files adicionales, copio los files publicos del ADN al seed...
     .then(adn => ADNTools.initADN(adn, { deleteExistingContent: true }))

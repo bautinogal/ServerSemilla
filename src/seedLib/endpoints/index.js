@@ -50,7 +50,7 @@ const setMiddleWare = (app, adn) => {
     console.log(`endpoints@setup: 'bodyParser.json' middleware agregado`);
     // Esto lo hago para devolver el favicon.ico
     //TODO: ver q es el favicon y si es necesario esto
-    app.use(favicon(path.join(__dirname, '../../public/assets/icons', 'favicon.ico')));
+    //app.use(favicon(path.join(__dirname, '../../public/assets/icons', 'favicon.ico')));
     // Agrego una función que me devuelve la URL que me resulta cómoda
     app.use((req, res, next) => {
         req.getUrl = () => {

@@ -38,29 +38,12 @@ const downloadADN = (downloadADN) => {
     }
 }
 
-// Copio los archivos que necesita el front end a la carpeta public
-const copyPublicFiles = (ADN, options) => {
-    const from = path.join(__dirname, '../../ADN/public');
-    const to = path.join(__dirname, '../../public');
-    console.log("ADN@copyPublicFiles: from %s to %s", from, to);
-    return utils.copyFolderContent(from, to, options);
-};
-
 //-------------------------------------------------------------
 
 // Inicializo el ADN
 const initADN = (ADN, options) => {
     return new Promise((resolve, reject) => {
-        if (ADN.setup) {
-            ADN.setup()
-                .then(() => copyPublicFiles(ADN, options))
-                .then(() => resolve(ADN))
-                .catch(err => reject(err));
-        } else {
-            copyPublicFiles(ADN, options)
-                .then(() => resolve(ADN))
-                .catch(err => reject(err));
-        }
+        resolve(ADN);
     });
 }
 

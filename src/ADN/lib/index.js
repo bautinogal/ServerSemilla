@@ -78,6 +78,7 @@ const createUser = (data) => {
         }
     });
 };
+
 const deleteUsers = (query, queryOptions) => {
     var deleteUsersCmd = {
         type: "mongo",
@@ -153,18 +154,18 @@ const isOnlySubscribedURL = (url, urlList) => {
 
 }
 
-const validContent = (content)=>{
+const validContent = (content) => {
     return (typeof(content) === 'object' && content.hasOwnProperty('url') && content.hasOwnProperty('codigos'))
 }
 
 const setUTCTimezoneTo = (dateToTransform, timezone) => {
-    formattedDate = new Date(dateToTransform+"Z");
+    formattedDate = new Date(dateToTransform + "Z");
     let globalTime = formattedDate.getTime();
-    let localeTime =new Date(formattedDate.setTime(globalTime + (timezone*60*60*1000)));  	
-    return(localeTime.toISOString().split('.')[0]);
+    let localeTime = new Date(formattedDate.setTime(globalTime + (timezone * 60 * 60 * 1000)));
+    return (localeTime.toISOString().split('.')[0]);
 }
 
-const  suscribeToWebhook = (body, database, events) => {
+const suscribeToWebhook = (body, database, events) => {
     if (typeof(events) === 'string') {
         cmd({
                 type: "mongo",
@@ -184,36 +185,36 @@ const  suscribeToWebhook = (body, database, events) => {
 }
 const deleteOneWebhook = (valueToQuery, database) => {
     cmd({
-        type: "mongo",
-        method: "DELETE_ONE",
-        db: database,
-        collection: "webhooks", // Colección de los webhooks
-        query: valueToQuery , // Gon: Borra el documento por la URL... (¿Debería borrar por usuario?)
-        queryOptions: {}
-    })
-    .then((response) => {
-        res.status(200).send("La URL asignada se desuscribió exitosamente. Detalles: " + response);
-    })
-    .catch((err) => {
-        console.log(err);
-        res.status(500).send("Error al procesar la solicitud: " + err);
-    });
+            type: "mongo",
+            method: "DELETE_ONE",
+            db: database,
+            collection: "webhooks", // Colección de los webhooks
+            query: valueToQuery, // Gon: Borra el documento por la URL... (¿Debería borrar por usuario?)
+            queryOptions: {}
+        })
+        .then((response) => {
+            res.status(200).send("La URL asignada se desuscribió exitosamente. Detalles: " + response);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send("Error al procesar la solicitud: " + err);
+        });
 }
 const updateOneWebhook = (valueToQuery, valuesToUpdate, database) => {
     cmd({
-        type: "mongo",
-        method: "UPDATE",
-        db: database,
-        collection: "webhooks", // Colección de los webhooks
-        query: valueToQuery, //Filtra documentos por URL
-        update: valuesToUpdate //Actualiza los valores del primer documento que cumple el filtro
-    })
-    .then(() => {
-        res.status(200).send(JSON.stringify(valueToQuery) + " updated!");
-    })
-    .catch(err => res.status(500).send(err));
+            type: "mongo",
+            method: "UPDATE",
+            db: database,
+            collection: "webhooks", // Colección de los webhooks
+            query: valueToQuery, //Filtra documentos por URL
+            update: valuesToUpdate //Actualiza los valores del primer documento que cumple el filtro
+        })
+        .then(() => {
+            res.status(200).send(JSON.stringify(valueToQuery) + " updated!");
+        })
+        .catch(err => res.status(500).send(err));
 }
-const fetchToWebhook = (fetchBody, webhookURL, events, req)=>{
+const fetchToWebhook = (fetchBody, webhookURL, events, req) => {
     try {
         if (events.includes(req.body.Codigo)) {
             fetch(webhookURL, fetchBody).then(res => {
@@ -227,6 +228,26 @@ const fetchToWebhook = (fetchBody, webhookURL, events, req)=>{
     }
 }
 
-module.exports = { login, createUser, deleteUsers, cmd, cmds, enqueue, encrypt, compareEncrypted,
-     createJWT, decodeJWT, copyFile, copyFolder, validate, noSQLQueryValidated, isOnlySubscribedURL,
-     validContent, setUTCTimezoneTo, suscribeToWebhook, deleteOneWebhook, updateOneWebhook, fetchToWebhook };
+module.exports = {
+    login,
+    createUser,
+    deleteUsers,
+    cmd,
+    cmds,
+    enqueue,
+    encrypt,
+    compareEncrypted,
+    createJWT,
+    decodeJWT,
+    copyFile,
+    copyFolder,
+    validate,
+    noSQLQueryValidated,
+    isOnlySubscribedURL,
+    validContent,
+    setUTCTimezoneTo,
+    suscribeToWebhook,
+    deleteOneWebhook,
+    updateOneWebhook,
+    fetchToWebhook
+};
