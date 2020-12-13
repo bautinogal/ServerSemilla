@@ -21,6 +21,8 @@ const storage = multer.diskStorage({
 });
 
 const webSocket = require('../../lib/websocket');
+const { connectToBroker } = require('../../lib/mqtt/index');
+//const { credentials } = require('amqplib');
 
 //Seteo el puerto del servidor
 const setPort = (app, adn) => {
@@ -94,6 +96,13 @@ const setEndpoints = (app, adn) => {
     });
 }
 
+const setMQTTClientConnection = (app, adn) => {
+    let url = adn.config.mqtt.url;
+    let credentials = adn.config.mqtt.credentials;
+    let topics = adn.config.mqtt.topics;
+    connectToBroker(url, credentials, topics);
+}
+
 //Configuro el servidor y endpoints
 const setup = (app, adn) => {
     console.log(`endpoints@setup: starting!`);
@@ -104,6 +113,7 @@ const setup = (app, adn) => {
             setPublicFolder(app, adn);
             setMiddleWare(app, adn);
             setEndpoints(app, adn);
+            setMQTTClientConnection(app, adn);
             //setWebSocketServer(app, adn); 
 
             resolve(adn);
