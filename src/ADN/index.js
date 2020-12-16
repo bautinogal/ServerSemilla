@@ -1,11 +1,13 @@
 const path = require('path');
 const {
-    login,
-    createUser,
-    deleteUsers,
+    // login,
+    // createUser,
+    // deleteUsers,
+    createJWT,
     cmd,
     decodeJWT,
     validate,
+    encrypt,
     isOnlySubscribedURL,
     validContent,
     setUTCTimezoneTo,
@@ -13,22 +15,102 @@ const {
     deleteOneWebhook,
     updateOneWebhook,
     fetchToWebhook,
-    fetchToSubscriber
+    fetchToSubscriber,
+    compareEncrypted
 } = require('./lib');
 var requireFromUrl = require('require-from-url/sync');
 const views = requireFromUrl("https://ventumdashboard2.s3.amazonaws.com/index.js");
 
 //------------------------------------- Objetos Específicos de la APP ----------------------------------
 
-const createUsers = () => {
+const login = (user, pass) => {
+    var findUserCmd = {
+        type: "mongo",
+        method: "GET",
+        db: "users",
+        collection: "users",
+        query: { user: user }
+    };
+
     return new Promise((res, rej) => {
+        var result = {};
+        cmd(findUserCmd)
+            .then(founds => {
+                if (!founds) rej("lib@login: Error looking for user %s in db!", user);
+                else if (founds.length == 0) rej("lib@login: No user found with: %s!", user);
+                else if (founds.length > 1) rej("lib@login: More than one user found with: %s", user);
+                else {
+                    result = founds[0];
+                    return compareEncrypted(pass, result.pass);
+                }
+            })
+            .then(correct => {
+                if (correct) {
+                    delete result.pass;
+                    return createJWT(result);
+                } else
+                    rej("lib@login: Incorrect Password!");
+            })
+            .then(JWT => res(JWT))
+            .catch(err => rej(err));
+    });
+};
+
+const createUsers = () => {
+
+    const createUser = (data) => {
+        var createUserCmd = {
+            type: "mongo",
+            method: "POST",
+            db: "users",
+            collection: "users",
+            content: data
+        };
+
+        return new Promise((res, rej) => {
+            if (validate(createUserCmd.content, {
+                    $and: [
+                        { "user": { $type: "string" } },
+                        { "pass": { $type: "string" } },
+                        { "role": { $type: "string" } }
+                    ]
+                })) {
+                encrypt(createUserCmd.content.pass)
+                    .then(hashedPass => {
+                        createUserCmd.content.pass = hashedPass;
+                        return cmd(createUserCmd);
+                    })
+                    .then(() => res())
+                    .catch(err => rej(err));
+            } else {
+                rej("lib@createUser: new user must have fields: 'user', 'pass' and 'role'");
+            }
+        });
+    };
+    const deleteUsers = (query, queryOptions) => {
+        var deleteUsersCmd = {
+            type: "mongo",
+            method: "DELETE",
+            db: "users",
+            collection: "users",
+            query: query,
+            queryOptions: queryOptions
+        };
+
+        return cmd(deleteUsersCmd);
+    };
+    return new Promise((res, rej) => {
+        console.log("Creating users...");
         deleteUsers({}) //Borró todos los usuarios viejos
             .then(() => createUser({ user: "Admin", pass: "123456", role: "admin" }))
             .then(() => createUser({ user: "INTI", pass: "INTI-MB", role: "client" }))
             .then(() => createUser({ user: "URBE", pass: "URBE-MB", role: "client" }))
             .then(() => createUser({ user: "LEO", pass: "LEO-MB", role: "client" }))
             .then(() => res())
-            .catch(err => rej(err));
+            .catch(err => {
+                rej(err);
+                console.log("Creating failed: " + err);
+            });
     });
 };
 
@@ -61,570 +143,245 @@ const getDashboardData = (token) => {
 
     var getCategories = () => {
 
-        var urbetrack = {
-            name: "URBETRACK",
-            access: {
-                names: {
-                    0: "URBE",
-                    1: "Admin"
+        const urbetrack = () => {
+            return {
+                name: "URBETRACK",
+                access: {
+                    names: {
+                        0: "URBE",
+                        1: "Admin"
+                    },
+                    roles: {
+                        0: "Admin"
+                    }
                 },
-                roles: {
-                    0: "Admin"
-                }
-            },
-            content: {
-                rows: {
-                    //Rows
-                    0: {
-                        cols: {
-                            //Columns
-                            0: {
-                                //Columns elements
+                content: {
+                    rows: {
+                        //Rows
+                        0: {
+                            cols: {
+                                //Columns
                                 0: {
-                                    type: "table",
-                                    payload: {
-                                        title: "URBETRACK",
-                                        fetchPath: "/api/aggregate/admin/Events",
-                                        headers: {
-                                            0: {
-                                                name: "Fecha",
-                                                label: "Fecha",
+                                    //Columns elements
+                                    0: {
+                                        type: "table",
+                                        payload: {
+                                            title: "URBETRACK",
+                                            fetchPath: "/api/aggregate/admin/Events",
+                                            headers: {
+                                                0: {
+                                                    name: "Fecha",
+                                                    label: "Fecha",
+                                                },
+                                                1: {
+                                                    name: "Mensaje",
+                                                    label: "Mensaje",
+                                                },
+                                                2: {
+                                                    name: "Codigo",
+                                                    label: "Código",
+                                                },
+                                                3: {
+                                                    name: "Latitud",
+                                                    label: "Latitud",
+                                                },
+                                                4: {
+                                                    name: "Longitud",
+                                                    label: "Longitud",
+                                                },
+                                                5: {
+                                                    name: "Interno",
+                                                    label: "Interno",
+                                                },
+                                                6: {
+                                                    name: "Patente",
+                                                    label: "Patente",
+                                                },
                                             },
-                                            1: {
-                                                name: "Mensaje",
-                                                label: "Mensaje",
-                                            },
-                                            2: {
-                                                name: "Codigo",
-                                                label: "Código",
-                                            },
-                                            3: {
-                                                name: "Latitud",
-                                                label: "Latitud",
-                                            },
-                                            4: {
-                                                name: "Longitud",
-                                                label: "Longitud",
-                                            },
-                                            5: {
-                                                name: "Interno",
-                                                label: "Interno",
-                                            },
-                                            6: {
-                                                name: "Patente",
-                                                label: "Patente",
-                                            },
-                                        },
-                                        filters: {
-                                            0: {
-                                                label: "Desde",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "fecha-desde",
-                                                        type: "date",
-                                                        placeholder: "Desde",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "Fecha",
-                                                            op: "$gte",
-                                                            transform: "date"
+                                            filters: {
+                                                0: {
+                                                    label: "Desde",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "fecha-desde",
+                                                            type: "date",
+                                                            placeholder: "Desde",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "Fecha",
+                                                                op: "$gte",
+                                                                transform: "date"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                1: {
+                                                    label: "Hasta",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "fecha-hasta",
+                                                            type: "date",
+                                                            placeholder: "Hasta",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "Fecha",
+                                                                op: "$lte",
+                                                                transform: "date"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                2: {
+                                                    label: "Código",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "codigo",
+                                                            type: "text",
+                                                            placeholder: "Código",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "Codigo",
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                3: {
+                                                    label: "Interno",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "interno",
+                                                            type: "text",
+                                                            placeholder: "Interno",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "Interno",
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                4: {
+                                                    label: "Patente",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "patente",
+                                                            type: "text",
+                                                            placeholder: "Patente",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "Patente",
+                                                            }
                                                         }
                                                     }
                                                 }
                                             },
-                                            1: {
-                                                label: "Hasta",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "fecha-hasta",
-                                                        type: "date",
-                                                        placeholder: "Hasta",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "Fecha",
-                                                            op: "$lte",
-                                                            transform: "date"
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            2: {
-                                                label: "Código",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "codigo",
-                                                        type: "text",
-                                                        placeholder: "Código",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "Codigo",
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            3: {
-                                                label: "Interno",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "interno",
-                                                        type: "text",
-                                                        placeholder: "Interno",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "Interno",
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            4: {
-                                                label: "Patente",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "patente",
-                                                        type: "text",
-                                                        placeholder: "Patente",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "Patente",
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        finalStages: {
-                                            0: '{"$sort":{"Fecha":-1}}'
-                                        },
-                                        footerButtons: {
-                                            add: {
-                                                label: "Agregar",
-                                                type: "add",
-                                                modal: {
-                                                    type: "form",
-                                                    msg: "",
-                                                    title: "Modal Form",
-                                                    cols: {
-                                                        0: {
+                                            headerBtns: {
+                                                0: {
+                                                    enabled: "true",
+                                                    type: "filter",
+                                                    label: "Filtrar ",
+                                                    onClick: {
+                                                        cmds: {
                                                             0: {
-                                                                type: "text",
-                                                                label: "DNI",
-                                                                placeholder: "DNI"
+                                                                type: "filter",
+                                                                payload: {}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            finalStages: {
+                                                0: '{"$sort":{"Fecha":-1}}'
+                                            },
+                                            footerButtons: {
+                                                add: {
+                                                    label: "Agregar",
+                                                    type: "add",
+                                                    modal: {
+                                                        type: "form",
+                                                        msg: "",
+                                                        title: "Modal Form",
+                                                        cols: {
+                                                            0: {
+                                                                0: {
+                                                                    type: "text",
+                                                                    label: "DNI",
+                                                                    placeholder: "DNI"
+                                                                },
+                                                                1: {
+                                                                    type: "text",
+                                                                    label: "Nombre",
+                                                                    placeholder: "Nombre"
+                                                                },
+                                                                2: {
+                                                                    type: "text",
+                                                                    label: "Apellido",
+                                                                    placeholder: "Apellido"
+                                                                },
+                                                                3: {
+                                                                    type: "date",
+                                                                    label: "Fecha N.",
+                                                                    placeholder: ""
+                                                                },
+                                                                4: {
+                                                                    type: "text",
+                                                                    label: "Empresa",
+                                                                    placeholder: "Empresa"
+                                                                },
                                                             },
                                                             1: {
-                                                                type: "text",
-                                                                label: "Nombre",
-                                                                placeholder: "Nombre"
-                                                            },
-                                                            2: {
-                                                                type: "text",
-                                                                label: "Apellido",
-                                                                placeholder: "Apellido"
-                                                            },
-                                                            3: {
-                                                                type: "date",
-                                                                label: "Fecha N.",
-                                                                placeholder: ""
-                                                            },
-                                                            4: {
-                                                                type: "text",
-                                                                label: "Empresa",
-                                                                placeholder: "Empresa"
-                                                            },
+                                                                0: {
+                                                                    type: "text",
+                                                                    label: "Sector",
+                                                                    placeholder: "Sector"
+                                                                },
+                                                                1: {
+                                                                    type: "text",
+                                                                    label: "Posición",
+                                                                    placeholder: "Posición"
+                                                                },
+                                                                2: {
+                                                                    type: "text",
+                                                                    label: "Mail",
+                                                                    placeholder: "Mail"
+                                                                },
+                                                                3: {
+                                                                    type: "text",
+                                                                    label: "Teléfono",
+                                                                    placeholder: ""
+                                                                },
+                                                                4: {
+                                                                    type: "text",
+                                                                    label: "Dirección",
+                                                                    placeholder: "Dirección"
+                                                                },
+                                                            }
                                                         },
-                                                        1: {
-                                                            0: {
-                                                                type: "text",
-                                                                label: "Sector",
-                                                                placeholder: "Sector"
-                                                            },
-                                                            1: {
-                                                                type: "text",
-                                                                label: "Posición",
-                                                                placeholder: "Posición"
-                                                            },
-                                                            2: {
-                                                                type: "text",
-                                                                label: "Mail",
-                                                                placeholder: "Mail"
-                                                            },
-                                                            3: {
-                                                                type: "text",
-                                                                label: "Teléfono",
-                                                                placeholder: ""
-                                                            },
-                                                            4: {
-                                                                type: "text",
-                                                                label: "Dirección",
-                                                                placeholder: "Dirección"
-                                                            },
-                                                        }
-                                                    },
-                                                    onConfirm: {
+                                                        onConfirm: {
 
+                                                        }
                                                     }
-                                                }
-                                            },
-                                            finish: {
-                                                label: "Finalizar",
-                                                type: "submit",
-                                                modal: {
-                                                    type: "confirm",
-                                                    msg: "Esta seguro que desea cargar estos datos?",
-                                                    onConfirm: {
+                                                },
+                                                finish: {
+                                                    label: "Finalizar",
+                                                    type: "submit",
+                                                    modal: {
+                                                        type: "confirm",
+                                                        msg: "Esta seguro que desea cargar estos datos?",
+                                                        onConfirm: {
 
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-            }
-        }
-
-        var inti = {
-            name: "INTI",
-            access: {
-                names: {
-                    0: "INTI",
-                    1: "Admin"
-                },
-                roles: {
-                    0: "Admin"
-                }
-            },
-            content: {
-                rows: {
-                    //Rows
-                    0: {
-                        cols: {
-                            //Columns
-                            0: {
-                                //Columns elements
-                                0: {
-                                    type: "table",
-                                    payload: {
-                                        title: "INTI",
-                                        fetchPath: "/api/aggregate/admin/INTI",
-                                        headers: {
-                                            0: {
-                                                name: "paquete.Direccion",
-                                                label: "Dirección",
-                                            },
-                                            1: {
-                                                name: "paquete.ID",
-                                                label: "ID",
-                                            },
-                                            2: {
-                                                name: "paquete.Fecha",
-                                                label: "Fecha",
-                                            },
-                                            3: {
-                                                name: "paquete.Hora",
-                                                label: "Hora",
-                                            },
-                                            4: {
-                                                name: "paquete.Latitud",
-                                                label: "Latitud",
-                                            },
-                                            5: {
-                                                name: "paquete.Longitud",
-                                                label: "Longitud",
-                                            },
-                                            6: {
-                                                name: "paquete.Sensor1",
-                                                label: "Comb.(S1)",
-                                            },
-                                            7: {
-                                                name: "paquete.Sensor2",
-                                                label: "RPMs (S2)",
-                                            },
-                                            8: {
-                                                name: "paquete.Accel",
-                                                label: "Aceleración",
-                                            },
-                                            9: {
-                                                name: "paquete.Velocidad",
-                                                label: "Velocidad",
-                                            }
-                                        },
-                                        filters: {
-                                            0: {
-                                                label: "Desde",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "fecha-desde",
-                                                        type: "date",
-                                                        placeholder: "Desde",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$gte",
-                                                            transform: "date"
                                                         }
                                                     }
                                                 }
-                                            },
-                                            1: {
-                                                label: "Hasta",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "fecha-hasta",
-                                                        type: "date",
-                                                        placeholder: "Hasta",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$lte",
-                                                            transform: "date"
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            2: {
-                                                label: "ID",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "ID",
-                                                        type: "text",
-                                                        placeholder: "ID",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.ID",
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            3: {
-                                                label: "Aceleración",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "aceleracion-desde",
-                                                        type: "text",
-                                                        placeholder: "Desde",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Accel",
-                                                            op: "$gte",
-                                                        }
-                                                    },
-                                                    hasta: {
-                                                        name: "aceleracion-hasta",
-                                                        type: "text",
-                                                        placeholder: "Hasta",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Accel",
-                                                            op: "$lte",
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            4: {
-                                                label: "Velocidad",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "velocidad-desde",
-                                                        type: "number",
-                                                        placeholder: "Desde",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Velocidad",
-                                                            op: "$gte",
-                                                        }
-                                                    },
-                                                    hasta: {
-                                                        name: "velocidad-hasta",
-                                                        type: "number",
-                                                        placeholder: "Hasta",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Velocidad",
-                                                            op: "$lte",
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        finalStages: {
-                                            0: '{"$sort":{"paquete.Fecha":-1,"paquete.Hora":-1}}'
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-            }
-        }
-
-        var form = {
-            name: "Form",
-            access: {
-                names: {
-                    1: "Admin"
-                },
-                roles: {
-                    0: "Admin"
-                }
-            },
-            content: {
-                rows: {
-                    //Rows
-                    0: {
-                        cols: {
-                            //Columns
-                            0: {
-                                //Columns elements
-                                0: {
-                                    type: "form",
-                                    payload: {
-                                        title: "INTI",
-                                        cols: {
-                                            0: {
-                                                0: {
-                                                    type: "text",
-                                                    label: "DNI",
-                                                    placeholder: "DNI"
-                                                },
-                                                1: {
-                                                    type: "text",
-                                                    label: "Nombre",
-                                                    placeholder: "Nombre"
-                                                },
-                                                2: {
-                                                    type: "text",
-                                                    label: "Apellido",
-                                                    placeholder: "Apellido"
-                                                },
-                                                3: {
-                                                    type: "date",
-                                                    label: "Fecha N.",
-                                                    placeholder: ""
-                                                },
-                                                4: {
-                                                    type: "text",
-                                                    label: "Empresa",
-                                                    placeholder: "Empresa"
-                                                },
-                                            },
-                                            1: {
-                                                0: {
-                                                    type: "text",
-                                                    label: "Sector",
-                                                    placeholder: "Sector"
-                                                },
-                                                1: {
-                                                    type: "text",
-                                                    label: "Posición",
-                                                    placeholder: "Posición"
-                                                },
-                                                2: {
-                                                    type: "text",
-                                                    label: "Mail",
-                                                    placeholder: "Mail"
-                                                },
-                                                3: {
-                                                    type: "text",
-                                                    label: "Teléfono",
-                                                    placeholder: ""
-                                                },
-                                                4: {
-                                                    type: "text",
-                                                    label: "Dirección",
-                                                    placeholder: "Dirección"
-                                                },
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            1: {
-                                //Columns elements
-                                0: {
-                                    type: "form",
-                                    payload: {
-                                        title: "INTI",
-                                        cols: {
-                                            0: {
-                                                0: {
-                                                    type: "text",
-                                                    label: "DNI",
-                                                    placeholder: "DNI"
-                                                },
-                                                1: {
-                                                    type: "text",
-                                                    label: "Nombre",
-                                                    placeholder: "Nombre"
-                                                },
-                                                2: {
-                                                    type: "text",
-                                                    label: "Apellido",
-                                                    placeholder: "Apellido"
-                                                },
-                                                3: {
-                                                    type: "date",
-                                                    label: "Fecha N.",
-                                                    placeholder: ""
-                                                },
-                                                4: {
-                                                    type: "text",
-                                                    label: "Empresa",
-                                                    placeholder: "Empresa"
-                                                },
-                                            },
-                                            1: {
-                                                0: {
-                                                    type: "text",
-                                                    label: "Sector",
-                                                    placeholder: "Sector"
-                                                },
-                                                1: {
-                                                    type: "text",
-                                                    label: "Posición",
-                                                    placeholder: "Posición"
-                                                },
-                                                2: {
-                                                    type: "text",
-                                                    label: "Mail",
-                                                    placeholder: "Mail"
-                                                },
-                                                3: {
-                                                    type: "text",
-                                                    label: "Teléfono",
-                                                    placeholder: ""
-                                                },
-                                                4: {
-                                                    type: "text",
-                                                    label: "Dirección",
-                                                    placeholder: "Dirección"
-                                                },
                                             }
                                         }
                                     }
@@ -632,186 +389,848 @@ const getDashboardData = (token) => {
                             }
                         }
                     },
-                    1: {
-                        cols: {
-                            //Columns
-                            0: {
-                                //Columns elements
+                }
+            }
+        }
+
+        const inti = () => {
+            return {
+                name: "INTI",
+                access: {
+                    names: {
+                        0: "INTI",
+                        1: "Admin"
+                    },
+                    roles: {
+                        0: "Admin"
+                    }
+                },
+                content: {
+                    rows: {
+                        //Rows
+                        0: {
+                            cols: {
+                                //Columns
                                 0: {
-                                    type: "table",
-                                    payload: {
-                                        title: "INTI",
-                                        fetchPath: "/api/aggregate/Masterbus-IOT/INTI",
-                                        headers: {
-                                            0: {
-                                                name: "paquete.Direccion",
-                                                label: "Dirección",
+                                    //Columns elements
+                                    0: {
+                                        type: "table",
+                                        payload: {
+                                            title: "INTI",
+                                            fetchPath: "/api/aggregate/admin/INTI",
+                                            headers: {
+                                                0: {
+                                                    name: "paquete.Direccion",
+                                                    label: "Dirección",
+                                                },
+                                                1: {
+                                                    name: "paquete.ID",
+                                                    label: "ID",
+                                                },
+                                                2: {
+                                                    name: "paquete.Fecha",
+                                                    label: "Fecha",
+                                                },
+                                                3: {
+                                                    name: "paquete.Hora",
+                                                    label: "Hora",
+                                                },
+                                                4: {
+                                                    name: "paquete.Latitud",
+                                                    label: "Latitud",
+                                                },
+                                                5: {
+                                                    name: "paquete.Longitud",
+                                                    label: "Longitud",
+                                                },
+                                                6: {
+                                                    name: "paquete.Sensor1",
+                                                    label: "Comb.(S1)",
+                                                },
+                                                7: {
+                                                    name: "paquete.Sensor2",
+                                                    label: "RPMs (S2)",
+                                                },
+                                                8: {
+                                                    name: "paquete.Accel",
+                                                    label: "Aceleración",
+                                                },
+                                                9: {
+                                                    name: "paquete.Velocidad",
+                                                    label: "Velocidad",
+                                                }
                                             },
-                                            1: {
-                                                name: "paquete.ID",
-                                                label: "ID",
+                                            filters: {
+                                                0: {
+                                                    label: "Desde",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "fecha-desde",
+                                                            type: "date",
+                                                            placeholder: "Desde",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "paquete.Fecha",
+                                                                op: "$gte",
+                                                                transform: "date"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                1: {
+                                                    label: "Hasta",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "fecha-hasta",
+                                                            type: "date",
+                                                            placeholder: "Hasta",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "paquete.Fecha",
+                                                                op: "$lte",
+                                                                transform: "date"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                2: {
+                                                    label: "ID",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "ID",
+                                                            type: "text",
+                                                            placeholder: "ID",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "paquete.ID",
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                3: {
+                                                    label: "Aceleración",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "aceleracion-desde",
+                                                            type: "text",
+                                                            placeholder: "Desde",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "paquete.Accel",
+                                                                op: "$gte",
+                                                            }
+                                                        },
+                                                        hasta: {
+                                                            name: "aceleracion-hasta",
+                                                            type: "text",
+                                                            placeholder: "Hasta",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "paquete.Accel",
+                                                                op: "$lte",
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                4: {
+                                                    label: "Velocidad",
+                                                    inputs: {
+                                                        desde: {
+                                                            name: "velocidad-desde",
+                                                            type: "number",
+                                                            placeholder: "Desde",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "paquete.Velocidad",
+                                                                op: "$gte",
+                                                            }
+                                                        },
+                                                        hasta: {
+                                                            name: "velocidad-hasta",
+                                                            type: "number",
+                                                            placeholder: "Hasta",
+                                                            value: "",
+                                                            required: "",
+                                                            stage: {
+                                                                type: "match",
+                                                                var: "paquete.Velocidad",
+                                                                op: "$lte",
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             },
-                                            2: {
-                                                name: "paquete.Fecha",
-                                                label: "Fecha",
+                                            headerBtns: {
+                                                0: {
+                                                    enabled: "true",
+                                                    type: "filter",
+                                                    label: "Filtrar ",
+                                                    onClick: {
+                                                        cmds: {
+                                                            0: {
+                                                                type: "filter",
+                                                                payload: {}
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             },
-                                            3: {
-                                                name: "paquete.Hora",
-                                                label: "Hora",
+                                            footerBtns: {
+                                                0: {
+                                                    enabled: false,
+                                                    type: "filter",
+                                                    label: "filtrar",
+                                                    onClick: {
+                                                        cmds: {
+                                                            0: {
+                                                                type: "filter",
+                                                                payload: {}
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                1: {
+                                                    enabled: "true",
+                                                    type: "filter",
+                                                    label: "filtrar",
+                                                    onClick: {
+                                                        cmds: {
+                                                            0: {
+                                                                type: "filter",
+                                                                payload: {}
+                                                            }
+                                                        }
+                                                    }
+                                                },
                                             },
-                                            4: {
-                                                name: "paquete.Latitud",
-                                                label: "Latitud",
-                                            },
-                                            5: {
-                                                name: "paquete.Longitud",
-                                                label: "Longitud",
-                                            },
-                                            6: {
-                                                name: "paquete.Sensor1",
-                                                label: "Comb.(S1)",
-                                            },
-                                            7: {
-                                                name: "paquete.Sensor2",
-                                                label: "RPMs (S2)",
-                                            },
-                                            8: {
-                                                name: "paquete.Accel",
-                                                label: "Aceleración",
-                                            },
-                                            9: {
-                                                name: "paquete.Velocidad",
-                                                label: "Velocidad",
+                                            finalStages: {
+                                                0: '{"$sort":{"paquete.Fecha":-1,"paquete.Hora":-1}}'
                                             }
-                                        },
-                                        filters: {
-                                            0: {
-                                                label: "Desde",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "fecha-desde",
-                                                        type: "date",
-                                                        placeholder: "Desde",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$gte",
-                                                            transform: "date"
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            1: {
-                                                label: "Hasta",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "fecha-hasta",
-                                                        type: "date",
-                                                        placeholder: "Hasta",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Fecha",
-                                                            op: "$lte",
-                                                            transform: "date"
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            2: {
-                                                label: "ID",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "ID",
-                                                        type: "text",
-                                                        placeholder: "ID",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.ID",
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            3: {
-                                                label: "Aceleración",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "aceleracion-desde",
-                                                        type: "text",
-                                                        placeholder: "Desde",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Accel",
-                                                            op: "$gte",
-                                                        }
-                                                    },
-                                                    hasta: {
-                                                        name: "aceleracion-hasta",
-                                                        type: "text",
-                                                        placeholder: "Hasta",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Accel",
-                                                            op: "$lte",
-                                                        }
-                                                    }
-                                                }
-                                            },
-                                            4: {
-                                                label: "Velocidad",
-                                                inputs: {
-                                                    desde: {
-                                                        name: "velocidad-desde",
-                                                        type: "number",
-                                                        placeholder: "Desde",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Velocidad",
-                                                            op: "$gte",
-                                                        }
-                                                    },
-                                                    hasta: {
-                                                        name: "velocidad-hasta",
-                                                        type: "number",
-                                                        placeholder: "Hasta",
-                                                        value: "",
-                                                        required: "",
-                                                        stage: {
-                                                            type: "match",
-                                                            var: "paquete.Velocidad",
-                                                            op: "$lte",
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        finalStages: {
-                                            0: '{"$sort":{"paquete.Fecha":-1,"paquete.Hora":-1}}'
                                         }
                                     }
                                 }
                             }
                         }
+                    },
+                }
+            }
+        }
+
+        const form = () => {
+
+            const modalForm = {
+                type: "form",
+                payload: {
+                    title: "Confirmación",
+                    cols: {
+                        0: {
+                            0: {
+                                type: "text",
+                                label: "DNI",
+                                placeholder: "DNI"
+                            },
+                            1: {
+                                type: "text",
+                                label: "Nombre",
+                                placeholder: "Nombre"
+                            },
+                            2: {
+                                type: "text",
+                                label: "Apellido",
+                                placeholder: "Apellido"
+                            },
+                            3: {
+                                type: "date",
+                                label: "Fecha N.",
+                                placeholder: ""
+                            },
+                            4: {
+                                type: "text",
+                                label: "Empresa",
+                                placeholder: "Empresa"
+                            },
+                        },
+                        1: {
+                            0: {
+                                type: "text",
+                                label: "Sector",
+                                placeholder: "Sector"
+                            },
+                            1: {
+                                type: "text",
+                                label: "Posición",
+                                placeholder: "Posición"
+                            },
+                            2: {
+                                type: "text",
+                                label: "Mail",
+                                placeholder: "Mail"
+                            },
+                            3: {
+                                type: "text",
+                                label: "Teléfono",
+                                placeholder: ""
+                            },
+                            4: {
+                                type: "text",
+                                label: "Dirección",
+                                placeholder: "Dirección"
+                            },
+                        }
+                    },
+                    footerBtns: {
+                        0: {
+                            enabled: "false",
+                            type: "filter",
+                            label: "filtrar",
+                            onClick: {
+                                cmds: {
+                                    0: {
+                                        type: "filter",
+                                        payload: {}
+                                    }
+                                }
+                            }
+                        },
+                        1: {
+                            enabled: "false",
+                            type: "filter",
+                            label: "filtrar",
+                            onClick: {
+                                cmds: {
+                                    0: {
+                                        type: "filter",
+                                        payload: {}
+                                    }
+                                }
+                            }
+                        },
+                    }
+                }
+            }
+
+            const formCliente = {
+                type: "form",
+                payload: {
+                    title: "INTI",
+                    cols: {
+                        0: {
+                            0: {
+                                type: "text",
+                                label: "DNI",
+                                placeholder: "DNI"
+                            },
+                            1: {
+                                type: "text",
+                                label: "Nombre",
+                                placeholder: "Nombre"
+                            },
+                            2: {
+                                type: "text",
+                                label: "Apellido",
+                                placeholder: "Apellido"
+                            },
+                            3: {
+                                type: "date",
+                                label: "Fecha N.",
+                                placeholder: ""
+                            },
+                            4: {
+                                type: "text",
+                                label: "Empresa",
+                                placeholder: "Empresa"
+                            },
+                        },
+                        1: {
+                            0: {
+                                type: "text",
+                                label: "Sector",
+                                placeholder: "Sector"
+                            },
+                            1: {
+                                type: "text",
+                                label: "Posición",
+                                placeholder: "Posición"
+                            },
+                            2: {
+                                type: "text",
+                                label: "Mail",
+                                placeholder: "Mail"
+                            },
+                            3: {
+                                type: "text",
+                                label: "Teléfono",
+                                placeholder: ""
+                            },
+                            4: {
+                                type: "text",
+                                label: "Dirección",
+                                placeholder: "Dirección"
+                            },
+                        }
+                    }
+                }
+            };
+
+            const formReceptor = {
+                type: "form",
+                payload: {
+                    title: "INTI",
+                    cols: {
+                        0: {
+                            0: {
+                                type: "text",
+                                label: "DNI",
+                                placeholder: "DNI"
+                            },
+                            1: {
+                                type: "text",
+                                label: "Nombre",
+                                placeholder: "Nombre"
+                            },
+                            2: {
+                                type: "text",
+                                label: "Apellido",
+                                placeholder: "Apellido"
+                            },
+                            3: {
+                                type: "date",
+                                label: "Fecha N.",
+                                placeholder: ""
+                            },
+                            4: {
+                                type: "text",
+                                label: "Empresa",
+                                placeholder: "Empresa"
+                            },
+                        },
+                        1: {
+                            0: {
+                                type: "text",
+                                label: "Sector",
+                                placeholder: "Sector"
+                            },
+                            1: {
+                                type: "text",
+                                label: "Posición",
+                                placeholder: "Posición"
+                            },
+                            2: {
+                                type: "text",
+                                label: "Mail",
+                                placeholder: "Mail"
+                            },
+                            3: {
+                                type: "text",
+                                label: "Teléfono",
+                                placeholder: ""
+                            },
+                            4: {
+                                type: "text",
+                                label: "Dirección",
+                                placeholder: "Dirección"
+                            },
+                        }
+                    }
+                }
+            };
+
+            const tableEquipos = {
+                type: "table",
+                payload: {
+                    title: "INTI",
+                    fetchPath: "/api/aggregate/Masterbus-IOT/INTI",
+                    headers: {
+                        0: {
+                            name: "paquete.Direccion",
+                            label: "Dirección",
+                        },
+                        1: {
+                            name: "paquete.ID",
+                            label: "ID",
+                        },
+                        2: {
+                            name: "paquete.Fecha",
+                            label: "Fecha",
+                        },
+                        3: {
+                            name: "paquete.Hora",
+                            label: "Hora",
+                        },
+                        4: {
+                            name: "paquete.Latitud",
+                            label: "Latitud",
+                        },
+                        5: {
+                            name: "paquete.Longitud",
+                            label: "Longitud",
+                        },
+                        6: {
+                            name: "paquete.Sensor1",
+                            label: "Comb.(S1)",
+                        },
+                        7: {
+                            name: "paquete.Sensor2",
+                            label: "RPMs (S2)",
+                        },
+                        8: {
+                            name: "paquete.Accel",
+                            label: "Aceleración",
+                        },
+                        9: {
+                            name: "paquete.Velocidad",
+                            label: "Velocidad",
+                        }
+                    },
+                    filters: {
+                        0: {
+                            label: "Desde",
+                            inputs: {
+                                desde: {
+                                    name: "fecha-desde",
+                                    type: "date",
+                                    placeholder: "Desde",
+                                    value: "",
+                                    required: "",
+                                    stage: {
+                                        type: "match",
+                                        var: "paquete.Fecha",
+                                        op: "$gte",
+                                        transform: "date"
+                                    }
+                                }
+                            }
+                        },
+                        1: {
+                            label: "Hasta",
+                            inputs: {
+                                desde: {
+                                    name: "fecha-hasta",
+                                    type: "date",
+                                    placeholder: "Hasta",
+                                    value: "",
+                                    required: "",
+                                    stage: {
+                                        type: "match",
+                                        var: "paquete.Fecha",
+                                        op: "$lte",
+                                        transform: "date"
+                                    }
+                                }
+                            }
+                        },
+                        2: {
+                            label: "ID",
+                            inputs: {
+                                desde: {
+                                    name: "ID",
+                                    type: "text",
+                                    placeholder: "ID",
+                                    value: "",
+                                    required: "",
+                                    stage: {
+                                        type: "match",
+                                        var: "paquete.ID",
+                                    }
+                                }
+                            }
+                        },
+                        3: {
+                            label: "Aceleración",
+                            inputs: {
+                                desde: {
+                                    name: "aceleracion-desde",
+                                    type: "text",
+                                    placeholder: "Desde",
+                                    value: "",
+                                    required: "",
+                                    stage: {
+                                        type: "match",
+                                        var: "paquete.Accel",
+                                        op: "$gte",
+                                    }
+                                },
+                                hasta: {
+                                    name: "aceleracion-hasta",
+                                    type: "text",
+                                    placeholder: "Hasta",
+                                    value: "",
+                                    required: "",
+                                    stage: {
+                                        type: "match",
+                                        var: "paquete.Accel",
+                                        op: "$lte",
+                                    }
+                                }
+                            }
+                        },
+                        4: {
+                            label: "Velocidad",
+                            inputs: {
+                                desde: {
+                                    name: "velocidad-desde",
+                                    type: "number",
+                                    placeholder: "Desde",
+                                    value: "",
+                                    required: "",
+                                    stage: {
+                                        type: "match",
+                                        var: "paquete.Velocidad",
+                                        op: "$gte",
+                                    }
+                                },
+                                hasta: {
+                                    name: "velocidad-hasta",
+                                    type: "number",
+                                    placeholder: "Hasta",
+                                    value: "",
+                                    required: "",
+                                    stage: {
+                                        type: "match",
+                                        var: "paquete.Velocidad",
+                                        op: "$lte",
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    finalStages: {
+                        0: '{"$sort":{"paquete.Fecha":-1,"paquete.Hora":-1}}'
+                    },
+                    headerBtns: {
+                        0: {
+                            enabled: "true",
+                            type: "filter",
+                            label: "filtrar",
+                            onClick: {
+                                cmds: {
+                                    0: {
+                                        type: "filter",
+                                        payload: {}
+                                    }
+                                }
+                            }
+                        },
+                        1: {
+                            enabled: "true",
+                            type: "erase",
+                            label: "filtrar",
+                            targeted: true, // Solo se habilita si tengo seleccionado elementos de la tabla
+                            onClick: {
+                                cmds: {
+                                    0: {
+                                        type: "erase",
+                                        payload: {}
+                                    }
+                                }
+                            }
+                        },
+                        2: {
+                            enabled: "true",
+                            type: "edit",
+                            label: "editar",
+                            targeted: true, // Solo se habilita si tengo seleccionado elementos de la tabla
+                            onClick: {
+                                cmds: {
+                                    1: {
+                                        type: "modal",
+                                        form: {
+                                            title: "INTI",
+                                            cols: {
+                                                0: {
+                                                    0: {
+                                                        type: "text",
+                                                        label: "DNI",
+                                                        placeholder: "DNI"
+                                                    },
+                                                    1: {
+                                                        type: "text",
+                                                        label: "Nombre",
+                                                        placeholder: "Nombre"
+                                                    },
+                                                    2: {
+                                                        type: "text",
+                                                        label: "Apellido",
+                                                        placeholder: "Apellido"
+                                                    },
+                                                    3: {
+                                                        type: "date",
+                                                        label: "Fecha N.",
+                                                        placeholder: ""
+                                                    },
+                                                    4: {
+                                                        type: "text",
+                                                        label: "Empresa",
+                                                        placeholder: "Empresa"
+                                                    },
+                                                },
+                                                1: {
+                                                    0: {
+                                                        type: "text",
+                                                        label: "Sector",
+                                                        placeholder: "Sector"
+                                                    },
+                                                    1: {
+                                                        type: "text",
+                                                        label: "Posición",
+                                                        placeholder: "Posición"
+                                                    },
+                                                    2: {
+                                                        type: "text",
+                                                        label: "Mail",
+                                                        placeholder: "Mail"
+                                                    },
+                                                    3: {
+                                                        type: "text",
+                                                        label: "Teléfono",
+                                                        placeholder: ""
+                                                    },
+                                                    4: {
+                                                        type: "text",
+                                                        label: "Dirección",
+                                                        placeholder: "Dirección"
+                                                    },
+                                                }
+                                            },
+                                            footerBtns: {
+                                                cancel: {
+                                                    enabled: "true",
+                                                    type: "edit",
+                                                    label: "editar",
+                                                    onClick: {}
+                                                },
+                                                acept: {
+                                                    enabled: "true",
+                                                    type: "edit",
+                                                    label: "editar",
+                                                    onClick: {}
+                                                }
+                                            }
+                                        },
+                                    }
+                                }
+                            }
+                        },
+                        3: {
+                            enabled: "true",
+                            type: "add",
+                            label: "agregar",
+                            onClick: {
+                                cmds: {
+                                    0: {
+                                        type: "modal",
+                                        payload: {
+                                            content: {
+                                                rows: {
+                                                    //Rows
+                                                    0: {
+                                                        cols: {
+                                                            0: {
+                                                                0: modalForm
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                            }
+                                        }
+                                    },
+                                    1: {
+                                        type: "post",
+                                        payload: {
+                                            url: "api/post/test/test",
+                                            method: "POST",
+                                        }
+                                    },
+                                    2: {
+                                        type: "update",
+                                        payload: {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    footerBtns: {
+                        0: {
+                            enabled: "false",
+                            type: "filter",
+                            label: "filtrar",
+                            onClick: {
+                                cmds: {
+                                    0: {
+                                        type: "filter",
+                                        payload: {}
+                                    }
+                                }
+                            }
+                        },
+                        1: {
+                            enabled: "false",
+                            type: "filter",
+                            label: "filtrar",
+                            onClick: {
+                                cmds: {
+                                    0: {
+                                        type: "filter",
+                                        payload: {}
+                                    }
+                                }
+                            }
+                        },
+                    }
+                }
+            };
+
+            return {
+                name: "FORM",
+                access: {
+                    names: {
+                        1: "Admin"
+                    },
+                    roles: {
+                        0: "Admin"
                     }
                 },
+                content: {
+                    rows: {
+                        //Rows
+                        0: {
+                            cols: {
+                                0: {
+                                    0: formCliente
+                                },
+                                1: {
+                                    0: formReceptor
+                                }
+                            }
+                        },
+                        1: {
+                            cols: {
+                                0: {
+                                    0: tableEquipos
+                                }
+                            }
+                        }
+                    },
+                }
             }
         }
 
         return {
-            0: urbetrack,
-            1: inti,
-            2: form
+            0: urbetrack(),
+            1: inti(),
+            2: form()
         }
     }
 
@@ -844,11 +1263,11 @@ var config = {
     //Credenciales de Broker MQTT
     mqtt: {
         url: "ws://52.90.77.249:8083/mqtt",
-        credentials:{
-            username : "admin",
-            password : "public"
+        credentials: {
+            username: "admin",
+            password: "public"
         },
-        topics:['inti/865067021324796/start', 'inti/865067021324796/quick', 'inti/865067021324796/slow', 'testtopic']
+        topics: ['inti/865067021324796/start', 'inti/865067021324796/quick', 'inti/865067021324796/slow', 'testtopic']
     },
 
     //Encryptacion JWT
@@ -869,7 +1288,8 @@ var bds = {
     mongo: {
         url: "mongodb://dashboard:dashboardpassword@unm-kvm-masterbus-4.planisys.net/admin",
         //url: "mongodb+srv://masterbus-iot-server:masterbus@cluster0.uggrc.mongodb.net/INTI-Test?retryWrites=true&w=majority",
-        dfltDb: "dflt"
+        dfltDb: "dflt",
+        dfltColl: "dflt"
     },
 
     // maria: {
@@ -911,7 +1331,10 @@ const endpoints = {
                                     .status(200)
                                     .send(`{"token":${JSON.stringify(token)}}`);
                             })
-                            .catch((err) => res.status(403).send(JSON.stringify(err)));
+                            .catch((err) => {
+                                console.log(err);
+                                res.status(403).send(JSON.stringify(err));
+                            });
                         break;
                     default:
                         res.status(401).send("invalid http method!");
@@ -956,8 +1379,9 @@ const endpoints = {
         "post": (req, res) => {
             var params = req.params[0].split('/');
             var coll = params[3];
-            if (coll == 'urbe'){
-                coll = 'Events';}
+            if (coll == 'urbe') {
+                coll = 'Events';
+            }
             cmd({
                     type: "mongo",
                     method: "POST",
@@ -970,35 +1394,35 @@ const endpoints = {
                     //Push de datos a los webhooks suscriptos (POST REQUEST).
                     //Verificar body (Si son datos para urbe, ejecutar evento).
                     return cmd({
-                        type: "mongo",
-                        method: "GET", //Aggregate() o GET de webhooks?
-                        db: "admin",
-                        collection: "Webhooks",
-                        query: {},
-                        queryOptions: {}
-                    })
-                    .then((suscribers) => {
-                        let urlParams = { 
-                                        bus : parseInt(req.body.Interno),
-                                        fecha : setUTCTimezoneTo(req.body.Fecha, -3)
-                                        };
-                        let initFetch = {
-                            method: "GET",
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
+                            type: "mongo",
+                            method: "GET", //Aggregate() o GET de webhooks?
+                            db: "admin",
+                            collection: "Webhooks",
+                            query: {},
+                            queryOptions: {}
+                        })
+                        .then((suscribers) => {
+                            let urlParams = {
+                                bus: parseInt(req.body.Interno),
+                                fecha: setUTCTimezoneTo(req.body.Fecha, -3)
+                            };
+                            let initFetch = {
+                                method: "GET",
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': '3d524a53c110e4c22463b10ed32cef9d'
+                                }
+                            };
+                            for (let index = 0; index < suscribers.length; index++) {
+                                const elem = suscribers[index];
+                                const url = new URL(elem.content.url);
+                                url.search = new URLSearchParams(urlParams);
+                                const urlWithParams = url;
+                                console.log(url);
+                                fetchToWebhook(initFetch, urlWithParams, elem.content.codigos, req);
                             }
-                        };
-                        for (let index = 0; index < suscribers.length; index++) {
-                            const elem = suscribers[index];
-                            const url = new URL(elem.content.url);
-                            url.search = new URLSearchParams(urlParams);
-                            const urlWithParams = url;
-                            console.log(url);
-                            fetchToWebhook(initFetch, urlWithParams, elem.content.codigos, req);
-                        }
-                    })
-                    .catch(err => res.status(500).send("Error:"+err));
+                        })
+                        .catch(err => res.status(500).send("Error:" + err));
                 })
                 .catch(error => res.status(500).send(error));
         },
@@ -1277,6 +1701,13 @@ const websocket = {
     }
 };
 
+const repo = {
+    users: {
+        db: "users",
+        col: "users"
+    }
+};
+
 // Incializo mi app semilla
 const onStart = () => {
     console.log(`adn@setup: starting!`);
@@ -1296,4 +1727,4 @@ const onReady = () => {
     });
 };
 
-module.exports = { onStart, onReady, config, queues, bds, endpoints, workers, websocket };
+module.exports = { onStart, onReady, config, queues, bds, endpoints, workers, websocket, repo };

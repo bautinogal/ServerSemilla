@@ -1,26 +1,26 @@
 const express = require('express'); // Librería de Node para armar servidores
-const path = require('path'); // Librería para unificar los path independiente del OS en el que estamos
+// const path = require('path'); // Librería para unificar los path independiente del OS en el que estamos
 const config = require('../../config'); // Script de configuracion general
 
 const cookieParser = require('cookie-parser') // Herramienta para parsear las cookies
 const bodyParser = require('body-parser'); // Herramienta para parsear el "cuerpo" de los requests
 const morgan = require('morgan'); // Herramienta para loggear
-const wsHelper = require('../../lib/websocket/index');
-const favicon = require('serve-favicon');
-const ADN = require('../../ADN');
+// const wsHelper = require('../../lib/websocket/index');
+// const favicon = require('serve-favicon');
+// const ADN = require('../../ADN');
 
 const multer = require('multer');
 const upload = multer({ dest: 'public/uploads/' });
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './uploads/');
-    },
-    filename: function(req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname);
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//         cb(null, './uploads/');
+//     },
+//     filename: function(req, file, cb) {
+//         cb(null, new Date().toISOString() + file.originalname);
+//     }
+// });
 
-const webSocket = require('../../lib/websocket');
+// const webSocket = require('../../lib/websocket');
 const { connectToBroker } = require('../../lib/mqtt/index');
 //const { credentials } = require('amqplib');
 
@@ -70,8 +70,7 @@ const setMiddleWare = (app, adn) => {
 
 //Creo los endpoints a partid de la info que levanto del "ADN"
 const setEndpoints = (app, adn) => {
-    // TODO: SEGURIDAD, VALIDACIONES, ETC...
-    //Endpoint genérico:
+
     app.all('/*', function(req, res) {
         var params = req.params[0].split('/');
         var endpoint = adn.endpoints;

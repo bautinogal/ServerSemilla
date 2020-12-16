@@ -3,10 +3,6 @@
 const mongoDb = require('../../lib/mongodb');
 const mariaDb = require('../../lib/mariadb');
 
-const config = require('../../config');
-const crypto = require('../../lib/encryptation');
-const utils = require('../../lib/utils');
-
 //Los users van a estar en mongo por ahora
 var users = {};
 

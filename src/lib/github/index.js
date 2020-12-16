@@ -56,6 +56,7 @@ const cloneRepo = (owner, repository, path, authToken, folder) => {
             })
             .then(response => response.json())
             .then((json) => {
+                console.log(json);
                 logDir(json);
                 //A: descargo de a uno los archivos/carpetas del directorio
                 // https://stackoverflow.com/questions/40328932/javascript-es6-promise-for-loop/40329190
