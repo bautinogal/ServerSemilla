@@ -1267,7 +1267,11 @@ var config = {
             username: "admin",
             password: "public"
         },
-        topics: ['inti/865067021324796/start', 'inti/865067021324796/quick', 'inti/865067021324796/slow', 'testtopic']
+        inti: "inti",
+        imei: ["865067021324796",
+            "865067021303386",
+            "865067021297992"],
+        topics: ['hello', 'sleep', ' ', 'testtopic']
     },
 
     //Encryptacion JWT
