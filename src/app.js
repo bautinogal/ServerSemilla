@@ -100,7 +100,7 @@ app.post('/reset', function(req, res) {
         config.ADNGitAuthToken = req.body.gitToken || config.ADNGitAuthToken;
         reset()
             .then(a => res.send("app restarted!"))
-            .catch(err => req.status(500).send(err));
+            .catch(err => res.status(500).send(err));
     } else {
         res.send("Incorrect secret!");
     }
