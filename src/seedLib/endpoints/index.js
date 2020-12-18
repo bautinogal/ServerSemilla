@@ -98,8 +98,24 @@ const setEndpoints = (app, adn) => {
 const setMQTTClientConnection = (app, adn) => {
     let url = adn.config.mqtt.url;
     let credentials = adn.config.mqtt.credentials;
-    let topics = adn.config.mqtt.topics;
-    connectToBroker(url, credentials, topics);
+
+    //let topics = adn.config.mqtt.topics;
+    const inti = adn.config.mqtt.inti;
+    const imeiNumbers = adn.config.mqtt.imei;
+    const topics = adn.config.mqtt.topics;
+
+    imeiNumbers.forEach(elem => {
+        topics.forEach(element => {
+            let mqttTopics;
+            if(element == " "){
+                mqttTopics = `${inti}/${elem}`;
+            }
+            else {
+                mqttTopics = `${inti}/${elem}/${element}`;
+            }
+            connectToBroker(url, credentials, mqttTopics);
+        });
+    });
 }
 
 //Configuro el servidor y endpoints
