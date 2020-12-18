@@ -2,7 +2,8 @@
 const express = require('express');
 const WebSocket = require('ws');
 const url = require('url');
-// Herramientas para manipular el "ADN" de la app
+const config = require('./config')
+    // Herramientas para manipular el "ADN" de la app
 const ADNTools = require('./seedLib/ADNTools');
 // Script que administra las colas
 const queues = require('./seedLib/queues');
@@ -12,6 +13,7 @@ const endpoints = require('./seedLib/endpoints');
 const workers = require('./seedLib/workers');
 // Script que administra las bds y colas del sistema
 const bds = require('./seedLib/bds');
+
 
 //TODO: agregar certificados ssl y caa
 // El servidor comienza a escuchar los requests
@@ -92,11 +94,17 @@ const reset = () => {
         }));
 }
 
+//TODO: Hacer algo mas prolijo y seguro que esto...
+app.post('/reset', function(req, res) {
+    if (req.body.secret == "secreto") {
+        config.ADNGitAuthToken = req.body.gitToken || config.ADNGitAuthToken;
+        reset()
+            .then(a => res.send("app restarted!"))
+            .catch(err => req.status(500).send(err));
+    } else {
+        res.send("Incorrect secret!");
+    }
 
-app.all('/reset', function(req, res) {
-    reset()
-        .then(a => res.send("app restarted!"))
-        .catch(err => req.status(500).send(err));
 });
 
 
