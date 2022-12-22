@@ -21,7 +21,7 @@
         "express": "^4.17.1",
         "ftp-srv": "^4.3.4",
         "jsdom": "^16.4.0",
-        "jsonwebtoken": "^8.5.1",
+        "jsonwebtoken": "^9.0.0",
         "mariadb": "^2.4.2",
         "mingo": "^3.0.6",
         "mkdir": "0.0.2",
